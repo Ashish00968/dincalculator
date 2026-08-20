@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dist/
+Disallow: /node_modules/
+
+Sitemap: https://dincalculatorpro.com/sitemap.xml

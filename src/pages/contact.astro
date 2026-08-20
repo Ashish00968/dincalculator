@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Contact Us | DIN Calculator Pro";
+const pageDescription = "Get in touch with the DIN Calculator Pro team. Report issues, ask questions, or provide feedback about our free ISO 11088 ski binding calculator.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]" style="background-image: linear-gradient(var(--theme-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--theme-hairline) 1px, transparent 1px); background-size: 48px 48px;"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14 sm:pt-28 sm:pb-20 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-parchment text-mute text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Get In Touch
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-ink tracking-tight leading-tight mb-6">
+        We'd love to <span class="text-primary">hear from you.</span>
+      </h1>
+      <p class="text-mute text-lg max-w-xl mx-auto leading-relaxed">
+        Have a question, found a bug, or want to suggest an improvement? Send us a message and we'll get back to you.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Contact Info Cards -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-ink mb-6">Contact Information</h2>
+
+        <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="font-semibold text-ink text-sm">Email</div>
+          <a href="mailto:hello@dincalculatorpro.com" class="text-primary text-sm hover:underline">hello@dincalculatorpro.com</a>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="font-semibold text-ink text-sm">Response Time</div>
+          <p class="text-mute text-xs leading-relaxed">We typically respond within 24–48 hours on business days.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+          <div class="w-9 h-9 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500 mb-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div class="font-semibold text-ink text-sm">Privacy</div>
+          <p class="text-mute text-xs leading-relaxed">Your email is only used to reply to you. We do not add you to any mailing list.</p>
+        </div>
+
+        <!-- FAQ shortcut -->
+        <div class="pt-4">
+          <p class="text-xs text-mute mb-2">Looking for quick answers?</p>
+          <a href="/#faq" class="text-sm text-primary font-medium hover:underline flex items-center gap-1">
+            View our FAQ
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="md:col-span-2">
+        <h2 class="text-lg font-bold text-ink mb-6">Send a Message</h2>
+        <form
+          id="contact-form"
+          action="mailto:hello@dincalculatorpro.com"
+          method="get"
+          enctype="text/plain"
+          class="space-y-5"
+        >
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="space-y-1.5">
+              <label for="contact-name" class="text-xs font-semibold text-mute uppercase tracking-wider">Name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-parchment border border-hairline text-ink text-sm placeholder:text-mute/60 focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/10 transition-all"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label for="contact-email" class="text-xs font-semibold text-mute uppercase tracking-wider">Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-parchment border border-hairline text-ink text-sm placeholder:text-mute/60 focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/10 transition-all"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="contact-subject" class="text-xs font-semibold text-mute uppercase tracking-wider">Subject</label>
+            <select
+              id="contact-subject"
+              name="subject"
+              class="w-full px-4 py-3 rounded-xl bg-parchment border border-hairline text-ink text-sm focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/10 transition-all appearance-none cursor-pointer"
+            >
+              <option value="general">General Question</option>
+              <option value="bug">Bug Report</option>
+              <option value="feedback">Feedback / Suggestion</option>
+              <option value="partnership">Partnership / Media</option>
+              <option value="technical">Technical Issue</option>
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="contact-message" class="text-xs font-semibold text-mute uppercase tracking-wider">Message</label>
+            <textarea
+              id="contact-message"
+              name="body"
+              rows="6"
+              placeholder="Tell us how we can help..."
+              required
+              class="w-full px-4 py-3 rounded-xl bg-parchment border border-hairline text-ink text-sm placeholder:text-mute/60 focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/10 transition-all resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg"
+            style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);"
+          >
+            Send Message
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </button>
+
+          <p class="text-[11px] text-mute">
+            This form opens your default email client. Your data is processed locally — we never receive form data through a server.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Topics -->
+    <div class="mt-16 pt-12 border-t border-hairline">
+      <h2 class="text-lg font-bold text-ink mb-6 text-center">What Can We Help With?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          { icon: "🐛", title: "Bug Reports", desc: "Did a calculation seem wrong? Found a display issue? Let us know with your browser and OS details." },
+          { icon: "💡", title: "Feature Requests", desc: "Want PDF export? A specific language? A new binding database? We're all ears." },
+          { icon: "🤝", title: "Partnerships", desc: "Ski shop owners, bloggers, and ski schools — reach out about partnerships or embedding." }
+        ].map(item => (
+          <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+            <span class="text-2xl">{item.icon}</span>
+            <h3 class="font-semibold text-ink text-sm">{item.title}</h3>
+            <p class="text-xs text-mute leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

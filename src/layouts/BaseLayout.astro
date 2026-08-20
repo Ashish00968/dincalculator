@@ -1,0 +1,389 @@
+---
+import '../styles/global.css';
+import { ThemeToggle } from '../components/ui/ThemeToggle';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogType?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description = 'ISO 11088 certified ski binding DIN calculator. Deterministic, client-side release setting calculations with precision engineering and zero data tracking.',
+  ogType = 'website',
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = 'https://dincalculatorpro.com';
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Calculator' },
+  { href: '/iso-11088-chart', label: 'ISO 11088 Matrix' },
+  { href: '/bsl-guide', label: 'BSL Guide' },
+  { href: '/skier-types', label: 'Skier Types' },
+  { href: '/about', label: 'About' },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "DIN Calculator Pro",
+      "applicationCategory": "HealthAndFitnessApplication",
+      "operatingSystem": "All modern web browsers",
+      "url": siteUrl,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Calculates ski binding release DIN settings in strict compliance with the ISO 11088 international standard."
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to calculate DIN ski binding setting",
+      "description": "How to determine the correct DIN release force setting for alpine ski bindings using the ISO 11088 standard.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Enter your physical dimensions",
+          "text": "Your body weight and height are the primary factors. Heavier and taller skiers require higher DIN settings to prevent pre-release during normal skiing."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Select your skier type",
+          "text": "Type 1 (cautious/beginner) reduces the DIN setting for easier release. Type 2 (average) uses the standard code. Type 3 (aggressive/advanced) increases the code for retention."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Enter your age",
+          "text": "Skiers under 10 or 50 and over receive a modifier to reduce the DIN setting, as they require bindings that release more easily."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Enter your boot sole length (BSL)",
+          "text": "The boot sole length in millimeters is found on the ski boot. It determines the final DIN value in the ISO 11088 binding adjustment table."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you calculate DIN?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DIN is calculated using the official ISO 11088 standard in four steps: (1) Find your initial Skier Code based on weight and height; (2) Adjust the code up or down according to your Skier Type (I, II, or III); (3) Apply an age modifier if under 10 or 50+; (4) Cross-reference your final Skier Code with your Boot Sole Length (BSL in mm) on the ISO matrix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is DIN measurement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DIN stands for Deutsches Institut für Normung (German Institute for Standardization). In skiing, a DIN setting measures the release torque value in decanewtons (daN) for your binding's toe and heel pieces, calibrated to release your boot safely before force causes leg or knee fractures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to use a DIN chart?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To use an ISO 11088 DIN chart, locate your Skier Code row based on your weight/height and ability level. Then, read across the table to find the column matching your Boot Sole Length (BSL). The intersecting number is your recommended baseline DIN setting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to adjust DIN on skis (and can I change it myself)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DIN is physically adjusted by turning the tension screw located on both the toe and heel pieces until the visual indicator matches your target number. However, physical binding adjustment must always be torque-tested on calibrated diagnostic test equipment by a certified ski technician to ensure mechanical safety."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should my child's DIN setting be (Kids Ski DIN)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Children's DIN settings typically range from 0.75 to 3.0 depending on body weight (starting from under 13 kg / 29 lbs) and boot sole length. ISO 11088 applies specific lower-force tension curves for younger skiers to protect developing bones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this DIN calculator support metric (kg/cm) and imperial (lbs/ft)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our calculator provides seamless one-click switching between Imperial (pounds, feet/inches) and Metric (kilograms, centimeters) with automatic geolocation detection for your regional preference."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find my Boot Sole Length (BSL)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your Boot Sole Length (BSL) is measured in millimeters (e.g., 315mm) and is permanently embossed or stamped into the plastic on the heel lug or arch of your ski boot shell. It is different from Mondo sizing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I determine my Skier Type (Type I, II, III)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Type I is for cautious beginners who prefer easy release at lower forces. Type II is for moderate skiers skiing diverse terrain. Type III is for aggressive, fast skiers requiring higher retention to prevent pre-release under heavy g-forces."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does my age affect my DIN setting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Under the ISO 11088 standard, skiers under 10 years old and skiers aged 50 and older receive an automatic one-code reduction, which lowers the DIN to reduce fracture risk."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if my DIN setting is too high?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your DIN is set too high, the binding will fail to release during a twisting fall or crash, transferring high rotational stress directly into your knee ligaments (ACL/MCL) and tibia, greatly increasing injury risk."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if my DIN setting is too low?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your DIN is set too low, you may experience an accidental 'pre-release'—the binding pops open during hard turns, icy conditions, or over bumps, causing unexpected falls at speed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are DIN settings the same across all ski binding brands?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Because DIN is an international standard (ISO 11088 / ISO 9462), a DIN 6 on Marker bindings provides the exact same calibrated release force as a DIN 6 on Salomon, Look, Atomic, Tyrolia, or Armada bindings."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | DIN Calculator Pro</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={`${title} | DIN Calculator Pro`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="DIN Calculator Pro" />
+    <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.svg`} />
+
+    <!-- Favicon & Web App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#090A0C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
+
+    <!-- Inline Theme Script to avoid FOUC -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body class="bg-canvas text-primary font-sans antialiased min-h-screen flex flex-col selection:bg-accent/30 selection:text-primary">
+    <!-- Sticky Developer-Platform Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-canvas/80 backdrop-blur-md border-b border-hairline transition-all">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl overflow-hidden shrink-0 shadow-sm group-hover:ring-2 group-hover:ring-orange-500/40 transition-all">
+            <img src="/logo-icon.png" alt="DIN Calculator Pro" class="w-full h-full object-cover" />
+          </div>
+          <span class="text-sm font-bold tracking-tight text-ink group-hover:text-primary transition-colors">
+            DIN Calculator <span class="text-primary">Pro</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 bg-input/80 p-1 rounded-full border border-hairline shadow-inner">
+          {navLinks.map((link) => {
+            const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+            return (
+              <a
+                href={link.href}
+                class={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  isActive
+                    ? 'text-primary bg-canvas shadow-sm border border-hairline'
+                    : 'text-mute hover:text-primary hover:bg-canvas/40'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </nav>
+
+        <!-- Right Action Badge -->
+        <div class="flex items-center gap-3">
+          <ThemeToggle client:load />
+
+
+
+
+          
+          <!-- Mobile Menu Button -->
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden p-2 rounded-lg bg-input border border-hairline text-mute hover:text-primary"
+            aria-label="Toggle menu"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 border-b border-hairline bg-canvas space-y-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="block px-3 py-2 rounded-md text-sm font-medium text-mute hover:text-primary hover:bg-parchment"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <main class="flex-1 relative z-10">
+      <slot />
+    </main>
+
+    <!-- Global Developer-Platform Footer -->
+    <footer class="bg-canvas border-t border-hairline mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Safety Alert Band -->
+        <div class="mb-14 p-6 rounded-2xl bg-parchment border border-amber-500/30 flex flex-col md:flex-row items-start gap-4 shadow-sm">
+          <div class="p-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-500 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <div class="space-y-1.5 text-xs sm:text-sm">
+            <p class="font-semibold text-primary">Mandatory ISO 11088 Safety Notice</p>
+            <p class="text-mute leading-relaxed">
+              DIN Calculator Pro calculates estimated baseline binding release settings in accordance with the international ISO 11088 standard for informational and cross-reference purposes only. Release mechanisms directly affect physical safety. Bindings must be calibrated, adjusted, and mechanically torque-tested on calibrated workshop equipment by a certified ski technician before skiing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Footer Links Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-sm">
+          <div class="space-y-3">
+            <div class="flex items-center gap-2.5 text-primary font-bold">
+              <div class="w-7 h-7 rounded-lg overflow-hidden shrink-0 shadow-sm">
+                <img src="/logo-icon.png" alt="DIN Calculator Pro" class="w-full h-full object-cover" />
+              </div>
+              <span class="text-base tracking-tight">DIN Calculator <span class="text-accent">Pro</span></span>
+            </div>
+            <p class="text-mute text-xs leading-relaxed">
+              High-precision, zero-tracking, ISO 11088 ski binding calculation tool built with pure client-side deterministic algorithms.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="caption-mono text-mute mb-3">Calculators & Tools</h4>
+            <ul class="space-y-2 text-xs text-mute">
+              <li><a href="/" class="hover:text-primary transition-colors">DIN Release Calculator</a></li>
+              <li><a href="/iso-11088-chart" class="hover:text-primary transition-colors">ISO 11088 Matrix Table</a></li>
+              <li><a href="/bsl-guide" class="hover:text-primary transition-colors">BSL & Mondo Sizing Guide</a></li>
+              <li><a href="/skier-types" class="hover:text-primary transition-colors">Skier Type Selector</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="caption-mono text-mute mb-3">Standards & Protocols</h4>
+            <ul class="space-y-2 text-xs text-mute">
+              <li><span class="text-primary font-medium">ISO 11088:2018</span> (Assembly & Inspection)</li>
+              <li><span class="text-primary font-medium">ISO 9462</span> (Alpine Ski Bindings)</li>
+              <li><span class="text-primary font-medium">ISO 5355</span> (Alpine Ski Boots)</li>
+              <li><span class="text-primary font-medium">ASTM F939</span> (Standard Practice)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="caption-mono text-mute mb-3">Company</h4>
+            <ul class="space-y-2 text-xs text-mute">
+              <li><a href="/about" class="hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="/contact" class="hover:text-primary transition-colors">Contact Us</a></li>
+              <li><a href="/terms" class="hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li class="text-emerald-500 pt-1 flex items-center gap-1">
+                <span>●</span> No Cookies • No Tracking • No Ads
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between text-xs text-mute gap-4">
+          <p>© {new Date().getFullYear()} DIN Calculator Pro. Not affiliated with ISO or DIN e.V. Calculation methodology based on ISO 11088:2018.</p>
+          <p class="font-mono text-[11px]">Client-Side Only • Zero Data Stored • MIT License</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+    </script>
+  </body>
+</html>

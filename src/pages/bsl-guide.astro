@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "How to Find Boot Sole Length (BSL) | Ski Binding Size Guide";
+const pageDescription = "Learn how to find, measure, and convert your Ski Boot Sole Length (BSL) in millimeters. Full Mondo Point size conversion chart and boot lug diagrams.";
+
+const mondoTable = [
+  { mondo: '21.0 / 21.5', usMen: '3.5 / 4.0', usWomen: '4.5 / 5.0', eu: '34 / 35', typicalBsl: '255 mm' },
+  { mondo: '22.0 / 22.5', usMen: '4.5 / 5.0', usWomen: '5.5 / 6.0', eu: '35.5 / 36', typicalBsl: '265 mm' },
+  { mondo: '23.0 / 23.5', usMen: '5.5 / 6.0', usWomen: '6.5 / 7.0', eu: '37 / 37.5', typicalBsl: '275 mm' },
+  { mondo: '24.0 / 24.5', usMen: '6.5 / 7.0', usWomen: '7.5 / 8.0', eu: '38 / 39', typicalBsl: '285 mm' },
+  { mondo: '25.0 / 25.5', usMen: '7.5 / 8.0', usWomen: '8.5 / 9.0', eu: '40 / 40.5', typicalBsl: '295 mm' },
+  { mondo: '26.0 / 26.5', usMen: '8.5 / 9.0', usWomen: '9.5 / 10.0', eu: '41 / 42', typicalBsl: '305 mm' },
+  { mondo: '27.0 / 27.5', usMen: '9.5 / 10.0', usWomen: '10.5 / 11.0', eu: '42.5 / 43', typicalBsl: '315 mm' },
+  { mondo: '28.0 / 28.5', usMen: '10.5 / 11.0', usWomen: '11.5 / 12.0', eu: '44 / 44.5', typicalBsl: '325 mm' },
+  { mondo: '29.0 / 29.5', usMen: '11.5 / 12.0', usWomen: '12.5 / 13.0', eu: '45 / 46', typicalBsl: '335 mm' },
+  { mondo: '30.0 / 30.5', usMen: '12.5 / 13.0', usWomen: '—', eu: '46.5 / 47', typicalBsl: '345 mm' },
+  { mondo: '31.0 / 31.5', usMen: '13.5 / 14.0', usWomen: '—', eu: '48 / 49', typicalBsl: '355 mm' },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    {/* Header */}
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-white/15 text-zinc-300 text-xs font-mono mb-4 shadow-sm">
+        <span>MEASUREMENT SPECIFICATION</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight mb-4">
+        Boot Sole Length (BSL) guide.
+      </h1>
+      <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+        Everything you need to know about measuring, locating, and converting your ski boot's millimeter sole dimension for safe DIN calculations.
+      </p>
+    </div>
+
+    {/* Distinction Card */}
+    <div class="mb-14 p-6 sm:p-8 rounded-2xl bg-zinc-950/80 border border-white/10 shadow-xl relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-500 to-cyan-400"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-3">Mondo Point vs. Boot Sole Length</h2>
+          <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+            The most common mistake skiers make is inputting their <strong>Mondo size (e.g., 27.5)</strong> into a DIN calculator instead of their <strong>Boot Sole Length (e.g., 315mm)</strong>.
+          </p>
+          <ul class="space-y-2 text-xs text-zinc-300">
+            <li class="flex items-start gap-2">
+              <span class="text-rose-400 font-mono font-bold">✕</span>
+              <span><strong>Mondo Size:</strong> The inner foot/liner size in centimeters (e.g., 26.5 cm).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-mono font-bold">✓</span>
+              <span><strong>Boot Sole Length (BSL):</strong> Total physical exterior shell length in millimeters (e.g., 305 mm).</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Diagram Box */}
+        <div class="p-6 rounded-xl bg-zinc-900/70 border border-white/5 flex flex-col items-center justify-center shadow-inner">
+          <svg viewBox="0 0 240 90" class="w-full h-28" fill="none">
+            <path
+              d="M 50 15 C 60 15, 65 35, 75 45 L 140 45 C 160 45, 195 55, 205 75 L 205 85 L 25 85 L 25 45 C 25 25, 40 15, 50 15 Z"
+              fill="#171717"
+              stroke="#ffffff"
+              stroke-width="2"
+            ></path>
+            {/* Sole Lug highlights */}
+            <rect x="22" y="78" width="30" height="9" rx="2" fill="#27272a" stroke="#71717a" stroke-width="1"></rect>
+            <rect x="175" y="78" width="35" height="9" rx="2" fill="#27272a" stroke="#71717a" stroke-width="1"></rect>
+            {/* Heel stamp */}
+            <circle cx="37" cy="82" r="5.5" fill="#38BDF8"></circle>
+            <text x="37" y="84" font-size="5" font-weight="bold" fill="#000000" text-anchor="middle" font-family="monospace">
+              305
+            </text>
+            {/* Dimension Arrow */}
+            <line x1="22" y1="90" x2="210" y2="90" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 3"></line>
+          </svg>
+          <span class="caption-mono text-cyan-400 mt-2">
+            Heel Stamp: "305 mm" (BSL)
+          </span>
+        </div>
+      </div>
+    </div>
+
+    {/* 3 Step Guide */}
+    <div class="mb-14">
+      <h2 class="text-xl font-semibold text-white mb-6 text-center">3 ways to find your BSL.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-zinc-950/80 border border-white/10 space-y-3 shadow-sm">
+          <span class="caption-mono text-zinc-500">Method 01</span>
+          <h3 class="text-sm font-semibold text-white">Examine the Heel Lug</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            In 95% of ski boots (Salomon, Atomic, Head, Lange, Rossignol, Tecnica), the 3-digit millimeter number is molded directly on the side or bottom of the heel.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/80 border border-white/10 space-y-3 shadow-sm">
+          <span class="caption-mono text-zinc-500">Method 02</span>
+          <h3 class="text-sm font-semibold text-white">Measure Tip-to-Tail</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            If the stamp has worn away from walking on parking lot asphalt, measure with a metric millimeter tape from the back of the heel lug to the tip of the toe lug.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/80 border border-white/10 space-y-3 shadow-sm">
+          <span class="caption-mono text-zinc-500">Method 03</span>
+          <h3 class="text-sm font-semibold text-white">Lookup Mondo Conversion</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Use the chart below to estimate typical BSL from your Mondo or US shoe size. Note: boot shell molds vary by brand by &plusmn;3–8mm.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Sizing Chart */}
+    <div class="mb-16">
+      <div class="mb-4">
+        <h2 class="text-lg font-semibold text-white">
+          Mondo Size to Typical BSL Conversion Table
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-white/10 bg-zinc-950/80 shadow-xl">
+        <table class="w-full text-xs text-left">
+          <thead class="caption-mono bg-zinc-900/90 text-zinc-400 border-b border-white/10">
+            <tr>
+              <th class="px-5 py-3.5">Mondo (cm)</th>
+              <th class="px-5 py-3.5">US Men</th>
+              <th class="px-5 py-3.5">US Women</th>
+              <th class="px-5 py-3.5">EU Size</th>
+              <th class="px-5 py-3.5 text-right">Typical BSL</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            {mondoTable.map((row) => (
+              <tr class="hover:bg-zinc-900/40 transition-colors">
+                <td class="px-5 py-3 font-semibold text-white">{row.mondo}</td>
+                <td class="px-5 py-3 text-zinc-400">{row.usMen}</td>
+                <td class="px-5 py-3 text-zinc-400">{row.usWomen}</td>
+                <td class="px-5 py-3 text-zinc-400">{row.eu}</td>
+                <td class="px-5 py-3 text-right font-bold text-blue-400">{row.typicalBsl}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Call to action */}
+    <div class="p-8 rounded-2xl bg-zinc-950 border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div>
+        <h3 class="text-base font-semibold text-white mb-1">Ready with your BSL?</h3>
+        <p class="text-xs text-zinc-400">Compute your exact ISO 11088 binding release setting in milliseconds.</p>
+      </div>
+      <a
+        href="/"
+        class="px-6 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-semibold text-xs transition-all shadow-md shrink-0"
+      >
+        Open Calculator
+      </a>
+    </div>
+  </div>
+</BaseLayout>

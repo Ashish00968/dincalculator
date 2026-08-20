@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Terms of Service & Liability Disclaimer";
+const pageDescription = "Terms of Service, non-commercial advisory, and ISO 11088 liability disclaimers for dincalculatorpro.com.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div class="mb-10 pb-6 border-b border-white/10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">
+        Terms of Service & Disclaimer
+      </h1>
+      <p class="text-xs text-zinc-500 font-mono">
+        Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </p>
+    </div>
+
+    <div class="space-y-8 text-zinc-300 text-xs sm:text-sm leading-relaxed">
+      {/* Safety Alert */}
+      <div class="p-6 rounded-2xl bg-zinc-950 border border-amber-500/30 text-zinc-200">
+        <h2 class="text-sm font-semibold text-amber-300 mb-2">1. Mandatory Ski Safety & Release Disclaimer</h2>
+        <p class="leading-relaxed mb-3 text-zinc-300">
+          <strong>DIN Calculator Pro</strong> generates estimated ski binding release settings according to mathematical formulas and lookup tables published in the international standard <strong>ISO 11088:2018 (Assembly, adjustment and inspection of the ski-binding-boot system)</strong>.
+        </p>
+        <p class="leading-relaxed text-zinc-400">
+          These calculations are provided strictly for <strong>educational, informational, and reference purposes only</strong>. Ski binding release mechanisms are life-safety devices designed to reduce the risk of lower leg fractures during certain types of falls. Bindings <em>cannot</em> prevent all injuries (such as knee ACL/MCL ruptures) and may not release in all crash scenarios.
+        </p>
+      </div>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">2. Professional Workshop Calibration Required</h2>
+        <p class="text-zinc-400">
+          Calculated numerical values on this website do not constitute certified equipment calibration or technical adjustment services. The safe operation of any ski binding system depends on numerous physical variables not measurable through a digital form, including:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-zinc-400">
+          <li>Heel and toe lug wear, contamination, and ISO 5355 / GripWalk sole compliance.</li>
+          <li>Binding forward pressure indicator alignment and screw torque.</li>
+          <li>Anti-friction device (AFD) mechanical condition and clearance.</li>
+          <li>Internal spring fatigue, corrosion, or mechanical degradation.</li>
+        </ul>
+        <p class="text-zinc-300 font-medium pt-1">
+          You must have your ski boots and bindings inspected, adjusted, and mechanical torque-tested on calibrated diagnostic test equipment by a certified ski technician prior to skiing.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">3. Assumption of Risk & Inherent Danger</h2>
+        <p class="text-zinc-400">
+          Snow skiing, snowboarding, and alpine touring are inherently hazardous recreational activities that carry unavoidable risks of severe physical trauma, catastrophic injury, paralysis, and death. By accessing this website, you acknowledge and agree that you voluntarily assume all risks associated with your participation in snow sports and the configuration of your equipment.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">4. Disclaimer of Warranties ("As-Is")</h2>
+        <p class="text-zinc-400">
+          DIN Calculator Pro is provided on an <strong>"as-is" and "as-available"</strong> basis without warranties of any kind, whether express, implied, statutory, or otherwise, including implied warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. We make no warranty that calculations will be error-free or uninterrupted.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">5. Limitation of Liability</h2>
+        <p class="text-zinc-400">
+          To the maximum extent permitted by applicable law, the authors, maintainers, and operators of dincalculatorpro.com shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of, or inability to use, this application or any resulting equipment adjustments.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">6. Intellectual Property, ISO Attribution & Copyright</h2>
+        <p class="text-zinc-400">
+          <strong class="text-zinc-200">"ISO"</strong> is a registered trademark of the International Organization for Standardization (ISO), Geneva, Switzerland. <strong class="text-zinc-200">DIN Calculator Pro</strong> is an independent, non-commercial web application and is <em>not</em> affiliated with, endorsed by, licensed by, or partnered with the ISO, the Deutsches Institut für Normung (DIN e.V.), ASTM International, or any ski binding or boot manufacturer.
+        </p>
+        <p class="text-zinc-400">
+          The term <strong class="text-zinc-200">"DIN"</strong> as used in the ski industry refers historically to the German standards body and is now colloquially used to describe ski binding release settings. The numeric lookup table values and calculation methodology referenced on this site are derived from the publicly published <em>ISO 11088:2018</em> standard (Assembly, adjustment and inspection of the ski-binding-boot system). The ISO 11088 standard itself is copyrighted by ISO — we do not reproduce the full standard text. Only the numeric release value table (Table 2) is reproduced here for educational reference purposes under the principle of fair use / fair dealing.
+        </p>
+        <p class="text-zinc-400">
+          If you require the official ISO 11088 standard document, it must be purchased directly from ISO or your national standards body (e.g., ANSI in the USA, BSI in the UK).
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">7. Copyright Notice</h2>
+        <p class="text-zinc-400">
+          © {new Date().getFullYear()} DIN Calculator Pro. All original site content, design, source code, and educational text on dincalculatorpro.com is copyright of DIN Calculator Pro and released under the MIT License unless otherwise stated. Calculation methodology is based on ISO 11088:2018 (not reproduced in full).
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

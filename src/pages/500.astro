@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Server Error | DIN Calculator Pro";
+const pageDescription = "Something went wrong. Navigate back to the DIN Calculator Pro ski binding calculator.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="relative overflow-hidden min-h-[70vh] flex items-center">
+    <!-- Grid background -->
+    <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]" style="background-image: linear-gradient(var(--theme-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--theme-hairline) 1px, transparent 1px); background-size: 48px 48px;"></div>
+    
+    <div class="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center w-full">
+      
+      <!-- Big 500 -->
+      <div class="font-bold text-[120px] sm:text-[180px] leading-none text-hairline select-none mb-6" aria-hidden="true">
+        500
+      </div>
+      
+      <!-- Indicator badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-red-500/30 bg-red-500/5 text-red-500 text-[11px] font-semibold tracking-widest uppercase mb-6 shadow-sm -mt-8 relative z-10">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+        Server Error
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-ink tracking-tight mb-4">
+        Something went wrong on our end.
+      </h1>
+      <p class="text-mute text-base leading-relaxed mb-6 max-w-lg mx-auto">
+        We've hit an unexpected error. This is a fully static site so this shouldn't happen — if the problem persists, please let us know.
+      </p>
+
+      <!-- Reassurance -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-xs mb-10">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Your data is safe — nothing was transmitted or stored.
+      </div>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Return Home
+        </a>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline bg-parchment text-ink font-medium text-sm transition-all hover:border-primary/50">
+          Report This Issue
+        </a>
+      </div>
+
+      <!-- Quick nav -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+        {[
+          { href: "/", label: "DIN Calculator", icon: "🎿" },
+          { href: "/bsl-guide", label: "BSL Guide", icon: "📏" },
+          { href: "/skier-types", label: "Skier Types", icon: "🏔️" },
+          { href: "/contact", label: "Contact Us", icon: "✉️" },
+        ].map(link => (
+          <a href={link.href} class="p-4 rounded-xl bg-parchment border border-hairline hover:border-primary/40 transition-all text-center group">
+            <div class="text-xl mb-1">{link.icon}</div>
+            <div class="text-xs font-medium text-ink group-hover:text-primary transition-colors">{link.label}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

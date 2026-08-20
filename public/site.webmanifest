@@ -1,0 +1,44 @@
+{
+  "name": "DIN Calculator Pro",
+  "short_name": "DIN Calc",
+  "description": "Free ISO 11088 ski binding DIN release setting calculator. Zero tracking, instant results.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090A0C",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "DIN Calculator",
+      "url": "/",
+      "description": "Calculate your ski binding DIN setting"
+    },
+    {
+      "name": "ISO 11088 Matrix",
+      "url": "/iso-11088-chart",
+      "description": "View the full ISO 11088 DIN table"
+    }
+  ],
+  "categories": ["sports", "health", "utilities"]
+}
