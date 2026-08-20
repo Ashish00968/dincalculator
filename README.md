@@ -1,6 +1,7 @@
 # DIN Calculator Pro (dincalculatorpro.com)
 
 [![ISO 11088:2018 Compliant](https://img.shields.io/badge/Standard-ISO%2011088%3A2018-FF6B00.svg)](https://www.iso.org/standard/70362.html)
+[![Cloudflare Pages](https://img.shields.io/badge/Deployed%20with-Cloudflare%20Pages-F38020.svg?logo=cloudflare)](https://dincalculatorpro.pages.dev)
 [![100% Client-Side](https://img.shields.io/badge/Privacy-100%25%20Client--Side-10B981.svg)](#privacy-guarantee)
 [![Tests Passing](https://img.shields.io/badge/Tests-8%2F8%20Passing-emerald.svg)](#running-tests)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
