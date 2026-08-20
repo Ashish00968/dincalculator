@@ -27,3 +27,8 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# internal docs / specs
+info/
+apple/
+
