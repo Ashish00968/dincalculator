@@ -5,8 +5,12 @@ import type { DinResult } from '../../engine/types';
 import { Toggle } from '../ui/Toggle';
 import { Table } from 'lucide-react';
 
+import { useTranslations } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
+
 interface MatrixTableProps {
   result: DinResult | null;
+  lang?: keyof typeof ui;
 }
 
 const ROW_LABELS = [
@@ -30,7 +34,8 @@ const ROW_LABELS = [
 
 type RowViewMode = 'code' | 'weight_kg' | 'weight_lbs' | 'height_cm' | 'height_ft';
 
-export function MatrixTable({ result }: MatrixTableProps) {
+export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
+  const t = useTranslations(lang);
   const [viewMode, setViewMode] = useState<RowViewMode>('code');
 
   const activeRowIndex = result ? SKIER_CODES.indexOf(result.adjustedCode as any) : -1;

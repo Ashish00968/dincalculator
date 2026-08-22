@@ -1,4 +1,4 @@
-import type { SkierProfile, DinResult, BslRange } from './types';
+import type { SkierProfile, DinResult, BslRange, DinNote } from './types';
 
 export const SKIER_CODES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'] as const;
 
@@ -91,11 +91,9 @@ export function imperialToMetric(weightLbs: number, heightFt: number, heightIn: 
   return { weightKg, heightCm };
 }
 
-/**
- * Pure ISO 11088 DIN Calculation Function
- */
+
 export function calculateDin(profile: SkierProfile): DinResult {
-  const notes: string[] = [];
+  const notes: DinNote[] = [];
   const weightIdx = getWeightCodeIndex(profile.weightKg);
   const weightCode = SKIER_CODES[weightIdx];
 
@@ -111,13 +109,9 @@ export function calculateDin(profile: SkierProfile): DinResult {
     // Conflict resolution: Choose the row closer to the top of the chart (lesser index)
     if (heightIdx < weightIdx) {
       baselineIdx = heightIdx;
-      notes.push(
-        `Height (${Math.round(profile.heightCm)}cm / Code ${heightCode}) is lower on the chart than weight (${profile.weightKg.toFixed(1)}kg / Code ${weightCode}). ISO standard mandates using the safer baseline Code ${SKIER_CODES[baselineIdx]}.`
-      );
+      notes.push({ key: 'note.heightLower', params: { heightCm: Math.round(profile.heightCm), heightCode, weightKg: profile.weightKg.toFixed(1), weightCode, baselineCode: SKIER_CODES[baselineIdx] } });
     } else if (weightIdx < heightIdx) {
-      notes.push(
-        `Weight (${profile.weightKg.toFixed(1)}kg / Code ${weightCode}) is lower on the chart than height (${Math.round(profile.heightCm)}cm / Code ${heightCode}). Used safer baseline Code ${SKIER_CODES[baselineIdx]}.`
-      );
+      notes.push({ key: 'note.weightLower', params: { weightKg: profile.weightKg.toFixed(1), weightCode, heightCm: Math.round(profile.heightCm), heightCode, baselineCode: SKIER_CODES[baselineIdx] } });
     }
   }
 
@@ -131,16 +125,16 @@ export function calculateDin(profile: SkierProfile): DinResult {
   // Safety Constraint 1: For skiers weighing <= 13 kg (Code A), no modifications permitted
   if (profile.weightKg <= 13) {
     isLighterSkierCapped = true;
-    notes.push('For skiers weighing 13 kg (29 lbs) or less, ISO 11088 strictly mandates no skier type or age adjustments.');
+    notes.push({ key: 'note.lightSkierCapped' });
   } else {
     // Skier Type Adjustment
     switch (profile.skierType) {
       case '-I':
         if (profile.weightKg > 17) {
           skierTypeMod = -1;
-          notes.push('Skier Type -I (Extremely Cautious) adjusts setting 1 row up (-1 code letter).');
+          notes.push({ key: 'note.typeMinusI' });
         } else {
-          notes.push('Skier Type -I is not permitted for skiers 17 kg (38 lbs) or under.');
+          notes.push({ key: 'note.typeMinusINotAllowed' });
         }
         break;
       case 'I':
@@ -148,25 +142,25 @@ export function calculateDin(profile: SkierProfile): DinResult {
         break;
       case 'II':
         skierTypeMod = 1;
-        notes.push('Skier Type II (Moderate) adjusts setting 1 row down (+1 code letter).');
+        notes.push({ key: 'note.typeII' });
         break;
       case 'III':
         skierTypeMod = 2;
-        notes.push('Skier Type III (Aggressive) adjusts setting 2 rows down (+2 code letters).');
+        notes.push({ key: 'note.typeIII' });
         break;
       case 'III+':
         skierTypeMod = 3;
-        notes.push('Skier Type III+ (Racer/Extreme) adjusts setting 3 rows down (+3 code letters).');
+        notes.push({ key: 'note.typeIIIplus' });
         break;
     }
 
     // Age Adjustment
     if (profile.age < 10) {
       ageMod = -1;
-      notes.push(`Junior skier age (${profile.age} yrs) applies a safety adjustment of 1 row up (-1 code letter).`);
+      notes.push({ key: 'note.ageJunior', params: { age: profile.age } });
     } else if (profile.age >= 50) {
       ageMod = -1;
-      notes.push(`Skier age 50+ (${profile.age} yrs) applies a safety adjustment of 1 row up (-1 code letter).`);
+      notes.push({ key: 'note.ageSenior', params: { age: profile.age } });
     }
   }
 
@@ -197,9 +191,7 @@ export function calculateDin(profile: SkierProfile): DinResult {
       }
     }
     din = closestVal ?? 1.0;
-    notes.push(
-      `BSL of ${profile.bslMm}mm falls on a non-standard column for Code ${adjustedCode}; adjusted horizontally to nearest valid ISO setting (${din}).`
-    );
+    notes.push({ key: 'note.bslNonStandard', params: { bslMm: profile.bslMm, code: adjustedCode, din } });
   }
 
   // Determine warning level

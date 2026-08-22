@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import { ThemeToggle } from '../components/ui/ThemeToggle';
+import { getLangFromUrl, useTranslations, getRouteFromUrl } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+import LanguageSelector from '../components/ui/LanguageSelector.astro';
 
 interface Props {
   title: string;
@@ -9,9 +12,12 @@ interface Props {
   canonicalUrl?: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const {
   title,
-  description = 'ISO 11088 certified ski binding DIN calculator. Deterministic, client-side release setting calculations with precision engineering and zero data tracking.',
+  description = t('meta.description'),
   ogType = 'website',
   canonicalUrl = Astro.url.href,
 } = Astro.props;
@@ -20,11 +26,11 @@ const siteUrl = 'https://dincalculatorpro.com';
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { href: '/', label: 'Calculator' },
-  { href: '/iso-11088-chart', label: 'ISO 11088 Matrix' },
-  { href: '/bsl-guide', label: 'BSL Guide' },
-  { href: '/skier-types', label: 'Skier Types' },
-  { href: '/about', label: 'About' },
+  { href: getRouteFromUrl(Astro.url, lang) === `/${lang === 'en' ? '' : lang}` || getRouteFromUrl(Astro.url, lang) === `/${lang}/` ? getRouteFromUrl(Astro.url, lang) : getRouteFromUrl(new URL('/', siteUrl), lang), label: t('nav.calculator'), base: '/' },
+  { href: getRouteFromUrl(new URL('/iso-11088-chart', siteUrl), lang), label: t('nav.matrix'), base: '/iso-11088-chart' },
+  { href: getRouteFromUrl(new URL('/bsl-guide', siteUrl), lang), label: t('nav.bsl'), base: '/bsl-guide' },
+  { href: getRouteFromUrl(new URL('/skier-types', siteUrl), lang), label: t('nav.skierTypes'), base: '/skier-types' },
+  { href: getRouteFromUrl(new URL('/about', siteUrl), lang), label: t('nav.about'), base: '/about' },
 ];
 
 const structuredData = {
@@ -41,7 +47,7 @@ const structuredData = {
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "Calculates ski binding release DIN settings in strict compliance with the ISO 11088 international standard."
+      "description": description
     },
     {
       "@type": "HowTo",
@@ -180,7 +186,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth dark">
+<html lang={lang} class="scroll-smooth dark">
   <head>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-610T05C00Z"></script>
@@ -193,13 +199,19 @@ const structuredData = {
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | DIN Calculator Pro</title>
+    <title>{title} {t('meta.titleSuffix')}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Hreflang Tags for SEO -->
+    {Object.keys(languages).map((l) => (
+      <link rel="alternate" hreflang={l} href={`${siteUrl}${getRouteFromUrl(Astro.url, l as keyof typeof languages)}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${getRouteFromUrl(Astro.url, 'en')}`} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content={ogType} />
-    <meta property="og:title" content={`${title} | DIN Calculator Pro`} />
+    <meta property="og:title" content={`${title} ${t('meta.titleSuffix')}`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="DIN Calculator Pro" />
@@ -243,7 +255,7 @@ const structuredData = {
     <header class="sticky top-0 z-50 bg-canvas/80 backdrop-blur-md border-b border-hairline transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2.5 group">
+        <a href={getRouteFromUrl(Astro.url, lang)} class="flex items-center gap-2.5 group">
           <div class="w-9 h-9 rounded-xl overflow-hidden shrink-0 shadow-sm group-hover:ring-2 group-hover:ring-orange-500/40 transition-all">
             <img src="/logo-icon.png" alt="DIN Calculator Pro" class="w-full h-full object-cover" />
           </div>
@@ -255,7 +267,7 @@ const structuredData = {
         <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center gap-1 bg-input/80 p-1 rounded-full border border-hairline shadow-inner">
           {navLinks.map((link) => {
-            const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+            const isActive = currentPath === link.href || (link.href !== `/${lang === 'en' ? '' : lang}` && currentPath.startsWith(link.href) && link.base !== '/');
             return (
               <a
                 href={link.href}
@@ -273,12 +285,9 @@ const structuredData = {
 
         <!-- Right Action Badge -->
         <div class="flex items-center gap-3">
+          <LanguageSelector />
           <ThemeToggle client:load />
 
-
-
-
-          
           <!-- Mobile Menu Button -->
           <button
             id="mobile-menu-btn"
@@ -323,7 +332,7 @@ const structuredData = {
           <div class="space-y-1.5 text-xs sm:text-sm">
             <p class="font-semibold text-primary">Mandatory ISO 11088 Safety Notice</p>
             <p class="text-mute leading-relaxed">
-              DIN Calculator Pro calculates estimated baseline binding release settings in accordance with the international ISO 11088 standard for informational and cross-reference purposes only. Release mechanisms directly affect physical safety. Bindings must be calibrated, adjusted, and mechanically torque-tested on calibrated workshop equipment by a certified ski technician before skiing.
+              {t('footer.disclaimer')}
             </p>
           </div>
         </div>
@@ -338,17 +347,17 @@ const structuredData = {
               <span class="text-base tracking-tight">DIN Calculator <span class="text-accent">Pro</span></span>
             </div>
             <p class="text-mute text-xs leading-relaxed">
-              High-precision, zero-tracking, ISO 11088 ski binding calculation tool built with pure client-side deterministic algorithms.
+              {t('meta.description')}
             </p>
           </div>
 
           <div>
             <h4 class="caption-mono text-mute mb-3">Calculators & Tools</h4>
             <ul class="space-y-2 text-xs text-mute">
-              <li><a href="/" class="hover:text-primary transition-colors">DIN Release Calculator</a></li>
-              <li><a href="/iso-11088-chart" class="hover:text-primary transition-colors">ISO 11088 Matrix Table</a></li>
-              <li><a href="/bsl-guide" class="hover:text-primary transition-colors">BSL & Mondo Sizing Guide</a></li>
-              <li><a href="/skier-types" class="hover:text-primary transition-colors">Skier Type Selector</a></li>
+              <li><a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.calculator')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/iso-11088-chart', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/bsl-guide', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/skier-types', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
             </ul>
           </div>
 
@@ -365,10 +374,10 @@ const structuredData = {
           <div>
             <h4 class="caption-mono text-mute mb-3">Company</h4>
             <ul class="space-y-2 text-xs text-mute">
-              <li><a href="/about" class="hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="/contact" class="hover:text-primary transition-colors">Contact Us</a></li>
-              <li><a href="/terms" class="hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="/privacy" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href={getRouteFromUrl(new URL('/about', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.about')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/contact', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.contact')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/terms', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/privacy', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
               <li class="text-emerald-500 pt-1 flex items-center gap-1">
                 <span>●</span> No Cookies • No Tracking • No Ads
               </li>

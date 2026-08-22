@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "About Us | DIN Calculator Pro";
+const pageDescription = "Learn about DIN Calculator Pro — the free, ISO 11088 compliant ski binding DIN calculator built for skiers, parents, and technicians worldwide.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]" style="background-image: linear-gradient(var(--theme-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--theme-hairline) 1px, transparent 1px); background-size: 48px 48px;"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14 sm:pt-28 sm:pb-20 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-parchment text-mute text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Our Mission
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-tight mb-6">
+        Built for every skier.<br/>
+        <span class="text-primary">Trusted for safety.</span>
+      </h1>
+      <p class="text-mute text-lg max-w-2xl mx-auto leading-relaxed">
+        DIN Calculator Pro was created to give every skier — from first-timers to seasoned alpine racers — access to a precise, transparent, and completely free DIN calculation tool.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-16">
+
+    <!-- Mission -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-8 border-t border-hairline">
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">Why We Built This</h2>
+        <p class="text-mute text-sm leading-relaxed">
+          Most DIN calculators on the internet are outdated, buried in advertising, or don't explain their methodology. Worse — many use simplified approximations rather than the actual ISO 11088 lookup tables.
+        </p>
+        <p class="text-mute text-sm leading-relaxed">
+          DIN Calculator Pro was built from scratch using the official ISO 11088:2018 standard tables, verified against certified technician reference guides. Every number you see comes directly from the international standard — not from guesswork.
+        </p>
+        <p class="text-mute text-sm leading-relaxed">
+          We believe safety-critical tools should be transparent about how they work, and that every skier — regardless of where they are in the world — deserves access to the same quality of information that professional ski technicians use.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">Our Principles</h2>
+        <ul class="space-y-3">
+          {[
+            { icon: "🔐", title: "Zero Data. Always.", desc: "We never collect, store, or transmit your personal data. All calculations run entirely in your browser." },
+            { icon: "📐", title: "Strict ISO Compliance.", desc: "We implement the full ISO 11088:2018 standard — not approximations or simplified charts." },
+            { icon: "🆓", title: "Free Forever.", desc: "DIN Calculator Pro will always be free. No paywalls, no subscriptions, no ads." },
+            { icon: "🌍", title: "Built for Everyone.", desc: "Full Imperial and Metric support with smart locale detection. Designed mobile-first." }
+          ].map(item => (
+            <li class="flex gap-3 p-4 rounded-xl bg-parchment border border-hairline">
+              <span class="text-xl shrink-0">{item.icon}</span>
+              <div>
+                <div class="font-semibold text-ink text-sm">{item.title}</div>
+                <div class="text-xs text-mute mt-0.5">{item.desc}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {[
+        { value: "100%", label: "ISO 11088 Compliant" },
+        { value: "0", label: "Cookies or Trackers" },
+        { value: "12", label: "FAQ Answers" },
+        { value: "<1ms", label: "Calculation Time" }
+      ].map(stat => (
+        <div class="p-6 rounded-2xl bg-parchment border border-hairline text-center">
+          <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
+          <div class="text-xs text-mute">{stat.label}</div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Technology -->
+    <section class="space-y-6 border-t border-hairline pt-12">
+      <h2 class="text-2xl font-bold text-ink">Technology & Architecture</h2>
+      <p class="text-mute text-sm leading-relaxed max-w-2xl">
+        DIN Calculator Pro is a fully static, client-side web application. There is no backend server, no database, no API calls. The entire application is generated at build time and delivered as a static HTML/JS bundle.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {[
+          { name: "Astro 5", desc: "Static site generation" },
+          { name: "React 19", desc: "UI island architecture" },
+          { name: "Tailwind CSS v4", desc: "Utility-first styling" },
+          { name: "TypeScript", desc: "Strict type safety" },
+          { name: "ISO 11088:2018", desc: "Calculation standard" },
+          { name: "Zero dependencies", desc: "for the engine" }
+        ].map(tech => (
+          <div class="p-4 rounded-xl bg-parchment border border-hairline">
+            <div class="font-semibold text-ink text-sm">{tech.name}</div>
+            <div class="text-xs text-mute mt-0.5">{tech.desc}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Safety Notice -->
+    <section class="p-6 rounded-2xl border border-amber-500/30 bg-amber-500/5">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center text-amber-500 shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-ink mb-2">Important Safety Disclaimer</h3>
+          <p class="text-sm text-mute leading-relaxed">
+            DIN Calculator Pro provides mathematical estimates based strictly on the ISO 11088 standard. These values are for informational and cross-reference purposes only. Ski binding release forces are affected by many physical factors including boot wear, binding model tolerances, and forward pressure settings. <strong class="text-ink">Bindings must always be inspected, tested, and adjusted by a certified ski technician using specialized calibration equipment before skiing.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="text-center pt-4">
+      <a href="/" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
+        Try the Calculator
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

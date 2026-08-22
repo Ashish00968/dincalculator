@@ -1,0 +1,36 @@
+---
+import { languages } from '../../i18n/ui';
+import { getLangFromUrl, getRouteFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const currentRoute = getRouteFromUrl(Astro.url, lang);
+---
+
+<div class="relative group">
+  <button
+    class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-input border border-hairline text-sm font-medium text-mute hover:text-primary transition-colors"
+    aria-label="Select Language"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+    </svg>
+    <span class="uppercase">{lang}</span>
+  </button>
+
+  <div class="absolute right-0 mt-2 w-48 rounded-xl bg-canvas border border-hairline shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+    <div class="p-2 space-y-1">
+      {Object.entries(languages).map(([code, label]) => (
+        <a
+          href={getRouteFromUrl(Astro.url, code as keyof typeof languages)}
+          class={`block px-3 py-2 text-sm rounded-lg transition-colors ${
+            lang === code
+              ? 'bg-parchment text-primary font-medium'
+              : 'text-mute hover:bg-input hover:text-primary'
+          }`}
+        >
+          {label} <span class="text-xs uppercase opacity-50 ml-1">({code})</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

@@ -6,6 +6,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://dincalculatorpro.com',
   integrations: [react()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de', 'fr', 'it', 'es', 'ja', 'sv', 'no', 'nl', 'pl', 'cs', 'fi'],
+    routing: {
+      prefixDefaultLocale: false,
+    }
+  },
   vite: {
     plugins: [tailwindcss()],
     css: {

@@ -1,15 +1,25 @@
 import { useState } from 'react';
-import type { DinResult } from '../../engine/types';
+import type { DinResult, DinNote } from '../../engine/types';
 import { Card, CardContent } from '../ui/Card';
 import { DinGauge } from './DinGauge';
-import { Info, AlertTriangle, CheckCircle2, Copy, Printer, ChevronDown, ChevronUp, Check, Sparkles } from 'lucide-react';
+import { Info, AlertTriangle, CheckCircle2, Copy, Printer, ChevronDown, ChevronUp, Check } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { useTranslations } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
 interface ResultDisplayProps {
   result: DinResult | null;
+  lang?: keyof typeof ui;
 }
 
-export function ResultDisplay({ result }: ResultDisplayProps) {
+function renderNote(note: DinNote, t: ReturnType<typeof useTranslations>): string {
+  const template = t(note.key as any) as string;
+  if (!note.params) return template;
+  return template.replace(/\{(\w+)\}/g, (_, k) => String(note.params![k] ?? ''));
+}
+
+export function ResultDisplay({ result, lang = 'en' }: ResultDisplayProps) {
+  const t = useTranslations(lang);
   const [isBreakdownOpen, setIsBreakdownOpen] = useState(true);
   const [copied, setCopied] = useState(false);
 
@@ -19,9 +29,9 @@ export function ResultDisplay({ result }: ResultDisplayProps) {
         <div className="w-12 h-12 rounded-full bg-input border border-hairline flex items-center justify-center text-mute mb-4 shadow-inner">
           <Info className="w-6 h-6" />
         </div>
-        <h3 className="text-base font-semibold text-primary mb-1">Awaiting Skier Profile</h3>
+        <h3 className="text-base font-semibold text-primary mb-1">{t('result.awaitingProfile')}</h3>
         <p className="text-xs text-mute max-w-xs leading-relaxed">
-          Input your weight, height, age, skier type, and boot sole length to compute your ISO 11088 release setting.
+          {t('result.awaitingDesc')}
         </p>
       </Card>
     );
@@ -64,15 +74,16 @@ Calculated at: https://dincalculatorpro.com`;
     window.print();
   };
 
+  const stepWord = (n: number) => Math.abs(n) !== 1 ? t('result.steps') : t('result.step');
+
   return (
     <div className="space-y-6">
       {/* Featured Primary Result Card */}
       <Card className="relative overflow-hidden border-hairline bg-canvas">
-        
         <CardContent className="pt-6 pb-6 space-y-6">
           <div className="flex items-center justify-between border-b border-hairline pb-3">
             <span className="text-sm font-semibold text-ink flex items-center gap-1.5">
-              <span>Recommended Setting</span>
+              <span>{t('calc.results')}</span>
             </span>
             <span className="text-[11px] font-mono text-mute">ISO 11088</span>
           </div>
@@ -82,39 +93,39 @@ Calculated at: https://dincalculatorpro.com`;
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-2 gap-3 pt-2 border-t border-hairline">
             <div className="p-3 rounded-xl bg-parchment border border-hairline text-center">
-              <span className="text-xs text-mute block mb-1">Final Code</span>
+              <span className="text-xs text-mute block mb-1">{t('result.finalCode')}</span>
               <span className="text-base font-semibold text-ink">Code {adjustedCode}</span>
             </div>
             <div className="p-3 rounded-xl bg-parchment border border-hairline text-center">
-              <span className="text-xs text-mute block mb-1">BSL Bracket</span>
+              <span className="text-xs text-mute block mb-1">{t('result.bslBracket')}</span>
               <span className="text-base font-semibold text-ink">{bslRangeLabel}</span>
             </div>
           </div>
 
-          {/* Action CTAs: 100px Pill Buttons */}
+          {/* Action CTAs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            <button 
+            <button
               onClick={handleCopy}
               className="flex items-center justify-center gap-2 px-6 py-3 bg-canvas border border-hairline hover:border-primary/50 text-ink text-sm font-medium rounded-full transition-all cursor-pointer"
             >
               {copied ? (
                 <>
                   <Check className="w-4 h-4 text-emerald-500" />
-                  <span className="text-emerald-500 font-semibold">Copied!</span>
+                  <span className="text-emerald-500 font-semibold">{t('result.copied')}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-4 h-4 text-mute" />
-                  <span>Copy Card</span>
+                  <span>{t('result.copyCard')}</span>
                 </>
               )}
             </button>
-            <button 
+            <button
               onClick={handlePrint}
               className="flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:scale-[0.98] text-canvas text-sm font-medium rounded-full transition-all cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print Sheet</span>
+              <span>{t('result.printSheet')}</span>
             </button>
           </div>
         </CardContent>
@@ -122,13 +133,13 @@ Calculated at: https://dincalculatorpro.com`;
 
       {/* Step-by-Step Breakdown Accordion */}
       <Card>
-        <button 
+        <button
           className="w-full flex items-center justify-between p-5 focus:outline-none cursor-pointer select-none"
           onClick={() => setIsBreakdownOpen(!isBreakdownOpen)}
         >
           <div className="flex items-center gap-2 font-semibold text-ink text-sm">
             <Info className="w-4 h-4 text-primary" />
-            <span>Calculation Trace</span>
+            <span>{t('result.calcTrace')}</span>
           </div>
           {isBreakdownOpen ? (
             <ChevronUp className="w-4 h-4 text-mute" />
@@ -136,38 +147,38 @@ Calculated at: https://dincalculatorpro.com`;
             <ChevronDown className="w-4 h-4 text-mute" />
           )}
         </button>
-        
+
         {isBreakdownOpen && (
           <CardContent className="pt-0 space-y-3.5 text-xs text-mute border-t border-hairline pt-4">
             <div className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">1</span>
               <div>
-                <span className="text-ink font-medium">Baseline Skier Code:</span>
-                <p className="text-mute mt-0.5">Physical dimensions map to <strong className="text-ink font-medium">Code {baselineCode}</strong>.</p>
+                <span className="text-ink font-medium">{t('result.baselineCode')}</span>
+                <p className="text-mute mt-0.5">{t('result.baselineDesc')} <strong className="text-ink font-medium">Code {baselineCode}</strong>.</p>
               </div>
             </div>
-            
+
             <div className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">2</span>
               <div>
-                <span className="text-ink font-medium">Skier Type Modifier:</span>
-                <p className="text-mute mt-0.5">Applied shift of <strong className="text-ink font-medium">{skierTypeModifier > 0 ? '+' : ''}{skierTypeModifier} Step{Math.abs(skierTypeModifier) !== 1 ? 's' : ''}</strong>.</p>
+                <span className="text-ink font-medium">{t('result.skierTypeModifier')}</span>
+                <p className="text-mute mt-0.5">{t('result.skierTypeDesc')} <strong className="text-ink font-medium">{skierTypeModifier > 0 ? '+' : ''}{skierTypeModifier} {stepWord(skierTypeModifier)}</strong>.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">3</span>
               <div>
-                <span className="text-ink font-medium">Age Modifier:</span>
-                <p className="text-mute mt-0.5">Age shift of <strong className="text-ink font-medium">{ageModifier < 0 ? ageModifier : '0'} Step{Math.abs(ageModifier) !== 1 ? 's' : ''}</strong> → Final <strong className="text-ink font-medium">Code {adjustedCode}</strong>.</p>
+                <span className="text-ink font-medium">{t('result.ageModifier')}</span>
+                <p className="text-mute mt-0.5">{t('result.ageDesc')} <strong className="text-ink font-medium">{ageModifier < 0 ? ageModifier : '0'} {stepWord(ageModifier)}</strong> → {t('result.finalCode2')} <strong className="text-ink font-medium">Code {adjustedCode}</strong>.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">4</span>
               <div>
-                <span className="text-ink font-medium">Matrix Intersection:</span>
-                <p className="text-mute mt-0.5">Code {adjustedCode} intersected with {bslRangeLabel} yields <strong className="text-ink font-medium">{din.toFixed(2)} DIN</strong>.</p>
+                <span className="text-ink font-medium">{t('result.matrixIntersection')}</span>
+                <p className="text-mute mt-0.5">Code {adjustedCode} {t('result.matrixDesc')} {bslRangeLabel} {t('result.matrixYields')} <strong className="text-ink font-medium">{din.toFixed(2)} DIN</strong>.</p>
               </div>
             </div>
           </CardContent>
@@ -188,7 +199,7 @@ Calculated at: https://dincalculatorpro.com`;
             <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-500 dark:text-emerald-400" />
           )}
           <ul className="space-y-1">
-            {notes.map((note, i) => <li key={i}>{note}</li>)}
+            {notes.map((note, i) => <li key={i}>{renderNote(note, t)}</li>)}
           </ul>
         </div>
       )}

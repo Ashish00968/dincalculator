@@ -1,0 +1,11 @@
+---
+import { languages, defaultLang } from '../../i18n/ui';
+import TermsPage from '../../components/pages/TermsPage.astro';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((lang) => lang !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+---
+<TermsPage />

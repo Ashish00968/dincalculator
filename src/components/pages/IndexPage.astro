@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CalculatorApp from '../calculator/CalculatorApp';
+import { AccordionFAQ } from '../ui/AccordionFAQ';
+
+const { lang = Astro.params.lang || 'en' } = Astro.props;
+const pageTitle = "Ski Binding DIN Calculator | Free ISO 11088 Release Settings";
+const pageDescription = "Free ski binding DIN calculator. Determine your exact DIN release setting based on weight, height, BSL, and skier type using the official ISO 11088 standard. Zero tracking, instant results.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+
+  <!-- HERO — Short & punchy -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]" style="background-image: linear-gradient(var(--theme-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--theme-hairline) 1px, transparent 1px); background-size: 48px 48px;"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] rounded-full opacity-10 dark:opacity-[0.05] blur-3xl" style="background: radial-gradient(circle, #FF6B00 0%, transparent 70%);"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 sm:pt-20 sm:pb-12 text-center">
+      <h1 class="text-[38px] sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.08] mb-5">
+        Calculate your ski binding<br class="hidden sm:block"/>
+        <span class="text-primary">DIN setting.</span>
+      </h1>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-5">
+        <a href="#calculator" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
+          Calculate My DIN
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="/iso-11088-chart" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline bg-parchment text-ink font-medium text-sm transition-all hover:border-primary/50 hover:bg-canvas">
+          ISO 11088 Matrix
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs text-mute">
+        <span class="flex items-center gap-1.5"><svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>ISO 11088 compliant</span>
+        <span class="flex items-center gap-1.5"><svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Zero data stored</span>
+        <span class="flex items-center gap-1.5"><svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>100% free</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CALCULATOR SECTION
+  ══════════════════════════════════════════════ -->
+  <section id="calculator" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <!-- Divider label -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-px flex-1 bg-hairline"></div>
+      <span class="text-[11px] font-mono font-semibold text-mute uppercase tracking-widest px-3">Calculator</span>
+      <div class="h-px flex-1 bg-hairline"></div>
+    </div>
+
+    <CalculatorApp client:load lang={lang} />
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FEATURE PILLARS — 3-up grid
+  ══════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-4">
+    <div class="flex items-center gap-4 mb-12">
+      <div class="h-px flex-1 bg-hairline"></div>
+      <span class="text-[11px] font-mono font-semibold text-mute uppercase tracking-widest px-3">System Architecture</span>
+      <div class="h-px flex-1 bg-hairline"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+      <div class="group p-7 rounded-2xl bg-parchment border border-hairline hover:border-primary/30 transition-all hover:shadow-md space-y-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center text-primary" style="background: color-mix(in srgb, var(--theme-primary) 12%, transparent);">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-ink mb-2">100% ISO 11088 Compliant</h3>
+          <p class="text-sm text-mute leading-relaxed">Implements the full ISO 11088 standard matrix including height-weight conflict resolution, age modifiers, and horizontal nearest-neighbor fallback logic.</p>
+        </div>
+      </div>
+
+      <div class="group p-7 rounded-2xl bg-parchment border border-hairline hover:border-emerald-500/30 transition-all hover:shadow-md space-y-4">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-ink mb-2">Zero-Data Architecture</h3>
+          <p class="text-sm text-mute leading-relaxed">All calculations run in browser RAM. Your weight, height, age, and boot size are never sent to a server, stored in cookies, or logged anywhere.</p>
+        </div>
+      </div>
+
+      <div class="group p-7 rounded-2xl bg-parchment border border-hairline hover:border-cyan-500/30 transition-all hover:shadow-md space-y-4">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-500">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-ink mb-2">Technician Export Card</h3>
+          <p class="text-sm text-mute leading-relaxed">Export a clean, printable summary card with your DIN settings to share with a certified ski technician for binding mounting and calibration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       HOW IT WORKS — 4-step methodology
+  ══════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-hairline">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-[11px] uppercase tracking-widest font-semibold text-mute mb-3 block font-mono">Methodology</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-ink tracking-tight">How the ISO 11088 math works.</h2>
+      <p class="text-mute mt-4 text-sm sm:text-base">A transparent, step-by-step breakdown of how your DIN value is calculated.</p>
+    </div>
+
+    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+      {[
+        {
+          step: "01",
+          title: "Baseline Force",
+          desc: "Body weight and height determine your initial Skier Code and safe threshold.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m0-18l8 6M12 3L4 9"/>`
+        },
+        {
+          step: "02",
+          title: "Ability Shift",
+          desc: "Your Skier Type modifies the code: Type I shifts down for release, Type III shifts up for retention.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>`
+        },
+        {
+          step: "03",
+          title: "Age Modifier",
+          desc: "Skiers under 10 or age 50+ receive an automatic code reduction for bone fracture safety.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>`
+        },
+        {
+          step: "04",
+          title: "Matrix Lookup",
+          desc: "Your final Skier Code intersects with your Boot Sole Length on the ISO 11088 matrix.",
+          icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>`
+        }
+      ].map((item) => (
+        <div class="bg-parchment border border-hairline p-6 rounded-2xl text-center flex flex-col items-center group hover:border-primary/40 transition-all hover:shadow-md">
+          <span class="text-[11px] font-mono font-bold text-primary/70 mb-3 tracking-widest">{item.step}</span>
+          <div class="w-11 h-11 rounded-2xl bg-canvas border border-hairline flex items-center justify-center text-primary mb-4 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" set:html={item.icon}></svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-2 text-[15px]">{item.title}</h3>
+          <p class="text-xs text-mute leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SEO LONG-FORM CONTENT — ~1000 words
+  ══════════════════════════════════════════════ -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-hairline">
+    <div class="prose-section space-y-10">
+
+      <div class="text-center mb-12">
+        <span class="text-[11px] uppercase tracking-widest font-semibold text-mute mb-3 block font-mono">Complete Guide</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-ink tracking-tight">Understanding Your Ski Binding DIN Setting</h2>
+        <p class="text-mute mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">Everything you need to know about ski binding release settings, ISO 11088 compliance, and how to use a DIN calculator safely.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-ink">What Is a DIN Setting?</h3>
+          <p class="text-mute text-sm leading-relaxed">
+            A DIN setting (named after <em>Deutsches Institut für Normung</em>, the German Institute for Standardization) is a calibrated numeric value that defines the precise release torque of your alpine ski binding. It determines how much twisting or bending force must be applied to your boot before the binding releases it from the ski.
+          </p>
+          <p class="text-mute text-sm leading-relaxed">
+            In practical terms, the DIN number ranges from <strong class="text-ink">0.75 to 18</strong> across the full ISO 11088 matrix. Recreational beginner skiers typically need settings between 2 and 5, while elite racers and aggressive freeriders may need settings between 10 and 14+. Setting your DIN too low risks pre-release during hard turns; setting it too high prevents the binding from releasing during a crash, greatly increasing injury risk.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-ink">Why ISO 11088 Matters</h3>
+          <p class="text-mute text-sm leading-relaxed">
+            ISO 11088 is the international standard that governs how alpine ski bindings are assembled, inspected, and adjusted. It defines the mathematical relationship between a skier's physical characteristics — weight, height, age, and boot sole length — and the appropriate binding release force.
+          </p>
+          <p class="text-mute text-sm leading-relaxed">
+            DIN Calculator Pro implements ISO 11088:2018, the current revision of this standard. Every calculation you see is derived from the official ISO weight-height lookup tables, modified by the precise skier type offsets (+1, -1, -2 codes) and age modifiers defined in the standard — not from approximations or simplified formulas.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-4">
+        <h3 class="text-xl font-bold text-ink">The Four-Step ISO 11088 Calculation Method</h3>
+        <ol class="space-y-3 text-sm text-mute">
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+            <div><strong class="text-ink">Determine your initial Skier Code.</strong> Using the ISO 11088 weight-height lookup table, your body weight and height together produce an initial Skier Code (a letter from A through P). Where height and weight suggest different codes, the ISO standard mandates using the <em>safer, lower row</em> — protecting you from over-retention.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+            <div><strong class="text-ink">Apply the Skier Type modifier.</strong> Type −I (extremely cautious, junior) shifts the code down by 2. Type I (beginner) shifts down by 1. Type II (intermediate, the baseline) makes no adjustment. Type III (advanced) shifts up by 1. Type III+ (aggressive/expert) shifts up by 2 codes.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+            <div><strong class="text-ink">Apply the age modifier.</strong> Skiers under 10 years old or 50 and older automatically receive a −1 code reduction. This is mandatory under ISO 11088 and accounts for reduced bone density and injury recovery capability in older skiers, and skeletal fragility in very young skiers.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+            <div><strong class="text-ink">Cross-reference with Boot Sole Length (BSL).</strong> Your final adjusted Skier Code is the row in the ISO 11088 DIN matrix. Your Boot Sole Length (BSL) in millimeters selects the column. The value at that intersection is your recommended DIN setting.</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-ink">What Is Boot Sole Length (BSL)?</h3>
+          <p class="text-mute text-sm leading-relaxed">
+            Boot Sole Length (BSL) is the total length of the ski boot's sole in millimeters, measured from heel lug to toe lug. It is permanently stamped or embossed on the heel lug or arch of every alpine ski boot shell. BSL is entirely different from Mondo sizing (your foot length in centimeters) — a size 27.5 Mondo boot from different manufacturers can have BSL values ranging from 298 mm to 320 mm.
+          </p>
+          <p class="text-mute text-sm leading-relaxed">
+            BSL directly affects DIN because longer boots apply more leverage to the binding. A binding that correctly releases a 300 mm BSL boot may pre-release a 330 mm boot under the same force, or fail to release a 290 mm boot in a crash. Always use the exact stamped BSL value — never estimate from shoe size.
+          </p>
+          <p class="text-mute text-sm leading-relaxed">
+            Use our <a href="/bsl-guide" class="text-primary hover:underline font-medium">BSL & Mondo Sizing Guide →</a> for a comprehensive lookup table and visual guide to locating the BSL stamp on your boot.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-ink">Choosing Your Skier Type</h3>
+          <p class="text-mute text-sm leading-relaxed">
+            Selecting the correct Skier Type is critical — it is the most common error when people set their own DIN incorrectly. The ISO 11088 standard defines four categories:
+          </p>
+          <ul class="space-y-2 text-sm text-mute">
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type −I</span> Extremely cautious beginner children who ski only gentle, groomed terrain at very slow speeds.</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type I</span> Cautious skiers who ski at moderate speeds on easier groomed runs. Prefer easy release above all else.</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type II</span> Average skiers who ski varied terrain at moderate-to-high speeds. The default for most adults.</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type III</span> Aggressive, experienced skiers skiing difficult terrain at high speeds. Retention is prioritized over release.</li>
+          </ul>
+          <p class="text-mute text-sm leading-relaxed">Most recreational adult skiers are Type I or Type II. Self-classifying as Type III when you are not leads to dangerous over-retention settings.</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-ink">Is a DIN Calculator Safe to Use Without a Technician?</h3>
+        <p class="text-mute text-sm leading-relaxed">
+          DIN Calculator Pro provides the precise mathematical baseline recommended by ISO 11088 — the same number a certified ski technician derives from the same lookup tables. However, the physical act of adjusting your binding and verifying its release force must always be performed by a certified ski technician using calibrated torque test equipment.
+        </p>
+        <p class="text-mute text-sm leading-relaxed">
+          Binding release is affected by many physical factors beyond the ISO 11088 formula: boot wear at the toe and heel lugs, friction strip condition, forward pressure setting, binding model mechanical tolerances, and pivot point alignment. A torque test device measures the actual release force and allows fine-tuning that no calculator can provide.
+        </p>
+        <p class="text-mute text-sm leading-relaxed">
+          <strong class="text-ink">The correct workflow:</strong> Use DIN Calculator Pro to determine your target DIN value, print or screenshot your result card, and bring it to a certified ski shop as a cross-reference. The technician will set, test, and certify your actual binding release within ±10% of the ISO standard value using their calibrated equipment.
+        </p>
+      </div>
+
+      <!-- Quick links to sub-pages -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+        <a href="/iso-11088-chart" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
+          <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18M14 3v18"/></svg>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">ISO 11088 Matrix</div>
+            <div class="text-xs text-mute">Full interactive DIN table</div>
+          </div>
+        </a>
+        <a href="/bsl-guide" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
+          <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">BSL Guide</div>
+            <div class="text-xs text-mute">Find your boot sole length</div>
+          </div>
+        </a>
+        <a href="/skier-types" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
+          <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">Skier Types</div>
+            <div class="text-xs text-mute">Type I, II, III guide</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FAQ SECTION
+  ══════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-hairline">
+    <div class="flex items-center gap-4 mb-12">
+      <div class="h-px flex-1 bg-hairline"></div>
+      <span class="text-[11px] font-mono font-semibold text-mute uppercase tracking-widest px-3">FAQ</span>
+      <div class="h-px flex-1 bg-hairline"></div>
+    </div>
+    <AccordionFAQ client:visible />
+  </section>
+
+</BaseLayout>

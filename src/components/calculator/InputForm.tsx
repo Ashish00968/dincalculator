@@ -7,20 +7,25 @@ import { cn } from '../../utils/cn';
 import { BslModal } from './BslModal';
 import { HelpCircle, ChevronRight, Settings2 } from 'lucide-react';
 
+import { useTranslations } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
+
 interface InputFormProps {
   unitSystem: UnitSystem;
   onProfileChange: (profile: SkierProfile) => void;
+  lang?: keyof typeof ui;
 }
 
-const SKIER_TYPES: { code: SkierTypeCode; title: string; desc: string; detail: string }[] = [
-  { code: '-I', title: 'Type -I', desc: 'Extremely Cautious', detail: 'Minimum release tension for beginners' },
-  { code: 'I', title: 'Type I', desc: 'Cautious / Beginner', detail: 'Green & gentle blue slopes' },
-  { code: 'II', title: 'Type II', desc: 'Moderate / All-Mountain', detail: 'Standard all-terrain recreational' },
-  { code: 'III', title: 'Type III', desc: 'Aggressive / Expert', detail: 'High retention for steep & fast lines' },
-  { code: 'III+', title: 'Type III+', desc: 'Racer / Freeride', detail: 'Extreme competition retention' },
+const SKIER_TYPE_CODES: { code: SkierTypeCode; titleKey: string; descKey: string; detailKey: string }[] = [
+  { code: '-I', titleKey: 'Type -I', descKey: 'skierType.minusI.desc', detailKey: 'skierType.minusI.detail' },
+  { code: 'I',  titleKey: 'Type I',  descKey: 'skierType.I.desc',      detailKey: 'skierType.I.detail' },
+  { code: 'II', titleKey: 'Type II', descKey: 'skierType.II.desc',     detailKey: 'skierType.II.detail' },
+  { code: 'III',titleKey: 'Type III',descKey: 'skierType.III.desc',    detailKey: 'skierType.III.detail' },
+  { code: 'III+',titleKey: 'Type III+',descKey: 'skierType.IIIplus.desc', detailKey: 'skierType.IIIplus.detail' },
 ];
 
-export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
+export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFormProps) {
+  const t = useTranslations(lang);
   const [weight, setWeight] = useState<number>(unitSystem === 'imperial' ? 165 : 75);
   const [heightFt, setHeightFt] = useState<number>(5);
   const [heightIn, setHeightIn] = useState<number>(9);
@@ -65,7 +70,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
               !isAdvancedMode ? "bg-canvas text-ink shadow-sm" : "text-mute hover:text-ink"
             )}
           >
-            Basic
+            {t('form.basic')}
           </button>
           <button
             type="button"
@@ -76,7 +81,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
             )}
           >
             <Settings2 className="w-4 h-4" />
-            Advanced
+            {t('form.advanced')}
           </button>
         </div>
       </div>
@@ -84,15 +89,15 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
       {/* Physical Parameters Card */}
       <div className="store-utility-card space-y-6">
         <div className="flex items-center justify-between border-b border-hairline pb-3">
-          <span className="text-sm font-semibold text-ink">Physical Dimensions</span>
-          <span className="text-xs text-mute font-mono">ISO Step 1 & 2</span>
+          <span className="text-sm font-semibold text-ink">{t('form.physicalDimensions')}</span>
+          <span className="text-xs text-mute font-mono">{t('form.isoStep')}</span>
         </div>
 
           {/* Weight */}
           <div>
             <div className="flex justify-between items-center mb-2.5">
               <label className="text-primary font-medium text-xs tracking-wide">
-                Skier Weight
+                {t('calc.weight')}
               </label>
               <div className="flex items-center gap-2">
                 <input
@@ -115,7 +120,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
           {/* Height */}
           <div>
             <label className="text-primary font-medium text-xs tracking-wide block mb-2.5">
-              Skier Height
+              {t('calc.height')}
             </label>
             {isImperial ? (
               <div className="grid grid-cols-2 gap-3">
@@ -167,7 +172,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
           <div>
             <div className="flex justify-between items-center mb-2">
               <label className="text-primary font-medium text-xs tracking-wide">
-                Age
+                {t('calc.age')}
               </label>
               <div className="flex items-center gap-2">
                 <input
@@ -178,22 +183,22 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
                   max={120}
                   className="w-20 bg-input border border-hairline rounded-lg px-2.5 py-1 text-primary text-right numeric-readout text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
                 />
-                <span className="text-mute text-xs font-mono">yrs</span>
+                <span className="text-mute text-xs font-mono">{t('form.yrs')}</span>
               </div>
             </div>
             <div className="flex gap-2 text-[11px] font-mono mt-2">
               {age < 10 && (
                 <span className="inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full">
-                  <span>●</span> Child (-1 Code Modifier)
+                  <span>●</span> {t('form.childModifier')}
                 </span>
               )}
               {age >= 50 && (
                 <span className="inline-flex items-center gap-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded-full">
-                  <span>●</span> Senior (-1 Code Modifier)
+                  <span>●</span> {t('form.seniorModifier')}
                 </span>
               )}
               {age >= 10 && age < 50 && (
-                <span className="text-mute">Standard adult rating (0 modifier)</span>
+                <span className="text-mute">{t('form.standardAdult')}</span>
               )}
             </div>
           </div>
@@ -204,24 +209,21 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
           <label className="text-sm font-semibold text-ink">
-            Skier Type Classification
+            {t('form.skierTypeClassification')}
           </label>
           <a
             href="/skier-types"
             className="text-xs text-accent hover:text-accent/80 transition-colors flex items-center gap-1 font-medium"
           >
-            <span>Type Guide</span>
+            <span>{t('form.typeGuide')}</span>
             <ChevronRight className="w-3 h-3" />
           </a>
         </div>
 
         <div className="grid gap-2">
-          {SKIER_TYPES.map((type) => {
-            // Hide extreme types in Basic mode
+          {SKIER_TYPE_CODES.map((type) => {
             if (!isAdvancedMode && (type.code === '-I' || type.code === 'III+')) return null;
-
             const isSelected = skierType === type.code;
-
             return (
               <button
                 key={type.code}
@@ -243,16 +245,16 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className={cn("text-base font-semibold", isSelected ? "text-ink" : "text-ink")}>
-                        {type.title}
+                      <span className={cn("text-base font-semibold", "text-ink")}>
+                        {type.titleKey}
                       </span>
                       <span className="text-sm text-mute font-normal">
-                        — {type.desc}
+                        — {t(type.descKey as any)}
                       </span>
                     </div>
                     {isAdvancedMode && (
                       <p className="text-xs text-mute mt-1">
-                        {type.detail}
+                        {t(type.detailKey as any)}
                       </p>
                     )}
                   </div>
@@ -274,9 +276,9 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
         <div className="flex justify-between items-center">
           <div>
             <label className="text-sm font-semibold text-ink block">
-              Boot Sole Length (BSL)
+              {t('calc.bsl')}
             </label>
-            <span className="text-xs text-mute mt-1 block">Stamped on boot heel in millimeters</span>
+            <span className="text-xs text-mute mt-1 block">{t('form.bslStamped')}</span>
           </div>
             <button
               type="button"
@@ -284,7 +286,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
               className="inline-flex items-center gap-1 text-xs text-accent hover:text-accent/80 transition-colors font-medium cursor-pointer"
             >
               <HelpCircle className="w-3.5 h-3.5" />
-              <span>BSL Finder</span>
+              <span>{t('form.bslFinder')}</span>
             </button>
           </div>
 
@@ -303,7 +305,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
         ) : (
           <div className="mt-4 p-4 bg-parchment rounded-lg flex items-center justify-between border border-hairline">
             <div>
-              <span className="block text-xs text-mute mb-1">Current Value</span>
+              <span className="block text-xs text-mute mb-1">{t('form.currentValue')}</span>
               <span className="text-2xl font-semibold text-ink">{bslMm} mm</span>
             </div>
             <button
@@ -311,14 +313,14 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
               onClick={() => setIsBslModalOpen(true)}
               className="px-4 py-2 bg-primary text-canvas rounded-full text-sm font-medium hover:scale-[0.98] transition-transform cursor-pointer"
             >
-              Estimate from Shoe Size
+              {t('form.estimateFromShoeSize')}
             </button>
           </div>
         )}
 
         {/* Quick Presets */}
         <div className="flex flex-wrap items-center gap-2 pt-2">
-          <span className="text-[11px] text-mute mr-1">Common Presets:</span>
+          <span className="text-[11px] text-mute mr-1">{t('form.commonPresets')}</span>
           {[265, 275, 295, 305, 315, 325, 335].map((preset) => (
             <button
               key={preset}
@@ -342,6 +344,7 @@ export function InputForm({ unitSystem, onProfileChange }: InputFormProps) {
         isOpen={isBslModalOpen}
         onClose={() => setIsBslModalOpen(false)}
         onSelectBsl={(bsl) => setBslMm(bsl)}
+        lang={lang}
       />
     </div>
   );

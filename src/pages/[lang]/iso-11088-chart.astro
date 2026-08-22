@@ -1,0 +1,11 @@
+---
+import { languages, defaultLang } from '../../i18n/ui';
+import Iso11088ChartPage from '../../components/pages/Iso11088ChartPage.astro';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((lang) => lang !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+---
+<Iso11088ChartPage />

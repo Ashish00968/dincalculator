@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { X, Footprints, Ruler, Check, Search } from 'lucide-react';
+import { useTranslations } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
 interface BslModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectBsl?: (bsl: number) => void;
+  lang?: keyof typeof ui;
 }
 
 const MONDO_BSL_MAP = [
@@ -20,7 +23,8 @@ const MONDO_BSL_MAP = [
   { mondo: '31.0 / 31.5', usMen: '13.5 / 14', usWomen: '—', typicalBsl: 355 },
 ];
 
-export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
+export function BslModal({ isOpen, onClose, onSelectBsl, lang = 'en' }: BslModalProps) {
+  const t = useTranslations(lang);
   const [searchTerm, setSearchTerm] = useState('');
 
   if (!isOpen) return null;
@@ -47,10 +51,10 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
             </div>
             <div>
               <h3 className="text-lg font-semibold tracking-tight text-primary">
-                Finding Your Boot Sole Length (BSL)
+                {t('bsl.title')}
               </h3>
               <p className="text-xs text-mute">
-                Outer shell dimension in millimeters (mm) required for ISO 11088 calculations
+                {t('bsl.subtitle')}
               </p>
             </div>
           </div>
@@ -66,7 +70,6 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
         {/* Visual Boot Diagram */}
         <div className="my-6 p-5 rounded-xl bg-input/60 border border-hairline flex flex-col md:flex-row items-center gap-6">
           <div className="w-full md:w-1/2 flex flex-col items-center">
-            {/* SVG Boot illustration */}
             <div className="relative w-full h-32 flex items-center justify-center">
               <svg
                 viewBox="0 0 240 100"
@@ -74,62 +77,36 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {/* Ski Boot Outline */}
-                <path
-                  d="M 50 15 C 60 15, 65 35, 75 45 L 140 45 C 160 45, 195 55, 205 75 L 205 85 L 25 85 L 25 45 C 25 25, 40 15, 50 15 Z"
-                  fill="var(--theme-canvas)"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                {/* Buckles */}
+                <path d="M 50 15 C 60 15, 65 35, 75 45 L 140 45 C 160 45, 195 55, 205 75 L 205 85 L 25 85 L 25 45 C 25 25, 40 15, 50 15 Z" fill="var(--theme-canvas)" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
                 <rect x="52" y="25" width="22" height="4" rx="2" fill="var(--theme-input)" />
                 <rect x="58" y="37" width="22" height="4" rx="2" fill="var(--theme-input)" />
                 <rect x="95" y="55" width="26" height="4" rx="2" fill="var(--theme-input)" />
                 <rect x="135" y="58" width="26" height="4" rx="2" fill="var(--theme-input)" />
-                
-                {/* Sole / Lugs */}
                 <rect x="20" y="80" width="30" height="9" rx="2" fill="var(--theme-ink)" stroke="var(--theme-hairline)" strokeWidth="1" />
                 <rect x="175" y="80" width="35" height="9" rx="2" fill="var(--theme-ink)" stroke="var(--theme-hairline)" strokeWidth="1" />
-
-                {/* Heel Stamp Indicator */}
                 <circle cx="35" cy="84" r="6" fill="#38BDF8" />
-                <text x="35" y="86.5" fontSize="5.5" fontWeight="bold" fill="#000000" textAnchor="middle" fontFamily="monospace">
-                  305
-                </text>
+                <text x="35" y="86.5" fontSize="5.5" fontWeight="bold" fill="#000000" textAnchor="middle" fontFamily="monospace">305</text>
               </svg>
             </div>
             <div className="text-center mt-2">
               <span className="caption-mono text-cyan-500 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-full">
-                Look for 3-digit number (e.g. 305mm) on heel
+                {t('bsl.lookForNumber')}
               </span>
             </div>
           </div>
 
           <div className="w-full md:w-1/2 space-y-2.5 text-xs text-primary/80">
             <div className="flex items-start gap-2">
-              <span className="w-4 h-4 rounded-full bg-input border border-hairline text-primary flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
-                1
-              </span>
-              <p>
-                <strong className="text-primary">Mondo ≠ BSL:</strong> Mondo (e.g. 27.5) is foot size in cm. BSL is the total outer shell length in mm (e.g. 315mm).
-              </p>
+              <span className="w-4 h-4 rounded-full bg-input border border-hairline text-primary flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">1</span>
+              <p><strong className="text-primary">{t('bsl.mondoNotBsl')}</strong> {t('bsl.mondoDesc')}</p>
             </div>
             <div className="flex items-start gap-2">
-              <span className="w-4 h-4 rounded-full bg-input border border-hairline text-primary flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
-                2
-              </span>
-              <p>
-                <strong className="text-primary">Check the Heel:</strong> Boot brands mold the 3-digit millimeter stamp into the side or underside of the heel lug.
-              </p>
+              <span className="w-4 h-4 rounded-full bg-input border border-hairline text-primary flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">2</span>
+              <p><strong className="text-primary">{t('bsl.checkHeel')}</strong> {t('bsl.heelDesc')}</p>
             </div>
             <div className="flex items-start gap-2">
-              <span className="w-4 h-4 rounded-full bg-input border border-hairline text-primary flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
-                3
-              </span>
-              <p>
-                <strong className="text-primary">Measure Tip-to-Tail:</strong> If worn, measure from toe tip to back of heel with a metric ruler.
-              </p>
+              <span className="w-4 h-4 rounded-full bg-input border border-hairline text-primary flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">3</span>
+              <p><strong className="text-primary">{t('bsl.measureTip')}</strong> {t('bsl.measureDesc')}</p>
             </div>
           </div>
         </div>
@@ -139,13 +116,13 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div className="flex items-center gap-2 text-xs font-semibold text-primary/90">
               <Ruler className="w-3.5 h-3.5 text-accent" />
-              <span>Mondo Size to BSL Quick Lookup</span>
+              <span>{t('bsl.mondoLookup')}</span>
             </div>
             <div className="relative w-full sm:w-48">
               <Search className="w-3.5 h-3.5 text-mute absolute left-2.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search size / mm..."
+                placeholder={t('bsl.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full bg-input border border-hairline rounded-lg pl-8 pr-2.5 py-1 text-xs text-primary focus:outline-none focus:border-accent font-mono"
@@ -157,10 +134,10 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
             <table className="w-full text-xs text-left">
               <thead className="caption-mono bg-input border-b border-hairline text-mute">
                 <tr>
-                  <th className="px-3.5 py-2.5">Mondo Size (cm)</th>
-                  <th className="px-3.5 py-2.5">US Men</th>
-                  <th className="px-3.5 py-2.5">US Women</th>
-                  <th className="px-3.5 py-2.5 text-right">Typical BSL</th>
+                  <th className="px-3.5 py-2.5">{t('bsl.mondoSize')}</th>
+                  <th className="px-3.5 py-2.5">{t('bsl.usMen')}</th>
+                  <th className="px-3.5 py-2.5">{t('bsl.usWomen')}</th>
+                  <th className="px-3.5 py-2.5 text-right">{t('bsl.typicalBsl')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-hairline font-mono">
@@ -175,9 +152,7 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
                     }}
                     className="hover:bg-input/60 cursor-pointer transition-colors group"
                   >
-                    <td className="px-3.5 py-2.5 font-medium text-primary">
-                      {row.mondo}
-                    </td>
+                    <td className="px-3.5 py-2.5 font-medium text-primary">{row.mondo}</td>
                     <td className="px-3.5 py-2.5 text-mute">{row.usMen}</td>
                     <td className="px-3.5 py-2.5 text-mute">{row.usWomen}</td>
                     <td className="px-3.5 py-2.5 text-right font-bold text-accent group-hover:text-accent/80 flex items-center justify-end gap-1.5">
@@ -197,7 +172,7 @@ export function BslModal({ isOpen, onClose, onSelectBsl }: BslModalProps) {
             onClick={onClose}
             className="px-5 py-2 rounded-full bg-primary text-canvas hover:bg-primary/90 text-xs font-semibold transition-colors cursor-pointer"
           >
-            Done
+            {t('bsl.done')}
           </button>
         </div>
       </div>

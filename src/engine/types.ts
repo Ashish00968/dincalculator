@@ -2,6 +2,11 @@ export type SkierTypeCode = '-I' | 'I' | 'II' | 'III' | 'III+';
 
 export type UnitSystem = 'imperial' | 'metric';
 
+export interface DinNote {
+  key: string;
+  params?: Record<string, string | number>;
+}
+
 export interface SkierProfile {
   weightKg: number;
   heightCm?: number;
@@ -21,7 +26,7 @@ export interface DinResult {
   ageModifier: number;
   bslRangeLabel: string;
   isLighterSkierCapped: boolean;
-  notes: string[];
+  notes: DinNote[];
   warningLevel: 'safe' | 'caution' | 'warning';
 }
 

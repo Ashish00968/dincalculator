@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "What is My Skier Type? | Type 1, 2, 3 Skiing Ability Guide";
+const pageDescription = "Learn how to accurately choose your ISO 11088 Skier Type (Type -I, Type I, Type II, Type III, Type III+). Understand release torque vs retention trade-offs.";
+
+const skierTypes = [
+  {
+    code: 'Type -I',
+    title: 'Extremely Cautious',
+    modifier: '-1 Row Step',
+    speed: 'Very slow on flat slopes',
+    terrain: 'Magic carpets & beginner nursery slopes',
+    release: 'Releases at minimum threshold at the slightest fall',
+    description: 'Designed specifically for brand new skiers, juniors, or individuals with preexisting joint or ligament concerns who prioritize premature release over retention.'
+  },
+  {
+    code: 'Type I',
+    title: 'Cautious / Beginner',
+    modifier: '0 Steps (Baseline)',
+    speed: 'Slow to moderate cruising',
+    terrain: 'Green circles and gentle groomed blue runs',
+    release: 'Releases easily to protect developing technique',
+    description: 'The standard baseline profile. Prefers binding settings that release quickly in a fall rather than risking knee or lower leg injury.'
+  },
+  {
+    code: 'Type II',
+    title: 'Moderate / All-Mountain',
+    modifier: '+1 Row Step',
+    speed: 'Moderate to fast cruising',
+    terrain: 'Blue cruisers, mild black diamonds, and varied groomed terrain',
+    release: 'Balanced release tension resisting unwanted release on groomers',
+    description: 'Represents the vast majority of recreational adult skiers. Balances reliable retention during carved turns with timely release during higher-energy falls.'
+  },
+  {
+    code: 'Type III',
+    title: 'Aggressive / Expert',
+    modifier: '+2 Row Steps',
+    speed: 'Fast to very fast on steep slopes',
+    terrain: 'Steep black/double-black groomers, moguls, powder, and trees',
+    release: 'High retention force; releases only in severe high-impact crashes',
+    description: 'Experienced skiers who regularly encounter aggressive G-forces in bumps or steeps where an accidental pre-release could cause catastrophic falls.'
+  },
+  {
+    code: 'Type III+',
+    title: 'Racer / Extreme Freeride',
+    modifier: '+3 Row Steps (Custom)',
+    speed: 'Full competition race pace / cliff drops',
+    terrain: 'FIS race courses, extreme backcountry couloirs, high park jumps',
+    release: 'Maximum mechanical retention; high risk of injury in twisting falls',
+    description: 'Elite competitors and extreme freeriders who accept substantial joint injury risk to prevent catastrophic high-speed binding release.'
+  }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    {/* Page Header */}
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold mb-4 shadow-sm uppercase tracking-widest">
+        <span>ISO 11088 CLASSIFICATION STANDARD</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-bold text-ink tracking-tight mb-4">
+        Choosing your skier type.
+      </h1>
+      <p class="text-mute text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        Your Skier Type is NOT your ego—it is a critical mechanical setting that determines the balance between accidental release and emergency retention.
+      </p>
+    </div>
+
+    {/* Skier Types Cards */}
+    <div class="space-y-4 mb-16">
+      {skierTypes.map((type) => (
+        <div class="p-8 rounded-[24px] bg-canvas border border-hairline shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-4 border-b border-hairline">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-md text-sm font-semibold bg-parchment text-ink">
+                {type.code}
+              </span>
+              <h2 class="text-lg font-semibold text-ink">{type.title}</h2>
+            </div>
+            <div class="text-sm text-mute">
+              ISO Modifier: <span class="text-primary font-semibold">{type.modifier}</span>
+            </div>
+          </div>
+
+          <p class="text-sm text-mute leading-relaxed mb-6">
+            {type.description}
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+            <div class="p-4 rounded-[16px] bg-parchment border border-hairline">
+              <span class="text-xs text-mute block mb-1">Speed Preference</span>
+              <span class="text-ink font-medium">{type.speed}</span>
+            </div>
+            <div class="p-4 rounded-[16px] bg-parchment border border-hairline">
+              <span class="text-xs text-mute block mb-1">Typical Terrain</span>
+              <span class="text-ink font-medium">{type.terrain}</span>
+            </div>
+            <div class="p-4 rounded-[16px] bg-parchment border border-hairline">
+              <span class="text-xs text-mute block mb-1">Release vs Retention</span>
+              <span class="text-ink font-medium">{type.release}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Crucial Safety Notice */}
+    <div class="p-8 rounded-[24px] bg-parchment border border-hairline space-y-4 mb-14">
+      <h3 class="text-lg font-semibold text-ink flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        Why You Should Never "Over-Classify" Your Skier Type
+      </h3>
+      <p class="text-sm text-mute leading-relaxed">
+        Many intermediate skiers mistakenly request Type III settings under the assumption that a higher number makes them look like better skiers. In reality, setting bindings to Type III when you do not generate sufficient dynamic force to trigger an emergency release significantly elevates the risk of spiral tibia fractures and ACL/MCL knee ligament tears during a fall.
+      </p>
+      <p class="text-sm text-mute leading-relaxed">
+        Always select the lowest skier type that reliably prevents inadvertent pre-release during your normal skiing routine.
+      </p>
+    </div>
+
+    {/* Call to action */}
+    <div class="text-center">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary hover:scale-[0.98] text-canvas font-medium text-sm transition-transform cursor-pointer"
+      >
+        Calculate Your DIN Setting Now
+      </a>
+    </div>
+  </div>
+</BaseLayout>

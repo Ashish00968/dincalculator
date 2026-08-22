@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Zero-Data Privacy Policy";
+const pageDescription = "DIN Calculator Pro zero-data privacy policy. 100% client-side execution, zero personal data transmission, zero tracking cookies, and full GDPR compliance.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div class="mb-10 pb-6 border-b border-white/10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-white/15 text-emerald-400 text-xs font-mono mb-4 shadow-sm">
+        <span>● 100% CLIENT-SIDE EXECUTION</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">
+        Zero-Data Privacy Policy
+      </h1>
+      <p class="text-xs text-zinc-500 font-mono">
+        Effective Date: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </p>
+    </div>
+
+    <div class="space-y-8 text-zinc-300 text-xs sm:text-sm leading-relaxed">
+      {/* Highlight Box */}
+      <div class="p-6 rounded-2xl bg-zinc-950 border border-emerald-500/30 text-zinc-200">
+        <h2 class="text-sm font-semibold text-emerald-300 mb-2">Our Core Privacy Guarantee</h2>
+        <p class="leading-relaxed text-zinc-300">
+          <strong>We do not collect, store, transmit, or monetize your personal physical information.</strong> Every single parameter you input into DIN Calculator Pro (weight, height, age, boot sole length, skier type) is processed entirely in your device's local memory (RAM) and is discarded the moment you close your browser tab.
+        </p>
+      </div>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">1. Information We Do NOT Collect</h2>
+        <ul class="list-disc pl-5 space-y-1.5 text-zinc-400">
+          <li><strong>No Biometric or Physical Data:</strong> Your weight, height, age, and boot sole length are never transmitted to any server or third party.</li>
+          <li><strong>No User Accounts:</strong> There are no user sign-ups, passwords, logins, or member databases.</li>
+          <li><strong>No Tracking Cookies:</strong> We do not set persistent advertising, tracking, or cross-site profiling cookies.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">2. Pure Client-Side Execution</h2>
+        <p class="text-zinc-400">
+          DIN Calculator Pro is built using static site generation (SSG). When you visit the site, your browser downloads a lightweight TypeScript calculation script. When you adjust sliders or form fields, the calculations execute in &lt;1ms directly on your device's CPU. Zero API requests or background network packets are sent during calculation.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">3. Privacy-Preserving Web Analytics</h2>
+        <p class="text-zinc-400">
+          To monitor site performance and understand general traffic volume, we may use privacy-first, cookieless analytics (such as Cloudflare Web Analytics or Plausible). These tools do not track individual users, do not use cookies, and do not collect Personally Identifiable Information (PII) or IP addresses.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">4. Third-Party Hosting & CDN</h2>
+        <p class="text-zinc-400">
+          This website is hosted on modern edge content delivery networks (such as Cloudflare Pages or Vercel). Standard web server access logs (such as request timestamps and HTTP status codes) may be collected automatically by infrastructure providers for network defense, DDoS mitigation, and reliability purposes.
+        </p>
+      </section>
+
+      <section class="space-y-2.5">
+        <h2 class="text-base font-semibold text-white">5. Compliance with Global Regulations</h2>
+        <p class="text-zinc-400">
+          Because we do not process, store, or sell personal identifying data, DIN Calculator Pro is designed from the ground up to comply with global privacy standards, including the European Union General Data Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and UK Data Protection Act.
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
