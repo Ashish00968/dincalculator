@@ -1,2 +1,11 @@
+# Block indexing on the Cloudflare staging domain (pages.dev) only
 https://dincalculatorpro.pages.dev/*
   X-Robots-Tag: noindex
+
+# Security headers for the real domain
+https://dincalculatorpro.com/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Robots-Tag: index, follow

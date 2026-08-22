@@ -1,0 +1,19 @@
+# Cloudflare Pages routing rules for Astro static site
+# Serve index.html for root
+/   /index.html   200
+
+# Ensure language-prefixed routes resolve correctly
+/de/*   /de/:splat   200
+/fr/*   /fr/:splat   200
+/it/*   /it/:splat   200
+/es/*   /es/:splat   200
+/ja/*   /ja/:splat   200
+/sv/*   /sv/:splat   200
+/no/*   /no/:splat   200
+/nl/*   /nl/:splat   200
+/pl/*   /pl/:splat   200
+/cs/*   /cs/:splat   200
+/fi/*   /fi/:splat   200
+
+# Fallback 404
+/*   /404.html   404
