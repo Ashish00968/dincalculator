@@ -15,22 +15,22 @@ interface Props {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const siteUrl = 'https://dincalculatorpro.com';
+const currentPath = Astro.url.pathname;
+
 const {
   title,
   description = t('meta.description'),
   ogType = 'website',
-  canonicalUrl = Astro.url.href,
+  canonicalUrl = Astro.props.canonicalUrl || `${siteUrl}${currentPath}`,
 } = Astro.props;
 
-const siteUrl = 'https://dincalculatorpro.com';
-const currentPath = Astro.url.pathname;
-
 const navLinks = [
-  { href: getRouteFromUrl(Astro.url, lang) === `/${lang === 'en' ? '' : lang}` || getRouteFromUrl(Astro.url, lang) === `/${lang}/` ? getRouteFromUrl(Astro.url, lang) : getRouteFromUrl(new URL('/', siteUrl), lang), label: t('nav.calculator'), base: '/' },
-  { href: getRouteFromUrl(new URL('/iso-11088-chart', siteUrl), lang), label: t('nav.matrix'), base: '/iso-11088-chart' },
-  { href: getRouteFromUrl(new URL('/bsl-guide', siteUrl), lang), label: t('nav.bsl'), base: '/bsl-guide' },
-  { href: getRouteFromUrl(new URL('/skier-types', siteUrl), lang), label: t('nav.skierTypes'), base: '/skier-types' },
-  { href: getRouteFromUrl(new URL('/about', siteUrl), lang), label: t('nav.about'), base: '/about' },
+  { href: getRouteFromUrl(new URL('/', siteUrl), lang), label: t('nav.calculator'), base: '/' },
+  { href: getRouteFromUrl(new URL('/iso-11088-chart/', siteUrl), lang), label: t('nav.matrix'), base: '/iso-11088-chart/' },
+  { href: getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang), label: t('nav.bsl'), base: '/bsl-guide/' },
+  { href: getRouteFromUrl(new URL('/skier-types/', siteUrl), lang), label: t('nav.skierTypes'), base: '/skier-types/' },
+  { href: getRouteFromUrl(new URL('/about/', siteUrl), lang), label: t('nav.about'), base: '/about/' },
 ];
 
 const structuredData = {

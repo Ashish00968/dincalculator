@@ -13,12 +13,13 @@ export function useTranslations(lang: keyof typeof ui) {
 }
 
 export function getRouteFromUrl(url: URL, lang: keyof typeof ui) {
-  const [, ...parts] = url.pathname.split('/');
+  const parts = url.pathname.split('/').filter(Boolean);
   const currentLangFromUrl = parts[0] in ui ? parts[0] : null;
-  const pathWithoutLang = currentLangFromUrl ? parts.slice(1).join('/') : parts.join('/');
+  const pathParts = currentLangFromUrl ? parts.slice(1) : parts;
+  const cleanPath = pathParts.join('/');
   
   if (lang === defaultLang) {
-    return `/${pathWithoutLang}`;
+    return cleanPath ? `/${cleanPath}/` : '/';
   }
-  return `/${lang}/${pathWithoutLang}`;
+  return cleanPath ? `/${lang}/${cleanPath}/` : `/${lang}/`;
 }
