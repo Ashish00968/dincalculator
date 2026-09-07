@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations, getRouteFromUrl } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
-const pageTitle = "Contact Us | DIN Calculator Pro";
-const pageDescription = "Get in touch with the DIN Calculator Pro team. Report issues, ask questions, or provide feedback about our free ISO 11088 ski binding calculator.";
+interface Props {
+  lang?: keyof typeof ui;
+}
+
+const { lang = (Astro.params.lang as keyof typeof ui) || 'en' } = Astro.props;
+const t = useTranslations(lang);
+const siteUrl = 'https://dincalculatorpro.com';
+
+const pageTitle = t('page.contact.title');
+const pageDescription = t('page.contact.desc');
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -57,8 +67,8 @@ const pageDescription = "Get in touch with the DIN Calculator Pro team. Report i
         <!-- FAQ shortcut -->
         <div class="pt-4">
           <p class="text-xs text-mute mb-2">Looking for quick answers?</p>
-          <a href="/#faq" class="text-sm text-primary font-medium hover:underline flex items-center gap-1">
-            View our FAQ
+          <a href={`${getRouteFromUrl(new URL('/', siteUrl), lang)}#faq`} class="text-sm text-primary font-medium hover:underline flex items-center gap-1">
+            {t('cta.viewFaq')}
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>

@@ -2,10 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CalculatorApp from '../calculator/CalculatorApp';
 import { AccordionFAQ } from '../ui/AccordionFAQ';
+import { getRouteFromUrl, useTranslations } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
-const { lang = Astro.params.lang || 'en' } = Astro.props;
-const pageTitle = "Ski Binding DIN Calculator | Free ISO 11088 Release Settings";
-const pageDescription = "Free ski binding DIN calculator. Determine your exact DIN release setting based on weight, height, BSL, and skier type using the official ISO 11088 standard. Zero tracking, instant results.";
+interface Props {
+  lang?: keyof typeof ui;
+}
+
+const { lang = (Astro.params.lang as keyof typeof ui) || 'en' } = Astro.props;
+const t = useTranslations(lang);
+const siteUrl = 'https://dincalculatorpro.com';
+
+const pageTitle = t('page.home.title');
+const pageDescription = t('page.home.desc');
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -23,11 +32,11 @@ const pageDescription = "Free ski binding DIN calculator. Determine your exact D
 
       <div class="flex flex-wrap items-center justify-center gap-3 mb-5">
         <a href="#calculator" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
-          Calculate My DIN
+          {t('cta.calcMyDin')}
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        <a href="/iso-11088-chart" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline bg-parchment text-ink font-medium text-sm transition-all hover:border-primary/50 hover:bg-canvas">
-          ISO 11088 Matrix
+        <a href={getRouteFromUrl(new URL('/iso-11088-chart/', siteUrl), lang)} class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline bg-parchment text-ink font-medium text-sm transition-all hover:border-primary/50 hover:bg-canvas">
+          {t('cta.matrixTable')}
         </a>
       </div>
 
@@ -213,7 +222,7 @@ const pageDescription = "Free ski binding DIN calculator. Determine your exact D
             BSL directly affects DIN because longer boots apply more leverage to the binding. A binding that correctly releases a 300 mm BSL boot may pre-release a 330 mm boot under the same force, or fail to release a 290 mm boot in a crash. Always use the exact stamped BSL value — never estimate from shoe size.
           </p>
           <p class="text-mute text-sm leading-relaxed">
-            Use our <a href="/bsl-guide" class="text-primary hover:underline font-medium">BSL & Mondo Sizing Guide →</a> for a comprehensive lookup table and visual guide to locating the BSL stamp on your boot.
+            Use our <a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="text-primary hover:underline font-medium">BSL & Mondo Sizing Guide →</a> for a comprehensive lookup table and visual guide to locating the BSL stamp on your boot.
           </p>
         </div>
 
@@ -247,7 +256,7 @@ const pageDescription = "Free ski binding DIN calculator. Determine your exact D
 
       <!-- Quick links to sub-pages -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-        <a href="/iso-11088-chart" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
+        <a href={getRouteFromUrl(new URL('/iso-11088-chart/', siteUrl), lang)} class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
           <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18M14 3v18"/></svg>
           </div>
@@ -256,7 +265,7 @@ const pageDescription = "Free ski binding DIN calculator. Determine your exact D
             <div class="text-xs text-mute">Full interactive DIN table</div>
           </div>
         </a>
-        <a href="/bsl-guide" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
+        <a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
           <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
           </div>
@@ -265,7 +274,7 @@ const pageDescription = "Free ski binding DIN calculator. Determine your exact D
             <div class="text-xs text-mute">Find your boot sole length</div>
           </div>
         </a>
-        <a href="/skier-types" class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
+        <a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
           <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>

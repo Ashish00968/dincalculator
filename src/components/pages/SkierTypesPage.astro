@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations, getRouteFromUrl } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
-const pageTitle = "What is My Skier Type? | Type 1, 2, 3 Skiing Ability Guide";
-const pageDescription = "Learn how to accurately choose your ISO 11088 Skier Type (Type -I, Type I, Type II, Type III, Type III+). Understand release torque vs retention trade-offs.";
+interface Props {
+  lang?: keyof typeof ui;
+}
+
+const { lang = (Astro.params.lang as keyof typeof ui) || 'en' } = Astro.props;
+const t = useTranslations(lang);
+const siteUrl = 'https://dincalculatorpro.com';
+
+const pageTitle = t('page.skierTypes.title');
+const pageDescription = t('page.skierTypes.desc');
 
 const skierTypes = [
   {
@@ -125,10 +135,10 @@ const skierTypes = [
     {/* Call to action */}
     <div class="text-center">
       <a
-        href="/"
+        href={getRouteFromUrl(new URL('/', siteUrl), lang)}
         class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary hover:scale-[0.98] text-canvas font-medium text-sm transition-transform cursor-pointer"
       >
-        Calculate Your DIN Setting Now
+        {t('cta.calcDinNow')}
       </a>
     </div>
   </div>

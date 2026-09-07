@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations, getRouteFromUrl } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
-const pageTitle = "How to Find Boot Sole Length (BSL) | Ski Binding Size Guide";
-const pageDescription = "Learn how to find, measure, and convert your Ski Boot Sole Length (BSL) in millimeters. Full Mondo Point size conversion chart and boot lug diagrams.";
+interface Props {
+  lang?: keyof typeof ui;
+}
+
+const { lang = (Astro.params.lang as keyof typeof ui) || 'en' } = Astro.props;
+const t = useTranslations(lang);
+const siteUrl = 'https://dincalculatorpro.com';
+
+const pageTitle = t('page.bsl.title');
+const pageDescription = t('page.bsl.desc');
 
 const mondoTable = [
   { mondo: '21.0 / 21.5', usMen: '3.5 / 4.0', usWomen: '4.5 / 5.0', eu: '34 / 35', typicalBsl: '255 mm' },
@@ -153,10 +163,10 @@ const mondoTable = [
         <p class="text-xs text-zinc-400">Compute your exact ISO 11088 binding release setting in milliseconds.</p>
       </div>
       <a
-        href="/"
+        href={getRouteFromUrl(new URL('/', siteUrl), lang)}
         class="px-6 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-semibold text-xs transition-all shadow-md shrink-0"
       >
-        Open Calculator
+        {t('cta.openCalc')}
       </a>
     </div>
   </div>

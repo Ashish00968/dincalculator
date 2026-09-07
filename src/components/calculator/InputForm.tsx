@@ -212,7 +212,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
             {t('form.skierTypeClassification')}
           </label>
           <a
-            href="/skier-types"
+            href={lang === 'en' ? '/skier-types/' : `/${lang}/skier-types/`}
             className="text-xs text-accent hover:text-accent/80 transition-colors flex items-center gap-1 font-medium"
           >
             <span>{t('form.typeGuide')}</span>

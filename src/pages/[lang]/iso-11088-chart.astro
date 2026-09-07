@@ -7,5 +7,6 @@ export function getStaticPaths() {
     .filter((lang) => lang !== defaultLang)
     .map((lang) => ({ params: { lang } }));
 }
+const { lang } = Astro.params;
 ---
-<Iso11088ChartPage />
+<Iso11088ChartPage lang={lang} />

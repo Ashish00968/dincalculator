@@ -17,12 +17,13 @@ const t = useTranslations(lang);
 
 const siteUrl = 'https://dincalculatorpro.com';
 const currentPath = Astro.url.pathname;
+const normalizedPath = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
 
 const {
   title,
   description = t('meta.description'),
   ogType = 'website',
-  canonicalUrl = Astro.props.canonicalUrl || `${siteUrl}${currentPath}`,
+  canonicalUrl = Astro.props.canonicalUrl || `${siteUrl}${normalizedPath}`,
 } = Astro.props;
 
 const navLinks = [
@@ -356,9 +357,9 @@ const structuredData = {
             <h4 class="caption-mono text-mute mb-3">Calculators & Tools</h4>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.calculator')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/iso-11088-chart', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/bsl-guide', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/skier-types', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/iso-11088-chart/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
             </ul>
           </div>
 
@@ -375,10 +376,10 @@ const structuredData = {
           <div>
             <h4 class="caption-mono text-mute mb-3">Company</h4>
             <ul class="space-y-2 text-xs text-mute">
-              <li><a href={getRouteFromUrl(new URL('/about', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.about')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/contact', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.contact')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/terms', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/privacy', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/about/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.about')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/contact/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.contact')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/terms/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/privacy/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
               <li class="text-emerald-500 pt-1 flex items-center gap-1">
                 <span>●</span> No Cookies • No Tracking • No Ads
               </li>

@@ -4,3 +4,4 @@ Disallow: /dist/
 Disallow: /node_modules/
 
 Sitemap: https://dincalculatorpro.com/sitemap-index.xml
+Sitemap: https://dincalculatorpro.com/sitemap.xml

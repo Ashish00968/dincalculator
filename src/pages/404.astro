@@ -36,7 +36,7 @@ const pageDescription = "The page you're looking for doesn't exist. Navigate bac
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           Back to Calculator
         </a>
-        <a href="/iso-11088-chart" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline bg-parchment text-ink font-medium text-sm transition-all hover:border-primary/50">
+        <a href="/iso-11088-chart/" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline bg-parchment text-ink font-medium text-sm transition-all hover:border-primary/50">
           ISO 11088 Matrix
         </a>
       </div>
@@ -45,9 +45,9 @@ const pageDescription = "The page you're looking for doesn't exist. Navigate bac
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
         {[
           { href: "/", label: "DIN Calculator", icon: "🎿" },
-          { href: "/bsl-guide", label: "BSL Guide", icon: "📏" },
-          { href: "/skier-types", label: "Skier Types", icon: "🏔️" },
-          { href: "/about", label: "About Us", icon: "ℹ️" },
+          { href: "/bsl-guide/", label: "BSL Guide", icon: "📏" },
+          { href: "/skier-types/", label: "Skier Types", icon: "🏔️" },
+          { href: "/about/", label: "About Us", icon: "ℹ️" },
         ].map(link => (
           <a href={link.href} class="p-4 rounded-xl bg-parchment border border-hairline hover:border-primary/40 transition-all text-center group">
             <div class="text-xl mb-1">{link.icon}</div>

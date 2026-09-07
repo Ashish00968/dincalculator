@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations, getRouteFromUrl } from '../../i18n/utils';
+import type { ui } from '../../i18n/ui';
 
-const pageTitle = "About Us | DIN Calculator Pro";
-const pageDescription = "Learn about DIN Calculator Pro — the free, ISO 11088 compliant ski binding DIN calculator built for skiers, parents, and technicians worldwide.";
+interface Props {
+  lang?: keyof typeof ui;
+}
+
+const { lang = (Astro.params.lang as keyof typeof ui) || 'en' } = Astro.props;
+const t = useTranslations(lang);
+const siteUrl = 'https://dincalculatorpro.com';
+
+const pageTitle = t('page.about.title');
+const pageDescription = t('page.about.desc');
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -116,8 +126,8 @@ const pageDescription = "Learn about DIN Calculator Pro — the free, ISO 11088 
 
     <!-- CTA -->
     <div class="text-center pt-4">
-      <a href="/" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
-        Try the Calculator
+      <a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
+        {t('cta.interactiveCalc')}
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>

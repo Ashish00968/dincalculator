@@ -7,5 +7,6 @@ export function getStaticPaths() {
     .filter((lang) => lang !== defaultLang)
     .map((lang) => ({ params: { lang } }));
 }
+const { lang } = Astro.params;
 ---
-<AboutPage />
+<AboutPage lang={lang} />
