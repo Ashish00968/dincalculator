@@ -96,12 +96,14 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
           {/* Weight */}
           <div>
             <div className="flex justify-between items-center mb-2.5">
-              <label className="text-primary font-medium text-xs tracking-wide">
+              <label htmlFor="calc-weight-input" className="text-primary font-medium text-xs tracking-wide">
                 {t('calc.weight')}
               </label>
               <div className="flex items-center gap-2">
                 <input
+                  id="calc-weight-input"
                   type="number"
+                  aria-label={`${t('calc.weight')} (${isImperial ? 'lbs' : 'kg'})`}
                   value={weight}
                   onChange={(e) => setWeight(Number(e.target.value))}
                   className="w-20 bg-input border border-hairline rounded-lg px-2.5 py-1 text-primary text-right numeric-readout text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
@@ -110,6 +112,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
               </div>
             </div>
             <Slider
+              aria-label={`${t('calc.weight')} slider`}
               value={weight}
               onValueChange={setWeight}
               min={isImperial ? 20 : 10}
@@ -119,13 +122,15 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
 
           {/* Height */}
           <div>
-            <label className="text-primary font-medium text-xs tracking-wide block mb-2.5">
+            <label htmlFor={isImperial ? "calc-height-ft-select" : "calc-height-cm-input"} className="text-primary font-medium text-xs tracking-wide block mb-2.5">
               {t('calc.height')}
             </label>
             {isImperial ? (
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center gap-2 bg-input border border-hairline rounded-lg px-3 py-1.5 focus-within:border-accent transition-colors">
                   <select
+                    id="calc-height-ft-select"
+                    aria-label="Height in feet"
                     value={heightFt}
                     onChange={(e) => setHeightFt(Number(e.target.value))}
                     className="w-full bg-transparent text-primary text-sm focus:outline-none cursor-pointer font-mono"
@@ -137,6 +142,8 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                 </div>
                 <div className="flex items-center gap-2 bg-input border border-hairline rounded-lg px-3 py-1.5 focus-within:border-accent transition-colors">
                   <select
+                    id="calc-height-in-select"
+                    aria-label="Height in inches"
                     value={heightIn}
                     onChange={(e) => setHeightIn(Number(e.target.value))}
                     className="w-full bg-transparent text-primary text-sm focus:outline-none cursor-pointer font-mono"
@@ -151,7 +158,9 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
               <div>
                 <div className="flex justify-end items-center mb-2.5 gap-2">
                   <input
+                    id="calc-height-cm-input"
                     type="number"
+                    aria-label={`${t('calc.height')} (cm)`}
                     value={heightCm}
                     onChange={(e) => setHeightCm(Number(e.target.value))}
                     className="w-20 bg-input border border-hairline rounded-lg px-2.5 py-1 text-primary text-right numeric-readout text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
@@ -159,6 +168,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                   <span className="text-mute text-xs font-mono">cm</span>
                 </div>
                 <Slider
+                  aria-label={`${t('calc.height')} slider`}
                   value={heightCm}
                   onValueChange={setHeightCm}
                   min={100}
@@ -171,12 +181,14 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
           {/* Age */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="text-primary font-medium text-xs tracking-wide">
+              <label htmlFor="calc-age-input" className="text-primary font-medium text-xs tracking-wide">
                 {t('calc.age')}
               </label>
               <div className="flex items-center gap-2">
                 <input
+                  id="calc-age-input"
                   type="number"
+                  aria-label={t('calc.age')}
                   value={age}
                   onChange={(e) => setAge(Number(e.target.value))}
                   min={2}
@@ -275,7 +287,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
       <div className="store-utility-card space-y-4">
         <div className="flex justify-between items-center">
           <div>
-            <label className="text-sm font-semibold text-ink block">
+            <label htmlFor="calc-bsl-input" className="text-sm font-semibold text-ink block">
               {t('calc.bsl')}
             </label>
             <span className="text-xs text-mute mt-1 block">{t('form.bslStamped')}</span>
@@ -293,7 +305,9 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
         {isAdvancedMode ? (
           <div className="flex items-center gap-3 mt-4">
             <input
+              id="calc-bsl-input"
               type="number"
+              aria-label={`${t('calc.bsl')} (mm)`}
               value={bslMm}
               onChange={(e) => setBslMm(Number(e.target.value))}
               min={200}

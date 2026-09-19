@@ -14,12 +14,19 @@ interface ToggleProps {
 
 export function Toggle({ options, value, onChange, className }: ToggleProps) {
   return (
-    <div className={cn("inline-flex p-1 bg-parchment rounded-full border border-hairline", className)}>
+    <div 
+      role="radiogroup" 
+      aria-label="Unit system" 
+      className={cn("inline-flex p-1 bg-parchment rounded-full border border-hairline", className)}
+    >
       {options.map((option) => {
         const isSelected = value === option.value;
         return (
           <button
             key={option.value}
+            type="button"
+            role="radio"
+            aria-checked={isSelected}
             onClick={() => onChange(option.value)}
             className={cn(
               "px-4 py-1.5 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer select-none",

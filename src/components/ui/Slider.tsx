@@ -26,6 +26,10 @@ export function Slider({ className, value, onValueChange, min, max, step = 1, ..
         max={max}
         step={step}
         value={value}
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuenow={value}
+        aria-label={props['aria-label'] || 'Adjust value'}
         onChange={(e) => onValueChange(Number(e.target.value))}
         className={cn(
           "absolute w-full h-full opacity-0 cursor-pointer z-10",

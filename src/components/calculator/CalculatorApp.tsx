@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { InputForm } from './InputForm';
 import { ResultDisplay } from './ResultDisplay';
 import { Toggle } from '../ui/Toggle';
 import { calculateDin } from '../../engine/din-engine';
 import type { SkierProfile, UnitSystem, DinResult } from '../../engine/types';
 import { ShieldAlert, Sparkles } from 'lucide-react';
-import { MatrixTable } from './MatrixTable';
 import { useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';
+
+const MatrixTable = lazy(() => import('./MatrixTable').then(m => ({ default: m.MatrixTable })));
 
 export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui }) {
   const [unitSystem, setUnitSystem] = useState<UnitSystem>('imperial');
@@ -88,7 +89,9 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
 
       {/* Full Interactive Matrix Explorer */}
       <div className="mt-16 mb-8">
-        <MatrixTable result={result} lang={lang} />
+        <Suspense fallback={<div className="h-48 rounded-2xl bg-parchment border border-hairline animate-pulse" />}>
+          <MatrixTable result={result} lang={lang} />
+        </Suspense>
       </div>
     </div>
   );

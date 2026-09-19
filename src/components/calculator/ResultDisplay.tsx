@@ -105,6 +105,7 @@ Calculated at: https://dincalculatorpro.com`;
           {/* Action CTAs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <button
+              type="button"
               onClick={handleCopy}
               className="flex items-center justify-center gap-2 px-6 py-3 bg-canvas border border-hairline hover:border-primary/50 text-ink text-sm font-medium rounded-full transition-all cursor-pointer"
             >
@@ -121,6 +122,7 @@ Calculated at: https://dincalculatorpro.com`;
               )}
             </button>
             <button
+              type="button"
               onClick={handlePrint}
               className="flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:scale-[0.98] text-canvas text-sm font-medium rounded-full transition-all cursor-pointer"
             >
@@ -134,6 +136,9 @@ Calculated at: https://dincalculatorpro.com`;
       {/* Step-by-Step Breakdown Accordion */}
       <Card>
         <button
+          type="button"
+          aria-expanded={isBreakdownOpen}
+          aria-controls="din-calc-trace-details"
           className="w-full flex items-center justify-between p-5 focus:outline-none cursor-pointer select-none"
           onClick={() => setIsBreakdownOpen(!isBreakdownOpen)}
         >
@@ -149,7 +154,7 @@ Calculated at: https://dincalculatorpro.com`;
         </button>
 
         {isBreakdownOpen && (
-          <CardContent className="pt-0 space-y-3.5 text-xs text-mute border-t border-hairline pt-4">
+          <CardContent id="din-calc-trace-details" className="pt-0 space-y-3.5 text-xs text-mute border-t border-hairline pt-4">
             <div className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">1</span>
               <div>

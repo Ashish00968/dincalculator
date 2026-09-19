@@ -1,3 +1,7 @@
+# Domain canonicalization: redirect www to non-www
+https://www.dincalculatorpro.com/*  https://dincalculatorpro.com/:splat  301
+http://www.dincalculatorpro.com/*   https://dincalculatorpro.com/:splat  301
+
 # Sitemap canonical redirect
 /sitemap.xml   /sitemap-index.xml   301
 

@@ -122,6 +122,7 @@ export function BslModal({ isOpen, onClose, onSelectBsl, lang = 'en' }: BslModal
               <Search className="w-3.5 h-3.5 text-mute absolute left-2.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
+                aria-label={t('bsl.searchPlaceholder')}
                 placeholder={t('bsl.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

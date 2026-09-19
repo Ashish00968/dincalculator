@@ -189,14 +189,35 @@ const structuredData = {
 <!doctype html>
 <html lang={lang} class="scroll-smooth dark">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-610T05C00Z"></script>
+    <!-- DNS Preconnect for Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" />
+    </noscript>
+
+    <!-- Google tag (gtag.js) - Deferred to never block rendering -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-610T05C00Z');
+
+      function loadGtag() {
+        if (window._gtagLoaded) return;
+        window._gtagLoaded = true;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-610T05C00Z';
+        document.head.appendChild(script);
+      }
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGtag, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', loadGtag, { once: true });
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -257,9 +278,9 @@ const structuredData = {
     <header class="sticky top-0 z-50 bg-canvas/80 backdrop-blur-md border-b border-hairline transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <!-- Logo -->
-        <a href={getRouteFromUrl(Astro.url, lang)} class="flex items-center gap-2.5 group">
+        <a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="flex items-center gap-2.5 group">
           <div class="w-9 h-9 rounded-xl overflow-hidden shrink-0 shadow-sm group-hover:ring-2 group-hover:ring-orange-500/40 transition-all">
-            <img src="/logo-icon.png" alt="DIN Calculator Pro" class="w-full h-full object-cover" />
+            <img src="/logo-icon.webp" alt="" aria-hidden="true" width="36" height="36" decoding="async" class="w-full h-full object-cover" />
           </div>
           <span class="text-sm font-bold tracking-tight text-ink group-hover:text-primary transition-colors">
             DIN Calculator <span class="text-primary">Pro</span>
@@ -344,7 +365,7 @@ const structuredData = {
           <div class="space-y-3">
             <div class="flex items-center gap-2.5 text-primary font-bold">
               <div class="w-7 h-7 rounded-lg overflow-hidden shrink-0 shadow-sm">
-                <img src="/logo-icon.png" alt="DIN Calculator Pro" class="w-full h-full object-cover" />
+                <img src="/logo-icon.webp" alt="" aria-hidden="true" width="28" height="28" decoding="async" class="w-full h-full object-cover" />
               </div>
               <span class="text-base tracking-tight">DIN Calculator <span class="text-accent">Pro</span></span>
             </div>

@@ -74,8 +74,12 @@ export function AccordionFAQ() {
               }`}
             >
               <button
+                type="button"
+                id={`faq-btn-${index}`}
+                aria-expanded={isOpen}
+                aria-controls={`faq-content-${index}`}
                 onClick={() => toggle(index)}
-                className="w-full text-left px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between focus:outline-none"
+                className="w-full text-left px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between focus:outline-none cursor-pointer"
               >
                 <span className={`font-semibold text-sm sm:text-[15px] pr-4 ${isOpen ? 'text-primary' : 'text-ink'}`}>
                   {faq.question}
@@ -85,12 +89,16 @@ export function AccordionFAQ() {
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               
               <div 
+                id={`faq-content-${index}`}
+                role="region"
+                aria-labelledby={`faq-btn-${index}`}
                 className={`transition-all duration-300 ease-in-out ${
                   isOpen ? 'max-h-64 sm:max-h-48 opacity-100' : 'max-h-0 opacity-0'
                 }`}
