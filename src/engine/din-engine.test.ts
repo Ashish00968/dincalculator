@@ -1,5 +1,4 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
+import { test, assert } from 'vitest';
 import { calculateDin, imperialToMetric } from './din-engine.ts';
 
 test('Scenario 1: Standard Intermediate Adult (72kg, 175cm, Type II, Age 28, BSL 305mm)', () => {

@@ -7,7 +7,10 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --experimental-strip-types --test src/engine/din-engine.test.ts",
+    "test": "vitest run",
+    "check:links": "linkinator ./dist --recurse --silent",
+    "lhci": "lhci autorun",
+    "check:seo": "node scripts/check-seo.mjs",
     "deploy": "astro build && wrangler pages deploy dist"
   },
   "dependencies": {
@@ -28,7 +31,16 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.63.0",
     "@types/node": "^26.2.0",
+    "html-validate": "^11.16.1",
+    "lighthouse": "^13.5.0",
+    "linkinator": "^8.1.0",
+    "schema-dts": "^2.0.0",
+    "sharp": "^0.35.5",
+    "vitest": "^5.0.2",
     "wrangler": "^4.124.0"
   }
 }

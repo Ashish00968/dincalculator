@@ -31,4 +31,6 @@ pnpm-debug.log*
 # internal docs / specs
 info/
 apple/
+.playwright-mcp/
+.lighthouseci/
 
