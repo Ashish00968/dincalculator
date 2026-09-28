@@ -1,0 +1,41 @@
+{
+  "name": "@dincalc/engine",
+  "version": "1.0.0",
+  "description": "Zero-dependency, fully tested ISO 11088:2023 (Edition 7) ski binding release indicator (DIN / Z-value) calculation engine in TypeScript.",
+  "author": "DIN Calculator Pro <https://dincalculatorpro.com>",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "skiing",
+    "ski-bindings",
+    "din-calculator",
+    "iso-11088",
+    "z-wert",
+    "z-value",
+    "safety-bindings",
+    "release-settings"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ashish00968/dincalculator.git",
+    "directory": "packages/din-engine"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
