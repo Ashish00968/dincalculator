@@ -318,3 +318,6 @@ export function calculateDin(profile: SkierProfile): DinResult {
     algorithmSteps,
   };
 }
+
+export const calculateDIN = calculateDin;
+

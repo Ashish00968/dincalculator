@@ -4,6 +4,7 @@ import CalculatorApp from '../calculator/CalculatorApp';
 import { AccordionFAQ } from '../ui/AccordionFAQ';
 import { getRouteFromUrl, useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';
+import { calculateDIN } from '../../engine/din-engine';
 
 interface Props {
   lang?: keyof typeof ui;
@@ -15,20 +16,53 @@ const siteUrl = 'https://dincalculatorpro.com';
 
 const pageTitle = t('page.home.title');
 const pageDescription = t('page.home.desc');
+
+// Server-rendered build-time quick reference data derived from ISO 11088:2023 engine
+const quickWeights = [
+  { kg: 45, lbs: 99, ht: 155 },
+  { kg: 55, lbs: 121, ht: 165 },
+  { kg: 65, lbs: 143, ht: 172 },
+  { kg: 75, lbs: 165, ht: 178 },
+  { kg: 85, lbs: 187, ht: 184 },
+  { kg: 95, lbs: 209, ht: 190 },
+];
+
+const quickTable = quickWeights.map(w => ({
+  weight: `${w.kg} kg (${w.lbs} lbs)`,
+  type1: calculateDIN({ weightKg: w.kg, heightCm: w.ht, age: 30, skierType: 'I', bslMm: 305 }).din,
+  type2: calculateDIN({ weightKg: w.kg, heightCm: w.ht, age: 30, skierType: 'II', bslMm: 305 }).din,
+  type3: calculateDIN({ weightKg: w.kg, heightCm: w.ht, age: 30, skierType: 'III', bslMm: 305 }).din,
+}));
+
+const workedExample = calculateDIN({
+  weightKg: 75,
+  heightCm: 178,
+  age: 30,
+  skierType: 'II',
+  bslMm: 305,
+});
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
 
-  <!-- HERO — Short & punchy -->
+  <!-- HERO — Keyword-focused H1 & Value Proposition -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]" style="background-image: linear-gradient(var(--theme-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--theme-hairline) 1px, transparent 1px); background-size: 48px 48px;"></div>
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] rounded-full opacity-10 dark:opacity-[0.05] blur-3xl" style="background: radial-gradient(circle, #FF6B00 0%, transparent 70%);"></div>
 
-    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 sm:pt-20 sm:pb-12 text-center">
-      <h1 class="text-[38px] sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.08] mb-5">
-        Calculate your ski binding<br class="hidden sm:block"/>
-        <span class="text-primary">DIN setting.</span>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 sm:pt-16 sm:pb-10 text-center">
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.1] mb-3">
+        {lang === 'de' ? 'Z-Wert Rechner Skibindung' : lang === 'fr' ? 'Calculateur DIN Fixations de Ski' : lang === 'it' ? 'Calcolatore DIN Attacchi Sci' : 'Ski DIN Calculator'}
       </h1>
+      <p class="text-sm sm:text-base text-mute max-w-2xl mx-auto mb-6 leading-relaxed">
+        {lang === 'de' 
+          ? 'Kostenloser Skibindungs-Rechner nach ISO 11088:2023. Ermitteln Sie Ihren Richtwert transparent in wenigen Sekunden.' 
+          : lang === 'fr' 
+          ? 'Calculateur de réglage DIN pour fixations de ski selon ISO 11088:2023. Gratuit, instantané et transparent.' 
+          : lang === 'it' 
+          ? 'Calcolo taratura attacchi da sci secondo la norma ISO 11088:2023. Gratuito, trasparente e immediato.' 
+          : 'Free ski binding release calculator based on ISO 11088:2023 (Edition 7). Calculate your recommended DIN setting in seconds.'}
+      </p>
 
       <div class="flex flex-wrap items-center justify-center gap-3 mb-5">
         <a href="#calculator" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
@@ -70,6 +104,99 @@ const pageDescription = t('page.home.desc');
       <div class="flex items-center gap-4">
         <a href="/methodology/" class="text-primary hover:underline font-medium">Methodology & Limitations →</a>
         <a href="/changelog/" class="text-primary hover:underline font-medium">Changelog →</a>
+      </div>
+    </div>
+
+    <!-- ANSWER-FIRST BLOCK — Crawlable answers & worked example (ISO 11088:2023) -->
+    <div class="mt-10 p-6 sm:p-8 rounded-2xl bg-canvas border border-hairline shadow-sm space-y-6">
+      <div class="border-b border-hairline pb-4">
+        <div class="flex items-center gap-2 text-xs font-mono text-accent uppercase tracking-wider mb-1">
+          <span>Quick Answer & Reference Guide</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-ink">
+          What DIN Setting Do You Need?
+        </h2>
+        <p class="text-sm text-mute leading-relaxed mt-2">
+          A ski binding DIN setting controls the force required to release your boot safely during a fall. Calculated under ISO 11088:2023, your baseline code is determined by your weight and height, adjusted for skier type (-I to III+) and age group, and finally mapped against your boot sole length (BSL in mm).
+        </p>
+      </div>
+
+      <!-- Worked Example & Quick Table Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Worked Example Breakdown -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-ink">Worked Calculation Example</h3>
+            <span class="text-xs font-mono text-mute">ISO 11088:2023</span>
+          </div>
+          <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-3 text-xs">
+            <div class="flex justify-between py-1 border-b border-hairline/60">
+              <span class="text-mute">Skier Profile:</span>
+              <span class="font-mono font-medium text-ink">75 kg (165 lbs), 178 cm, 30 yrs, Type II, BSL 305mm</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-hairline/60">
+              <span class="text-mute">Step 1 — Weight Code (67–78 kg):</span>
+              <span class="font-mono font-semibold text-ink">Code K</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-hairline/60">
+              <span class="text-mute">Step 2 — Height Code (167–178 cm):</span>
+              <span class="font-mono font-semibold text-ink">Code K</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-hairline/60">
+              <span class="text-mute">Step 3 — Baseline Determination:</span>
+              <span class="font-mono font-semibold text-ink">Code K (Agreement)</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-hairline/60">
+              <span class="text-mute">Step 4 — Skier Type II Shift:</span>
+              <span class="font-mono font-semibold text-accent">+1 Row Shift → Code L</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-hairline/60">
+              <span class="text-mute">Step 5 — Age Modifier (30 years):</span>
+              <span class="font-mono text-ink">0 Modifier (Adult) → Final Code L</span>
+            </div>
+            <div class="flex justify-between items-center pt-1 text-sm font-bold text-ink">
+              <span>Step 6 — BSL 305 mm Lookup:</span>
+              <span class="text-primary font-mono text-base px-2.5 py-0.5 rounded bg-primary/10 border border-primary/20">DIN {workedExample.din}</span>
+            </div>
+          </div>
+          <p class="text-[11px] text-mute italic">
+            Note: All calculations provide a baseline setting. Final release calibration must be verified on diagnostic test equipment by a certified ski technician.
+          </p>
+        </div>
+
+        <!-- Quick Reference by Weight Table -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-ink">Baseline DIN by Weight (BSL 305 mm, Adult)</h3>
+            <span class="text-xs font-mono text-mute">BSL 291–310 mm</span>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-hairline bg-parchment">
+            <table class="w-full text-xs text-left">
+              <thead class="bg-input/70 border-b border-hairline text-mute font-mono">
+                <tr>
+                  <th class="px-3 py-2">Skier Weight</th>
+                  <th class="px-3 py-2 text-center">Type I (Beginner)</th>
+                  <th class="px-3 py-2 text-center font-semibold text-ink">Type II (All-Mtn)</th>
+                  <th class="px-3 py-2 text-center">Type III (Aggressive)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-hairline font-mono">
+                {quickTable.map((row) => (
+                  <tr class="hover:bg-canvas/50 transition-colors">
+                    <td class="px-3 py-2 text-ink font-medium">{row.weight}</td>
+                    <td class="px-3 py-2 text-center text-mute">{row.type1}</td>
+                    <td class="px-3 py-2 text-center font-bold text-primary">{row.type2}</td>
+                    <td class="px-3 py-2 text-center text-ink">{row.type3}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-mute">
+            <span>Explore all boot sole lengths and skier codes:</span>
+            <a href="/din-chart/" class="text-primary hover:underline font-medium">Full ISO 11088 Matrix →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -58,8 +58,10 @@ for (const file of htmlFiles) {
   const title = titleMatch ? titleMatch[1].trim() : null;
 
   // 2. meta description
-  const metaDescMatch = content.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i) ||
-                        content.match(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
+  const metaDescMatch = content.match(/<meta\s+name=["']description["']\s+content="([^"]*)"/i) ||
+                        content.match(/<meta\s+name=["']description["']\s+content='([^']*)'/i) ||
+                        content.match(/<meta\s+content="([^"]*)"\s+name=["']description["']/i) ||
+                        content.match(/<meta\s+content='([^']*)'\s+name=["']description["']/i);
   const metaDesc = metaDescMatch ? metaDescMatch[1].trim() : null;
 
   // 3. <h1>

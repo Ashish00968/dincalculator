@@ -25,17 +25,17 @@
   </g>
 
   <!-- Brand Typography -->
-  <text x="205" y="172" fill="#FF6B00" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" letter-spacing="4">ISO 11088:2018 RELEASE ENGINE</text>
-  <text x="205" y="196" fill="#71717A" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" letter-spacing="1">DETERMINISTIC PRECISION MATH</text>
+  <text x="205" y="172" fill="#FF6B00" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" letter-spacing="4">ISO 11088:2023 RELEASE ENGINE</text>
+  <text x="205" y="196" fill="#71717A" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" letter-spacing="1">EDITION 7 · PRECISION MATH</text>
   
   <text x="100" y="295" fill="#FAFAFA" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="900" letter-spacing="-1.5">DIN Calculator <tspan fill="#FF6B00">Pro</tspan></text>
-  <text x="100" y="350" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400">High-Precision Ski Binding Release Settings &amp; Interactive ISO Matrix</text>
+  <text x="100" y="350" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400">Ski Binding Release Settings &amp; Interactive ISO 11088 Matrix</text>
 
   <!-- Metric Badges -->
   <g transform="translate(100, 420)">
     <rect width="280" height="74" rx="18" fill="#141417" stroke="#27272A" stroke-width="1.5"/>
-    <text x="25" y="32" fill="#71717A" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">ISO 11088 STANDARD</text>
-    <text x="25" y="56" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="800">100% Certified Logic</text>
+    <text x="25" y="32" fill="#71717A" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">ISO 11088:2023</text>
+    <text x="25" y="56" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="800">Verified Edition 7</text>
   </g>
   <g transform="translate(410, 420)">
     <rect width="280" height="74" rx="18" fill="#141417" stroke="#27272A" stroke-width="1.5"/>
