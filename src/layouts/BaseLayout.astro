@@ -44,13 +44,17 @@ const navLinks = [
 ];
 
 const structuredData = getStructuredData(Astro.url.pathname, lang, title, description);
+const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 ---
 
 <!doctype html>
 <html lang={lang} class="scroll-smooth dark">
   <head>
     <!-- Self-hosted Fonts via @fontsource (Zero external font blocking) -->
-    <!-- Privacy-first cookieless analytics: No GA4 / No tracking cookies -->
+    <!-- Privacy-first cookieless analytics: Cloudflare Web Analytics / No GA4 / No tracking cookies -->
+    {cfAnalyticsToken && (
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfAnalyticsToken })} />
+    )}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
@@ -260,8 +264,9 @@ const structuredData = getStructuredData(Astro.url.pathname, lang, title, descri
               <li><a href={getRouteFromUrl(new URL('/contact/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.contact')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/terms/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/privacy/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
-              <li class="text-emerald-500 pt-1 flex items-center gap-1">
-                <span>●</span> Cookieless • No Tracking
+              <li class="text-emerald-500 pt-1 flex items-center gap-1.5">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>No cookies. Privacy-friendly, aggregated analytics.</span>
               </li>
             </ul>
           </div>
