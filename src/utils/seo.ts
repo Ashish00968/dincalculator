@@ -30,6 +30,10 @@ export const SEO_DATA: Record<string, Record<string, { title: string; descriptio
       title: 'Skier Type 1, 2, 3 & 3+: Which One Are You?',
       description: 'Determine your skier type (Type -I, I, II, III, III+) under ISO 11088:2023. Understand how your skiing style impacts release force and knee safety.'
     },
+    '/skier-type-quiz/': {
+      title: 'Skier Type Quiz (ISO 11088) | Find Your Type',
+      description: 'Take our interactive 30-second skier type quiz. Discover whether you are Type -I, I, II, III, or III+ under ISO 11088:2023 for safe binding calibration.'
+    },
     '/bsl-guide/': {
       title: 'How to Find Your Boot Sole Length (BSL) in mm',
       description: 'Find your ski boot sole length (BSL) in millimeters. Learn where the BSL stamp is located, why it differs from Mondopoint, and how to measure it.'
@@ -57,6 +61,10 @@ export const SEO_DATA: Record<string, Record<string, { title: string; descriptio
     '/terms/': {
       title: 'Terms of Service & Disclaimer | DIN Pro',
       description: 'Terms of service and liability disclaimer for DIN Calculator Pro. Educational estimates based on ISO 11088:2023 requiring shop technician verification.'
+    },
+    '/embed-guide/': {
+      title: 'Embed Ski DIN Calculator | Free Widget for Shops',
+      description: 'Embed the free ISO 11088:2023 ski binding DIN calculator on your ski shop, resort, or blog website. Lightweight, responsive, and seamless iframe integration.'
     }
   },
   de: {

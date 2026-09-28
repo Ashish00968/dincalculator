@@ -1,0 +1,182 @@
+[
+  {
+    "brand": "Marker",
+    "model": "Griffon 13 ID",
+    "dinMin": 4.0,
+    "dinMax": 13.0,
+    "sourceUrl": "https://markerbindings.com/en-us/p/griffon-13-id",
+    "verifiedDate": "2026-09-28",
+    "notes": "All-mountain freeride binding compatible with Alpine and GripWalk boots."
+  },
+  {
+    "brand": "Marker",
+    "model": "Squire 11",
+    "dinMin": 3.0,
+    "dinMax": 11.0,
+    "sourceUrl": "https://markerbindings.com/en-us/p/squire-11",
+    "verifiedDate": "2026-09-28",
+    "notes": "Lightweight intermediate binding."
+  },
+  {
+    "brand": "Marker",
+    "model": "Jester 16 ID",
+    "dinMin": 6.0,
+    "dinMax": 16.0,
+    "sourceUrl": "https://markerbindings.com/en-us/p/jester-16-id",
+    "verifiedDate": "2026-09-28",
+    "notes": "Expert freeride binding for heavy and aggressive skiers."
+  },
+  {
+    "brand": "Look",
+    "model": "Pivot 12 GW",
+    "dinMin": 4.0,
+    "dinMax": 12.0,
+    "sourceUrl": "https://www.look-bindings.com/en-us/product/pivot-12-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "Turntable heel design offering 7 points of contact."
+  },
+  {
+    "brand": "Look",
+    "model": "Pivot 14 GW",
+    "dinMin": 5.0,
+    "dinMax": 14.0,
+    "sourceUrl": "https://www.look-bindings.com/en-us/product/pivot-14-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "Classic turntable heel with high elastic travel."
+  },
+  {
+    "brand": "Look",
+    "model": "Pivot 15 GW",
+    "dinMin": 6.0,
+    "dinMax": 15.0,
+    "sourceUrl": "https://www.look-bindings.com/en-us/product/pivot-15-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "All-metal toe piece for demanding freeriders."
+  },
+  {
+    "brand": "Look",
+    "model": "SPX 12 GW",
+    "dinMin": 3.5,
+    "dinMax": 12.0,
+    "sourceUrl": "https://www.look-bindings.com/en-us/product/spx-12-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "High performance alpine step-in binding."
+  },
+  {
+    "brand": "Salomon",
+    "model": "STH2 WTR 13",
+    "dinMin": 5.0,
+    "dinMax": 13.0,
+    "sourceUrl": "https://www.salomon.com",
+    "verifiedDate": "2026-09-28",
+    "notes": "Driver toe piece with progressive transfer pads."
+  },
+  {
+    "brand": "Salomon",
+    "model": "Strive 14 GW",
+    "dinMin": 5.0,
+    "dinMax": 14.0,
+    "sourceUrl": "https://www.salomon.com/en-us/shop/product/strive-14-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "Low center of gravity LD toe with GripWalk compatibility."
+  },
+  {
+    "brand": "Salomon",
+    "model": "Strive 12 GW",
+    "dinMin": 3.5,
+    "dinMax": 12.0,
+    "sourceUrl": "https://www.salomon.com/en-us/shop/product/strive-12-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "Lightweight all-mountain binding."
+  },
+  {
+    "brand": "Salomon",
+    "model": "Warden MNC 11",
+    "dinMin": 3.5,
+    "dinMax": 11.0,
+    "sourceUrl": "https://www.salomon.com/en-us/shop/product/warden-mnc-11",
+    "verifiedDate": "2026-09-28",
+    "notes": "Multi-norm certified compatible with touring, GripWalk, and alpine soles."
+  },
+  {
+    "brand": "Atomic",
+    "model": "Strive 14 GW",
+    "dinMin": 5.0,
+    "dinMax": 14.0,
+    "sourceUrl": "https://www.atomic.com/en-us/shop/product/strive-14-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "Low-profile chassis with automatic wing adjustment."
+  },
+  {
+    "brand": "Atomic",
+    "model": "Warden 11 MNC",
+    "dinMin": 3.5,
+    "dinMax": 11.0,
+    "sourceUrl": "https://www.atomic.com/en-us/shop/product/warden-11-mnc",
+    "verifiedDate": "2026-09-28",
+    "notes": "MNC boot compatibility."
+  },
+  {
+    "brand": "Tyrolia",
+    "model": "Attack 14 GW",
+    "dinMin": 4.0,
+    "dinMax": 14.0,
+    "sourceUrl": "https://www.tyrolia.com/en_US/attack-14-gw.html",
+    "verifiedDate": "2026-09-28",
+    "notes": "FR PRO3 toe with mechanical anti-friction slider."
+  },
+  {
+    "brand": "Tyrolia",
+    "model": "Attack 11 GW",
+    "dinMin": 3.0,
+    "dinMax": 11.0,
+    "sourceUrl": "https://www.tyrolia.com/en_US/attack-11-gw.html",
+    "verifiedDate": "2026-09-28",
+    "notes": "Lightweight all-mountain and freestyle binding."
+  },
+  {
+    "brand": "Tyrolia",
+    "model": "Attack 17 GW",
+    "dinMin": 6.0,
+    "dinMax": 17.0,
+    "sourceUrl": "https://www.tyrolia.com/en_US/attack-17-gw.html",
+    "verifiedDate": "2026-09-28",
+    "notes": "Race and high-retention freeride binding."
+  },
+  {
+    "brand": "Marker",
+    "model": "Free 7 (Junior)",
+    "dinMin": 2.0,
+    "dinMax": 7.0,
+    "sourceUrl": "https://markerbindings.com/en-us/p/free-7",
+    "verifiedDate": "2026-09-28",
+    "notes": "Junior all-mountain binding with Quick-Heel."
+  },
+  {
+    "brand": "Marker",
+    "model": "4.5 (Kids)",
+    "dinMin": 0.75,
+    "dinMax": 4.5,
+    "sourceUrl": "https://markerbindings.com/en-us/p/4-5",
+    "verifiedDate": "2026-09-28",
+    "notes": "Children's safety binding with biotech toe release."
+  },
+  {
+    "brand": "Look",
+    "model": "Team 4 (Kids)",
+    "dinMin": 0.75,
+    "dinMax": 4.5,
+    "sourceUrl": "https://www.look-bindings.com/en-us/product/team-4-gw",
+    "verifiedDate": "2026-09-28",
+    "notes": "Junior lightweight binding compatible with GripWalk Junior."
+  },
+  {
+    "brand": "Salomon",
+    "model": "L6 (Junior)",
+    "dinMin": 2.0,
+    "dinMax": 5.5,
+    "sourceUrl": "https://www.salomon.com",
+    "verifiedDate": "2026-09-28",
+    "notes": "Junior binding with automatic toe height adjustment."
+  }
+]

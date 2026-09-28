@@ -44,8 +44,20 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
     if (profile) {
       const calculatedResult = calculateDin(profile);
       setResult(calculatedResult);
+
+      // Feature 6.2: Hash-based shareable link state (not crawled, preserves clean canonical)
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams();
+        params.set('w', String(Math.round(profile.weightKg)));
+        params.set('h', String(Math.round(profile.heightCm)));
+        params.set('a', String(profile.age));
+        params.set('t', profile.skierType);
+        params.set('b', String(profile.bslMm));
+        params.set('u', unitSystem);
+        window.history.replaceState(null, '', `#${params.toString()}`);
+      }
     }
-  }, [profile]);
+  }, [profile, unitSystem]);
 
   return (
     <div className="w-full">

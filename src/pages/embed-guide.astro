@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const { title, description } = getSeoMetadata('/embed-guide/', 'en');
+
+const iframeCode = `<iframe
+  src="https://dincalculatorpro.com/embed/"
+  title="Ski Binding DIN Calculator"
+  width="100%"
+  height="780"
+  frameborder="0"
+  style="border: 1px solid #3f3f46; border-radius: 16px; max-width: 860px;"
+  loading="lazy"
+></iframe>`;
+
+const autoResizeCode = `<iframe
+  id="din-calc-iframe"
+  src="https://dincalculatorpro.com/embed/"
+  title="Ski Binding DIN Calculator"
+  width="100%"
+  height="780"
+  frameborder="0"
+  style="border: 1px solid #3f3f46; border-radius: 16px; max-width: 860px;"
+  loading="lazy"
+></iframe>
+
+<script>
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'din-calculator-resize') {
+      var iframe = document.getElementById('din-calc-iframe');
+      if (iframe) {
+        iframe.style.height = (event.data.height + 20) + 'px';
+      }
+    }
+  });
+<\/script>`;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+    <div class="max-w-2xl mb-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-parchment text-mute text-[11px] font-semibold tracking-widest uppercase mb-4 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Free Shop Integration
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
+        Embed the DIN Calculator
+      </h1>
+      <p class="text-sm sm:text-base text-mute leading-relaxed">
+        Provide your customers with an ad-free, verified ISO 11088:2023 ski binding release calculation tool directly on your website or retail blog.
+      </p>
+    </div>
+
+    <!-- Features 3-up -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+      <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+        <span class="text-lg">🔒</span>
+        <h3 class="font-semibold text-sm text-ink">Zero Tracking & Cookies</h3>
+        <p class="text-xs text-mute leading-relaxed">GDPR-compliant with zero third-party tracking scripts or cookies injected into your site.</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+        <span class="text-lg">⚡</span>
+        <h3 class="font-semibold text-sm text-ink">Instant & Responsive</h3>
+        <p class="text-xs text-mute leading-relaxed">Runs client-side in &lt;1ms. Scales smoothly on phones, tablets, and desktop workstations.</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-2">
+        <span class="text-lg">📐</span>
+        <h3 class="font-semibold text-sm text-ink">ISO 11088:2023</h3>
+        <p class="text-xs text-mute leading-relaxed">Updated to Edition 7 standards including manufacturer binding scale checks.</p>
+      </div>
+    </div>
+
+    <!-- Code Snippet Standard -->
+    <div class="space-y-8">
+      <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-semibold text-ink">1. Standard Iframe Embed</h2>
+          <span class="text-xs font-mono text-mute">Simple HTML</span>
+        </div>
+        <p class="text-xs text-mute leading-relaxed">
+          Copy and paste this snippet anywhere in your CMS (WordPress, Shopify, Webflow, Squarespace):
+        </p>
+        <pre class="p-4 rounded-xl bg-input border border-hairline overflow-x-auto text-xs font-mono text-primary leading-relaxed">{iframeCode}</pre>
+      </div>
+
+      <!-- Auto-resize Snippet -->
+      <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-semibold text-ink">2. Responsive Auto-Resizing Embed</h2>
+          <span class="text-xs font-mono text-accent">Recommended</span>
+        </div>
+        <p class="text-xs text-mute leading-relaxed">
+          This script listens to postMessage events from the calculator to automatically adjust the iframe's height as steps expand, preventing scrollbars:
+        </p>
+        <pre class="p-4 rounded-xl bg-input border border-hairline overflow-x-auto text-xs font-mono text-primary leading-relaxed">{autoResizeCode}</pre>
+      </div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="mt-14 space-y-4">
+      <h2 class="text-lg font-bold text-ink">Live Preview</h2>
+      <div class="rounded-2xl border border-hairline p-4 bg-parchment">
+        <iframe
+          src="/embed/"
+          title="Preview of DIN Calculator Widget"
+          width="100%"
+          height="650"
+          class="rounded-xl border border-hairline"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

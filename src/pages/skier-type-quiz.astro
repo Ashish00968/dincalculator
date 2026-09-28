@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SkierTypeQuiz } from '../components/quiz/SkierTypeQuiz';
+import { getSeoMetadata } from '../utils/seo';
+
+const { title, description } = getSeoMetadata('/skier-type-quiz/', 'en');
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-parchment text-mute text-[11px] font-semibold tracking-widest uppercase mb-4 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+        30-Second Diagnostic
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
+        Skier Type Quiz
+      </h1>
+      <p class="text-sm sm:text-base text-mute leading-relaxed">
+        Your skier type controls binding release retention under the ISO 11088:2023 standard. Answer 5 quick questions to identify your correct category.
+      </p>
+    </div>
+
+    <!-- Interactive Preact Quiz Island -->
+    <SkierTypeQuiz client:load />
+
+    <!-- Explanatory Trust Note -->
+    <div class="mt-12 max-w-2xl mx-auto p-5 rounded-2xl bg-parchment border border-hairline text-xs text-mute space-y-2">
+      <div class="font-semibold text-ink flex items-center gap-2">
+        <span>Standardization Reference: ISO 11088:2023</span>
+      </div>
+      <p class="leading-relaxed">
+        Skier type classifications determine table row shifts in alpine ski binding calibration. Choosing an honest skier type ensures your bindings release when needed to protect knee ligaments, while retaining your boot through aggressive turns.
+      </p>
+      <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+        <a href="/skier-types/" class="text-primary hover:underline font-medium">Read Full Skier Types Guide →</a>
+        <a href="/" class="text-primary hover:underline font-medium">Back to Calculator →</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { DinResult, DinNote } from '../../engine/types';
 import { Card, CardContent } from '../ui/Card';
 import { DinGauge } from './DinGauge';
+import { BindingChecker } from './BindingChecker';
 import { 
   InfoIcon as Info, 
   AlertTriangleIcon as AlertTriangle, 
@@ -115,6 +116,9 @@ Calculated at: https://dincalculatorpro.com`;
               <span className="text-base font-semibold text-ink">{bslRangeLabel}</span>
             </div>
           </div>
+
+          {/* Binding Scale Check */}
+          <BindingChecker din={din} />
 
           {/* Action CTAs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">

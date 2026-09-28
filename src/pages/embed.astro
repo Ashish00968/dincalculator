@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import CalculatorApp from '../components/calculator/CalculatorApp';
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ski DIN Calculator Widget | DIN Calculator Pro</title>
+    <meta name="description" content="Embeddable ISO 11088:2023 ski binding DIN calculator widget for ski shops and blogs. Free, fast, and responsive." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://dincalculatorpro.com/embed/" />
+    <meta name="theme-color" content="#090A0C" />
+  </head>
+  <body class="bg-canvas text-ink p-4 sm:p-6 antialiased">
+    <div id="embed-container" class="max-w-4xl mx-auto space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-hairline">
+        <a href="https://dincalculatorpro.com/" target="_blank" rel="noopener" class="flex items-center gap-2 group">
+          <img src="/logo-icon.webp" alt="DIN Calculator Pro" width="24" height="24" class="rounded-md" />
+          <h1 class="text-xs font-bold text-ink group-hover:text-primary transition-colors">DIN Calculator Pro</h1>
+        </a>
+        <a 
+          href="https://dincalculatorpro.com/" 
+          target="_blank" 
+          rel="noopener" 
+          class="text-[11px] font-medium text-primary hover:underline"
+        >
+          Powered by DIN Calculator Pro ↗
+        </a>
+      </div>
+
+      <CalculatorApp client:load lang="en" />
+    </div>
+
+    <!-- Auto-resize postMessage communicator -->
+    <script is:inline>
+      function notifyHeight() {
+        const height = document.documentElement.scrollHeight;
+        window.parent.postMessage({ type: 'din-calculator-resize', height }, '*');
+      }
+      window.addEventListener('load', notifyHeight);
+      window.addEventListener('resize', notifyHeight);
+      const observer = new ResizeObserver(notifyHeight);
+      observer.observe(document.body);
+    </script>
+  </body>
+</html>

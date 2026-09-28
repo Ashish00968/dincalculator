@@ -36,6 +36,7 @@ export function isIndexablePath(urlOrPath: string): boolean {
 
   const parts = clean.split('/');
   const first = parts[0];
+  if (first === 'embed') return false;
 
   if (first in LOCALE_CONFIG) {
     return LOCALE_CONFIG[first].indexable;
