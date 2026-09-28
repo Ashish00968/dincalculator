@@ -173,7 +173,8 @@ input[type=range]::-moz-range-track {
   }
   #calculator-result {
     display: block !important;
-    max-width: 100% !important;
+    max-width: none !important;
+    width: 100vw;
     margin: 0 auto !important;
     border: 1px solid #111827 !important;
     padding: 24px !important;

@@ -3,6 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getSeoMetadata } from '../utils/seo';
 
 const seo = getSeoMetadata('/how-to-adjust-ski-bindings/', 'en');
+
+const tocItems = [
+  { id: 'anatomy', title: '1. Three Binding Mechanisms' },
+  { id: 'forward-pressure', title: '2. Forward Pressure Trap' },
+  { id: 'brand-indicators', title: '3. Brand Pressure Indicators' },
+  { id: 'shop-protocol', title: '4. Professional Shop Protocol' },
+  { id: 'diy-mistakes', title: '5. 4 Fatal DIY Mistakes' },
+  { id: 'tech-card', title: '6. Print Technician Card' },
+];
 ---
 
 <BaseLayout
@@ -11,7 +20,7 @@ const seo = getSeoMetadata('/how-to-adjust-ski-bindings/', 'en');
   canonicalUrl={seo.canonicalUrl}
   ogType="article"
 >
-  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+  <article class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
     {/* Breadcrumbs */}
     <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
       <a href="/" class="hover:text-primary transition-colors">Home</a>
@@ -22,7 +31,7 @@ const seo = getSeoMetadata('/how-to-adjust-ski-bindings/', 'en');
     </nav>
 
     {/* Header */}
-    <header class="space-y-4 mb-10">
+    <header class="space-y-4 mb-8">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
         <span class="w-2 h-2 rounded-full bg-amber-500"></span>
         <span>Safety & Technical Guide · ISO 11088:2023</span>
@@ -36,183 +45,223 @@ const seo = getSeoMetadata('/how-to-adjust-ski-bindings/', 'en');
 
       {/* Meta Bar */}
       <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
-        <span>Standard: ISO 11088:2023 & ASTM F1063</span>
+        <span>Standard: ISO 11088:2023, ASTM F939 & ASTM F1063</span>
         <span>•</span>
         <span>Audited: September 2026</span>
         <span>•</span>
-        <span class="text-amber-500 font-medium">NEEDS-HUMAN: Certified Shop Technician Review</span>
+        <span class="text-amber-500 font-medium">NEEDS-HUMAN: Shop Technician Review</span>
       </div>
     </header>
 
-    {/* Answer-First Summary Block */}
-    <div class="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-3 mb-12 shadow-sm text-ink">
-      <div class="flex items-center gap-2 text-xs font-bold font-mono text-amber-600 uppercase tracking-wider">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-        Critical Safety Notice: Never Guess or DIY Adjust
-      </div>
-      <p class="text-sm leading-relaxed">
-        While visual indicator scales on toe and heel pieces can be turned with a screwdriver, <strong>turning the screw alone does NOT correctly adjust your ski bindings</strong>. A ski binding requires precise forward pressure preload, toe-height AFD clearance, and mechanical release torque verification on a calibrated computerized test bench (ASTM F1063 / ISO 11088). Incorrect DIY adjustment is a leading cause of severe knee tears and tibial spiral fractures.
-      </p>
+    {/* Mobile Jump Menu (Horizontal scroll pills) */}
+    <div class="lg:hidden mb-8 pb-2 overflow-x-auto flex gap-2 no-scrollbar border-b border-hairline pt-2">
+      {tocItems.map(item => (
+        <a
+          href={`#${item.id}`}
+          class="shrink-0 px-3 py-1.5 rounded-full bg-parchment border border-hairline text-xs font-mono text-mute hover:text-primary hover:border-primary/40 transition-colors"
+        >
+          {item.title}
+        </a>
+      ))}
     </div>
 
-    {/* Main Content */}
-    <div class="space-y-12">
-      {/* Anatomy of a Ski Binding */}
-      <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-ink">
-          The Three Mechanisms of an Alpine Ski Binding
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
-            <div class="text-primary font-bold text-sm">1. Toe Release Springs</div>
-            <p class="text-xs text-mute leading-relaxed">
-              Located in the front housing. Controls lateral release when twisting force exceeds the safe threshold, protecting the tibia from torsional spiral fracture.
-            </p>
+    {/* Two-Column Grid: Main Content + Sticky TOC Sidebar */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* Main Content Column */}
+      <div class="lg:col-span-8 space-y-12">
+        {/* Answer-First Summary Block */}
+        <div class="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-3 shadow-sm text-ink">
+          <div class="flex items-center gap-2 text-xs font-bold font-mono text-amber-600 uppercase tracking-wider">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            Critical Safety Notice: Never Guess or DIY Adjust
           </div>
-          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
-            <div class="text-primary font-bold text-sm">2. Heel Upward Springs</div>
-            <p class="text-xs text-mute leading-relaxed">
-              Located in the rear housing. Compresses vertically to release upward when pitching forward, protecting the knee and Achilles tendon from hyperflexion.
-            </p>
-          </div>
-          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
-            <div class="text-primary font-bold text-sm">3. Forward Pressure</div>
-            <p class="text-xs text-mute leading-relaxed">
-              The rear track spring that keeps the heel piece pressing firmly against the boot heel. This ensures the binding maintains constant torque while the ski flexes during turns.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* The Hidden Factor: Forward Pressure */}
-      <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-ink">
-          Why Forward Pressure is the #1 DIY Trap
-        </h2>
-        <p class="text-sm text-mute leading-relaxed">
-          Most skiers believe that matching the number in the toe and heel indicator windows to their DIN chart is all that is required. <strong>This is dangerously untrue.</strong>
-        </p>
-        <p class="text-sm text-mute leading-relaxed">
-          If forward pressure is set incorrectly:
-        </p>
-        <ul class="text-xs text-mute space-y-2 font-mono list-disc pl-5 leading-relaxed">
-          <li><strong>Too loose (insufficient forward pressure):</strong> The boot can eject prematurely during turns, moguls, or high-speed compressions (pre-release), throwing the skier at high speed.</li>
-          <li><strong>Too tight (excessive forward pressure):</strong> The heel jams into the boot lug, massively increasing the release torque far above the indicated window setting. In a twisting fall, the binding will refuse to release, causing severe ligament ruptures (ACL/MCL) or bone fractures.</li>
-        </ul>
-      </section>
-
-      {/* Brand Specific Mechanisms */}
-      <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-ink">
-          Brand-Specific Forward Pressure Indicators
-        </h2>
-        <p class="text-sm text-mute leading-relaxed">
-          Different binding manufacturers employ distinct indicators to verify forward pressure when the ski boot is locked into the binding:
-        </p>
-        <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
-          <table class="w-full text-left text-xs font-mono">
-            <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
-              <tr>
-                <th class="p-3">Manufacturer & Model</th>
-                <th class="p-3">Forward Pressure Mechanism</th>
-                <th class="p-3">Correct Verification Indicator</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-hairline">
-              <tr class="hover:bg-parchment/50">
-                <td class="p-3 font-bold text-ink">Marker (Griffon, Squire, Jester)</td>
-                <td class="p-3">Adjustment screw at rear base of heel track.</td>
-                <td class="p-3 text-mute">Screw head must sit completely flush with the surrounding plastic housing when boot is engaged.</td>
-              </tr>
-              <tr class="hover:bg-parchment/50">
-                <td class="p-3 font-bold text-ink">Look Pivot / Rossignol FKS</td>
-                <td class="p-3">Turntable heel arm screw arms.</td>
-                <td class="p-3 text-mute">Indicator white marks on the arms must align within the scribe marks on the turntable base.</td>
-              </tr>
-              <tr class="hover:bg-parchment/50">
-                <td class="p-3 font-bold text-ink">Salomon / Atomic (Warden, Strive)</td>
-                <td class="p-3">Worm screw on rear heel track.</td>
-                <td class="p-3 text-mute">Metal indicator tab must rest inside the marked scribe box on the heel track.</td>
-              </tr>
-              <tr class="hover:bg-parchment/50">
-                <td class="p-3 font-bold text-ink">Tyrolia / Head / Fischer (Attack)</td>
-                <td class="p-3">Track worm screw at the heel base.</td>
-                <td class="p-3 text-mute">Engaged metal indicator track notches align with the indicator casing mark.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* What a Certified Ski Technician Actually Does */}
-      <section class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4">
-        <h2 class="text-xl font-bold text-ink">
-          What a Certified Ski Shop Technician Does
-        </h2>
-        <div class="space-y-3 text-xs text-mute leading-relaxed">
-          <p>
-            When you bring your boots and skis to a professional ski shop, the technician performs a standardized 5-step protocol under ISO 11088 and ASTM F1063:
+          <p class="text-sm leading-relaxed">
+            While visual indicator scales on toe and heel pieces can be turned with a screwdriver, <strong>turning the screw alone does NOT correctly adjust your ski bindings</strong>.
           </p>
-          <ol class="list-decimal pl-5 space-y-2 font-mono">
-            <li><strong>Visual & Physical Inspection:</strong> Inspects boot soles for excessive wear, gouges, or beveling at toe/heel lugs, and verifies AFD condition.</li>
-            <li><strong>BSL & Forward Pressure Calibration:</strong> Mounts boot into binding and precisely aligns forward pressure to manufacturer specifications.</li>
-            <li><strong>Toe Height / AFD Clearance:</strong> Uses a precision feeler gauge to ensure exact specified clearance between boot sole and AFD.</li>
-            <li><strong>Calibrated Mechanical Release Test:</strong> Places the ski-binding-boot assembly into a computerized torque test bench (e.g., Montana, Vermont Safety, Wintersteiger) to mechanically measure actual release torque in N·m.</li>
-            <li><strong>Tolerance Documentation:</strong> Compares measured torque against ISO 11088 inspection window tolerances and delivers an official printed inspection report.</li>
-          </ol>
+          <p class="text-sm leading-relaxed text-mute">
+            A ski binding requires proper forward pressure preload, toe-height AFD clearance, and mechanical release torque verification on a calibrated test bench (ASTM F1063 / ISO 11088). Incorrect DIY adjustment is a leading cause of severe knee tears and tibial fractures.
+          </p>
         </div>
-      </section>
 
-      {/* What NOT to Do */}
-      <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-ink">
-          The 4 Deadly DIY Ski Binding Mistakes
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
-            <h3 class="font-bold text-ink text-sm text-red-500">1. Using Stripped Hand Tools</h3>
-            <p class="text-mute leading-relaxed">Ski binding screws use Pozidriv #3 bits, not standard Phillips #2. Using the wrong screwdriver strips the screw heads, destroying the binding housing.</p>
+        {/* 1. Anatomy of a Ski Binding */}
+        <section id="anatomy" class="space-y-4 scroll-mt-24">
+          <h2 class="text-2xl font-bold text-ink">
+            1. The Three Mechanisms of an Alpine Ski Binding
+          </h2>
+          <p class="text-sm text-mute leading-relaxed">
+            Every alpine ski binding contains three independent mechanical subsystems that work together to balance skier retention and injury release.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+              <div class="text-primary font-bold text-sm">1. Toe Release Springs</div>
+              <p class="text-xs text-mute leading-relaxed">
+                Located in the front housing. Controls lateral release when twisting force exceeds the safe threshold, protecting the tibia from torsional spiral fracture.
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+              <div class="text-primary font-bold text-sm">2. Heel Upward Springs</div>
+              <p class="text-xs text-mute leading-relaxed">
+                Located in the rear housing. Compresses vertically to release upward when pitching forward, protecting the knee and Achilles tendon from hyperflexion.
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+              <div class="text-primary font-bold text-sm">3. Forward Pressure</div>
+              <p class="text-xs text-mute leading-relaxed">
+                The rear track spring that keeps the heel piece pressing firmly against the boot heel. This ensures the binding maintains constant torque while the ski flexes during turns.
+              </p>
+            </div>
           </div>
-          <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
-            <h3 class="font-bold text-ink text-sm text-red-500">2. Mismatched Toe and Heel Values</h3>
-            <p class="text-mute leading-relaxed">Except in specific manufacturer race protocols, toe and heel indicator scales must be set to the identical DIN value calculated from your skier profile.</p>
+        </section>
+
+        {/* 2. The Hidden Factor: Forward Pressure */}
+        <section id="forward-pressure" class="space-y-4 scroll-mt-24">
+          <h2 class="text-2xl font-bold text-ink">
+            2. Why Forward Pressure is the #1 DIY Trap
+          </h2>
+          <p class="text-sm text-mute leading-relaxed">
+            Most skiers believe that matching the number in the toe and heel indicator windows to their DIN chart is all that is required. <strong>This is dangerously untrue.</strong>
+          </p>
+          <p class="text-sm text-mute leading-relaxed">
+            The forward pressure track absorbs ski decambering. When a ski flexes deeply into a turn or a bump trough, the physical distance between the toe and heel pieces shortens.
+          </p>
+          <p class="text-sm text-mute leading-relaxed">
+            If forward pressure is set incorrectly:
+          </p>
+          <ul class="text-xs text-mute space-y-2 font-mono list-disc pl-5 leading-relaxed">
+            <li><strong>Too loose (insufficient pressure):</strong> The boot ejects prematurely during turns or high-speed compressions (pre-release), causing high-speed crashes.</li>
+            <li><strong>Too tight (excessive pressure):</strong> The heel binds against the boot lug, massively increasing release torque. In a twisting fall, the binding locks up, causing severe ACL/MCL ligament ruptures.</li>
+          </ul>
+        </section>
+
+        {/* 3. Brand Specific Mechanisms */}
+        <section id="brand-indicators" class="space-y-4 scroll-mt-24">
+          <h2 class="text-2xl font-bold text-ink">
+            3. Brand-Specific Forward Pressure Indicators
+          </h2>
+          <p class="text-sm text-mute leading-relaxed">
+            Different binding manufacturers employ distinct mechanical indicators to verify forward pressure when the ski boot is clicked into the binding.
+          </p>
+          <p class="text-sm text-mute leading-relaxed">
+            Always inspect these indicators with the skier's actual boot clicked completely into the binding:
+          </p>
+          <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
+            <table class="w-full text-left text-xs font-mono">
+              <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
+                <tr>
+                  <th class="p-3">Manufacturer & Model</th>
+                  <th class="p-3">Forward Pressure Mechanism</th>
+                  <th class="p-3">Correct Verification Indicator</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-hairline">
+                <tr class="hover:bg-parchment/50">
+                  <td class="p-3 font-bold text-ink">Marker (Griffon, Squire, Jester)</td>
+                  <td class="p-3">Adjustment screw at rear base of heel track.</td>
+                  <td class="p-3 text-mute">Screw head must sit completely flush with the surrounding plastic housing when boot is engaged.</td>
+                </tr>
+                <tr class="hover:bg-parchment/50">
+                  <td class="p-3 font-bold text-ink">Look Pivot / Rossignol FKS</td>
+                  <td class="p-3">Turntable heel arm screw arms.</td>
+                  <td class="p-3 text-mute">Indicator white marks on the arms must align within the scribe marks on the turntable base.</td>
+                </tr>
+                <tr class="hover:bg-parchment/50">
+                  <td class="p-3 font-bold text-ink">Salomon / Atomic (Warden, Strive)</td>
+                  <td class="p-3">Worm screw on rear heel track.</td>
+                  <td class="p-3 text-mute">Metal indicator tab must rest inside the marked scribe box on the heel track.</td>
+                </tr>
+                <tr class="hover:bg-parchment/50">
+                  <td class="p-3 font-bold text-ink">Tyrolia / Head / Fischer (Attack)</td>
+                  <td class="p-3">Track worm screw at the heel base.</td>
+                  <td class="p-3 text-mute">Engaged metal indicator track notches align with the indicator casing mark.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
-            <h3 class="font-bold text-ink text-sm text-red-500">3. Maxing Out the Spring Range</h3>
-            <p class="text-mute leading-relaxed">Never operate a binding at its absolute maximum (e.g. DIN 11 on a 3–11 binding). Binding springs lose linearity near boundaries; upgrade to a higher-capacity binding.</p>
+        </section>
+
+        {/* 4. What a Qualified Ski Shop Technician Does */}
+        <section id="shop-protocol" class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4 scroll-mt-24">
+          <h2 class="text-xl font-bold text-ink">
+            4. What a Qualified Ski Shop Technician Does
+          </h2>
+          <div class="space-y-3 text-xs text-mute leading-relaxed">
+            <p>
+              When you bring your boots and skis to a professional ski shop, the technician performs a standardized 5-step protocol under ISO 11088 and ASTM F1063:
+            </p>
+            <ol class="list-decimal pl-5 space-y-2 font-mono">
+              <li><strong>Visual & Physical Inspection:</strong> Inspects boot soles for excessive wear, gouges, or beveling at toe/heel lugs, and verifies AFD condition.</li>
+              <li><strong>BSL & Forward Pressure Calibration:</strong> Mounts boot into binding and accurately aligns forward pressure to manufacturer specifications.</li>
+              <li><strong>Toe Height / AFD Clearance:</strong> Uses a calibrated feeler gauge to ensure exact specified clearance between boot sole and AFD.</li>
+              <li><strong>Calibrated Mechanical Release Test:</strong> Places the ski-binding-boot assembly into a computerized torque test bench (e.g., Montana, Vermont Safety, Wintersteiger) to mechanically measure actual release torque in N·m.</li>
+              <li><strong>Tolerance Documentation:</strong> Compares measured torque against ISO 11088 inspection window tolerances and delivers an official printed inspection report.</li>
+            </ol>
           </div>
-          <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
-            <h3 class="font-bold text-ink text-sm text-red-500">4. Skipping the Mechanical Test</h3>
-            <p class="text-mute leading-relaxed">A binding spring that hasn't been tested in 2 years may release 30% higher or lower than its visual indicator indicates due to dirt, dried grease, or spring fatigue.</p>
+        </section>
+
+        {/* 5. What NOT to Do */}
+        <section id="diy-mistakes" class="space-y-4 scroll-mt-24">
+          <h2 class="text-2xl font-bold text-ink">
+            5. The 4 Fatal DIY Ski Binding Mistakes
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
+              <h3 class="font-bold text-ink text-sm text-red-500">1. Using Stripped Hand Tools</h3>
+              <p class="text-mute leading-relaxed">Ski binding screws use Pozidriv #3 bits, not standard Phillips #2. Using the wrong screwdriver strips the screw heads, destroying the binding housing.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
+              <h3 class="font-bold text-ink text-sm text-red-500">2. Mismatched Toe and Heel Values</h3>
+              <p class="text-mute leading-relaxed">Except in specific manufacturer race protocols, toe and heel indicator scales must be set to the identical DIN value calculated from your skier profile.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
+              <h3 class="font-bold text-ink text-sm text-red-500">3. Maxing Out the Spring Range</h3>
+              <p class="text-mute leading-relaxed">Never operate a binding at its absolute maximum (e.g. DIN 11 on a 3–11 binding). Binding springs lose linearity near boundaries; upgrade to a higher-capacity binding.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2">
+              <h3 class="font-bold text-ink text-sm text-red-500">4. Skipping the Mechanical Test</h3>
+              <p class="text-mute leading-relaxed">A binding spring that hasn't been tested in 2 years may release 30% higher or lower than its visual indicator indicates due to dirt, dried grease, or spring fatigue.</p>
+            </div>
           </div>
+        </section>
+
+        {/* 6. CTA Box */}
+        <div id="tech-card" class="p-8 rounded-3xl bg-primary/10 border border-primary/20 text-center space-y-4 scroll-mt-24">
+          <h3 class="text-xl font-bold text-ink">6. Generate Your Verified Technician Card</h3>
+          <p class="text-sm text-mute max-w-lg mx-auto">
+            Calculate your ISO 11088:2023 release setting and print our standardized Technician Card to bring directly to your qualified ski shop.
+          </p>
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-canvas font-medium text-sm hover:scale-[0.98] transition-transform shadow-md"
+          >
+            Calculate & Print Tech Card
+          </a>
         </div>
-      </section>
-
-      {/* CTA Box */}
-      <div class="p-8 rounded-3xl bg-primary/10 border border-primary/20 text-center space-y-4">
-        <h3 class="text-xl font-bold text-ink">Generate Your Verified Technician Card</h3>
-        <p class="text-sm text-mute max-w-lg mx-auto">
-          Calculate your ISO 11088:2023 release setting and print our standardized Technician Card to bring directly to your certified ski shop.
-        </p>
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-canvas font-medium text-sm hover:scale-[0.98] transition-transform shadow-md"
-        >
-          Calculate & Print Tech Card
-        </a>
       </div>
 
-      {/* Primary Sources */}
-      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
-        <h4 class="font-bold text-ink">Standards & Workshop References</h4>
-        <ul class="space-y-1">
-          <li>• ISO 11088:2023: <em>Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system</em> (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org</a>).</li>
-          <li>• ASTM F1063: <em>Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems</em>.</li>
-          <li>• Marker, Look, Salomon, Tyrolia Technical Workshop Manuals (2024–2026 Editions).</li>
-        </ul>
-      </footer>
+      {/* Sticky Table of Contents (Desktop Sidebar) */}
+      <aside class="hidden lg:block lg:col-span-4 lg:sticky lg:top-24 self-start">
+        <div class="p-5 rounded-2xl bg-parchment border border-hairline space-y-4">
+          <div class="flex items-center justify-between border-b border-hairline pb-3">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink">Table of Contents</span>
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          </div>
+          <nav class="space-y-1.5 text-xs font-mono" aria-label="Table of Contents">
+            {tocItems.map(item => (
+              <a
+                href={`#${item.id}`}
+                class="block px-3 py-2 rounded-lg text-mute hover:text-primary hover:bg-canvas transition-colors"
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+          <div class="pt-3 border-t border-hairline text-[11px] text-mute leading-relaxed">
+            Jump to any section to review mechanical specs, forward pressure checks, or shop protocols.
+          </div>
+        </div>
+      </aside>
     </div>
   </article>
 </BaseLayout>

@@ -29,7 +29,7 @@ const pageDescription = t('page.about.desc');
         <span class="text-primary">Trusted for safety.</span>
       </h1>
       <p class="text-mute text-lg max-w-2xl mx-auto leading-relaxed">
-        DIN Calculator Pro was created to give every skier — from first-timers to seasoned alpine racers — access to a precise, transparent, and completely free DIN calculation tool.
+        DIN Calculator Pro was created to give every skier — from first-timers to seasoned alpine racers — access to a transparent, independent, and completely free DIN calculation reference tool.
       </p>
     </div>
   </section>
@@ -41,13 +41,13 @@ const pageDescription = t('page.about.desc');
       <div class="space-y-4">
         <h2 class="text-2xl font-bold text-ink">Why We Built This</h2>
         <p class="text-mute text-sm leading-relaxed">
-          Most DIN calculators on the internet are outdated, buried in advertising, or don't explain their methodology. Worse — many use simplified approximations rather than the actual ISO 11088 lookup tables.
+          Most DIN calculators on the internet are outdated, buried in advertising, or don't explain their methodology. Worse — many use simplified approximations rather than the published ISO 11088 lookup tables.
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          DIN Calculator Pro was built from scratch using the official ISO 11088:2018 standard tables, verified against certified technician reference guides. Every number you see comes directly from the international standard — not from guesswork.
+          DIN Calculator Pro was built using the international ISO 11088:2023 (Edition 7) standard tables. Every number you see comes directly from the published international standard matrix — not from guesswork or simplified equations.
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          We believe safety-critical tools should be transparent about how they work, and that every skier — regardless of where they are in the world — deserves access to the same quality of information that professional ski technicians use.
+          We believe safety-critical reference tools should be transparent about how they work, and that every skier deserves access to the exact calculation steps that ski technicians use.
         </p>
       </div>
       <div class="space-y-4">
@@ -55,7 +55,7 @@ const pageDescription = t('page.about.desc');
         <ul class="space-y-3">
           {[
             { icon: "🔐", title: "Zero Data. Always.", desc: "We never collect, store, or transmit your personal data. All calculations run entirely in your browser." },
-            { icon: "📐", title: "Strict ISO Compliance.", desc: "We implement the full ISO 11088:2018 standard — not approximations or simplified charts." },
+            { icon: "📐", title: "Strict ISO 11088:2023.", desc: "We implement the full ISO 11088:2023 (Edition 7) standard — not approximations or simplified charts." },
             { icon: "🆓", title: "Free Forever.", desc: "DIN Calculator Pro will always be free. No paywalls, no subscriptions, no ads." },
             { icon: "🌍", title: "Built for Everyone.", desc: "Full Imperial and Metric support with smart locale detection. Designed mobile-first." }
           ].map(item => (
@@ -74,7 +74,7 @@ const pageDescription = t('page.about.desc');
     <!-- Stats -->
     <section class="grid grid-cols-2 sm:grid-cols-4 gap-4">
       {[
-        { value: "100%", label: "ISO 11088 Compliant" },
+        { value: "Ed. 7", label: "ISO 11088:2023" },
         { value: "0", label: "Cookies or Trackers" },
         { value: "12", label: "FAQ Answers" },
         { value: "<1ms", label: "Calculation Time" }
@@ -94,12 +94,12 @@ const pageDescription = t('page.about.desc');
       </p>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {[
-          { name: "Astro 5", desc: "Static site generation" },
-          { name: "React 19", desc: "UI island architecture" },
-          { name: "Tailwind CSS v4", desc: "Utility-first styling" },
+          { name: "Astro", desc: "Static site generation" },
+          { name: "Preact", desc: "Lightweight UI islands" },
+          { name: "Tailwind CSS v4", desc: "Modern design system" },
           { name: "TypeScript", desc: "Strict type safety" },
-          { name: "ISO 11088:2018", desc: "Calculation standard" },
-          { name: "Zero dependencies", desc: "for the engine" }
+          { name: "ISO 11088:2023", desc: "Calculation standard (Ed. 7)" },
+          { name: "Zero dependencies", desc: "for the calculation engine" }
         ].map(tech => (
           <div class="p-4 rounded-xl bg-parchment border border-hairline">
             <div class="font-semibold text-ink text-sm">{tech.name}</div>
@@ -118,7 +118,7 @@ const pageDescription = t('page.about.desc');
         <div>
           <h3 class="font-semibold text-ink mb-2">Important Safety Disclaimer</h3>
           <p class="text-sm text-mute leading-relaxed">
-            DIN Calculator Pro provides mathematical estimates based strictly on the ISO 11088 standard. These values are for informational and cross-reference purposes only. Ski binding release forces are affected by many physical factors including boot wear, binding model tolerances, and forward pressure settings. <strong class="text-ink">Bindings must always be inspected, tested, and adjusted by a certified ski technician using specialized calibration equipment before skiing.</strong>
+            DIN Calculator Pro provides mathematical estimates based on the published ISO 11088:2023 standard. These values are for informational and reference purposes only. Ski binding release forces are affected by physical factors including boot wear, binding tolerances, and forward pressure. <strong class="text-ink">Bindings must always be inspected, adjusted, and tested by a trained ski technician using specialized calibration equipment before skiing.</strong>
           </p>
         </div>
       </div>

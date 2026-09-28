@@ -11,7 +11,8 @@ import {
   PrinterIcon as Printer, 
   ChevronDownIcon as ChevronDown, 
   ChevronUpIcon as ChevronUp, 
-  CheckIcon as Check 
+  CheckIcon as Check,
+  ArrowRightIcon as ArrowRight 
 } from '../ui/Icons';
 import { cn } from '../../utils/cn';
 import { useTranslations } from '../../i18n/utils';
@@ -67,7 +68,7 @@ Age Modifier: ${ageModifier < 0 ? ageModifier : '0'}
 Final Skier Code: Code ${adjustedCode}
 Boot Sole Length Bracket: ${bslRangeLabel}
 Standard: ISO 11088:2023 (Edition 7)
-Note: Bindings must be calibrated and tested by a certified ski technician.
+Note: Bindings must be calibrated and tested by a trained ski technician.
 Calculated at: https://dincalculatorpro.com`;
 
     try {
@@ -172,36 +173,87 @@ Calculated at: https://dincalculatorpro.com`;
         </button>
 
         {isBreakdownOpen && (
-          <CardContent id="din-calc-trace-details" className="pt-0 space-y-3.5 text-xs text-mute border-t border-hairline pt-4">
-            <div className="flex items-start gap-3">
-              <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">1</span>
-              <div>
-                <span className="text-ink font-medium">{t('result.baselineCode')}</span>
-                <p className="text-mute mt-0.5">{t('result.baselineDesc')} <strong className="text-ink font-medium">Code {baselineCode}</strong>.</p>
+          <CardContent id="din-calc-trace-details" className="pt-0 space-y-5 text-xs text-mute border-t border-hairline pt-4">
+            {/* Visual Stepper with connected nodes */}
+            <div className="bg-canvas/60 rounded-xl p-3 border border-hairline">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-mute mb-2.5 flex items-center justify-between">
+                <span>Calculation Stepper</span>
+                <span className="text-primary font-semibold">ISO 11088:2023</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-7 gap-2 items-center">
+                {/* Node 1: Baseline Code */}
+                <div className="sm:col-span-2 p-2.5 rounded-lg bg-parchment border border-hairline text-center">
+                  <div className="text-[10px] font-mono text-mute">01. Baseline</div>
+                  <div className="font-mono text-sm font-bold text-ink mt-0.5">Code {baselineCode}</div>
+                  <div className="text-[10px] text-mute truncate mt-0.5">Height & Weight</div>
+                </div>
+
+                {/* Arrow 1 */}
+                <div className="sm:col-span-1 flex flex-col items-center justify-center py-1 sm:py-0">
+                  <span className="text-[10px] font-mono font-semibold text-primary">
+                    {skierTypeModifier > 0 ? `+${skierTypeModifier}` : skierTypeModifier} Type
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-mute hidden sm:block mt-0.5" />
+                  <ChevronDown className="w-3.5 h-3.5 text-mute sm:hidden" />
+                </div>
+
+                {/* Node 2: Adjusted Code */}
+                <div className="sm:col-span-2 p-2.5 rounded-lg bg-parchment border border-hairline text-center">
+                  <div className="text-[10px] font-mono text-mute">02. Adjusted</div>
+                  <div className="font-mono text-sm font-bold text-ink mt-0.5">Code {adjustedCode}</div>
+                  <div className="text-[10px] text-mute truncate mt-0.5">{ageModifier !== 0 ? `Age ${ageModifier}` : 'Standard age'}</div>
+                </div>
+
+                {/* Arrow 2 */}
+                <div className="sm:col-span-1 flex flex-col items-center justify-center py-1 sm:py-0">
+                  <span className="text-[10px] font-mono font-semibold text-primary truncate max-w-[80px]">
+                    BSL
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-mute hidden sm:block mt-0.5" />
+                  <ChevronDown className="w-3.5 h-3.5 text-mute sm:hidden" />
+                </div>
+
+                {/* Node 3: Target DIN */}
+                <div className="sm:col-span-1 p-2.5 rounded-lg bg-primary/10 border border-primary/30 text-center">
+                  <div className="text-[10px] font-mono text-primary font-semibold">03. Result</div>
+                  <div className="font-mono text-sm font-extrabold text-primary mt-0.5">{din.toFixed(2)}</div>
+                  <div className="text-[9px] font-mono text-primary/80 uppercase">DIN</div>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">2</span>
-              <div>
-                <span className="text-ink font-medium">{t('result.skierTypeModifier')}</span>
-                <p className="text-mute mt-0.5">{t('result.skierTypeDesc')} <strong className="text-ink font-medium">{skierTypeModifier > 0 ? '+' : ''}{skierTypeModifier} {stepWord(skierTypeModifier)}</strong>.</p>
+            {/* Detailed Trace List */}
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">1</span>
+                <div>
+                  <span className="text-ink font-medium">{t('result.baselineCode')}</span>
+                  <p className="text-mute mt-0.5">{t('result.baselineDesc')} <strong className="text-ink font-medium">Code {baselineCode}</strong>.</p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-start gap-3">
-              <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">3</span>
-              <div>
-                <span className="text-ink font-medium">{t('result.ageModifier')}</span>
-                <p className="text-mute mt-0.5">{t('result.ageDesc')} <strong className="text-ink font-medium">{ageModifier < 0 ? ageModifier : '0'} {stepWord(ageModifier)}</strong> → {t('result.finalCode2')} <strong className="text-ink font-medium">Code {adjustedCode}</strong>.</p>
+              <div className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">2</span>
+                <div>
+                  <span className="text-ink font-medium">{t('result.skierTypeModifier')}</span>
+                  <p className="text-mute mt-0.5">{t('result.skierTypeDesc')} <strong className="text-ink font-medium">{skierTypeModifier > 0 ? '+' : ''}{skierTypeModifier} {stepWord(skierTypeModifier)}</strong>.</p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-start gap-3">
-              <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">4</span>
-              <div>
-                <span className="text-ink font-medium">{t('result.matrixIntersection')}</span>
-                <p className="text-mute mt-0.5">Code {adjustedCode} {t('result.matrixDesc')} {bslRangeLabel} {t('result.matrixYields')} <strong className="text-ink font-medium">{din.toFixed(2)} DIN</strong>.</p>
+              <div className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">3</span>
+                <div>
+                  <span className="text-ink font-medium">{t('result.ageModifier')}</span>
+                  <p className="text-mute mt-0.5">{t('result.ageDesc')} <strong className="text-ink font-medium">{ageModifier < 0 ? ageModifier : '0'} {stepWord(ageModifier)}</strong> → {t('result.finalCode2')} <strong className="text-ink font-medium">Code {adjustedCode}</strong>.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-parchment border border-hairline text-ink flex items-center justify-center shrink-0 font-mono text-[10px]">4</span>
+                <div>
+                  <span className="text-ink font-medium">{t('result.matrixIntersection')}</span>
+                  <p className="text-mute mt-0.5">Code {adjustedCode} {t('result.matrixDesc')} {bslRangeLabel} {t('result.matrixYields')} <strong className="text-ink font-medium">{din.toFixed(2)} DIN</strong>.</p>
+                </div>
               </div>
             </div>
           </CardContent>

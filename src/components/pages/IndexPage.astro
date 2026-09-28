@@ -179,7 +179,7 @@ const homeContent = {
     step5: 'Step 5 — Age Modifier (30 years):',
     step5Val: '0 Modifier (Adult) → Final Code L',
     step6: 'Step 6 — BSL 305 mm Lookup:',
-    note: 'Note: All calculations provide a baseline setting. Final release calibration must be verified on diagnostic test equipment by a certified ski technician.',
+    note: 'Note: All calculations provide a baseline setting. Final release calibration must be verified on diagnostic test equipment by a trained ski technician.',
     tableTitle: 'Baseline DIN by Weight (BSL 305 mm, Adult)',
     tableWeight: 'Skier Weight',
     tableType1: 'Type I (Beginner)',
@@ -190,7 +190,7 @@ const homeContent = {
     pillars: [
       { title: "Based on ISO 11088:2023", desc: "Implements the full ISO 11088:2023 matrix including height-weight conflict resolution, age modifiers, and horizontal nearest-neighbor fallback logic." },
       { title: "Zero-Data Architecture", desc: "All calculations run in browser RAM. Your weight, height, age, and boot size are never sent to a server, stored in cookies, or logged anywhere." },
-      { title: "Technician Export Card", desc: "Export a clean, printable summary card with your DIN settings to share with a certified ski technician for binding mounting and calibration." }
+      { title: "Technician Export Card", desc: "Export a clean, printable summary card with your DIN settings to share with a trained ski technician for binding mounting and calibration." }
     ],
     methodologyH2: "How the ISO 11088 math works.",
     methodologyDesc: "A transparent, step-by-step breakdown of how your DIN value is calculated.",
@@ -513,13 +513,13 @@ const c = (homeContent as any)[lang] || homeContent.en;
       <div class="space-y-4">
         <h3 class="text-xl font-bold text-ink">Is a DIN Calculator Safe to Use Without a Technician?</h3>
         <p class="text-mute text-sm leading-relaxed">
-          DIN Calculator Pro provides the precise mathematical baseline recommended by ISO 11088 — the same number a certified ski technician derives from the same lookup tables. However, the physical act of adjusting your binding and verifying its release force must always be performed by a certified ski technician using calibrated torque test equipment.
+          DIN Calculator Pro provides an informational baseline reference derived from the published tables in ISO 11088:2023. This is a reference starting point, not a substitute for hands-on workshop service. The physical act of adjusting your binding, verifying forward pressure, and inspecting release tension must always be performed by a trained ski technician using calibrated torque test equipment.
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          Binding release is affected by many physical factors beyond the ISO 11088 formula: boot wear at the toe and heel lugs, friction strip condition, forward pressure setting, binding model mechanical tolerances, and pivot point alignment. A torque test device measures the actual release force and allows fine-tuning that no calculator can provide.
+          Binding release is affected by physical variables beyond lookup tables: boot wear at the toe and heel lugs, friction strip condition, forward pressure spring preload, binding mechanical tolerances, and pivot alignment. A mechanical torque inspection device measures actual release torque and allows adjustments that no digital calculator can provide.
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          <strong class="text-ink">The correct workflow:</strong> Use DIN Calculator Pro to determine your target DIN value, print or screenshot your result card, and bring it to a certified ski shop as a cross-reference. The technician will set, test, and certify your actual binding release within ±10% of the ISO standard value using their calibrated equipment.
+          <strong class="text-ink">The recommended workflow:</strong> Use DIN Calculator Pro to calculate your reference DIN indicator, print or save your reference card, and take your equipment to a ski shop. A qualified ski technician will set the indicator, verify forward pressure, and test your binding release within standard tolerances using calibrated workshop equipment.
         </p>
       </div>
 
