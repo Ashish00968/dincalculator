@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { ThemeToggle } from '../components/ui/ThemeToggle';
 import { getLangFromUrl, useTranslations, getRouteFromUrl, hasLocalizedRoutes } from '../i18n/utils';
 import { languages } from '../i18n/ui';
+import { isIndexablePath, INDEXABLE_LOCALES } from '../i18n/config';
 import LanguageSelector from '../components/ui/LanguageSelector.astro';
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const hasTranslations = hasLocalizedRoutes(Astro.url);
+const isIndexable = isIndexablePath(Astro.url.pathname);
 
 const siteUrl = 'https://dincalculatorpro.com';
 const currentPath = Astro.url.pathname;
@@ -29,7 +31,7 @@ const {
 
 const navLinks = [
   { href: getRouteFromUrl(new URL('/', siteUrl), lang), label: t('nav.calculator'), base: '/' },
-  { href: getRouteFromUrl(new URL('/iso-11088-chart/', siteUrl), lang), label: t('nav.matrix'), base: '/iso-11088-chart/' },
+  { href: getRouteFromUrl(new URL('/din-chart/', siteUrl), lang), label: t('nav.matrix'), base: '/din-chart/' },
   { href: getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang), label: t('nav.bsl'), base: '/bsl-guide/' },
   { href: getRouteFromUrl(new URL('/skier-types/', siteUrl), lang), label: t('nav.skierTypes'), base: '/skier-types/' },
   { href: getRouteFromUrl(new URL('/about/', siteUrl), lang), label: t('nav.about'), base: '/about/' },
@@ -204,12 +206,15 @@ const structuredData = {
     <title>{title} {t('meta.titleSuffix')}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Robots / Indexing Control -->
+    {!isIndexable && <meta name="robots" content="noindex, follow" />}
     
-    <!-- Hreflang Tags for SEO -->
-    {hasTranslations && Object.keys(languages).map((l) => (
+    <!-- Hreflang Tags for SEO (Only reciprocal among indexable locales) -->
+    {isIndexable && hasTranslations && INDEXABLE_LOCALES.map((l) => (
       <link rel="alternate" hreflang={l} href={`${siteUrl}${getRouteFromUrl(Astro.url, l as keyof typeof languages)}`} />
     ))}
-    {hasTranslations && (
+    {isIndexable && hasTranslations && (
       <link rel="alternate" hreflang="x-default" href={`${siteUrl}${getRouteFromUrl(Astro.url, 'en')}`} />
     )}
 
@@ -360,7 +365,7 @@ const structuredData = {
             <h4 class="caption-mono text-mute mb-3">Calculators & Tools</h4>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.calculator')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/iso-11088-chart/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/din-chart/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
             </ul>

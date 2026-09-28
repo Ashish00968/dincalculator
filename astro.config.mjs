@@ -2,30 +2,27 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import { isIndexablePath } from './src/i18n/config';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://dincalculatorpro.com',
   trailingSlash: 'always',
-  integrations: [react(), sitemap({
-    i18n: {
-      defaultLocale: 'en',
-      locales: {
-        en: 'en',
-        de: 'de',
-        fr: 'fr',
-        it: 'it',
-        es: 'es',
-        ja: 'ja',
-        sv: 'sv',
-        no: 'no',
-        nl: 'nl',
-        pl: 'pl',
-        cs: 'cs',
-        fi: 'fi'
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => isIndexablePath(page),
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          de: 'de',
+          fr: 'fr',
+          it: 'it'
+        }
       }
-    }
-  })],
+    })
+  ],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'de', 'fr', 'it', 'es', 'ja', 'sv', 'no', 'nl', 'pl', 'cs', 'fi'],

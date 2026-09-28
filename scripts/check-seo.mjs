@@ -76,14 +76,18 @@ for (const file of htmlFiles) {
                        content.match(/<meta\s+content=["']([^"']*)["']\s+property=["']og:image["']/i);
   const ogImage = ogImageMatch ? ogImageMatch[1].trim() : null;
 
-  // 6. hreflang
+  // 6. robots noindex
+  const hasNoindex = /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(content) ||
+                     /<meta\s+content=["'][^"']*noindex[^"']*["']\s+name=["']robots["']/i.test(content);
+
+  // 7. hreflang
   const hreflangMatches = [...content.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=["']([^"']*)["']\s+href=["']([^"']*)["']/gi)];
   const alternates = new Map();
   for (const m of hreflangMatches) {
     alternates.set(m[1].toLowerCase(), m[2]);
   }
 
-  // 7. internal links
+  // 8. internal links
   const linkMatches = [...content.matchAll(/<a\s+[^>]*href=["']([^"']*)["']/gi)];
   const internalLinks = [];
   for (const m of linkMatches) {
@@ -109,10 +113,22 @@ for (const file of htmlFiles) {
     h1Count,
     canonical,
     ogImage,
+    hasNoindex,
     alternates,
     internalLinks,
     isErrorPage
   });
+}
+
+// Read sitemap if present
+const sitemapUrls = new Set();
+const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
+if (fs.existsSync(sitemapPath)) {
+  const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
+  const locMatches = [...sitemapContent.matchAll(/<loc>([^<]+)<\/loc>/gi)];
+  for (const m of locMatches) {
+    sitemapUrls.add(m[1].trim());
+  }
 }
 
 // Pass 2: Validate rules per page
@@ -178,6 +194,11 @@ for (const [route, data] of pageData.entries()) {
       if (!targetPage) {
         issues.push(`Hreflang points to non-existent route: ${altHref} (${lang})`);
       } else {
+        // If this page is indexable, alternate cannot be noindex
+        if (!data.hasNoindex && targetPage.hasNoindex) {
+          issues.push(`Indexable page has hreflang pointing to noindex page: ${altHref}`);
+        }
+
         // Find if targetPage has reciprocal link back to this page
         let reciprocal = false;
         for (const [tLang, tHref] of targetPage.alternates.entries()) {
@@ -193,6 +214,29 @@ for (const [route, data] of pageData.entries()) {
       }
     } catch {
       issues.push(`Invalid hreflang URL: ${altHref}`);
+    }
+  }
+
+  // Check 8: Noindex pages in sitemap
+  const pageFullUrl = BASE_DOMAIN + route;
+  if (data.hasNoindex && sitemapUrls.has(pageFullUrl)) {
+    issues.push(`Page has noindex but was found in sitemap: ${pageFullUrl}`);
+  }
+
+  // Check 9: Canonical language check
+  if (data.canonical) {
+    try {
+      const canonUrl = new URL(data.canonical);
+      const canonRoute = canonUrl.pathname;
+      const getLangPart = (r) => {
+        const p = r.replace(/^\/+|\/+$/g, '').split('/')[0];
+        return ['de', 'fr', 'it', 'es', 'ja', 'sv', 'no', 'nl', 'pl', 'cs', 'fi'].includes(p) ? p : 'en';
+      };
+      if (getLangPart(route) !== getLangPart(canonRoute)) {
+        issues.push(`Canonical points to a different language: ${data.canonical}`);
+      }
+    } catch {
+      issues.push(`Malformed canonical URL: ${data.canonical}`);
     }
   }
 

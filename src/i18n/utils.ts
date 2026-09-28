@@ -14,7 +14,6 @@ export function useTranslations(lang: keyof typeof ui) {
 
 const MULTI_LANG_PATHS = new Set([
   '',
-  'iso-11088-chart',
   'din-chart',
   'bsl-guide',
   'skier-types',

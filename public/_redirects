@@ -5,5 +5,19 @@ http://www.dincalculatorpro.com/*   https://dincalculatorpro.com/:splat  301
 # Sitemap canonical redirect
 /sitemap.xml   /sitemap-index.xml   301
 
+# Chart rename redirects (one per locale, no splats)
+/iso-11088-chart/     /din-chart/     301
+/de/iso-11088-chart/  /de/din-chart/  301
+/fr/iso-11088-chart/  /fr/din-chart/  301
+/it/iso-11088-chart/  /it/din-chart/  301
+/es/iso-11088-chart/  /es/din-chart/  301
+/ja/iso-11088-chart/  /ja/din-chart/  301
+/sv/iso-11088-chart/  /sv/din-chart/  301
+/no/iso-11088-chart/  /no/din-chart/  301
+/nl/iso-11088-chart/  /nl/din-chart/  301
+/pl/iso-11088-chart/  /pl/din-chart/  301
+/cs/iso-11088-chart/  /cs/din-chart/  301
+/fi/iso-11088-chart/  /fi/din-chart/  301
+
 # Fallback 404
 /*   /404.html   404
