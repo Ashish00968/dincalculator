@@ -10,6 +10,9 @@ export interface DinNote {
 export interface SkierProfile {
   weightKg: number;
   heightCm?: number;
+  weightLbs?: number;
+  heightInches?: number;
+  unitSystem?: UnitSystem;
   age: number;
   skierType: SkierTypeCode;
   bslMm: number;
@@ -28,6 +31,12 @@ export interface DinResult {
   isLighterSkierCapped: boolean;
   notes: DinNote[];
   warningLevel: 'safe' | 'caution' | 'warning';
+  algorithmSteps?: {
+    step: number;
+    title: string;
+    description: string;
+    value: string;
+  }[];
 }
 
 export interface BslRange {

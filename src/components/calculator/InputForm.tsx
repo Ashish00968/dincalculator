@@ -44,15 +44,26 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
       const metric = imperialToMetric(weight, heightFt, heightIn);
       finalWeightKg = metric.weightKg;
       finalHeightCm = metric.heightCm;
+      onProfileChange({
+        weightKg: finalWeightKg,
+        heightCm: finalHeightCm,
+        weightLbs: weight,
+        heightInches: heightFt * 12 + heightIn,
+        unitSystem,
+        age,
+        skierType,
+        bslMm,
+      });
+    } else {
+      onProfileChange({
+        weightKg: finalWeightKg,
+        heightCm: finalHeightCm,
+        unitSystem,
+        age,
+        skierType,
+        bslMm,
+      });
     }
-
-    onProfileChange({
-      weightKg: finalWeightKg,
-      heightCm: finalHeightCm,
-      age,
-      skierType,
-      bslMm,
-    });
   }, [weight, heightFt, heightIn, heightCm, age, skierType, bslMm, unitSystem, onProfileChange]);
 
   const isImperial = unitSystem === 'imperial';

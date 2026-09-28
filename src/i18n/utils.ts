@@ -12,11 +12,38 @@ export function useTranslations(lang: keyof typeof ui) {
   }
 }
 
+const MULTI_LANG_PATHS = new Set([
+  '',
+  'iso-11088-chart',
+  'din-chart',
+  'bsl-guide',
+  'skier-types',
+  'about',
+  'contact',
+  'privacy',
+  'terms'
+]);
+
+export function hasLocalizedRoutes(url: URL): boolean {
+  const parts = url.pathname.split('/').filter(Boolean);
+  const currentLang = parts[0] in ui ? parts[0] : null;
+  const pathParts = currentLang ? parts.slice(1) : parts;
+  const cleanPath = pathParts.join('/');
+  return MULTI_LANG_PATHS.has(cleanPath);
+}
+
 export function getRouteFromUrl(url: URL, lang: keyof typeof ui) {
   const parts = url.pathname.split('/').filter(Boolean);
   const currentLangFromUrl = parts[0] in ui ? parts[0] : null;
   const pathParts = currentLangFromUrl ? parts.slice(1) : parts;
   const cleanPath = pathParts.join('/');
+
+  if (!MULTI_LANG_PATHS.has(cleanPath)) {
+    if (lang === defaultLang) {
+      return cleanPath ? `/${cleanPath}/` : '/';
+    }
+    return `/${lang}/`;
+  }
   
   if (lang === defaultLang) {
     return cleanPath ? `/${cleanPath}/` : '/';

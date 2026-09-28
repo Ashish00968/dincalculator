@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ENGINE_VERSION, STANDARD_VERSION } from '../engine/rules';
+
+const pageTitle = "Engine Changelog & Standard Version History";
+const pageDescription = "Version history, standard edition updates, and calculation engine releases for DIN Calculator Pro.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonicalUrl="https://dincalculatorpro.com/changelog/">
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <header class="mb-12 border-b border-hairline pb-8">
+      <div class="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-wider mb-3">
+        <span>Release Records</span>
+        <span>•</span>
+        <span>Version History</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
+        Engine Changelog
+      </h1>
+      <p class="text-mute text-base leading-relaxed max-w-2xl">
+        All algorithmic updates, standard edition alignments, and verification log releases.
+      </p>
+    </header>
+
+    <div class="space-y-10">
+      <!-- v2.0.0 -->
+      <section class="p-6 rounded-2xl bg-parchment border border-hairline space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-hairline pb-4">
+          <div>
+            <span class="text-xs font-mono bg-primary/10 text-primary px-2.5 py-1 rounded-md font-bold">v{ENGINE_VERSION}</span>
+            <span class="text-xs font-mono text-mute ml-3">2026-09-28</span>
+          </div>
+          <span class="text-xs text-emerald-500 font-medium">Standard Alignment: {STANDARD_VERSION} (Edition 7)</span>
+        </div>
+        <ul class="space-y-2 text-xs text-mute list-disc pl-5">
+          <li><strong>Standard Alignment:</strong> Formally updated core specifications to {STANDARD_VERSION} (superseding the withdrawn 2018 edition).</li>
+          <li><strong>Imperial Boundary Hardening:</strong> Added explicit direct lookup for imperial body weights (`weightLbs`), resolving floating-point conversion shifts at 147 lbs (Row J), 174 lbs (Row K), and 209 lbs (Row L).</li>
+          <li><strong>Continuous BSL Mapping:</strong> Eliminated fractional millimeter gaps in `getBslRangeIndex`, ensuring values such as 230.5 mm or 270.5 mm map accurately to their respective brackets.</li>
+          <li><strong>Equidistant Fallback Tie-Break:</strong> When horizontal blank cells have equidistant valid neighbors, the engine strictly selects the lower (safer) DIN setting.</li>
+          <li><strong>Golden Test Suite:</strong> Added 1,560 automated regression test cases verifying all permutations across weight, height, ability, age, and boot sole length.</li>
+          <li><strong>Transparency Rules:</strong> Single source of truth in `rules.ts` exported to on-page guides and calculation result breakdown.</li>
+        </ul>
+      </section>
+
+      <!-- v1.0.0 -->
+      <section class="p-6 rounded-2xl bg-parchment border border-hairline space-y-4 opacity-80">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-hairline pb-4">
+          <div>
+            <span class="text-xs font-mono bg-canvas text-mute px-2.5 py-1 rounded-md font-bold border border-hairline">v1.0.0</span>
+            <span class="text-xs font-mono text-mute ml-3">2026-08-19</span>
+          </div>
+          <span class="text-xs text-mute">Initial Release</span>
+        </div>
+        <ul class="space-y-2 text-xs text-mute list-disc pl-5">
+          <li>Initial release of the client-side DIN calculation engine.</li>
+          <li>Dual-unit support (Imperial / Metric) with automatic browser locale detection.</li>
+          <li>Interactive ISO matrix crosshair visualization and SVG torque gauge.</li>
+        </ul>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

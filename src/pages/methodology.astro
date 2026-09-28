@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ALGORITHM_STEPS, SKIER_TYPE_DESCRIPTIONS, STANDARD_VERSION, STANDARD_EDITION, ENGINE_VERSION, SAFETY_DISCLAIMER_TEXT } from '../engine/rules';
+import { calculateDin } from '../engine/din-engine';
+
+const pageTitle = "ISO 11088:2023 Calculation Methodology & Technical Limitations";
+const pageDescription = "Technical documentation of the ISO 11088:2023 ski binding release calculation algorithm, conflict resolution, worked examples, and mechanical limitations.";
+
+// Worked example calculated directly from engine
+const workedExample = calculateDin({
+  weightKg: 75,
+  heightCm: 178,
+  age: 30,
+  skierType: 'II',
+  bslMm: 305,
+});
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonicalUrl="https://dincalculatorpro.com/methodology/">
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <!-- Header -->
+    <header class="mb-12 border-b border-hairline pb-8">
+      <div class="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-wider mb-3">
+        <span>Standards Architecture</span>
+        <span>•</span>
+        <span>{STANDARD_VERSION}</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
+        Calculation Methodology &amp; Engineering Limitations
+      </h1>
+      <p class="text-mute text-base leading-relaxed max-w-2xl">
+        How DIN Calculator Pro interprets and computes release torque values in strict accordance with {STANDARD_VERSION} ({STANDARD_EDITION}).
+      </p>
+      <div class="mt-6 flex flex-wrap gap-4 text-xs font-mono text-mute">
+        <span class="bg-parchment px-3 py-1.5 rounded-lg border border-hairline">Engine: v{ENGINE_VERSION}</span>
+        <span class="bg-parchment px-3 py-1.5 rounded-lg border border-hairline">Standard: {STANDARD_VERSION}</span>
+        <span class="bg-parchment px-3 py-1.5 rounded-lg border border-hairline">Reviewed: 2026-09-28</span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="space-y-12 text-sm leading-relaxed text-mute">
+      <!-- Section 1 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">1. Algorithmic Overview</h2>
+        <p>
+          Ski binding release indicators (commonly referred to as DIN settings or Z-values) are standardized mechanical torque calibrations. They are designed to release the ski boot when rotational forces (twisting at the toe) or forward lean forces (upward release at the heel) exceed physiological thresholds for lower leg bones (specifically the tibia and fibula).
+        </p>
+        <p>
+          The current international standard governing this calculation is <strong>{STANDARD_VERSION} (Edition 7, published March 2023)</strong>, which formally replaces and supersedes the withdrawn 2018 revision.
+        </p>
+      </section>
+
+      <!-- Section 2: Steps -->
+      <section class="space-y-6">
+        <h2 class="text-2xl font-bold text-ink">2. The Four Deterministic Steps</h2>
+        <div class="grid gap-4">
+          {ALGORITHM_STEPS.map((step) => (
+            <div class="p-6 rounded-xl bg-parchment border border-hairline space-y-2">
+              <div class="flex items-center gap-3">
+                <span class="w-7 h-7 rounded-lg bg-primary/10 text-primary font-bold font-mono text-xs flex items-center justify-center">
+                  0{step.step}
+                </span>
+                <h3 class="font-semibold text-ink text-base">{step.title}</h3>
+              </div>
+              <p class="text-xs leading-relaxed text-mute pl-10">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Section 3: Worked Example -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">3. Standard Worked Example</h2>
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4 font-mono text-xs">
+          <div class="text-primary font-bold">Input Profile: 75 kg / 178 cm / Age 30 / Type II / BSL 305 mm</div>
+          <ul class="space-y-2 text-mute border-t border-hairline pt-3">
+            <li>• Step 1 (Weight): 75 kg falls in 67–78 kg bracket → Code K</li>
+            <li>• Step 1 (Height): 178 cm falls in 167–178 cm bracket → Code K</li>
+            <li>• Step 1 (Conflict): Identical row codes → Baseline Code K</li>
+            <li>• Step 2 (Ability): Skier Type II applies +1 row shift → Code L</li>
+            <li>• Step 3 (Age): Age 30 (between 10 and 49) applies 0 shift → Final Code L</li>
+            <li>• Step 4 (Lookup): Code L row intersected with BSL 291–310 mm bracket → <strong>DIN {workedExample.din.toFixed(2)}</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 4: Mechanical Limitations -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">4. Real-World Physical &amp; Mechanical Limitations</h2>
+        <p>
+          Calculators provide an informational mathematical starting point. A computer calculation cannot replace a physical workshop test because of the following physical variables:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs">
+          <li><strong>Boot Lug Wear:</strong> Rounding or gouging on the toe and heel lugs dramatically alters the release friction interface.</li>
+          <li><strong>Sole Type Compatibility:</strong> Modern GripWalk (ISO 23223), WTR, and traditional Alpine (ISO 5355) boot soles require specific binding toe heights and Anti-Friction Device (AFD) clearances.</li>
+          <li><strong>Forward Pressure Calibration:</strong> Incorrect binding track forward pressure creates massive release inaccuracies regardless of the indicator setting.</li>
+          <li><strong>Spring Fatigue &amp; Contamination:</strong> Dirt, salt, or weakened internal springs require compensation on a mechanical workshop torque tester.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5: Standards & Attribution -->
+      <section class="space-y-4 p-6 rounded-xl bg-parchment border border-hairline">
+        <h2 class="text-lg font-bold text-ink">Official Standard Attribution</h2>
+        <p class="text-xs">
+          ISO 11088:2023 is published and copyrighted by the International Organization for Standardization (ISO). DIN Calculator Pro is an independent educational web application and is not endorsed by or affiliated with ISO. The official standard document may be purchased directly from the <a href="https://www.iso.org/standard/84084.html" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">ISO Catalogue (ISO 11088:2023)</a>.
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

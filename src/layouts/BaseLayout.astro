@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { ThemeToggle } from '../components/ui/ThemeToggle';
-import { getLangFromUrl, useTranslations, getRouteFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, getRouteFromUrl, hasLocalizedRoutes } from '../i18n/utils';
 import { languages } from '../i18n/ui';
 import LanguageSelector from '../components/ui/LanguageSelector.astro';
 
@@ -14,6 +14,7 @@ interface Props {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const hasTranslations = hasLocalizedRoutes(Astro.url);
 
 const siteUrl = 'https://dincalculatorpro.com';
 const currentPath = Astro.url.pathname;
@@ -197,28 +198,7 @@ const structuredData = {
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" />
     </noscript>
 
-    <!-- Google tag (gtag.js) - Deferred to never block rendering -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-610T05C00Z');
-
-      function loadGtag() {
-        if (window._gtagLoaded) return;
-        window._gtagLoaded = true;
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-610T05C00Z';
-        document.head.appendChild(script);
-      }
-
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadGtag, { timeout: 3000 });
-      } else {
-        window.addEventListener('load', loadGtag, { once: true });
-      }
-    </script>
+    <!-- Privacy-first cookieless analytics: No GA4 / No tracking cookies -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} {t('meta.titleSuffix')}</title>
@@ -226,10 +206,12 @@ const structuredData = {
     <link rel="canonical" href={canonicalUrl} />
     
     <!-- Hreflang Tags for SEO -->
-    {Object.keys(languages).map((l) => (
+    {hasTranslations && Object.keys(languages).map((l) => (
       <link rel="alternate" hreflang={l} href={`${siteUrl}${getRouteFromUrl(Astro.url, l as keyof typeof languages)}`} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${getRouteFromUrl(Astro.url, 'en')}`} />
+    {hasTranslations && (
+      <link rel="alternate" hreflang="x-default" href={`${siteUrl}${getRouteFromUrl(Astro.url, 'en')}`} />
+    )}
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content={ogType} />
@@ -387,31 +369,33 @@ const structuredData = {
           <div>
             <h4 class="caption-mono text-mute mb-3">Standards & Protocols</h4>
             <ul class="space-y-2 text-xs text-mute">
-              <li><span class="text-primary font-medium">ISO 11088:2018</span> (Assembly & Inspection)</li>
-              <li><span class="text-primary font-medium">ISO 9462</span> (Alpine Ski Bindings)</li>
-              <li><span class="text-primary font-medium">ISO 5355</span> (Alpine Ski Boots)</li>
+              <li><span class="text-primary font-medium">ISO 11088:2023</span> (Ed. 7)</li>
+              <li><span class="text-primary font-medium">ISO 9462</span> (Alpine Bindings)</li>
+              <li><span class="text-primary font-medium">ISO 5355</span> (Alpine Boot Soles)</li>
               <li><span class="text-primary font-medium">ASTM F939</span> (Standard Practice)</li>
             </ul>
           </div>
 
           <div>
-            <h4 class="caption-mono text-mute mb-3">Company</h4>
+            <h4 class="caption-mono text-mute mb-3">Company & Trust</h4>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/about/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.about')}</a></li>
+              <li><a href="/methodology/" class="hover:text-primary transition-colors">Methodology</a></li>
+              <li><a href="/changelog/" class="hover:text-primary transition-colors">Changelog</a></li>
               <li><a href={getRouteFromUrl(new URL('/contact/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.contact')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/terms/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/privacy/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
               <li class="text-emerald-500 pt-1 flex items-center gap-1">
-                <span>●</span> No Cookies • No Tracking • No Ads
+                <span>●</span> Cookieless • No Tracking • No Ads
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Copyright -->
+        <!-- Copyright & Attribution -->
         <div class="pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between text-xs text-mute gap-4">
-          <p>© {new Date().getFullYear()} DIN Calculator Pro. Not affiliated with ISO or DIN e.V. Calculation methodology based on ISO 11088:2018.</p>
-          <p class="font-mono text-[11px]">Client-Side Only • Zero Data Stored • MIT License</p>
+          <p>© {new Date().getFullYear()} DIN Calculator Pro. Independent project, not affiliated with ISO or binding manufacturers. Methodology based on ISO 11088:2023.</p>
+          <p class="font-mono text-[11px]">Client-Side Only • Device Storage Only • MIT License</p>
         </div>
       </div>
     </footer>
