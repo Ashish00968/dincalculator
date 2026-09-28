@@ -93,6 +93,31 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
           <MatrixTable result={result} lang={lang} />
         </Suspense>
       </div>
+
+      {/* Mobile Sticky Thumb-Bar (Thumb Zone for mobile viewports) */}
+      {result && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-canvas/95 backdrop-blur-md border-t border-hairline px-4 py-3 shadow-xl">
+          <div className="max-w-md mx-auto flex items-center justify-between gap-3">
+            <div>
+              <span className="text-[10px] font-mono uppercase text-mute block">Recommended DIN</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-bold font-mono text-primary">{result.din.toFixed(2)}</span>
+                <span className="text-xs text-mute font-mono">Code {result.adjustedCode}</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById('calculator-result');
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-4 py-2 rounded-full bg-primary text-white text-xs font-semibold shadow hover:opacity-90 transition-all cursor-pointer"
+            >
+              See Breakdown →
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

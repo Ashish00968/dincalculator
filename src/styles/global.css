@@ -161,3 +161,22 @@ input[type=range]::-moz-range-track {
   background: transparent;
   border: none;
 }
+
+/* Print Stylesheet for Technician Card */
+@media print {
+  header, footer, nav, #mobile-menu-btn, .theme-toggle, button, details, .no-print {
+    display: none !important;
+  }
+  body, main {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  #calculator-result {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    border: 1px solid #111827 !important;
+    padding: 24px !important;
+    page-break-inside: avoid !important;
+  }
+}

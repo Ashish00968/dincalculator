@@ -65,7 +65,7 @@ Skier Type Modifier: ${skierTypeModifier > 0 ? '+' : ''}${skierTypeModifier}
 Age Modifier: ${ageModifier < 0 ? ageModifier : '0'}
 Final Skier Code: Code ${adjustedCode}
 Boot Sole Length Bracket: ${bslRangeLabel}
-Standard: ISO 11088:2018 Certified
+Standard: ISO 11088:2023 (Edition 7)
 Note: Bindings must be calibrated and tested by a certified ski technician.
 Calculated at: https://dincalculatorpro.com`;
 
@@ -86,7 +86,12 @@ Calculated at: https://dincalculatorpro.com`;
   const stepWord = (n: number) => Math.abs(n) !== 1 ? t('result.steps') : t('result.step');
 
   return (
-    <div className="space-y-6">
+    <div id="calculator-result" className="space-y-6">
+      {/* Screen Reader Live Region */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        Recommended DIN setting is {din.toFixed(2)}, Final Skier Code {adjustedCode}, Boot Sole Length bracket {bslRangeLabel}.
+      </div>
+
       {/* Featured Primary Result Card */}
       <Card className="relative overflow-hidden border-hairline bg-canvas">
         <CardContent className="pt-6 pb-6 space-y-6">
@@ -94,7 +99,7 @@ Calculated at: https://dincalculatorpro.com`;
             <span className="text-sm font-semibold text-ink flex items-center gap-1.5">
               <span>{t('calc.results')}</span>
             </span>
-            <span className="text-[11px] font-mono text-mute">ISO 11088</span>
+            <span className="text-[11px] font-mono text-mute">ISO 11088:2023</span>
           </div>
 
           <DinGauge din={din} />
