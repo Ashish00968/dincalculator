@@ -1,66 +1,177 @@
 ---
+import type { ui } from '../../i18n/ui';
+
 interface Props {
   faqs?: Array<{ question: string; answer: string }>;
+  lang?: keyof typeof ui;
 }
 
-const defaultFaqs = [
-  {
-    question: "How do you calculate DIN?",
-    answer: "DIN is calculated using the official ISO 11088 standard in four steps: (1) Find your initial Skier Code based on weight and height; (2) Adjust the code up or down according to your Skier Type (I, II, or III); (3) Apply an age modifier if under 10 or 50+; (4) Cross-reference your final Skier Code with your Boot Sole Length (BSL in mm) on the ISO matrix."
-  },
-  {
-    question: "What is DIN measurement?",
-    answer: "DIN stands for Deutsches Institut für Normung (German Institute for Standardization). In skiing, a DIN setting measures the release torque value in decanewtons (daN) for your binding's toe and heel pieces, calibrated to release your boot safely before force causes leg or knee fractures."
-  },
-  {
-    question: "How to use a DIN chart?",
-    answer: "To use an ISO 11088 DIN chart, locate your Skier Code row based on your weight/height and ability level. Then, read across the table to find the column matching your Boot Sole Length (BSL). The intersecting number is your recommended baseline DIN setting."
-  },
-  {
-    question: "How to adjust DIN on skis (and can I change it myself)?",
-    answer: "DIN is physically adjusted by turning the tension screw located on both the toe and heel pieces until the visual indicator matches your target number. However, physical binding adjustment must always be torque-tested on calibrated diagnostic test equipment by a certified ski technician to ensure mechanical safety."
-  },
-  {
-    question: "What should my child's DIN setting be (Kids Ski DIN)?",
-    answer: "Children's DIN settings typically range from 0.75 to 3.0 depending on body weight (starting from under 13 kg / 29 lbs) and boot sole length. ISO 11088 applies specific lower-force tension curves for younger skiers to protect developing bones."
-  },
-  {
-    question: "Does this DIN calculator support metric (kg/cm) and imperial (lbs/ft)?",
-    answer: "Yes. Our calculator provides seamless one-click switching between Imperial (pounds, feet/inches) and Metric (kilograms, centimeters) with automatic geolocation detection for your regional preference."
-  },
-  {
-    question: "How do I find my Boot Sole Length (BSL)?",
-    answer: "Your Boot Sole Length (BSL) is measured in millimeters (e.g., 315mm) and is permanently embossed or stamped into the plastic on the heel lug or arch of your ski boot shell. It is different from Mondo sizing."
-  },
-  {
-    question: "How do I determine my Skier Type (Type I, II, III)?",
-    answer: "Type I is for cautious beginners who prefer easy release at lower forces. Type II is for moderate skiers skiing diverse terrain. Type III is for aggressive, fast skiers requiring higher retention to prevent pre-release under heavy g-forces."
-  },
-  {
-    question: "Does my age affect my DIN setting?",
-    answer: "Yes. Under the ISO 11088 standard, skiers under 10 years old and skiers aged 50 and older receive an automatic one-code reduction, which lowers the DIN to reduce fracture risk."
-  },
-  {
-    question: "What happens if my DIN setting is too high?",
-    answer: "If your DIN is set too high, the binding will fail to release during a twisting fall or crash, transferring high rotational stress directly into your knee ligaments (ACL/MCL) and tibia, greatly increasing injury risk."
-  },
-  {
-    question: "What happens if my DIN setting is too low?",
-    answer: "If your DIN is set too low, you may experience an accidental 'pre-release'—the binding pops open during hard turns, icy conditions, or over bumps, causing unexpected falls at speed."
-  },
-  {
-    question: "Are DIN settings the same across all ski binding brands?",
-    answer: "Yes. Because DIN is an international standard (ISO 11088 / ISO 9462), a DIN 6 on Marker bindings provides the exact same calibrated release force as a DIN 6 on Salomon, Look, Atomic, Tyrolia, or Armada bindings."
-  }
-];
+const { lang = 'en', faqs } = Astro.props;
 
-const { faqs = defaultFaqs } = Astro.props;
+const faqsByLang: Record<string, Array<{ question: string; answer: string }>> = {
+  de: [
+    {
+      question: "Wie berechnet man den Z-Wert für eine Skibindung?",
+      answer: "Der Z-Wert wird nach der ISO 11088:2023 Norm in vier Schritten berechnet: (1) Ermittlung des Basis-Fahrercodes aus Körpergewicht und Körpergröße; (2) Anpassung nach Fahrertyp (Typ 1, 2 oder 3); (3) Berücksichtigung des Alters (unter 10 oder ab 50 Jahre); (4) Abgleich mit der Sohlenlänge (BSL in mm) in der ISO-Tabelle."
+    },
+    {
+      question: "Was bedeutet der Z-Wert bei Skibindungen?",
+      answer: "Der Z-Wert (international als DIN bezeichnet) ist eine genormte Kennzahl für das Drehmoment in Dekanewtonmetern (daNm). Er stellt sicher, dass die Bindung bei einem Sturz rechtzeitig auslöst, bevor Knochen oder Bänder überlastet werden."
+    },
+    {
+      question: "Wo finde ich die Sohlenlänge (BSL) am Skischuh?",
+      answer: "Die Sohlenlänge ist in Millimetern (z. B. 305 mm) an der Fersenseite oder im Sohlensteg Ihres Skischuhs eingeprägt. Sie unterscheidet sich grundsätzlich von der Mondopoint-Größe (Fußlänge in Zentimetern)."
+    },
+    {
+      question: "Wie bestimme ich meinen Fahrertyp (Typ 1, 2, 3)?",
+      answer: "Typ 1 entspricht vorsichtigen Fahrern und Anfängern mit Fokus auf frühe Auslösung. Typ 2 ist der Standard für All-Mountain-Skifahrer. Typ 3 richtet sich an sportliche, schnelle Experten auf steilem Terrain, die höheren Halt benötigen."
+    },
+    {
+      question: "Welchen Einfluss hat das Alter auf den Z-Wert?",
+      answer: "Nach ISO 11088 erhalten Skifahrer unter 10 Jahren sowie ab 50 Jahren einen Sicherheitsabschlag von einer Zeilenstufe nach oben, was den Z-Wert um circa 0.5 bis 1.0 senkt."
+    },
+    {
+      question: "Was passiert, wenn der Z-Wert zu hoch eingestellt ist?",
+      answer: "Ein zu hoher Z-Wert verhindert das rechtzeitige Auslösen bei einem Drehsturz. Die gesamte Hebelkraft des Skis wirkt auf das Knie und kann Kreuzbandrisse (VKB) oder Schienbeindrehbrüche verursachen."
+    },
+    {
+      question: "Was passiert bei einem zu niedrig eingestellten Z-Wert?",
+      answer: "Ein zu niedriger Wert führt zu gefährlichen Fehlauslösungen bei dynamischen Kurven oder Bodenwellen, wodurch der Skifahrer bei voller Fahrt unkontrolliert stürzt."
+    },
+    {
+      question: "Sind Z-Werte bei allen Bindungsmarken identisch?",
+      answer: "Ja. Dank der internationalen Normen ISO 9462 und ISO 11088 liefert ein Z-Wert von 6 bei Marker, Atomic, Salomon, Look oder Tyrolia exakt dasselbe kalibrierte Auslösemoment."
+    }
+  ],
+  fr: [
+    {
+      question: "Comment calculer le réglage DIN d'une fixation de ski ?",
+      answer: "Le réglage DIN est déterminé selon la norme ISO 11088:2023 en quatre étapes : (1) Détermination du code skieur via le poids et la taille ; (2) Ajustement selon le profil de skieur (Type I, II, III) ; (3) Correction pour l'âge (moins de 10 ans ou 50 ans et plus) ; (4) Croisement avec la longueur de semelle (BSL en mm)."
+    },
+    {
+      question: "Que signifie la valeur DIN sur une fixation de ski ?",
+      answer: "Le terme DIN désigne l'indice normalisé de couple de déclenchement (exprimé en décanewtons-mètres). Il calibre la force nécessaire pour libérer la chaussure avant que les contraintes ne provoquent une fracture ou une lésion ligamentaire."
+    },
+    {
+      question: "Comment trouver la longueur de semelle (BSL) en mm ?",
+      answer: "La longueur de semelle (BSL) est gravée en millimètres sur le talon ou le flanc de la coque de votre chaussure de ski (par exemple 305 mm). Elle ne doit pas être confondue avec la taille Mondopoint."
+    },
+    {
+      question: "Comment choisir son type de skieur (Type I, II, III) ?",
+      answer: "Le Type I correspond aux skieurs prudents privilégiant un déclenchement doux. Le Type II est le profil polyvalent standard. Le Type III s'adresse aux skieurs engagés et rapides recherchant une forte rétention sur terrain raide."
+    },
+    {
+      question: "Pourquoi l'âge modifie-t-il la valeur DIN ?",
+      answer: "Selon la norme ISO 11088, les skieurs de moins de 10 ans ou âgés de 50 ans et plus remontent d'une ligne dans le barème, réduisant le DIN pour préserver les articulations et la densité osseuse."
+    },
+    {
+      question: "Quel est le danger d'un réglage DIN trop élevé ?",
+      answer: "La fixation ne déclenchera pas lors d'une torsion. Le ski agit alors comme un long bras de levier, augmentant considérablement le risque de rupture des ligaments croisés (LCA) et de fracture du tibia."
+    },
+    {
+      question: "Quel est le risque d'un réglage DIN trop bas ?",
+      answer: "Un réglage trop bas entraîne des déchaussages intempestifs en plein virage ou dans les bosses, causant des chutes violentes à haute vitesse."
+    },
+    {
+      question: "Les valeurs DIN sont-elles équivalentes entre marques ?",
+      answer: "Oui. En vertu des normes internationales ISO 11088 et ISO 9462, un réglage DIN 6 offre exactement le même couple de libération sur une fixation Marker, Salomon, Look, Atomic ou Tyrolia."
+    }
+  ],
+  it: [
+    {
+      question: "Come si calcola la taratura DIN degli attacchi da sci?",
+      answer: "La taratura DIN si calcola seguendo la norma ISO 11088:2023 in quattro fasi: (1) Definizione del codice sciatore da peso e altezza; (2) Modifica per tipo di sciatore (Tipo I, II, III); (3) Applicazione del fattore età (minori di 10 anni o 50+); (4) Incrocio con la lunghezza scafo (BSL in mm)."
+    },
+    {
+      question: "Che cosa misura il valore DIN negli attacchi da sci?",
+      answer: "Il valore DIN (o Z-Wert) quantifica la coppia di sgancio calibrata in decanewtonmetri. È progettato per consentire il rilascio dello scarpone prima che le sollecitazioni causino fratture alla tibia o lesioni al ginocchio."
+    },
+    {
+      question: "Dove si legge la lunghezza scafo (BSL) in millimetri?",
+      answer: "La misura BSL in mm (es. 305 mm) è stampata in rilievo sul tallone o sul fianco della suola dello scarpone da sci. È una misura diversa dalla taglia Mondopoint in centimetri."
+    },
+    {
+      question: "Come scegliere il proprio tipo di sciatore (Tipo I, II, III)?",
+      answer: "Il Tipo I è indicato per sciatori prudenti e principianti. Il Tipo II è il profilo intermedio per la maggioranza degli adulti. Il Tipo III è per sciatori esperti e aggressivi che affrontano piste ripide ad alta velocità."
+    },
+    {
+      question: "L'età influenza la regolazione della taratura DIN?",
+      answer: "Sì. Gli sciatori con meno di 10 anni o con 50 anni e oltre ricevono una riduzione di un codice nella matrice ISO 11088, ottenendo un valore DIN più basso a tutela delle articolazioni."
+    },
+    {
+      question: "Quali sono i rischi di un DIN troppo alto?",
+      answer: "L'attacco non si aprirà in caso di caduta rotazionale. La leva esercitata dallo sci trasmette forze elevate sulla gamba, provocando rotture del crociato anteriore (LCA) o fratture tibiali."
+    },
+    {
+      question: "Quali sono i pericoli di un DIN troppo basso?",
+      answer: "Un valore insufficiente provoca sganci indesiderati durante curve veloci o su neve mossa, causando cadute rovinose e perdita improvvisa di controllo."
+    },
+    {
+      question: "I valori DIN sono identici su tutte le marche di attacchi?",
+      answer: "Sì. La conformità agli standard ISO 11088 e ISO 9462 assicura che una taratura DIN pari a 6 garantisca la medesima coppia di sgancio su attacchi Marker, Salomon, Look, Atomic e Tyrolia."
+    }
+  ],
+  en: [
+    {
+      question: "How do you calculate DIN?",
+      answer: "DIN is calculated using the official ISO 11088:2023 standard in four steps: (1) Find your initial Skier Code based on weight and height; (2) Adjust the code up or down according to your Skier Type (I, II, or III); (3) Apply an age modifier if under 10 or 50+; (4) Cross-reference your final Skier Code with your Boot Sole Length (BSL in mm) on the ISO matrix."
+    },
+    {
+      question: "What is DIN measurement?",
+      answer: "DIN stands for Deutsches Institut für Normung (German Institute for Standardization). In skiing, a DIN setting measures the release torque value in decanewtons (daN) for your binding's toe and heel pieces, calibrated to release your boot safely before force causes leg or knee fractures."
+    },
+    {
+      question: "How to use a DIN chart?",
+      answer: "To use an ISO 11088 DIN chart, locate your Skier Code row based on your weight/height and ability level. Then, read across the table to find the column matching your Boot Sole Length (BSL). The intersecting number is your recommended baseline DIN setting."
+    },
+    {
+      question: "How to adjust DIN on skis (and can I change it myself)?",
+      answer: "DIN is physically adjusted by turning the tension screw located on both the toe and heel pieces until the visual indicator matches your target number. However, physical binding adjustment must always be torque-tested on calibrated diagnostic test equipment by a certified ski technician to ensure mechanical safety."
+    },
+    {
+      question: "What should my child's DIN setting be (Kids Ski DIN)?",
+      answer: "Children's DIN settings typically range from 0.75 to 3.0 depending on body weight (starting from under 13 kg / 29 lbs) and boot sole length. ISO 11088 applies specific lower-force tension curves for younger skiers to protect developing bones."
+    },
+    {
+      question: "Does this DIN calculator support metric (kg/cm) and imperial (lbs/ft)?",
+      answer: "Yes. Our calculator provides seamless one-click switching between Imperial (pounds, feet/inches) and Metric (kilograms, centimeters) with automatic unit detection for your regional preference."
+    },
+    {
+      question: "How do I find my Boot Sole Length (BSL)?",
+      answer: "Your Boot Sole Length (BSL) is measured in millimeters (e.g., 305mm) and is permanently embossed or stamped into the plastic on the heel lug or arch of your ski boot shell. It is different from Mondo sizing."
+    },
+    {
+      question: "How do I determine my Skier Type (Type I, II, III)?",
+      answer: "Type I is for cautious beginners who prefer easy release at lower forces. Type II is for moderate skiers skiing diverse terrain. Type III is for aggressive, fast skiers requiring higher retention to prevent pre-release under heavy g-forces."
+    },
+    {
+      question: "Does my age affect my DIN setting?",
+      answer: "Yes. Under the ISO 11088 standard, skiers under 10 years old and skiers aged 50 and older receive an automatic one-code reduction, which lowers the DIN to reduce fracture risk."
+    },
+    {
+      question: "What happens if my DIN setting is too high?",
+      answer: "If your DIN is set too high, the binding will fail to release during a twisting fall or crash, transferring high rotational stress directly into your knee ligaments (ACL/MCL) and tibia, greatly increasing injury risk."
+    },
+    {
+      question: "What happens if my DIN setting is too low?",
+      answer: "If your DIN is set too low, you may experience an accidental 'pre-release'—the binding pops open during hard turns, icy conditions, or over bumps, causing unexpected falls at speed."
+    },
+    {
+      question: "Are DIN settings the same across all ski binding brands?",
+      answer: "Yes. Because DIN is an international standard (ISO 11088 / ISO 9462), a DIN 6 on Marker bindings provides the exact same calibrated release force as a DIN 6 on Salomon, Look, Atomic, Tyrolia, or Armada bindings."
+    }
+  ]
+};
+
+const resolvedFaqs = faqs || (faqsByLang[lang] || faqsByLang.en);
 ---
 
 <div class="w-full max-w-3xl mx-auto space-y-4 px-2 sm:px-0">
-  <h2 class="text-3xl sm:text-4xl font-bold text-ink mb-10 text-center tracking-tight">Frequently Asked Questions</h2>
+  <h2 class="text-3xl sm:text-4xl font-bold text-ink mb-10 text-center tracking-tight">
+    {lang === 'de' ? 'Häufig gestellte Fragen (FAQ)' : lang === 'fr' ? 'Foire Aux Questions (FAQ)' : lang === 'it' ? 'Domande Frequenti (FAQ)' : 'Frequently Asked Questions'}
+  </h2>
   <div class="space-y-3 sm:space-y-4">
-    {faqs.map((faq, index) => (
+    {resolvedFaqs.map((faq, index) => (
       <details 
         class="group border border-hairline bg-canvas rounded-xl sm:rounded-2xl transition-all duration-200 overflow-hidden open:border-accent open:bg-parchment open:shadow-sm"
       >

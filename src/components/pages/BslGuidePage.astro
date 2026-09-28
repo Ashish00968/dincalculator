@@ -34,13 +34,19 @@ const mondoTable = [
     {/* Header */}
     <div class="text-center max-w-3xl mx-auto mb-14">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-white/15 text-zinc-300 text-xs font-mono mb-4 shadow-sm">
-        <span>MEASUREMENT SPECIFICATION</span>
+        <span>{lang === 'de' ? 'MESSVORSCHRIFT' : lang === 'fr' ? 'SPÉCIFICATION DE MESURE' : lang === 'it' ? 'SPECIFICA DI MISURA' : 'MEASUREMENT SPECIFICATION'}</span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight mb-4">
-        Boot Sole Length (BSL) guide.
+        {lang === 'de' ? 'Sohlenlänge (BSL) am Skischuh ermitteln' : lang === 'fr' ? 'Trouver la Longueur de Semelle (BSL)' : lang === 'it' ? 'Lunghezza Scafo Scarpone (BSL) in mm' : 'Boot Sole Length (BSL) Guide'}
       </h1>
       <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
-        Everything you need to know about measuring, locating, and converting your ski boot's millimeter sole dimension for safe DIN calculations.
+        {lang === 'de'
+          ? 'Alles Wissenswerte über das Messen, Ablesen und Umrechnen der Sohlenlänge (in mm) für die korrekte Z-Wert-Berechnung.'
+          : lang === 'fr'
+          ? 'Tout savoir pour mesurer, repérer et convertir la longueur de semelle en millimètres pour un réglage DIN précis.'
+          : lang === 'it'
+          ? 'Tutto quello che devi sapere per individuare, misurare e convertire la lunghezza scafo in millimetri per una taratura DIN sicura.'
+          : 'Everything you need to know about measuring, locating, and converting your ski boot\'s millimeter sole dimension for safe DIN calculations.'}
       </p>
     </div>
 

@@ -22,13 +22,21 @@ const pageDescription = t('page.matrix.desc');
     <div class="text-center max-w-3xl mx-auto mb-12">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold mb-4 shadow-sm uppercase tracking-widest">
         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span>ISO 11088:2023 Standard Table 2 Matrix</span>
+        <span>
+          {lang === 'de' ? 'ISO 11088:2023 Tabelle 2 Z-Wert Matrix' : lang === 'fr' ? 'Matrice Tableau 2 ISO 11088:2023' : lang === 'it' ? 'Matrice Tabella 2 ISO 11088:2023' : 'ISO 11088:2023 Standard Table 2 Matrix'}
+        </span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
-        Ski Binding DIN Chart (ISO 11088:2023)
+        {lang === 'de' ? 'Z-Wert Tabelle Skibindung (ISO 11088:2023)' : lang === 'fr' ? 'Tableau DIN Fixations de Ski (ISO 11088:2023)' : lang === 'it' ? 'Tabella DIN Attacchi Sci (ISO 11088:2023)' : 'Ski Binding DIN Chart (ISO 11088:2023)'}
       </h1>
       <p class="text-mute text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        The international standard matrix used by ski service workshops to determine release torque settings based on skier code and boot sole millimeter length.
+        {lang === 'de' 
+          ? 'Die internationale Referenztabelle der Skiservice-Werkstätten zur Ermittlung des Auslösemoments anhand von Fahrercode und Skischuh-Sohlenlänge in Millimetern.'
+          : lang === 'fr'
+          ? 'La grille de référence internationale utilisée en atelier pour déterminer le réglage de déclenchement selon le code skieur et la longueur de semelle.'
+          : lang === 'it'
+          ? 'La matrice di riferimento internazionale impiegata dai laboratori sci per definire la coppia di rilascio in base al codice sciatore e alla lunghezza scafo in millimetri.'
+          : 'The international standard matrix used by ski service workshops to determine release torque settings based on skier code and boot sole millimeter length.'}
       </p>
 
       {/* Trust & Meta Info */}

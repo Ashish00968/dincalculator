@@ -68,13 +68,19 @@ const skierTypes = [
     {/* Page Header */}
     <div class="text-center max-w-3xl mx-auto mb-14">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold mb-4 shadow-sm uppercase tracking-widest">
-        <span>ISO 11088 CLASSIFICATION STANDARD</span>
+        <span>{lang === 'de' ? 'ISO 11088 FAHRERTYP-NORM' : lang === 'fr' ? 'PROFIL DE SKIEUR ISO 11088' : lang === 'it' ? 'PROFILO SCIATORE ISO 11088' : 'ISO 11088 CLASSIFICATION STANDARD'}</span>
       </div>
       <h1 class="text-4xl sm:text-6xl font-bold text-ink tracking-tight mb-4">
-        Choosing your skier type.
+        {lang === 'de' ? 'Fahrertypen beim Skifahren (ISO 11088)' : lang === 'fr' ? 'Classification des Types de Skieurs' : lang === 'it' ? 'Classificazione del Tipo di Sciatore' : 'Choosing your skier type.'}
       </h1>
       <p class="text-mute text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        Your Skier Type is NOT your ego—it is a critical mechanical setting that determines the balance between accidental release and emergency retention.
+        {lang === 'de'
+          ? 'Ihr Fahrertyp steuert das Gleichgewicht zwischen rechtzeitiger Auslösung bei Stürzen und sicherem Halt bei schnellen Schwüngen.'
+          : lang === 'fr'
+          ? 'Votre profil de skieur détermine l\'équilibre fondamental entre la libération en cas de chute et la rétention à pleine vitesse.'
+          : lang === 'it'
+          ? 'Il tipo di sciatore determina l\'equilibrio essenziale tra lo sgancio di emergenza in caduta e la tenuta in curva ad alta velocità.'
+          : 'Your Skier Type is NOT your ego—it is a critical mechanical setting that determines the balance between accidental release and emergency retention.'}
       </p>
     </div>
 
