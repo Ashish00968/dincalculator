@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/gripwalk-vs-alpine-vs-wtr/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/bsl-guide/" class="hover:text-primary transition-colors">Boot & Binding Guides</a>
+      <span>/</span>
+      <span class="text-ink">Boot Sole Compatibility</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Equipment Compatibility Guide · ISO 23223 vs ISO 5355</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        GripWalk vs Alpine vs WTR: Boot Compatibility Guide
+      </h1>
+      <p class="text-lg text-mute leading-relaxed max-w-3xl">
+        A definitive guide to ski boot sole standards, ISO certifications, and binding compatibility. Find out if your boots safely fit your bindings before hitting the slopes.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Standard: ISO 23223, ISO 5355, ISO 9523</span>
+        <span>•</span>
+        <span>Audited: September 2026</span>
+        <span>•</span>
+        <span class="text-amber-500 font-medium">NEEDS-HUMAN: Certified Shop Technician Review</span>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Compatibility Summary
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        <strong>GripWalk boots (ISO 23223) CANNOT be safely used in traditional non-GripWalk alpine bindings.</strong> GripWalk boots feature rockered rubber soles that jam tightly inside standard alpine toe cups, preventing proper release and dramatically increasing injury risk. However, GripWalk bindings are backward-compatible and safely accept traditional flat Alpine boots (ISO 5355). Always check for matching certification logos on both boot and binding.
+      </p>
+    </div>
+
+    {/* Main Content */}
+    <div class="space-y-12">
+      {/* Sole Standard Profiles */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The 4 Major Ski Boot Sole Standards Explained
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-ink text-base">Traditional Alpine</h3>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-parchment text-mute border border-hairline">ISO 5355</span>
+            </div>
+            <p class="text-xs text-mute leading-relaxed">
+              The historical benchmark for downhill ski boots. Features flat, hard polyurethane soles with smooth glide plates at the toe and heel. Provides zero rocker and stiff power transfer, but slippery walking on icy resort pavement.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-ink text-base">GripWalk (GW)</h3>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-primary/10 text-primary border border-primary/20">ISO 23223</span>
+            </div>
+            <p class="text-xs text-mute leading-relaxed">
+              The modern standard across downhill ski boots. Features rockered (curved) rubber tread for ergonomic walking traction, coupled with a co-molded hard plastic glide plate under the ball of the foot to interact with binding AFDs.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-ink text-base">Alpine Touring (AT)</h3>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-parchment text-mute border border-hairline">ISO 9523</span>
+            </div>
+            <p class="text-xs text-mute leading-relaxed">
+              Backcountry touring boots featuring full rockered Vibram rubber soles and tech pin inserts. Requires MNC (Multi-Norm Certified), Sole.ID, or dedicated pin touring bindings.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-ink text-base">Walk to Ride (WTR)</h3>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-parchment text-mute border border-hairline">Legacy / Phased Out</span>
+            </div>
+            <p class="text-xs text-mute leading-relaxed">
+              Proprietary predecessor to GripWalk introduced by Salomon and Atomic. Largely replaced by ISO 23223 GripWalk. Requires WTR-compatible or MNC bindings.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Master Compatibility Matrix Table */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          Master Boot-to-Binding Compatibility Matrix
+        </h2>
+        <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
+              <tr>
+                <th class="p-3">Boot Sole Standard</th>
+                <th class="p-3">Standard Alpine Binding</th>
+                <th class="p-3">GripWalk Binding</th>
+                <th class="p-3">MNC / Sole.ID / AT Binding</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline">
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">Alpine (ISO 5355 Flat)</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe & Compatible</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe & Compatible</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe (Adjust AFD Height)</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">GripWalk (ISO 23223 Rockered)</td>
+                <td class="p-3 font-bold text-red-500">&cross; DANGEROUS / INCOMPATIBLE</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe & Compatible</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe (Adjust AFD Height)</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">Touring (ISO 9523)</td>
+                <td class="p-3 font-bold text-red-500">&cross; DANGEROUS / INCOMPATIBLE</td>
+                <td class="p-3 font-bold text-red-500">&cross; INCOMPATIBLE (Unless MNC)</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe & Certified</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">WTR (Walk-to-Ride)</td>
+                <td class="p-3 font-bold text-red-500">&cross; DANGEROUS / INCOMPATIBLE</td>
+                <td class="p-3 font-bold text-amber-500">&Delta; Dual-WTR Bindings Only</td>
+                <td class="p-3 font-bold text-emerald-500">&check; Safe (Adjust AFD Height)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* The Danger: GripWalk Boot in Standard Binding */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The Danger: Why GripWalk Boots Fail in Standard Bindings
+        </h2>
+        <div class="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-ink space-y-3 leading-relaxed">
+          <p>
+            When you insert an ISO 23223 GripWalk boot into a standard non-GripWalk alpine binding, three severe safety failures occur:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2 font-mono">
+            <li><strong>Upward Rocker Pinch:</strong> The curved rocker profile forces the front toe lug hard against the binding ceiling, pinching the boot into the housing.</li>
+            <li><strong>Rubber Friction Lock:</strong> Without a height-adjustable or sliding AFD designed for GripWalk, the high-friction rubber tread grips the binding base. During a twisting fall, the rubber refuses to slide sideways.</li>
+            <li><strong>Torque Spike & Non-Release:</strong> Actual release torque measured on a test bench can spike by <strong>150% to 300% above the indicated DIN setting</strong>, preventing the binding from releasing and causing devastating ACL, MCL, or tibia spiral fractures.</li>
+          </ol>
+        </div>
+      </section>
+
+      {/* How to Spot Compatibility Logos */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          How to Check Your Gear in 10 Seconds
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">Look at Boot Sole</h3>
+            <p class="text-mute leading-relaxed">Check the arch or toe of the boot sole. You will see either "ISO 5355" (standard flat) or a distinct "GripWalk" official logo stamped in the rubber.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">Look at Binding Toe Piece</h3>
+            <p class="text-mute leading-relaxed">Check the toe wing or AFD plate. Compatible bindings will feature a clear "GripWalk", "GW", "MNC" (Multi-Norm Certified), or "Sole.ID" logo.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Primary Sources */}
+      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
+        <h4 class="font-bold text-ink">Standards & Citations</h4>
+        <ul class="space-y-1">
+          <li>• ISO 23223: <em>Alpine ski-boots with improved walking soles — Interface and test methods</em>.</li>
+          <li>• ISO 5355: <em>Alpine ski-boots — Requirements and test methods</em>.</li>
+          <li>• ISO 9523: <em>Touring ski-boots for adults — Interface and test methods</em>.</li>
+          <li>• ISO 11088:2023: <em>Assembly, adjustment and inspection of an alpine ski-binding-boot system</em>.</li>
+        </ul>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

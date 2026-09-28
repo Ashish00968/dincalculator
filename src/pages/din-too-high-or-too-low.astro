@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/din-too-high-or-too-low/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/methodology/" class="hover:text-primary transition-colors">Safety Guides</a>
+      <span>/</span>
+      <span class="text-ink">DIN Too High or Too Low</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+        <span>Biomechanics & Injury Risks · ISO 11088</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        Ski DIN Too High or Too Low? Risks & Biomechanics
+      </h1>
+      <p class="text-lg text-mute leading-relaxed max-w-3xl">
+        An engineering and clinical analysis of ski binding failure modes: inadvertent pre-release versus non-release, injury mechanisms, and how to spot warning signs.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Standard: ISO 11088:2023 & ASTM F1063</span>
+        <span>•</span>
+        <span>Audited: September 2026</span>
+        <span>•</span>
+        <span class="text-amber-500 font-medium">NEEDS-HUMAN: Certified Shop Technician Review</span>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Clinical Overview
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        Both extremes carry severe injury consequences. <strong>If your DIN is too high (non-release)</strong>, the ski binding will fail to disengage during a fall, allowing the 160–180 cm ski lever arm to transmit destructive twisting forces directly into your leg bones and knee ligaments (causing spiral tibia fractures and ACL/MCL tears). <strong>If your DIN is too low (pre-release)</strong>, the ski unexpectedly detaches during high-speed carving or mogul compression, causing immediate violent loss of balance and high-speed impact collisions.
+      </p>
+    </div>
+
+    {/* Main Content */}
+    <div class="space-y-12">
+      {/* Side-by-Side Comparison */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The Two Dangerous Failure Modes Compared
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Danger 1: DIN Too High */}
+          <div class="p-6 rounded-2xl bg-canvas border border-red-500/20 space-y-4">
+            <div class="flex items-center gap-2 text-red-500 font-bold text-base">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Failure Mode 1: Non-Release (DIN Too High)
+            </div>
+            <p class="text-xs text-mute leading-relaxed">
+              Occurs when the release torque threshold exceeds the physiological tolerance of your tibia bone or knee joint ligaments.
+            </p>
+            <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2 text-xs">
+              <div class="font-bold text-ink">Primary Injury Types:</div>
+              <ul class="list-disc pl-4 space-y-1 text-mute">
+                <li><strong>Spiral Tibia/Fibula Fractures:</strong> Rotational torque twists the lower leg shaft.</li>
+                <li><strong>ACL / MCL Tears:</strong> The "Phantom Foot" fall mechanism hyperextends and rotates the knee joint.</li>
+                <li><strong>Tibial Plateau Fractures:</strong> High vertical axial compression crushing the top of the shin bone.</li>
+              </ul>
+            </div>
+            <div class="text-xs text-mute">
+              <strong>Common Cause:</strong> Skiers falsely overstating their ability (claiming Type III when skiing Type I) or DIY skiers cranking screws up to "feel safe."
+            </div>
+          </div>
+
+          {/* Danger 2: DIN Too Low */}
+          <div class="p-6 rounded-2xl bg-canvas border border-amber-500/20 space-y-4">
+            <div class="flex items-center gap-2 text-amber-500 font-bold text-base">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Failure Mode 2: Pre-Release (DIN Too Low)
+            </div>
+            <p class="text-xs text-mute leading-relaxed">
+              Occurs when normal skiing forces (dynamic turning g-forces, mogul impacts, ice chatter) exceed the binding's retention threshold without any fall taking place.
+            </p>
+            <div class="p-4 rounded-xl bg-parchment border border-hairline space-y-2 text-xs">
+              <div class="font-bold text-ink">Primary Injury Types:</div>
+              <ul class="list-disc pl-4 space-y-1 text-mute">
+                <li><strong>Traumatic Brain Injuries / Concussions:</strong> High-speed forward pitch onto packed snow or ice.</li>
+                <li><strong>Clavicle & Shoulder Fractures:</strong> High-impact ejection throwing skier shoulder-first.</li>
+                <li><strong>Collisions:</strong> Inability to brake or steer, causing collision with trees, obstacles, or other skiers.</li>
+              </ul>
+            </div>
+            <div class="text-xs text-mute">
+              <strong>Common Cause:</strong> Using outdated junior bindings, setting DIN too low for aggressive carve loads, or loose forward pressure.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Biomechanics: The 170cm Lever Arm */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The Biomechanics: Understanding the 170 cm Lever Arm
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          Human lower-leg bones (the tibia) can withstand significant longitudinal compressive force (supporting body weight during jumps). However, the tibia has poor resistance against <strong>torsional twisting moments</strong>.
+        </p>
+        <p class="text-sm text-mute leading-relaxed">
+          A ski measures 160 cm to 185 cm in length. When your ski tip or tail hooks into dense snow or catches an edge while your body moves forward, the ski acts as a massive physical lever. A mere 20 kg (44 lbs) of force applied at the ski shovel generates over <strong>160 Newton-meters of rotational torque</strong> at your ankle. If your binding does not release within 10 to 30 milliseconds, bone failure or ligament rupture is virtually guaranteed.
+        </p>
+      </section>
+
+      {/* Diagnostic Checklist */}
+      <section class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4">
+        <h2 class="text-xl font-bold text-ink">
+          Symptom Checklist: Is Your Binding Setting Wrong?
+        </h2>
+        <div class="space-y-3 text-xs text-mute leading-relaxed">
+          <div class="p-3 rounded-xl bg-parchment border border-hairline">
+            <span class="font-bold text-ink">Symptom: Ski pops off while carving a clean turn on groomers</span>
+            <p class="text-mute mt-1">Diagnosis: DIN is set too low for your turn g-force, or your forward pressure is improperly adjusted, allowing the heel to slide backward under ski flexion.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-parchment border border-hairline">
+            <span class="font-bold text-ink">Symptom: You took a twisting fall and felt intense knee pain, but the ski stayed on</span>
+            <p class="text-mute mt-1">Diagnosis: DIN is set too high, your AFD has excessive friction/dirt, or boot sole compatibility is violated (e.g. GripWalk boot in non-GW alpine binding).</p>
+          </div>
+          <div class="p-3 rounded-xl bg-parchment border border-hairline">
+            <span class="font-bold text-ink">Symptom: Heel lifts or wobbles inside the binding</span>
+            <p class="text-mute mt-1">Diagnosis: Forward pressure track screw is completely disengaged. Take skis to a certified ski technician immediately before skiing another run.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Box */}
+      <div class="p-8 rounded-3xl bg-primary/10 border border-primary/20 text-center space-y-4">
+        <h3 class="text-xl font-bold text-ink">Find Your Balanced Safety Setting</h3>
+        <p class="text-sm text-mute max-w-lg mx-auto">
+          Our calculator balances retention against release safety using calibrated ISO 11088:2023 engineering tables.
+        </p>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-canvas font-medium text-sm hover:scale-[0.98] transition-transform shadow-md"
+        >
+          Calculate Safe DIN Setting
+        </a>
+      </div>
+
+      {/* Medical & Standards Citations */}
+      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
+        <h4 class="font-bold text-ink">Medical & Standards Citations</h4>
+        <ul class="space-y-1">
+          <li>• Ettlinger, C. F., Johnson, R. J., & Shealy, J. E.: <em>A method to help reduce serious knee injuries in alpine skiing</em> — American Journal of Sports Medicine.</li>
+          <li>• International Society for Skiing Safety (ISSS): <em>Epidemiology of alpine skiing injuries and release binding effectiveness</em>.</li>
+          <li>• ISO 11088:2023: <em>Assembly, adjustment and inspection of an alpine ski-binding-boot system</em> (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org</a>).</li>
+          <li>• ASTM F1063: <em>Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems</em>.</li>
+        </ul>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

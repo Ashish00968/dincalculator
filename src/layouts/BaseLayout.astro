@@ -203,8 +203,8 @@ const structuredData = getStructuredData(Astro.url.pathname, lang, title, descri
         </div>
 
         <!-- Footer Links Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-sm">
-          <div class="space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12 text-sm">
+          <div class="space-y-3 lg:col-span-1">
             <div class="flex items-center gap-2.5 text-primary font-bold">
               <div class="w-7 h-7 rounded-lg overflow-hidden shrink-0 shadow-sm">
                 <img src="/logo-icon.webp" alt="" aria-hidden="true" width="28" height="28" decoding="async" class="w-full h-full object-cover" />
@@ -217,22 +217,37 @@ const structuredData = getStructuredData(Astro.url.pathname, lang, title, descri
           </div>
 
           <div>
-            <h4 class="caption-mono text-mute mb-3">Calculators & Tools</h4>
+            <h4 class="caption-mono text-mute mb-3">Tools & Charts</h4>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.calculator')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/din-chart/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
-              <li><a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
+              <li><a href="/kids-din-chart/" class="hover:text-primary transition-colors">Kids DIN Chart</a></li>
+              <li><a href="/din-setting-by-weight/" class="hover:text-primary transition-colors">DIN by Weight</a></li>
+              <li><a href="/skier-type-quiz/" class="hover:text-primary transition-colors">Skier Type Quiz</a></li>
+              <li><a href="/embed-guide/" class="hover:text-primary transition-colors">Embed Widget</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="caption-mono text-mute mb-3">Standards & Protocols</h4>
+            <h4 class="caption-mono text-mute mb-3">Guides & Safety</h4>
             <ul class="space-y-2 text-xs text-mute">
-              <li><span class="text-primary font-medium">ISO 11088:2023</span> (Ed. 7)</li>
+              <li><a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
+              <li><a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
+              <li><a href="/gripwalk-vs-alpine-vs-wtr/" class="hover:text-primary transition-colors">GripWalk vs Alpine</a></li>
+              <li><a href="/din-vs-z-value/" class="hover:text-primary transition-colors">DIN vs Z-Value</a></li>
+              <li><a href="/how-to-adjust-ski-bindings/" class="hover:text-primary transition-colors">Binding Adjustment</a></li>
+              <li><a href="/din-too-high-or-too-low/" class="hover:text-primary transition-colors">DIN Too High or Low</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="caption-mono text-mute mb-3">Standards & Tech</h4>
+            <ul class="space-y-2 text-xs text-mute">
+              <li><a href="/iso-11088-2023-changes/" class="hover:text-primary transition-colors"><span class="text-primary font-medium">ISO 11088:2023</span> (Ed. 7)</a></li>
               <li><span class="text-primary font-medium">ISO 9462</span> (Alpine Bindings)</li>
               <li><span class="text-primary font-medium">ISO 5355</span> (Alpine Boot Soles)</li>
-              <li><span class="text-primary font-medium">ASTM F939</span> (Standard Practice)</li>
+              <li><span class="text-primary font-medium">ISO 23223</span> (GripWalk Soles)</li>
+              <li><span class="text-primary font-medium">ASTM F1063</span> (Inspection Standard)</li>
             </ul>
           </div>
 
@@ -246,7 +261,7 @@ const structuredData = getStructuredData(Astro.url.pathname, lang, title, descri
               <li><a href={getRouteFromUrl(new URL('/terms/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/privacy/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
               <li class="text-emerald-500 pt-1 flex items-center gap-1">
-                <span>●</span> Cookieless • No Tracking • No Ads
+                <span>●</span> Cookieless • No Tracking
               </li>
             </ul>
           </div>

@@ -65,6 +65,34 @@ export const SEO_DATA: Record<string, Record<string, { title: string; descriptio
     '/embed-guide/': {
       title: 'Embed Ski DIN Calculator | Free Widget for Shops',
       description: 'Embed the free ISO 11088:2023 ski binding DIN calculator on your ski shop, resort, or blog website. Lightweight, responsive, and seamless iframe integration.'
+    },
+    '/kids-din-chart/': {
+      title: 'Kids Ski DIN Chart (ISO 11088:2023) | Junior Settings',
+      description: 'Complete kids ski binding DIN chart based on ISO 11088:2023. Look up junior release settings by child weight, boot sole length, age, and rental standards.'
+    },
+    '/iso-11088-2023-changes/': {
+      title: 'ISO 11088:2023 Changes | Ski Binding Standard Guide',
+      description: 'Explore the key technical updates in ISO 11088:2023 Edition 7. Learn about GripWalk sole integration, workshop inspection tolerances, and safety changes.'
+    },
+    '/din-vs-z-value/': {
+      title: 'DIN vs Z-Value in Skiing: Release Units Explained',
+      description: 'Understand the difference between ski DIN, Z-Value, indicator scale numbers, and release torque in Nm. Learn the physical formulas behind ski binding safety.'
+    },
+    '/how-to-adjust-ski-bindings/': {
+      title: 'How Ski Bindings Work: Screws & Shop Calibration',
+      description: 'Learn how ski binding release springs and forward pressure work. Understand why professional workshop torque calibration is essential to prevent injury.'
+    },
+    '/gripwalk-vs-alpine-vs-wtr/': {
+      title: 'GripWalk vs Alpine vs WTR: Boot Compatibility Guide',
+      description: 'Compare ski boot sole standards: GripWalk (ISO 23223), Alpine (ISO 5355), Touring (ISO 9523), and WTR. Check binding compatibility and AFD clearance.'
+    },
+    '/din-setting-by-weight/': {
+      title: 'Ski DIN Setting by Weight: Complete Lookup Chart',
+      description: 'Find ski DIN release settings by weight across common boot sole lengths and skier types. Learn why height, age, and BSL must be included for safe setup.'
+    },
+    '/din-too-high-or-too-low/': {
+      title: 'Ski DIN Too High or Too Low? Risks & Biomechanics',
+      description: 'Discover the medical and biomechanical risks of incorrect ski DIN settings: pre-release ejections vs non-release tibial spiral fractures and knee tears.'
     }
   },
   de: {
@@ -141,7 +169,7 @@ export const SEO_DATA: Record<string, Record<string, { title: string; descriptio
       description: 'Calcola con precisione la taratura DIN degli attacchi da sci secondo la norma ISO 11088:2023. Gratuito, immediato e con spiegazione passaggio per passaggio.'
     },
     '/din-chart/': {
-      title: 'Tabella DIN Attacchi Sci (ISO 11088:2023) | Matrice Ufficiale',
+      title: 'Tabella DIN Attacchi Sci (ISO 11088:2023) | Per Peso e Scafo',
       description: 'Tabella completa ISO 11088:2023 dei valori DIN per sci alpino. Trova la regolazione corretta in base a peso, altezza, tipo di sciatore e lunghezza scafo.'
     },
     '/bsl-guide/': {

@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/din-setting-by-weight/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/din-chart/" class="hover:text-primary transition-colors">DIN Charts</a>
+      <span>/</span>
+      <span class="text-ink">DIN by Weight</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Reference Tables · ISO 11088:2023</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        Ski DIN Setting by Weight: Complete Lookup Chart
+      </h1>
+      <p class="text-lg text-mute leading-relaxed max-w-3xl">
+        Look up estimated ski binding DIN release settings across standard body weight brackets, boot sole lengths (BSL), and skier ability types based on ISO 11088:2023.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Standard: ISO 11088:2023 Table 2</span>
+        <span>•</span>
+        <span>Audited: September 2026</span>
+        <span>•</span>
+        <a href="/din-chart/" class="underline hover:text-primary">Full Interactive Matrix</a>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Why Weight Alone is NOT Enough
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        While body weight establishes your initial baseline Skier Code under ISO 11088:2023, <strong>your weight alone cannot determine your DIN setting</strong>. Release settings vary dramatically based on your <strong>Boot Sole Length (BSL in mm)</strong>, your <strong>height</strong>, your <strong>age</strong>, and your <strong>Skier Type (I, II, III)</strong>. For example, a 75 kg (165 lbs) skier will range from <strong>DIN 4.5 up to DIN 8.5</strong> depending on boot size and aggression.
+      </p>
+    </div>
+
+    {/* Main Content */}
+    <div class="space-y-12">
+      {/* Weight Reference Table */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          Estimated DIN Range by Body Weight (Adults Age 10–49)
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          The table below illustrates representative DIN values computed by our ISO 11088:2023 engine across adult weight categories for standard boot sole lengths (290 mm to 310 mm):
+        </p>
+
+        <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
+              <tr>
+                <th class="p-3">Weight Bracket</th>
+                <th class="p-3">Skier Code</th>
+                <th class="p-3">Type I (Beginner)</th>
+                <th class="p-3">Type II (All-Mountain)</th>
+                <th class="p-3">Type III (Aggressive)</th>
+                <th class="p-3">Quick Calculator Link</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline">
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">42–48 kg (92–107 lbs)</td>
+                <td class="p-3 text-mute">Code H</td>
+                <td class="p-3 font-bold text-ink">3.00</td>
+                <td class="p-3 font-bold text-primary">3.50</td>
+                <td class="p-3 font-bold text-ink">4.50</td>
+                <td class="p-3"><a href="/#w=45&u=metric" class="text-primary underline">Calculate 45 kg</a></td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">49–57 kg (108–125 lbs)</td>
+                <td class="p-3 text-mute">Code I</td>
+                <td class="p-3 font-bold text-ink">3.50</td>
+                <td class="p-3 font-bold text-primary">4.50</td>
+                <td class="p-3 font-bold text-ink">5.50</td>
+                <td class="p-3"><a href="/#w=53&u=metric" class="text-primary underline">Calculate 53 kg</a></td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">58–66 kg (126–147 lbs)</td>
+                <td class="p-3 text-mute">Code J</td>
+                <td class="p-3 font-bold text-ink">4.50</td>
+                <td class="p-3 font-bold text-primary">5.50</td>
+                <td class="p-3 font-bold text-ink">6.50</td>
+                <td class="p-3"><a href="/#w=62&u=metric" class="text-primary underline">Calculate 62 kg</a></td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">67–78 kg (148–174 lbs)</td>
+                <td class="p-3 text-mute">Code K</td>
+                <td class="p-3 font-bold text-ink">5.50</td>
+                <td class="p-3 font-bold text-primary">6.50</td>
+                <td class="p-3 font-bold text-ink">7.50</td>
+                <td class="p-3"><a href="/#w=73&u=metric" class="text-primary underline">Calculate 73 kg</a></td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">79–94 kg (175–209 lbs)</td>
+                <td class="p-3 text-mute">Code L</td>
+                <td class="p-3 font-bold text-ink">6.50</td>
+                <td class="p-3 font-bold text-primary">7.50</td>
+                <td class="p-3 font-bold text-ink">9.00</td>
+                <td class="p-3"><a href="/#w=85&u=metric" class="text-primary underline">Calculate 85 kg</a></td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">95–107 kg (210–236 lbs)</td>
+                <td class="p-3 text-mute">Code M</td>
+                <td class="p-3 font-bold text-ink">7.50</td>
+                <td class="p-3 font-bold text-primary">8.50</td>
+                <td class="p-3 font-bold text-ink">10.00</td>
+                <td class="p-3"><a href="/#w=100&u=metric" class="text-primary underline">Calculate 100 kg</a></td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">&gt; 107 kg (&gt; 236 lbs)</td>
+                <td class="p-3 text-mute">Code N / O</td>
+                <td class="p-3 font-bold text-ink">8.50</td>
+                <td class="p-3 font-bold text-primary">10.00</td>
+                <td class="p-3 font-bold text-ink">11.50+</td>
+                <td class="p-3"><a href="/#w=112&u=metric" class="text-primary underline">Calculate 112 kg</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-mute italic">
+          *Values calculated based on standard 305 mm BSL. If your boot is shorter (e.g. 275 mm), DIN increases by ~0.5 to 1.0; if longer (e.g. 335 mm), DIN decreases by ~0.5 to 1.0.
+        </p>
+      </section>
+
+      {/* The 4 Physical Factors */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The 4 Physical Factors That Modify Your Weight-Based DIN
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">1. Boot Sole Length (Lever Arm)</h3>
+            <p class="text-mute leading-relaxed">
+              Ski bindings release based on rotational torque (Torque = Force &times; Length). A larger boot gives your foot greater leverage, so the binding must be set to a lower DIN number to release at the exact same bone-stress threshold.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">2. Height Conflict Rule</h3>
+            <p class="text-mute leading-relaxed">
+              ISO 11088 requires checking both height and weight. If a tall, slender skier matches Code K by height (179–194 cm) but Code I by weight (55 kg), the standard dictates selecting the <strong>higher row in the chart (Code I)</strong> for safety.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">3. Age Modifier</h3>
+            <p class="text-mute leading-relaxed">
+              Skiers aged under 10 years or aged 50 years and older receive an automatic 1-row upward step (lowering release torque). This compensates for developing bone plates in youth and decreasing bone mineral density in masters skiers.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">4. Skier Type Preference</h3>
+            <p class="text-mute leading-relaxed">
+              Beginners (Type I) prioritize easy release during gentle falls. Aggressive experts (Type III) skiing steep terrain require higher retention to prevent dangerous pre-release ejections.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Box */}
+      <div class="p-8 rounded-3xl bg-primary/10 border border-primary/20 text-center space-y-4">
+        <h3 class="text-xl font-bold text-ink">Get Your Exact Multi-Factor DIN Setting</h3>
+        <p class="text-sm text-mute max-w-lg mx-auto">
+          Input your exact weight, height, age, boot sole length, and skier type into our free ISO 11088:2023 calculator.
+        </p>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-canvas font-medium text-sm hover:scale-[0.98] transition-transform shadow-md"
+        >
+          Open Free Calculator
+        </a>
+      </div>
+
+      {/* Standards */}
+      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
+        <h4 class="font-bold text-ink">Standards & Sources</h4>
+        <ul class="space-y-1">
+          <li>• ISO 11088:2023: <em>Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system</em> (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org</a>).</li>
+          <li>• ASTM F1063: <em>Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems</em>.</li>
+        </ul>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

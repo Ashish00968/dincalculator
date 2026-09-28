@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/din-vs-z-value/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/methodology/" class="hover:text-primary transition-colors">Methodology</a>
+      <span>/</span>
+      <span class="text-ink">DIN vs Z-Value</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Terminology & Physics Guide · ISO 11088</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        DIN vs Z-Value: What's the Difference?
+      </h1>
+      <p class="text-lg text-mute leading-relaxed max-w-3xl">
+        Are "DIN" and "Z-Value" the same number? Discover the history, engineering units (Nm vs daNm), and biomechanical torque formulas behind ski binding release settings.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Standard: ISO 11088:2023 & ISO 9462</span>
+        <span>•</span>
+        <span>Audited: September 2026</span>
+        <span>•</span>
+        <a href="/din-chart/" class="underline hover:text-primary">View DIN Matrix</a>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Answer
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        <strong>DIN and Z-Value refer to the exact same setting number on a ski binding.</strong> "DIN" is the colloquial term prevalent in English-speaking countries (derived from the historic German DIN 7881 standard). "Z-Value" (or <em>Z-Wert</em>) is the official terminology defined by the International Organization for Standardization (ISO 11088 and ISO 9462) and universally used across European alpine shops. A DIN of 7.0 equals a Z-Value of 7.0.
+      </p>
+    </div>
+
+    {/* Main Content */}
+    <div class="space-y-12">
+      {/* Historical Origins */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          History: From DIN 7881 to ISO 11088
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          In the 1970s and 1980s, the German standardization institute (<em>Deutsches Institut für Normung</em>) published standard <strong>DIN 7881</strong>, which established the world's first standardized release torque scale for safety ski bindings. Skiers quickly adopted the acronym "DIN" to describe the visual indicator scale number on their toe and heel pieces.
+        </p>
+        <p class="text-sm text-mute leading-relaxed">
+          When the global skiing community adopted this scale internationally through the ISO technical committee, the technical variable for the indicator setting was designated as <strong>Z</strong> (Indicator Value). In Austria, Germany, Switzerland, and Italy, ski technicians refer strictly to the <em>Z-Wert</em>, while in North America and the UK, skiers still call it the "DIN setting."
+        </p>
+      </section>
+
+      {/* The Physics: Force vs Torque */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The Engineering Physics: Torque Units (Nm vs daNm)
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          A ski binding does not measure weight or linear push force. It responds to <strong>rotational torque (&tau;)</strong>, measured in <strong>Newton-meters (N&middot;m)</strong> or <strong>decanewton-meters (daN&middot;m)</strong>:
+        </p>
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline font-mono text-xs space-y-3">
+          <div class="text-primary font-bold text-sm">Fundamental Lever Arm Formula</div>
+          <div class="text-base text-ink font-bold">Torque (&tau;) = Force (F) &times; Boot Sole Length (L)</div>
+          <div class="text-mute">1 daN&middot;m = 10 N&middot;m &approx; 7.375 ft&middot;lbs of rotational torque</div>
+        </div>
+        <p class="text-sm text-mute leading-relaxed">
+          Because a longer boot sole acts as a longer physical lever arm against the binding lugs, a larger boot produces higher torque under the identical twisting force. This is why a taller skier with a 330 mm boot requires a <em>lower</em> DIN/Z-value than a skier of the exact same weight with a 270 mm boot.
+        </p>
+      </section>
+
+      {/* Torque Reference Conversion Table */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          ISO 11088 Reference Release Torque Values
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          The table below demonstrates the standardized relationship between the dimensionless visual indicator scale (DIN / Z-Wert) and laboratory calibrated release torques specified in ISO 9462 / ISO 11088:
+        </p>
+        <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
+              <tr>
+                <th class="p-3">Z-Value / DIN</th>
+                <th class="p-3">Toe Lateral Torque (daN·m)</th>
+                <th class="p-3">Toe Lateral Torque (N·m)</th>
+                <th class="p-3">Heel Vertical Torque (N·m)</th>
+                <th class="p-3">Typical Skier Profile</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline">
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">1.0</td>
+                <td class="p-3">1.0 daN·m</td>
+                <td class="p-3 font-bold text-ink">10 N·m</td>
+                <td class="p-3 font-bold text-ink">40 N·m</td>
+                <td class="p-3 text-mute">Young child (14–17 kg)</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">3.0</td>
+                <td class="p-3">2.7 daN·m</td>
+                <td class="p-3 font-bold text-ink">27 N·m</td>
+                <td class="p-3 font-bold text-ink">110 N·m</td>
+                <td class="p-3 text-mute">Youth / Lightweight adult beginner</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">5.0</td>
+                <td class="p-3">4.3 daN·m</td>
+                <td class="p-3 font-bold text-ink">43 N·m</td>
+                <td class="p-3 font-bold text-ink">175 N·m</td>
+                <td class="p-3 text-mute">Intermediate skier (55–65 kg)</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">7.0</td>
+                <td class="p-3">5.8 daN·m</td>
+                <td class="p-3 font-bold text-ink">58 N·m</td>
+                <td class="p-3 font-bold text-ink">240 N·m</td>
+                <td class="p-3 text-mute">All-mountain skier (70–80 kg)</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">9.0</td>
+                <td class="p-3">7.5 daN·m</td>
+                <td class="p-3 font-bold text-ink">75 N·m</td>
+                <td class="p-3 font-bold text-ink">310 N·m</td>
+                <td class="p-3 text-mute">Advanced skier / Expert heavier skier</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">12.0</td>
+                <td class="p-3">10.0 daN·m</td>
+                <td class="p-3 font-bold text-ink">100 N·m</td>
+                <td class="p-3 font-bold text-ink">420 N·m</td>
+                <td class="p-3 text-mute">Aggressive expert / Freeride racer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Two Axis Release */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          Lateral Toe Release vs Forward Heel Release
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+            <h3 class="text-base font-bold text-ink">Toe Piece: Lateral Twisting (&tau;<sub>z</sub>)</h3>
+            <p class="text-xs text-mute leading-relaxed">
+              Releases sideways when the boot rotates about a vertical axis. This mechanism protects the tibia and fibula from twisting spiral fractures during a rotational fall.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+            <h3 class="text-base font-bold text-ink">Heel Piece: Vertical Forward Pitch (&tau;<sub>y</sub>)</h3>
+            <p class="text-xs text-mute leading-relaxed">
+              Releases upward when the skier pitches forward over the handlebars. Notice in the table above that heel release torque is approximately 3.5 to 4 times higher than toe torque to withstand normal forward downhill flexion.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Box */}
+      <div class="p-8 rounded-3xl bg-primary/10 border border-primary/20 text-center space-y-4">
+        <h3 class="text-xl font-bold text-ink">Calculate Your DIN / Z-Wert Now</h3>
+        <p class="text-sm text-mute max-w-lg mx-auto">
+          Our calculator uses the exact ISO 11088:2023 release equations and displays full step-by-step skier code breakdown.
+        </p>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-canvas font-medium text-sm hover:scale-[0.98] transition-transform shadow-md"
+        >
+          Open Free Calculator
+        </a>
+      </div>
+
+      {/* Primary Sources */}
+      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
+        <h4 class="font-bold text-ink">Standards & Citations</h4>
+        <ul class="space-y-1">
+          <li>• ISO 11088:2023: <em>Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system</em> (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org</a>).</li>
+          <li>• ISO 9462: <em>Alpine ski-bindings — Requirements and test methods</em>.</li>
+          <li>• Deutsches Institut für Normung: <em>DIN 7881 (Historical foundation of alpine ski binding release indicator values)</em>.</li>
+          <li>• ASTM F504: <em>Standard Test Method for Measuring the Quasi-Static Release Moments of Alpine Ski Bindings</em>.</li>
+        </ul>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

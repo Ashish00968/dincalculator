@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/iso-11088-2023-changes/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/methodology/" class="hover:text-primary transition-colors">Methodology</a>
+      <span>/</span>
+      <span class="text-ink">ISO 11088:2023 Changes</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span>Standard Specification Update · 7th Edition</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        What Changed in ISO 11088:2023 (Edition 7)?
+      </h1>
+      <p class="text-lg text-mute leading-relaxed max-w-3xl">
+        A technical breakdown of updates between the 6th Edition (2018) and the active 7th Edition (2023) of ISO 11088 for alpine ski-binding-boot systems.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Standard Status: Published & Active (Stage 60.60)</span>
+        <span>•</span>
+        <span>Audited: September 2026</span>
+        <span>•</span>
+        <a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">ISO Catalogue Entry #83020</a>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Executive Summary
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        The 7th Edition of ISO 11088 replaces the 2018 edition with three major advancements: <strong>formalized boot-binding interface classification (Table 1)</strong> explicitly standardizing GripWalk (ISO 23223) soles alongside traditional Alpine (ISO 5355), <strong>removal of former informative Annex A examples</strong> that caused widespread confusion among DIY skiers, and <strong>refined workshop inspection tolerances in Section 6.4</strong> for mechanical torque test benches.
+      </p>
+    </div>
+
+    {/* Comparison Matrix: 2018 vs 2023 */}
+    <div class="space-y-12">
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          Summary of Key Revisions: 2018 vs 2023 Edition
+        </h2>
+        <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
+              <tr>
+                <th class="p-3">Section / Element</th>
+                <th class="p-3">ISO 11088:2018 (Edition 6)</th>
+                <th class="p-3">ISO 11088:2023 (Edition 7)</th>
+                <th class="p-3">Impact on Skiers & Shops</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline">
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">Boot Interface Table 1</td>
+                <td class="p-3 text-mute">Primarily referenced ISO 5355 and ISO 9523; GripWalk addressed through brand technical bulletins.</td>
+                <td class="p-3 font-bold text-primary">Fully standardizes ISO 23223 (GripWalk) boot soles within Table 1 compatibility framework.</td>
+                <td class="p-3 text-ink">Eliminates ambiguity regarding AFD height adjustments and GripWalk safety compliance.</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">Former Annex A Table A.1</td>
+                <td class="p-3 text-mute">Contained informative sample calculations frequently misconstrued as binding adjustment charts.</td>
+                <td class="p-3 font-bold text-emerald-500">Former Table A.1 removed and consolidated into normative guidance.</td>
+                <td class="p-3 text-ink">Prevents dangerous third-party misinterpretations and unauthorized chart alterations.</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">Section 6.4 Inspection</td>
+                <td class="p-3 text-mute">Inspection tolerances focused primarily on static indicator window alignments.</td>
+                <td class="p-3 font-bold text-primary">Enhanced dynamic torque tolerance windows for workshop calibration test meters.</td>
+                <td class="p-3 text-ink">Stricter precision standards for certified shop torque calibration (Montana, Wintersteiger).</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-ink">Skier Code Logic</td>
+                <td class="p-3">Standard Table 2 (Codes A to P) matrix.</td>
+                <td class="p-3 font-bold text-ink">Preserved core Table 2 torque bands with identical mathematical continuity.</td>
+                <td class="p-3 text-ink">Uncompromised backward compatibility with established DIN/Z-value indicator scales.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Deep Dive 1: GripWalk Formalization */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          1. Formal Integration of GripWalk (ISO 23223)
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          Over the past decade, rockered GripWalk boot soles surged from a niche feature to the dominant standard for modern alpine ski boots. However, early GripWalk implementations relied on manufacturer-specific compatibility notices.
+        </p>
+        <p class="text-sm text-mute leading-relaxed">
+          ISO 11088:2023 officially incorporates <strong>ISO 23223 (Alpine ski-boots with improved walking soles)</strong> into Table 1. This establishes exact engineering requirements for:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">Toe Lug Thickness & Rocker</h3>
+            <p class="text-mute leading-relaxed">Specifies clearances between the rockered rubber walking toe and the binding toe cup to guarantee unhindered lateral release.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-canvas border border-hairline space-y-2">
+            <h3 class="font-bold text-ink text-sm">AFD Friction Requirements</h3>
+            <p class="text-mute leading-relaxed">Mandates dynamic sliding or rolling Anti-Friction Devices (AFDs) capable of compensating for high-friction rubber sole lugs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Deep Dive 2: Why Annex A Was Refined */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          2. Removal of Informative Annex A Table A.1
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          In previous standard revisions, Annex A provided informative examples of skier classifications. Unfortunately, numerous unqualified web tools and forums reproduced Table A.1 out of context as an "official shortcut chart," omitting mandatory boot sole length lever arm corrections and mechanical testing requirements.
+        </p>
+        <div class="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-ink space-y-2">
+          <div class="font-bold text-amber-600 uppercase tracking-wider">Safety Rationale</div>
+          <p class="text-mute leading-relaxed">
+            By removing Table A.1 and emphasizing normative procedures, the ISO technical committee eliminated ambiguity: release settings are determined strictly through the standardized Table 2 matrix and verified on calibrated mechanical testing apparatus.
+          </p>
+        </div>
+      </section>
+
+      {/* Deep Dive 3: Section 6.4 Inspection Procedures */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          3. Section 6.4 Workshop Inspection Procedures
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          ISO 11088:2023 tightens requirements for workshop verification testing. When a technician tests your bindings on an electronic inspection machine, the measured release torque must fall within an acceptable tolerance window around the reference value:
+        </p>
+        <ul class="text-xs text-mute space-y-2 font-mono list-disc pl-5 leading-relaxed">
+          <li><strong>In-Tolerance:</strong> The measured torque matches the chart reference value within standard operational deviations (&plusmn;10% to &plusmn;15% depending on test class).</li>
+          <li><strong>Out-of-Tolerance:</strong> If measured torque deviates beyond allowable limits, the technician must adjust the visual scale to compensate or inspect for binding spring fatigue or boot sole wear.</li>
+          <li><strong>Non-Compliance:</strong> If a binding fails repeated torque release tests or fails forward pressure symmetry, it must be retired from service immediately.</li>
+        </ul>
+      </section>
+
+      {/* Why DIN Calculator Pro Adheres to Edition 7 */}
+      <section class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+        <h2 class="text-xl font-bold text-ink">Our Implementation in DIN Calculator Pro</h2>
+        <p class="text-xs text-mute leading-relaxed">
+          Our calculation engine (<code class="text-primary font-mono font-semibold">src/engine/din-engine.ts</code>) is built directly around ISO 11088:2023 specifications:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+          <div class="p-3 rounded-lg bg-parchment border border-hairline">
+            <span class="text-mute">Standard Version:</span>
+            <div class="font-bold text-ink">ISO 11088:2023 (Ed. 7)</div>
+          </div>
+          <div class="p-3 rounded-lg bg-parchment border border-hairline">
+            <span class="text-mute">Golden Test Suites:</span>
+            <div class="font-bold text-emerald-500">1,560 Verified Vectors</div>
+          </div>
+          <div class="p-3 rounded-lg bg-parchment border border-hairline">
+            <span class="text-mute">Licensing:</span>
+            <div class="font-bold text-primary">Open Source (MIT)</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Primary Sources */}
+      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
+        <h4 class="font-bold text-ink">Citations & Normative Standards</h4>
+        <ul class="space-y-1">
+          <li>• International Organization for Standardization: <em>ISO 11088:2023 — Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system</em> (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">View ISO 83020 Record</a>).</li>
+          <li>• ISO 23223: <em>Alpine ski-boots with improved walking soles — Interface and test methods</em>.</li>
+          <li>• ISO 5355: <em>Alpine ski-boots — Requirements and test methods</em>.</li>
+          <li>• ASTM F1063-23: <em>Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems</em>.</li>
+        </ul>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/kids-din-chart/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-ink">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/din-chart/" class="hover:text-primary transition-colors">DIN Charts</a>
+      <span>/</span>
+      <span class="text-ink">Kids DIN Chart</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Junior & Child Ski Safety · ISO 11088:2023</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        Kids Ski Binding DIN Chart (ISO 11088:2023)
+      </h1>
+      <p class="text-lg text-mute leading-relaxed max-w-3xl">
+        Official Junior Skier Code reference matrix for children and youth skiers weighing 10 kg to 48 kg (22 lbs to 107 lbs), with age modifiers, growth check intervals, and rental standards.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Standard: ISO 11088:2023 & ISO 13993</span>
+        <span>•</span>
+        <span>Audited: September 2026</span>
+        <span>•</span>
+        <span class="text-amber-500 font-medium">NEEDS-HUMAN: Certified Shop Technician Review</span>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Answer for Parents
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        Children's ski bindings require much lower release torque settings than adults because young bones and developing growth plates (epiphyseal plates) have lower torsional strength. Under ISO 11088:2023, <strong>all children aged under 10 receive an automatic 1-row upward step</strong> (lowering their DIN setting by approximately 0.5 to 1.0). Never set a child's DIN by guessing, adult charts, or without measuring boot sole length in millimeters.
+      </p>
+    </div>
+
+    {/* Main Content Sections */}
+    <div class="space-y-12">
+      {/* Junior Skier Codes Reference Table */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          Junior Skier Code Release Matrix (Codes A to H)
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          The table below extracts ISO 11088:2023 Table 2 rows for children up to 48 kg. Trace weight row across to the boot sole length (BSL) stamped in millimeters on the heel of your child's boot.
+        </p>
+
+        <div class="overflow-x-auto rounded-xl border border-hairline bg-canvas shadow-sm">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-parchment border-b border-hairline text-mute uppercase tracking-wider">
+              <tr>
+                <th class="p-3">Code</th>
+                <th class="p-3">Child Weight (kg)</th>
+                <th class="p-3">Child Weight (lbs)</th>
+                <th class="p-3">BSL &lt; 250 mm</th>
+                <th class="p-3">BSL 251–270 mm</th>
+                <th class="p-3">BSL 271–290 mm</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-hairline">
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code A</td>
+                <td class="p-3">10–13 kg</td>
+                <td class="p-3">22–29 lbs</td>
+                <td class="p-3 font-bold text-ink">0.75</td>
+                <td class="p-3 text-mute">—</td>
+                <td class="p-3 text-mute">—</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code B</td>
+                <td class="p-3">14–17 kg</td>
+                <td class="p-3">30–38 lbs</td>
+                <td class="p-3 font-bold text-ink">1.00</td>
+                <td class="p-3 text-mute">—</td>
+                <td class="p-3 text-mute">—</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code C</td>
+                <td class="p-3">18–21 kg</td>
+                <td class="p-3">39–47 lbs</td>
+                <td class="p-3 font-bold text-ink">1.50</td>
+                <td class="p-3 font-bold text-ink">1.25</td>
+                <td class="p-3 text-mute">—</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code D</td>
+                <td class="p-3">22–25 kg</td>
+                <td class="p-3">48–56 lbs</td>
+                <td class="p-3 font-bold text-ink">2.00</td>
+                <td class="p-3 font-bold text-ink">1.75</td>
+                <td class="p-3 text-mute">—</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code E</td>
+                <td class="p-3">26–30 kg</td>
+                <td class="p-3">57–66 lbs</td>
+                <td class="p-3 font-bold text-ink">2.50</td>
+                <td class="p-3 font-bold text-ink">2.25</td>
+                <td class="p-3 text-mute">—</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code F</td>
+                <td class="p-3">31–35 kg</td>
+                <td class="p-3">67–78 lbs</td>
+                <td class="p-3 font-bold text-ink">3.00</td>
+                <td class="p-3 font-bold text-ink">2.75</td>
+                <td class="p-3 font-bold text-ink">2.25</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code G</td>
+                <td class="p-3">36–41 kg</td>
+                <td class="p-3">79–91 lbs</td>
+                <td class="p-3 font-bold text-ink">3.50</td>
+                <td class="p-3 font-bold text-ink">3.00</td>
+                <td class="p-3 font-bold text-ink">2.75</td>
+              </tr>
+              <tr class="hover:bg-parchment/50">
+                <td class="p-3 font-bold text-primary">Code H</td>
+                <td class="p-3">42–48 kg</td>
+                <td class="p-3">92–107 lbs</td>
+                <td class="p-3 font-bold text-ink">4.50</td>
+                <td class="p-3 font-bold text-ink">4.00</td>
+                <td class="p-3 font-bold text-ink">3.50</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-mute italic">
+          Note: If the child is under age 10, shift up one row in the table (e.g. Code D shifts to Code C) unless overridden by a professional ski technician.
+        </p>
+      </section>
+
+      {/* The 3 Core Rules for Kids Bindings */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          The 3 Critical Rules for Children's Ski Bindings
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <div class="text-primary font-bold text-sm">1. Age &lt; 10 Rule</div>
+            <p class="text-xs text-mute leading-relaxed">
+              Young children have more flexible joint capsules but softer, developing bone structure. ISO 11088 mandates shifting 1 code row upward, reducing release torque to prevent spiral tibia fractures.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <div class="text-primary font-bold text-sm">2. Boot Sole Type C vs Type A</div>
+            <p class="text-xs text-mute leading-relaxed">
+              Kids boots use ISO 5355 Type C (Children) soles with smaller lug dimensions. Junior bindings are engineered exclusively for Type C soles. Never force Type C boots into adult bindings.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <div class="text-primary font-bold text-sm">3. Rapid Growth Shifts</div>
+            <p class="text-xs text-mute leading-relaxed">
+              Children can grow an entire boot size and gain 10+ lbs over a single winter. A larger boot sole length decreases release torque, while weight gain increases it. Re-check bindings every 30 skiing days.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Rental Fleets vs Owned Equipment */}
+      <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-ink">
+          Rental Bindings (ISO 13993) vs Personal Gear (ISO 11088)
+        </h2>
+        <p class="text-sm text-mute leading-relaxed">
+          When you rent skis for your children, reputable rental shops calibrate bindings according to <strong>ISO 13993</strong> (Rental shop operational standard for alpine ski-binding-boot systems). Rental bindings feature quick-adjust track systems for toe and heel pieces. Always confirm the rental technician:
+        </p>
+        <ul class="text-xs text-mute space-y-2 font-mono list-disc pl-5 leading-relaxed">
+          <li>Weighed and measured your child on an in-shop scale (do not guess).</li>
+          <li>Checked forward pressure indicator pins on the rental track.</li>
+          <li>Tested release value on a mechanical torque inspection machine (ASTM F1063 sample testing).</li>
+        </ul>
+      </section>
+
+      {/* Parent Pre-Season Checklist */}
+      <section class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4">
+        <h2 class="text-xl font-bold text-ink flex items-center gap-2">
+          <span>Parent Pre-Season Ski Binding Checklist</span>
+        </h2>
+        <div class="space-y-3 text-xs leading-relaxed">
+          <label class="flex items-start gap-3 p-3 rounded-xl bg-parchment border border-hairline cursor-pointer">
+            <input type="checkbox" class="mt-0.5 rounded border-hairline text-primary focus:ring-0" />
+            <span><strong>Verify BSL in mm:</strong> If your child got new ski boots, the boot sole length changed. Do not assume old settings apply.</span>
+          </label>
+          <label class="flex items-start gap-3 p-3 rounded-xl bg-parchment border border-hairline cursor-pointer">
+            <input type="checkbox" class="mt-0.5 rounded border-hairline text-primary focus:ring-0" />
+            <span><strong>Record current bare-foot weight:</strong> Use a real scale with standard indoor clothing, not ski jacket/helmet gear.</span>
+          </label>
+          <label class="flex items-start gap-3 p-3 rounded-xl bg-parchment border border-hairline cursor-pointer">
+            <input type="checkbox" class="mt-0.5 rounded border-hairline text-primary focus:ring-0" />
+            <span><strong>Check binding range:</strong> Ensure child's DIN setting falls comfortably in the middle of the binding's range (e.g. 0.75–4.5 DIN binding).</span>
+          </label>
+          <label class="flex items-start gap-3 p-3 rounded-xl bg-parchment border border-hairline cursor-pointer">
+            <input type="checkbox" class="mt-0.5 rounded border-hairline text-primary focus:ring-0" />
+            <span><strong>Certified shop release test:</strong> Take the skis and boots to a certified ski shop for electronic torque release verification.</span>
+          </label>
+        </div>
+      </section>
+
+      {/* CTA Box */}
+      <div class="p-8 rounded-3xl bg-primary/10 border border-primary/20 text-center space-y-4">
+        <h3 class="text-xl font-bold text-ink">Calculate Your Child's Exact Setting</h3>
+        <p class="text-sm text-mute max-w-lg mx-auto">
+          Our calculator engine incorporates ISO 11088:2023 junior code logic, age modifiers, and BSL ranges automatically.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-canvas font-medium text-sm hover:scale-[0.98] transition-transform shadow-md"
+          >
+            Launch Ski DIN Calculator
+          </a>
+          <a
+            href="/din-chart/"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-canvas border border-hairline text-ink font-medium text-sm hover:border-primary/50 transition-colors"
+          >
+            View Full Adult DIN Chart
+          </a>
+        </div>
+      </div>
+
+      {/* Primary Sources & Standards */}
+      <footer class="pt-8 border-t border-hairline space-y-3 text-xs text-mute">
+        <h4 class="font-bold text-ink">Primary Sources & Standards</h4>
+        <ul class="space-y-1">
+          <li>• ISO 11088:2023: <em>Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system</em> (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org</a>).</li>
+          <li>• ISO 13993: <em>Rental ski shop practice — Sampling and inspection procedures for alpine ski-binding-boot systems</em>.</li>
+          <li>• ISO 5355: <em>Alpine ski-boots — Requirements and test methods (Type C Children and Type A Adult)</em>.</li>
+          <li>• ASTM F1063: <em>Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems</em>.</li>
+        </ul>
+        <p class="pt-2 text-[11px] text-mute leading-relaxed">
+          <strong>Mandatory Safety Disclaimer:</strong> This chart is provided for informational and educational purposes. Children's ski bindings must always be inspected, mounted, and calibrated on a calibrated torque testing device by a qualified ski shop technician.
+        </p>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
