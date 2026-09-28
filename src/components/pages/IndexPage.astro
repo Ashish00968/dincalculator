@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CalculatorApp from '../calculator/CalculatorApp';
-import { AccordionFAQ } from '../ui/AccordionFAQ';
+import FaqSection from '../ui/FaqSection.astro';
 import { getRouteFromUrl, useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';
 import { calculateDIN } from '../../engine/din-engine';
@@ -93,7 +93,7 @@ const workedExample = calculateDIN({
       <div class="h-px flex-1 bg-hairline"></div>
     </div>
 
-    <CalculatorApp client:idle lang={lang} />
+    <CalculatorApp client:load lang={lang} />
 
     <!-- Trust Strip -->
     <div class="mt-6 p-4 rounded-xl bg-parchment border border-hairline flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-mute">
@@ -435,7 +435,7 @@ const workedExample = calculateDIN({
       <span class="text-[11px] font-mono font-semibold text-mute uppercase tracking-widest px-3">FAQ</span>
       <div class="h-px flex-1 bg-hairline"></div>
     </div>
-    <AccordionFAQ client:visible />
+    <FaqSection />
   </section>
 
 </BaseLayout>

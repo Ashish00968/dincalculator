@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Footprints, Ruler, Check, Search } from 'lucide-react';
+import { XIcon as X, FootprintsIcon as Footprints, RulerIcon as Ruler, CheckIcon as Check, SearchIcon as Search } from '../ui/Icons';
 import { useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';
 

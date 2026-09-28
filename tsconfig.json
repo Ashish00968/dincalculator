@@ -12,7 +12,7 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
+    "jsxImportSource": "preact",
     "types": ["node"]
   }
 }

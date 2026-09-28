@@ -4,7 +4,7 @@ import { ResultDisplay } from './ResultDisplay';
 import { Toggle } from '../ui/Toggle';
 import { calculateDin } from '../../engine/din-engine';
 import type { SkierProfile, UnitSystem, DinResult } from '../../engine/types';
-import { ShieldAlert, Sparkles } from 'lucide-react';
+import { ShieldAlertIcon as ShieldAlert, SparklesIcon as Sparkles } from '../ui/Icons';
 import { useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';
 

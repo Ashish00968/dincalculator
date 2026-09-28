@@ -5,7 +5,7 @@ import { Slider } from '../ui/Slider';
 import { imperialToMetric } from '../../engine/din-engine';
 import { cn } from '../../utils/cn';
 import { BslModal } from './BslModal';
-import { HelpCircle, ChevronRight, Settings2 } from 'lucide-react';
+import { HelpCircleIcon as HelpCircle, ChevronRightIcon as ChevronRight, Settings2Icon as Settings2 } from '../ui/Icons';
 
 import { useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';

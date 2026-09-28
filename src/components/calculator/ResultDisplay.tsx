@@ -2,7 +2,16 @@ import { useState } from 'react';
 import type { DinResult, DinNote } from '../../engine/types';
 import { Card, CardContent } from '../ui/Card';
 import { DinGauge } from './DinGauge';
-import { Info, AlertTriangle, CheckCircle2, Copy, Printer, ChevronDown, ChevronUp, Check } from 'lucide-react';
+import { 
+  InfoIcon as Info, 
+  AlertTriangleIcon as AlertTriangle, 
+  CheckCircle2Icon as CheckCircle2, 
+  CopyIcon as Copy, 
+  PrinterIcon as Printer, 
+  ChevronDownIcon as ChevronDown, 
+  ChevronUpIcon as ChevronUp, 
+  CheckIcon as Check 
+} from '../ui/Icons';
 import { cn } from '../../utils/cn';
 import { useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';

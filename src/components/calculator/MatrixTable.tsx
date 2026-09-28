@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 import { ISO_11088_MATRIX, SKIER_CODES, BSL_RANGES } from '../../engine/din-engine';
 import type { DinResult } from '../../engine/types';
 import { Toggle } from '../ui/Toggle';
-import { Table } from 'lucide-react';
+import { TableIcon as Table } from '../ui/Icons';
 
 import { useTranslations } from '../../i18n/utils';
 import type { ui } from '../../i18n/ui';

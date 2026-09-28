@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
+import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { isIndexablePath } from './src/i18n/config';
@@ -8,8 +8,11 @@ import { isIndexablePath } from './src/i18n/config';
 export default defineConfig({
   site: 'https://dincalculatorpro.com',
   trailingSlash: 'always',
+  prefetch: {
+    defaultStrategy: 'viewport',
+  },
   integrations: [
-    react(),
+    preact({ compat: true }),
     sitemap({
       filter: (page) => isIndexablePath(page),
       i18n: {
@@ -32,6 +35,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['@astrojs/preact', 'astro:preact:opts'],
+    },
     css: {
       postcss: {
         plugins: [],
