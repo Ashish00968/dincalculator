@@ -140,7 +140,7 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
                 const el = document.getElementById('calculator-result');
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-4 py-2 rounded-full bg-primary text-white text-xs font-semibold shadow hover:opacity-90 transition-all cursor-pointer"
+              className="px-4 py-2 rounded-full bg-primary text-neutral-950 text-xs font-bold shadow hover:opacity-90 transition-all cursor-pointer"
             >
               See Breakdown →
             </button>

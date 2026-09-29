@@ -9,7 +9,7 @@ const currentRoute = getRouteFromUrl(Astro.url, lang);
 <div class="relative group">
   <button
     class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-input border border-hairline text-sm font-medium text-mute hover:text-primary transition-colors"
-    aria-label="Select Language"
+    aria-label={`Select Language (${lang.toUpperCase()})`}
   >
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />

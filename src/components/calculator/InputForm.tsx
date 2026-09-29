@@ -120,7 +120,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                   type="button"
                   onClick={() => setWeight((w) => Math.max(isImperial ? 20 : 10, w - (isImperial ? 5 : 1)))}
                   aria-label="Decrease weight"
-                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                  className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
                 >
                   −
                 </button>
@@ -131,13 +131,13 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                   aria-label={`${t('calc.weight')} (${isImperial ? 'lbs' : 'kg'})`}
                   value={weight}
                   onChange={(e) => setWeight(Number(e.target.value))}
-                  className="w-16 bg-input border border-hairline rounded-md px-2 py-1 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
+                  className="w-16 h-11 bg-input border border-hairline rounded-lg px-2 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
                 />
                 <button
                   type="button"
                   onClick={() => setWeight((w) => Math.min(isImperial ? 300 : 140, w + (isImperial ? 5 : 1)))}
                   aria-label="Increase weight"
-                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                  className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
                 >
                   +
                 </button>
@@ -165,26 +165,26 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
             </label>
             {isImperial ? (
               <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center gap-2 bg-input border border-hairline rounded-lg px-3 py-1.5 focus-within:border-accent transition-colors">
+                <div className="flex items-center gap-2 bg-input border border-hairline rounded-lg px-3 h-11 focus-within:border-accent transition-colors">
                   <select
                     id="calc-height-ft-select"
                     aria-label="Height in feet"
                     value={heightFt}
                     onChange={(e) => setHeightFt(Number(e.target.value))}
-                    className="w-full bg-transparent text-ink font-semibold text-base focus:outline-none cursor-pointer font-mono"
+                    className="w-full h-full bg-transparent text-ink font-semibold text-base focus:outline-none cursor-pointer font-mono"
                   >
                     {[3, 4, 5, 6, 7].map((ft) => (
                       <option key={ft} value={ft} className="bg-input text-ink">{ft} ft</option>
                     ))}
                   </select>
                 </div>
-                <div className="flex items-center gap-2 bg-input border border-hairline rounded-lg px-3 py-1.5 focus-within:border-accent transition-colors">
+                <div className="flex items-center gap-2 bg-input border border-hairline rounded-lg px-3 h-11 focus-within:border-accent transition-colors">
                   <select
                     id="calc-height-in-select"
                     aria-label="Height in inches"
                     value={heightIn}
                     onChange={(e) => setHeightIn(Number(e.target.value))}
-                    className="w-full bg-transparent text-ink font-semibold text-base focus:outline-none cursor-pointer font-mono"
+                    className="w-full h-full bg-transparent text-ink font-semibold text-base focus:outline-none cursor-pointer font-mono"
                   >
                     {[...Array(12)].map((_, i) => (
                       <option key={i} value={i} className="bg-input text-ink">{i} in</option>
@@ -199,7 +199,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                     type="button"
                     onClick={() => setHeightCm((h) => Math.max(100, h - 1))}
                     aria-label="Decrease height"
-                    className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                    className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
                   >
                     −
                   </button>
@@ -210,13 +210,13 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                     aria-label={`${t('calc.height')} (cm)`}
                     value={heightCm}
                     onChange={(e) => setHeightCm(Number(e.target.value))}
-                    className="w-16 bg-input border border-hairline rounded-md px-2 py-1 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
+                    className="w-16 h-11 bg-input border border-hairline rounded-lg px-2 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
                   />
                   <button
                     type="button"
                     onClick={() => setHeightCm((h) => Math.min(220, h + 1))}
                     aria-label="Increase height"
-                    className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                    className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
                   >
                     +
                   </button>
@@ -249,7 +249,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                   type="button"
                   onClick={() => setAge((a) => Math.max(2, a - 1))}
                   aria-label="Decrease age"
-                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                  className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
                 >
                   −
                 </button>
@@ -262,13 +262,13 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                   onChange={(e) => setAge(Number(e.target.value))}
                   min={2}
                   max={120}
-                  className="w-16 bg-input border border-hairline rounded-md px-2 py-1 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
+                  className="w-16 h-11 bg-input border border-hairline rounded-lg px-2 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
                 />
                 <button
                   type="button"
                   onClick={() => setAge((a) => Math.min(120, a + 1))}
                   aria-label="Increase age"
-                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                  className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
                 >
                   +
                 </button>
@@ -391,7 +391,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                 type="button"
                 onClick={() => setBslMm((b) => Math.max(200, b - 5))}
                 aria-label="Decrease boot sole length"
-                className="w-10 h-10 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
               >
                 −
               </button>
@@ -404,13 +404,13 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                 onChange={(e) => setBslMm(Number(e.target.value))}
                 min={200}
                 max={400}
-                className="flex-1 bg-canvas border border-hairline rounded-lg px-4 py-2 text-ink text-center text-xl font-semibold focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all font-mono"
+                className="flex-1 h-11 bg-canvas border border-hairline rounded-lg px-4 text-ink text-center text-xl font-semibold focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all font-mono"
               />
               <button
                 type="button"
                 onClick={() => setBslMm((b) => Math.min(400, b + 5))}
                 aria-label="Increase boot sole length"
-                className="w-10 h-10 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                className="w-11 h-11 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
               >
                 +
               </button>
