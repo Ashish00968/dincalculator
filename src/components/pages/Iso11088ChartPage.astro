@@ -14,6 +14,287 @@ const siteUrl = 'https://dincalculatorpro.com';
 
 const pageTitle = t('page.matrix.title');
 const pageDescription = t('page.matrix.desc');
+
+interface ChartContent {
+  badge: string;
+  h1: string;
+  subtitle: string;
+  reviewedBy: string;
+  methodologyLink: string;
+  changesTitle: string;
+  changesDesc: string;
+  changesLinkText: string;
+  step1Title: string;
+  step1Desc: string;
+  step2Title: string;
+  step2Desc: string;
+  step3Title: string;
+  step3Desc: string;
+  stepPrefix: string;
+  workedTitle: string;
+  profileLabel: string;
+  profileVal: string;
+  baseCodeLabel: string;
+  baseCodeVal: string;
+  modifierLabel: string;
+  modifierVal: string;
+  settingLabel: string;
+  settingVal: string;
+  traceDesc: string;
+  card1Title: string;
+  card1P1: string;
+  card1RuleTitle: string;
+  card1RuleDesc: string;
+  card2Title: string;
+  card2P1: string;
+  typeMinus1: string;
+  type1: string;
+  type2: string;
+  type3: string;
+  ageMod: string;
+  stepMinus1: string;
+  step0: string;
+  stepPlus1: string;
+  stepPlus2: string;
+  card3Title: string;
+  card3P1: string;
+  standardsTitle: string;
+  isoTitle: string;
+  isoDesc: string;
+  astmF939Title: string;
+  astmF939Desc: string;
+  astmF1063Title: string;
+  astmF1063Desc: string;
+  iso9462Title: string;
+  iso9462Desc: string;
+  safetyTitle: string;
+  safetyDesc: string;
+}
+
+const chartContent: Record<string, ChartContent> = {
+  en: {
+    badge: 'ISO 11088:2023 Standard Table 2 Matrix',
+    h1: 'Ski Binding DIN Chart (ISO 11088:2023)',
+    subtitle: 'The international standard matrix used by ski service workshops to determine release torque settings based on skier code and boot sole millimeter length.',
+    reviewedBy: 'Reviewed by Ski Tech Team',
+    methodologyLink: 'Calculation Methodology',
+    changesTitle: 'What changed in the ISO 11088:2023 7th Edition?',
+    changesDesc: 'The 7th Edition of ISO 11088 (published 2023) established formal boot-binding interface classification tables (incorporating GripWalk ISO 23223 alongside Alpine ISO 5355 and Touring ISO 9523) and updated workshop inspection tolerances. Learn full details in our',
+    changesLinkText: 'ISO 11088:2023 Changes Breakdown',
+    stepPrefix: 'Step',
+    step1Title: 'Find Skier Code',
+    step1Desc: 'Look up body weight and height. If they point to different rows, select the upper row (lower letter) for safety.',
+    step2Title: 'Apply Modifiers',
+    step2Desc: 'Adjust row for Skier Type (Type II: +1, Type III: +2) and age (under 10 or 50+: shift 1 row up).',
+    step3Title: 'Cross-Reference BSL',
+    step3Desc: 'Trace right along the final code row until you reach your boot sole length (BSL) column in millimeters.',
+    workedTitle: 'Worked Example: 75 kg All-Mountain Skier',
+    profileLabel: 'Skier Profile',
+    profileVal: '75 kg · 178 cm · 30 yrs',
+    baseCodeLabel: 'Baseline Code',
+    baseCodeVal: 'Weight Code K (67–78 kg)',
+    modifierLabel: 'Type II Modifier',
+    modifierVal: '+1 Row → Code L',
+    settingLabel: 'BSL 305mm Setting',
+    settingVal: 'DIN 6.5 (58–71 Nm)',
+    traceDesc: 'Trace: Code L across to the 291–310 mm BSL column produces exactly <strong>6.5</strong> on the standardized scale.',
+    card1Title: 'Baseline Skier Codes (A to P)',
+    card1P1: "The ISO 11088 system begins by mapping a skier's body mass (weight) and height to an alphabetic row letter from <strong>Code A</strong> (children 10–13 kg) through <strong>Code P</strong> (extreme racers).",
+    card1RuleTitle: 'The Conflict Resolution Rule:',
+    card1RuleDesc: 'If weight gives one code (e.g. Code J) and height gives another (e.g. Code K), ISO 11088 mandates choosing the <strong>higher row in the chart (lower letter = lower release torque)</strong> for safety.',
+    card2Title: 'Modifiers: Skier Type & Age',
+    card2P1: 'The baseline code is adjusted based on skiing speed, aggression, and bone density age factors:',
+    typeMinus1: 'Type -I (Extremely Cautious)',
+    type1: 'Type I (Cautious / Beginner)',
+    type2: 'Type II (Moderate / All-Mountain)',
+    type3: 'Type III (Aggressive / Expert)',
+    ageMod: 'Age Modifier (<10 or ≥50 years)',
+    stepMinus1: '-1 Row Step',
+    step0: '0 Steps (Baseline)',
+    stepPlus1: '+1 Row Step',
+    stepPlus2: '+2 Row Steps',
+    card3Title: 'Boot Sole Length (BSL) Lever Arm Physics',
+    card3P1: 'Why does a longer boot have a lower DIN setting for the exact same skier? Ski bindings release based on <strong>rotational torque (Newton-meters)</strong>. A longer ski boot acts as a longer physical lever arm against the binding. Because Torque = Force × Distance, a longer boot produces greater leverage against binding lugs at lower force, requiring a lower DIN calibration number to release at the identical safe bone-stress threshold.',
+    standardsTitle: 'Standards & Primary Sources',
+    isoTitle: 'ISO 11088:2023 (Edition 7):',
+    isoDesc: 'Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system — International Organization for Standardization',
+    astmF939Title: 'ASTM F939:',
+    astmF939Desc: 'Standard Practice for Selection of Release Torque Values for Alpine Ski Bindings — American Society for Testing and Materials.',
+    astmF1063Title: 'ASTM F1063:',
+    astmF1063Desc: 'Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems — American Society for Testing and Materials.',
+    iso9462Title: 'ISO 9462:',
+    iso9462Desc: 'Alpine ski-bindings — Requirements and test methods.',
+    safetyTitle: 'Important Safety Note:',
+    safetyDesc: 'Visual indicator scale numbers on bindings are references for calibrated torque release. Binding adjustments, forward pressure checks, and mechanical verification must be performed by a certified ski workshop technician using a calibrated mechanical test device.',
+  },
+  de: {
+    badge: 'ISO 11088:2023 Tabelle 2 Z-Wert Matrix',
+    h1: 'Z-Wert Tabelle Skibindung (ISO 11088:2023)',
+    subtitle: 'Die internationale Referenztabelle der Skiservice-Werkstätten zur Ermittlung des Auslösemoments anhand von Fahrercode und Skischuh-Sohlenlänge in Millimetern.',
+    reviewedBy: 'Geprüft vom Ski-Technik-Team',
+    methodologyLink: 'Berechnungsmethodik',
+    changesTitle: 'Was hat sich in der 7. Ausgabe der ISO 11088:2023 geändert?',
+    changesDesc: 'Die 7. Ausgabe der ISO 11088 (veröffentlicht 2023) hat formelle Klassifizierungstabellen für Schuh-Bindungs-Schnittstellen eingeführt (einschließlich GripWalk ISO 23223 neben Alpin ISO 5355 und Touren ISO 9523) sowie Werkstatt-Prüftoleranzen aktualisiert. Erfahren Sie alle Details in unserer',
+    changesLinkText: 'Übersicht der Änderungen nach ISO 11088:2023',
+    stepPrefix: 'Schritt',
+    step1Title: 'Fahrercode ermitteln',
+    step1Desc: 'Körpergewicht und Körpergröße ablesen. Weisen beide auf unterschiedliche Zeilen, aus Sicherheitsgründen die obere Zeile (niedrigerer Buchstabe) wählen.',
+    step2Title: 'Korrekturen anwenden',
+    step2Desc: 'Zeile anpassen für Fahrertyp (Typ II: +1, Typ III: +2) und Alter (unter 10 oder ab 50: 1 Zeile nach oben verschieben).',
+    step3Title: 'Sohlenlänge abgleichen',
+    step3Desc: 'Entlang der endgültigen Code-Zeile nach rechts wandern, bis die Spalte mit Ihrer Skischuh-Sohlenlänge (BSL) in Millimetern erreicht ist.',
+    workedTitle: 'Berechnungsbeispiel: 75 kg All-Mountain-Skifahrer',
+    profileLabel: 'Fahrerprofil',
+    profileVal: '75 kg · 178 cm · 30 Jahre',
+    baseCodeLabel: 'Basis-Code',
+    baseCodeVal: 'Gewicht Code K (67–78 kg)',
+    modifierLabel: 'Typ-II-Korrektur',
+    modifierVal: '+1 Zeile → Code L',
+    settingLabel: 'Einstellung BSL 305 mm',
+    settingVal: 'Z-Wert 6,5 (58–71 Nm)',
+    traceDesc: 'Ablesen: Code L horizontal bis zur Spalte 291–310 mm Sohlenlänge ergibt exakt den Z-Wert <strong>6,5</strong> auf der genormten Skala.',
+    card1Title: 'Basis-Fahrercodes (A bis P)',
+    card1P1: 'Das System der ISO 11088 ordnet zunächst Körpergewicht und Körpergröße eines Skifahrers einem Buchstaben zu – von <strong>Code A</strong> (Kinder 10–13 kg) bis <strong>Code P</strong> (Rennläufer).',
+    card1RuleTitle: 'Die Konfliktlösungsregel:',
+    card1RuleDesc: 'Weisen Gewicht (z. B. Code J) und Körpergröße (z. B. Code K) unterschiedliche Zeilen aus, verlangt ISO 11088 aus Sicherheitsgründen die <strong>höhere Tabellenzeile (niedrigerer Buchstabe = geringeres Auslösemoment)</strong>.',
+    card2Title: 'Korrekturen: Fahrertyp & Alter',
+    card2P1: 'Der Basis-Code wird anhand von Fahrgeschwindigkeit, Fahrstil und altersbedingter Knochenbelastbarkeit angepasst:',
+    typeMinus1: 'Typ -I (Extrem vorsichtig)',
+    type1: 'Typ I (Vorsichtig / Einsteiger)',
+    type2: 'Typ II (Moderat / All-Mountain)',
+    type3: 'Typ III (Aggressiv / Experte)',
+    ageMod: 'Alterskorrektur (<10 oder ≥50 Jahre)',
+    stepMinus1: '-1 Zeilenschritt',
+    step0: '0 Schritte (Basis)',
+    stepPlus1: '+1 Zeilenschritt',
+    stepPlus2: '+2 Zeilenschritte',
+    card3Title: 'Hebelarm-Physik der Skischuh-Sohlenlänge (BSL)',
+    card3P1: 'Warum hat ein längerer Skischuh bei genau demselben Skifahrer einen niedrigeren Z-Wert? Skibindungen lösen anhand des <strong>Drehmoments (Newtonmeter)</strong> aus. Ein längerer Skischuh wirkt wie ein längerer physikalischer Hebelarm auf die Bindung. Da Drehmoment = Kraft × Hebelarm ist, erzeugt ein längerer Schuh bei geringerer Fußkraft mehr Hebelwirkung auf die Bindungsbacken. Daher ist ein geringerer Z-Wert erforderlich, um exakt an der gleichen sicheren Knochenbelastungsgrenze auszulösen.',
+    standardsTitle: 'Normen & Primärquellen',
+    isoTitle: 'ISO 11088:2023 (Ausgabe 7):',
+    isoDesc: 'Montage, Einstellung und Überprüfung des Systems Ski-Bindung-Schuh (S-B-S) für den alpinen Skilauf — Internationale Organisation für Normung',
+    astmF939Title: 'ASTM F939:',
+    astmF939Desc: 'Standardverfahren zur Bestimmung von Auslösedrehmomenten für alpine Skibindungen — ASTM International.',
+    astmF1063Title: 'ASTM F1063:',
+    astmF1063Desc: 'Standardverfahren zur Funktionsprüfung und Justierung von Ski-Bindung-Schuh-Systemen — ASTM International.',
+    iso9462Title: 'ISO 9462:',
+    iso9462Desc: 'Sicherheits-Skibindungen für den alpinen Skilauf — Anforderungen und Prüfverfahren.',
+    safetyTitle: 'Wichtiger Sicherheitshinweis:',
+    safetyDesc: 'Die Einstellwerte auf den Skibindungen sind Richtwerte für kalibrierte Auslösedrehmomente. Bindungseinstellungen, Anpressdruck-Prüfungen und die mechanische Überprüfung müssen von einem qualifizierten Skiservice-Techniker mit einem geeichten mechanischen Prüfgerät durchgeführt werden.',
+  },
+  fr: {
+    badge: 'Matrice Tableau 2 ISO 11088:2023',
+    h1: 'Tableau DIN Fixations de Ski (ISO 11088:2023)',
+    subtitle: 'La grille de référence internationale utilisée en atelier pour déterminer le réglage de déclenchement selon le code skieur et la longueur de semelle en millimètres.',
+    reviewedBy: "Validé par l'équipe technique ski",
+    methodologyLink: 'Méthodologie de calcul',
+    changesTitle: "Qu'est-ce qui a changé dans la 7e édition de l'ISO 11088:2023 ?",
+    changesDesc: "La 7e édition de l'ISO 11088 (publiée en 2023) a établi des tableaux formels de classification des interfaces chaussure-fixation (intégrant GripWalk ISO 23223 aux côtés d'Alpine ISO 5355 et Randonnée ISO 9523) et a mis à jour les tolérances de contrôle en atelier. Découvrez tous les détails dans notre",
+    changesLinkText: 'synthèse des évolutions ISO 11088:2023',
+    stepPrefix: 'Étape',
+    step1Title: 'Déterminer le code skieur',
+    step1Desc: "Consultez votre poids et votre taille. S'ils renvoient à des lignes différentes, choisissez la ligne supérieure (lettre inférieure) par sécurité.",
+    step2Title: 'Appliquer les correctifs',
+    step2Desc: "Ajustez la ligne selon le profil du skieur (Type II : +1, Type III : +2) et l'âge (moins de 10 ans ou 50 ans et plus : monter d'une ligne).",
+    step3Title: 'Croiser avec la longueur BSL',
+    step3Desc: "Suivez vers la droite la ligne du code final jusqu'à la colonne correspondant à votre longueur de semelle (BSL) en millimètres.",
+    workedTitle: 'Exemple concret : Skieur All-Mountain de 75 kg',
+    profileLabel: 'Profil du skieur',
+    profileVal: '75 kg · 178 cm · 30 ans',
+    baseCodeLabel: 'Code de base',
+    baseCodeVal: 'Code poids K (67–78 kg)',
+    modifierLabel: 'Correctif Type II',
+    modifierVal: '+1 ligne → Code L',
+    settingLabel: 'Réglage BSL 305 mm',
+    settingVal: 'DIN 6,5 (58–71 Nm)',
+    traceDesc: "Lecture : le Code L recoupé avec la colonne de semelle 291–310 mm donne précisément un indice de <strong>6,5</strong> sur l'échelle normalisée.",
+    card1Title: 'Codes de base du skieur (A à P)',
+    card1P1: "Le système ISO 11088 commence par associer le poids et la taille du skieur à une lettre alphabétique, du <strong>Code A</strong> (enfants de 10 à 13 kg) au <strong>Code P</strong> (compétiteurs de haut niveau).",
+    card1RuleTitle: 'La règle de résolution des écarts :',
+    card1RuleDesc: "Si le poids indique un code (ex. Code J) et la taille un autre (ex. Code K), la norme ISO 11088 impose de retenir la <strong>ligne la plus haute du tableau (lettre inférieure = couple de déclenchement plus faible)</strong> par mesure de sécurité.",
+    card2Title: 'Correctifs : Profil du skieur & Âge',
+    card2P1: "Le code de base est ensuite ajusté en fonction de la vitesse, de l'engagement sur les pistes et de l'âge :",
+    typeMinus1: 'Type -I (Très prudent)',
+    type1: 'Type I (Prudent / Débutant)',
+    type2: 'Type II (Moyen / Polyvalent)',
+    type3: 'Type III (Engagé / Expert)',
+    ageMod: "Correctif d'âge (<10 ou ≥50 ans)",
+    stepMinus1: '-1 cran',
+    step0: '0 cran (Référence)',
+    stepPlus1: '+1 cran',
+    stepPlus2: '+2 crans',
+    card3Title: 'Physique du bras de levier et longueur de semelle (BSL)',
+    card3P1: "Pourquoi une chaussure plus longue requiert-elle un indice DIN plus bas pour le même skieur ? Les fixations déclenchent selon un <strong>couple de rotation (en newton-mètres)</strong>. Une chaussure plus longue agit comme un bras de levier plus grand sur la fixation. Comme le couple est égal à la force multipliée par la distance, une chaussure plus grande exerce une contrainte équivalente avec moins d'effort, ce qui impose une valeur DIN inférieure pour déclencher au seuil précis de protection osseuse.",
+    standardsTitle: 'Normes de référence & Sources',
+    isoTitle: 'ISO 11088:2023 (Édition 7) :',
+    isoDesc: 'Montage, réglage et contrôle du système ensemble ski-fixation-chaussure (S-F-C) pour le ski alpin — Organisation internationale de normalisation',
+    astmF939Title: 'ASTM F939 :',
+    astmF939Desc: 'Pratique standard pour la détermination des valeurs de couple de déclenchement des fixations alpines — ASTM International.',
+    astmF1063Title: 'ASTM F1063 :',
+    astmF1063Desc: 'Pratique standard pour les contrôles fonctionnels et réglages des ensembles ski-fixation-chaussure — ASTM International.',
+    iso9462Title: 'ISO 9462 :',
+    iso9462Desc: "Fixations de ski alpin — Exigences et méthodes d'essai.",
+    safetyTitle: 'Note de sécurité importante :',
+    safetyDesc: "Les graduations visuelles sur les fixations sont des repères pour un couple de déclenchement étalonné. Le réglage des fixations, le contrôle de la poussée longitudinale et la vérification mécanique doivent être réalisés par un technicien d'atelier de ski certifié à l'aide d'un banc de test mécanique homologué.",
+  },
+  it: {
+    badge: 'Matrice Tabella 2 ISO 11088:2023',
+    h1: 'Tabella DIN Attacchi Sci (ISO 11088:2023)',
+    subtitle: 'La matrice di riferimento internazionale impiegata dai laboratori sci per definire la coppia di rilascio in base al codice sciatore e alla lunghezza scafo in millimetri.',
+    reviewedBy: 'Revisionato dal team tecnico sci',
+    methodologyLink: 'Metodologia di calcolo',
+    changesTitle: 'Cosa è cambiato nella 7ª edizione della norma ISO 11088:2023?',
+    changesDesc: "La 7ª edizione della norma ISO 11088 (pubblicata nel 2023) ha introdotto tabelle formali di classificazione dell'interfaccia scarpone-attacco (integrando GripWalk ISO 23223 insieme ad Alpine ISO 5355 e Touring ISO 9523) e aggiornato le tolleranze di verifica d'officina. Scopri tutti i dettagli nella nostra",
+    changesLinkText: 'guida alle novità ISO 11088:2023',
+    stepPrefix: 'Passo',
+    step1Title: 'Trova il codice sciatore',
+    step1Desc: 'Consulta peso e altezza. Se corrispondono a righe diverse, seleziona per sicurezza la riga superiore (lettera inferiore).',
+    step2Title: 'Applica le correzioni',
+    step2Desc: "Regola la riga in base al tipo di sciatore (Tipo II: +1, Tipo III: +2) e all'età (meno di 10 anni o 50+: sali di 1 riga).",
+    step3Title: 'Incrocia la lunghezza BSL',
+    step3Desc: 'Scorri verso destra lungo la riga del codice definitivo fino alla colonna della lunghezza scafo (BSL) in millimetri.',
+    workedTitle: 'Esempio pratico: Sciatore All-Mountain da 75 kg',
+    profileLabel: 'Profilo sciatore',
+    profileVal: '75 kg · 178 cm · 30 anni',
+    baseCodeLabel: 'Codice base',
+    baseCodeVal: 'Codice peso K (67–78 kg)',
+    modifierLabel: 'Correzione Tipo II',
+    modifierVal: '+1 riga → Codice L',
+    settingLabel: 'Regolazione BSL 305 mm',
+    settingVal: 'DIN 6,5 (58–71 Nm)',
+    traceDesc: "Lettura: l'incrocio del Codice L con la colonna scafo 291–310 mm produce esattamente <strong>6,5</strong> sulla scala normalizzata.",
+    card1Title: 'Codici sciatore di base (da A a P)',
+    card1P1: 'Il sistema ISO 11088 inizia mappando la massa corporea (peso) e la statura dello sciatore su una riga alfabetica, dal <strong>Codice A</strong> (bambini 10–13 kg) fino al <strong>Codice P</strong> (atleti da gara).',
+    card1RuleTitle: 'La regola di risoluzione dei conflitti:',
+    card1RuleDesc: "Se il peso indica un codice (es. Codice J) e l'altezza un altro (es. Codice K), la norma ISO 11088 impone di scegliere la <strong>riga superiore della tabella (lettera inferiore = coppia di sgancio minore)</strong> a tutela della sicurezza.",
+    card2Title: 'Correzioni: Tipo di sciatore & Età',
+    card2P1: 'Il codice di base viene modificato in funzione di velocità di sciata, aggressività e fattori di resistenza ossea legati all’età:',
+    typeMinus1: 'Tipo -I (Estremamente prudente)',
+    type1: 'Tipo I (Prudente / Principiante)',
+    type2: 'Tipo II (Intermedio / All-Mountain)',
+    type3: 'Tipo III (Aggressivo / Esperto)',
+    ageMod: 'Correzione età (<10 o ≥50 anni)',
+    stepMinus1: '-1 riga',
+    step0: '0 righe (Base)',
+    stepPlus1: '+1 riga',
+    stepPlus2: '+2 righe',
+    card3Title: 'Fisica del braccio di leva e lunghezza scafo (BSL)',
+    card3P1: 'Perché uno scarpone più lungo richiede una taratura DIN più bassa per il medesimo sciatore? Gli attacchi da sci si sganciano in base alla <strong>coppia rotazionale (Newton-metri)</strong>. Uno scarpone più lungo agisce come un braccio di leva più lungo sull’attacco. Poiché la Coppia = Forza × Distanza, uno scarpone lungo esercita una leva maggiore a parità di forza; serve quindi un numero DIN inferiore per rilasciare esattamente alla medesima soglia di sicurezza per le ossa.',
+    standardsTitle: 'Norme & Fonti ufficiali',
+    isoTitle: 'ISO 11088:2023 (Edizione 7):',
+    isoDesc: "Montaggio, regolazione e controllo del sistema sci-attacco-scarpone (S-A-S) per lo sci alpino — Organizzazione internazionale per la normazione",
+    astmF939Title: 'ASTM F939:',
+    astmF939Desc: 'Pratica standard per la selezione dei valori di coppia di rilascio degli attacchi da sci alpino — ASTM International.',
+    astmF1063Title: 'ASTM F1063:',
+    astmF1063Desc: 'Pratica standard per controlli funzionali e regolazioni dei sistemi sci-attacco-scarpone — ASTM International.',
+    iso9462Title: 'ISO 9462:',
+    iso9462Desc: 'Attacchi per sci alpino — Requisiti e metodi di prova.',
+    safetyTitle: 'Nota importante di sicurezza:',
+    safetyDesc: "I valori della scala graduata sugli attacchi sono riferimenti per la coppia di rilascio tarata. La regolazione degli attacchi, il controllo della spinta longitudinale e la verifica meccanica devono essere eseguiti da un tecnico specializzato di laboratorio sci con un dispositivo di prova meccanico calibrato.",
+  },
+};
+
+const c = chartContent[lang] || chartContent['en'];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -22,30 +303,22 @@ const pageDescription = t('page.matrix.desc');
     <div class="text-center max-w-3xl mx-auto mb-12">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold mb-4 shadow-sm uppercase tracking-widest">
         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span>
-          {lang === 'de' ? 'ISO 11088:2023 Tabelle 2 Z-Wert Matrix' : lang === 'fr' ? 'Matrice Tableau 2 ISO 11088:2023' : lang === 'it' ? 'Matrice Tabella 2 ISO 11088:2023' : 'ISO 11088:2023 Standard Table 2 Matrix'}
-        </span>
+        <span>{c.badge}</span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
-        {lang === 'de' ? 'Z-Wert Tabelle Skibindung (ISO 11088:2023)' : lang === 'fr' ? 'Tableau DIN Fixations de Ski (ISO 11088:2023)' : lang === 'it' ? 'Tabella DIN Attacchi Sci (ISO 11088:2023)' : 'Ski Binding DIN Chart (ISO 11088:2023)'}
+        {c.h1}
       </h1>
       <p class="text-mute text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        {lang === 'de' 
-          ? 'Die internationale Referenztabelle der Skiservice-Werkstätten zur Ermittlung des Auslösemoments anhand von Fahrercode und Skischuh-Sohlenlänge in Millimetern.'
-          : lang === 'fr'
-          ? 'La grille de référence internationale utilisée en atelier pour déterminer le réglage de déclenchement selon le code skieur et la longueur de semelle.'
-          : lang === 'it'
-          ? 'La matrice di riferimento internazionale impiegata dai laboratori sci per definire la coppia di rilascio in base al codice sciatore e alla lunghezza scafo in millimetri.'
-          : 'The international standard matrix used by ski service workshops to determine release torque settings based on skier code and boot sole millimeter length.'}
+        {c.subtitle}
       </p>
 
       {/* Trust & Meta Info */}
       <div class="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-mute font-mono">
         <span>Standard: ISO 11088:2023 (Ed. 7)</span>
         <span>•</span>
-        <span>Reviewed by Ski Tech Team</span>
+        <span>{c.reviewedBy}</span>
         <span>•</span>
-        <a href="/methodology/" class="underline hover:text-primary">Calculation Methodology</a>
+        <a href={getRouteFromUrl(new URL('/methodology/', siteUrl), lang)} class="underline hover:text-primary">{c.methodologyLink}</a>
       </div>
 
       <div class="mt-8 flex flex-wrap justify-center gap-3">
@@ -79,9 +352,9 @@ const pageDescription = t('page.matrix.desc');
           </svg>
         </div>
         <div class="space-y-1">
-          <h2 class="text-base font-semibold text-ink">What changed in the ISO 11088:2023 7th Edition?</h2>
+          <h2 class="text-base font-semibold text-ink">{c.changesTitle}</h2>
           <p class="text-sm text-mute leading-relaxed">
-            The 7th Edition of ISO 11088 (published 2023) established formal boot-binding interface classification tables (incorporating GripWalk ISO 23223 alongside Alpine ISO 5355 and Touring ISO 9523) and updated workshop inspection tolerances. Learn full details in our <a href="/iso-11088-2023-changes/" class="text-primary underline font-medium">ISO 11088:2023 Changes Breakdown</a>.
+            {c.changesDesc} <a href={getRouteFromUrl(new URL('/iso-11088-2023-changes/', siteUrl), lang)} class="text-primary underline font-medium">{c.changesLinkText}</a>.
           </p>
         </div>
       </div>
@@ -90,19 +363,19 @@ const pageDescription = t('page.matrix.desc');
     {/* 3-Step Quick Reading Guide */}
     <div class="mb-12 grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
-        <div class="text-primary font-mono font-bold text-xs uppercase tracking-wider">Step 1</div>
-        <h3 class="font-semibold text-ink text-sm">Find Skier Code</h3>
-        <p class="text-xs text-mute leading-relaxed">Look up body weight and height. If they point to different rows, select the upper row (lower letter) for safety.</p>
+        <div class="text-primary font-mono font-bold text-xs uppercase tracking-wider">{c.stepPrefix} 1</div>
+        <h3 class="font-semibold text-ink text-sm">{c.step1Title}</h3>
+        <p class="text-xs text-mute leading-relaxed">{c.step1Desc}</p>
       </div>
       <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
-        <div class="text-primary font-mono font-bold text-xs uppercase tracking-wider">Step 2</div>
-        <h3 class="font-semibold text-ink text-sm">Apply Modifiers</h3>
-        <p class="text-xs text-mute leading-relaxed">Adjust row for Skier Type (Type II: +1, Type III: +2) and age (under 10 or 50+: shift 1 row up).</p>
+        <div class="text-primary font-mono font-bold text-xs uppercase tracking-wider">{c.stepPrefix} 2</div>
+        <h3 class="font-semibold text-ink text-sm">{c.step2Title}</h3>
+        <p class="text-xs text-mute leading-relaxed">{c.step2Desc}</p>
       </div>
       <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
-        <div class="text-primary font-mono font-bold text-xs uppercase tracking-wider">Step 3</div>
-        <h3 class="font-semibold text-ink text-sm">Cross-Reference BSL</h3>
-        <p class="text-xs text-mute leading-relaxed">Trace right along the final code row until you reach your boot sole length (BSL) column in millimeters.</p>
+        <div class="text-primary font-mono font-bold text-xs uppercase tracking-wider">{c.stepPrefix} 3</div>
+        <h3 class="font-semibold text-ink text-sm">{c.step3Title}</h3>
+        <p class="text-xs text-mute leading-relaxed">{c.step3Desc}</p>
       </div>
     </div>
 
@@ -114,29 +387,27 @@ const pageDescription = t('page.matrix.desc');
     {/* Worked Example Card */}
     <div class="mb-16 p-6 sm:p-8 rounded-2xl bg-canvas border border-hairline space-y-4">
       <h2 class="text-lg font-bold text-ink flex items-center gap-2">
-        <span>Worked Example: 75 kg All-Mountain Skier</span>
+        <span>{c.workedTitle}</span>
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
         <div class="p-3 rounded-xl bg-parchment border border-hairline">
-          <div class="text-mute mb-1">Skier Profile</div>
-          <div class="font-bold text-ink">75 kg · 178 cm · 30 yrs</div>
+          <div class="text-mute mb-1">{c.profileLabel}</div>
+          <div class="font-bold text-ink">{c.profileVal}</div>
         </div>
         <div class="p-3 rounded-xl bg-parchment border border-hairline">
-          <div class="text-mute mb-1">Baseline Code</div>
-          <div class="font-bold text-ink">Weight Code K (67–78 kg)</div>
+          <div class="text-mute mb-1">{c.baseCodeLabel}</div>
+          <div class="font-bold text-ink">{c.baseCodeVal}</div>
         </div>
         <div class="p-3 rounded-xl bg-parchment border border-hairline">
-          <div class="text-mute mb-1">Type II Modifier</div>
-          <div class="font-bold text-primary">+1 Row &rarr; Code L</div>
+          <div class="text-mute mb-1">{c.modifierLabel}</div>
+          <div class="font-bold text-primary">{c.modifierVal}</div>
         </div>
         <div class="p-3 rounded-xl bg-parchment border border-hairline">
-          <div class="text-mute mb-1">BSL 305mm Setting</div>
-          <div class="font-bold text-emerald-700 dark:text-emerald-400">DIN 6.5 (58–71 Nm)</div>
+          <div class="text-mute mb-1">{c.settingLabel}</div>
+          <div class="font-bold text-emerald-700 dark:text-emerald-400">{c.settingVal}</div>
         </div>
       </div>
-      <p class="text-xs text-mute leading-relaxed">
-        Trace: Code L across to the 291–310 mm BSL column produces exactly <strong>6.5</strong> on the standardized scale.
-      </p>
+      <p class="text-xs text-mute leading-relaxed" set:html={c.traceDesc} />
     </div>
 
     {/* Educational Guide on ISO 11088 Logic */}
@@ -144,47 +415,43 @@ const pageDescription = t('page.matrix.desc');
       <div class="p-8 rounded-[24px] bg-parchment border border-hairline space-y-4 shadow-sm">
         <h2 class="text-lg font-semibold text-ink flex items-center gap-3">
           <span class="w-8 h-8 rounded-full bg-canvas border border-hairline text-ink flex items-center justify-center text-sm font-semibold">1</span>
-          Baseline Skier Codes (A to P)
+          {c.card1Title}
         </h2>
-        <p class="text-sm text-mute leading-relaxed">
-          The ISO 11088 system begins by mapping a skier's body mass (weight) and height to an alphabetic row letter from <strong>Code A</strong> (children 10–13 kg) through <strong>Code P</strong> (extreme racers).
-        </p>
+        <p class="text-sm text-mute leading-relaxed" set:html={c.card1P1} />
         <div class="p-4 rounded-[16px] bg-canvas border border-hairline text-sm space-y-1">
-          <p class="font-semibold text-ink">The Conflict Resolution Rule:</p>
-          <p class="text-mute text-xs">
-            If weight gives one code (e.g. Code J) and height gives another (e.g. Code K), ISO 11088 mandates choosing the <strong>higher row in the chart (lower letter = lower release torque)</strong> for safety.
-          </p>
+          <p class="font-semibold text-ink">{c.card1RuleTitle}</p>
+          <p class="text-mute text-xs" set:html={c.card1RuleDesc} />
         </div>
       </div>
 
       <div class="p-8 rounded-[24px] bg-parchment border border-hairline space-y-4 shadow-sm">
         <h2 class="text-lg font-semibold text-ink flex items-center gap-3">
           <span class="w-8 h-8 rounded-full bg-canvas border border-hairline text-ink flex items-center justify-center text-sm font-semibold">2</span>
-          Modifiers: Skier Type & Age
+          {c.card2Title}
         </h2>
         <p class="text-sm text-mute leading-relaxed">
-          The baseline code is adjusted based on skiing speed, aggression, and bone density age factors:
+          {c.card2P1}
         </p>
         <ul class="text-xs space-y-2 text-ink font-mono mt-4">
           <li class="flex items-center justify-between p-3 rounded-lg bg-canvas border border-hairline">
-            <span>Type -I (Extremely Cautious)</span>
-            <span class="text-emerald-700 dark:text-emerald-400 font-semibold">-1 Row Step</span>
+            <span>{c.typeMinus1}</span>
+            <span class="text-emerald-700 dark:text-emerald-400 font-semibold">{c.stepMinus1}</span>
           </li>
           <li class="flex items-center justify-between p-3 rounded-lg bg-canvas border border-hairline">
-            <span>Type I (Cautious / Beginner)</span>
-            <span class="text-mute">0 Steps (Baseline)</span>
+            <span>{c.type1}</span>
+            <span class="text-mute">{c.step0}</span>
           </li>
           <li class="flex items-center justify-between p-3 rounded-lg bg-canvas border border-hairline">
-            <span>Type II (Moderate / All-Mountain)</span>
-            <span class="text-primary font-semibold">+1 Row Step</span>
+            <span>{c.type2}</span>
+            <span class="text-primary font-semibold">{c.stepPlus1}</span>
           </li>
           <li class="flex items-center justify-between p-3 rounded-lg bg-canvas border border-hairline">
-            <span>Type III (Aggressive / Expert)</span>
-            <span class="text-amber-800 dark:text-amber-300 font-semibold">+2 Row Steps</span>
+            <span>{c.type3}</span>
+            <span class="text-amber-800 dark:text-amber-300 font-semibold">{c.stepPlus2}</span>
           </li>
           <li class="flex items-center justify-between p-3 rounded-lg bg-canvas border border-hairline">
-            <span>Age Modifier (&lt;10 or &ge;50 years)</span>
-            <span class="text-emerald-700 dark:text-emerald-400 font-semibold">-1 Row Step</span>
+            <span>{c.ageMod}</span>
+            <span class="text-emerald-700 dark:text-emerald-400 font-semibold">{c.stepMinus1}</span>
           </li>
         </ul>
       </div>
@@ -192,24 +459,22 @@ const pageDescription = t('page.matrix.desc');
       <div class="p-8 rounded-[24px] bg-parchment border border-hairline space-y-4 md:col-span-2 shadow-sm">
         <h2 class="text-lg font-semibold text-ink flex items-center gap-3">
           <span class="w-8 h-8 rounded-full bg-canvas border border-hairline text-ink flex items-center justify-center text-sm font-semibold">3</span>
-          Boot Sole Length (BSL) Lever Arm Physics
+          {c.card3Title}
         </h2>
-        <p class="text-sm text-mute leading-relaxed">
-          Why does a longer boot have a lower DIN setting for the exact same skier? Ski bindings release based on <strong>rotational torque (Newton-meters)</strong>. A longer ski boot acts as a longer physical lever arm against the binding. Because Torque = Force &times; Distance, a longer boot produces greater leverage against binding lugs at lower force, requiring a lower DIN calibration number to release at the identical safe bone-stress threshold.
-        </p>
+        <p class="text-sm text-mute leading-relaxed" set:html={c.card3P1} />
       </div>
 
       {/* Primary Sources & Standard Citations */}
       <div class="p-8 rounded-[24px] bg-canvas border border-hairline space-y-4 md:col-span-2">
-        <h2 class="text-base font-semibold text-ink">Standards & Primary Sources</h2>
+        <h2 class="text-base font-semibold text-ink">{c.standardsTitle}</h2>
         <ul class="text-xs text-mute space-y-2 leading-relaxed">
-          <li>• <strong>ISO 11088:2023 (Edition 7):</strong> <em>Assembly, adjustment and inspection of an alpine ski-binding-boot (S-B-B) system</em> — International Organization for Standardization (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org/standard/83020</a>).</li>
-          <li>• <strong>ASTM F939:</strong> <em>Standard Practice for Selection of Release Torque Values for Alpine Ski Bindings</em> — American Society for Testing and Materials.</li>
-          <li>• <strong>ASTM F1063:</strong> <em>Standard Practice for Functional Inspections and Adjustments of Alpine Ski/Binding/Boot Systems</em> — American Society for Testing and Materials.</li>
-          <li>• <strong>ISO 9462:</strong> <em>Alpine ski-bindings — Requirements and test methods</em>.</li>
+          <li>• <strong>{c.isoTitle}</strong> <em>{c.isoDesc}</em> — International Organization for Standardization (<a href="https://www.iso.org/standard/83020.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">iso.org/standard/83020</a>).</li>
+          <li>• <strong>{c.astmF939Title}</strong> <em>{c.astmF939Desc}</em></li>
+          <li>• <strong>{c.astmF1063Title}</strong> <em>{c.astmF1063Desc}</em></li>
+          <li>• <strong>{c.iso9462Title}</strong> <em>{c.iso9462Desc}</em></li>
         </ul>
         <div class="pt-4 border-t border-hairline text-xs text-mute">
-          <strong>Important Safety Note:</strong> Visual indicator scale numbers on bindings are references for calibrated torque release. Binding adjustments, forward pressure checks, and mechanical verification must be performed by a certified ski workshop technician using a calibrated mechanical test device.
+          <strong>{c.safetyTitle}</strong> {c.safetyDesc}
         </div>
       </div>
     </div>

@@ -81,7 +81,44 @@ const homeContent = {
       { step: "04", title: "Sohlenlänge-Abgleich", desc: "Der finale Fahrercode wird in der ISO-Matrix mit der Sohlenlänge (BSL in mm) am Skischuh verknüpft." }
     ],
     guideH2: "Wissenswertes zur Einstellung von Skibindungen",
-    guideDesc: "Alles über Auslösewerte, ISO 11088 Konformität und die sichere Handhabung."
+    guideDesc: "Alles über Auslösewerte, ISO 11088 Konformität und die sichere Handhabung.",
+    dinDefTitle: "Was bedeutet der Z-Wert (DIN-Einstellung)?",
+    dinDefP1: "Der Z-Wert (abgeleitet von den Standards des Deutschen Instituts für Normung) ist eine kalibrierte Zahlenskala, die das Auslösemoment einer Skibindung definiert. Er bestimmt, welche Hebel- und Torsionskräfte auf den Schuh einwirken müssen, bevor die Bindung den Schuh im Sturzfall freigibt.",
+    dinDefP2: "Die offizielle ISO 11088 Matrix umfasst Richtwerte von 0,75 bis 12,00. Einsteiger benötigen meist Werte zwischen 2 und 5, während sportliche Fahrer und Rennläufer Bindungen mit Werten bis 14, 16 oder höher nutzen. Ein zu niedrig eingestellter Z-Wert führt zu Fehlauslösungen während des Schwungs; ein zu hoher Wert verhindert das Auslösen bei Stürzen und steigert das Verletzungsrisiko.",
+    isoMattersTitle: "Warum die Norm ISO 11088:2023 entscheidend ist",
+    isoMattersP1: "ISO 11088 ist die maßgebliche internationale Norm für Montage, Einstellung und Überprüfung der Funktionseinheit Ski-Bindung-Schuh. Sie legt den mathematischen Zusammenhang zwischen den biometrischen Daten des Fahrers — Gewicht, Größe, Alter und Sohlenlänge — und dem sicheren Auslösemoment fest.",
+    isoMattersP2: "DIN Calculator Pro basiert auf der aktuellen Ausgabe ISO 11088:2023 (Edition 7, welche die zurückgezogene Version von 2018 ersetzt). Jede Berechnung folgt den standardisierten Tabellen, Zeilensprüngen für den Fahrertyp und Alterskorrekturen der Norm.",
+    fourStepTitle: "Die 4-Schritte-Methode nach ISO 11088",
+    fourStep1Title: "Basis-Fahrercode ermitteln.",
+    fourStep1Desc: "Körpergewicht und Körpergröße ergeben einen initialen Buchstaben (A bis M). Bei abweichenden Zeilen schreibt ISO 11088 aus Sicherheitsgründen die Wahl der oberen Zeile (niedrigerer Buchstabe) vor.",
+    fourStep2Title: "Fahrertyp-Korrektur anwenden.",
+    fourStep2Desc: "Typ I nutzt die Basiszeile. Typ II rückt 1 Zeile tiefer (+1 Buchstabe, höherer Z-Wert). Typ III rückt 2 Zeilen tiefer (+2 Buchstaben). Typ III+ rückt 3 Zeilen tiefer. Typ −I rückt 1 Zeile nach oben (-1 Buchstabe für Fahrer ab 17 kg). Fahrer bis 13 kg erhalten keinen Modifikator.",
+    fourStep3Title: "Alterskorrektur anwenden.",
+    fourStep3Desc: "Skifahrer unter 10 Jahren oder ab 50 Jahren rücken 1 Zeile nach oben (-1 Buchstabe / niedrigerer Z-Wert), um Knochen und Bänder vor Überlastung zu schützen.",
+    fourStep4Title: "Abgleich mit der Sohlenlänge (BSL).",
+    fourStep4Desc: "Der finale Fahrercode bestimmt die Zeile in der ISO 11088 Tabelle; Ihre Sohlenlänge (BSL in mm) wählt die Spalte. Der Schnittpunkt liefert den Richtwert für den Z-Wert.",
+    bslTitle: "Was ist die Sohlenlänge (BSL in mm)?",
+    bslP1: "Die Sohlenlänge (Boot Sole Length, BSL) ist das exakte Außenmaß der Skischuhsohle in Millimetern von der Ferse bis zur Spitze. Sie ist dauerhaft seitlich oder an der Unterseite der Fersenbacke eingeprägt. BSL unterscheidet sich grundlegend von der Mondopoint-Größe (Fußlänge in cm): Schuhe gleicher Mondogröße 27,5 können je nach Schalenmodell zwischen 298 mm und 320 mm variieren.",
+    bslP2: "Die Sohlenlänge beeinflusst den Z-Wert direkt, da ein längerer Schuh eine größere Hebelwirkung auf die Bindung ausübt. Verwenden Sie stets den eingeprägten Millimeterwert — niemals die Schuhgröße schätzen.",
+    bslLinkText: "Leitfaden zur Sohlenlänge & Mondopoint →",
+    skierTypeTitle: "Auswahl Ihres Fahrertyps",
+    skierTypeP1: "Die korrekte Einstufung des Fahrertyps ist essenziell — Fehleinschätzungen sind die häufigste Ursache für falsch eingestellte Skibindungen. Die Norm ISO 11088 definiert vier Kategorien:",
+    skierTypeMinusI: "Extrem vorsichtige Fahranfänger und Kinder, die nur auf sanften Hängen mit sehr geringem Tempo fahren.",
+    skierTypeI: "Vorsichtige Fahrer auf einfachen Pisten bei mäßigem Tempo. Frühe Auslösung zum Schutz der Gelenke hat oberste Priorität.",
+    skierTypeII: "Fortgeschrittene All-Mountain-Fahrer auf abwechslungsreichem Terrain bei zügigem Tempo. Der Standard für die Mehrheit der Erwachsenen.",
+    skierTypeIII: "Sehr sportliche, aggressive Skifahrer in steilem Gelände bei hoher Geschwindigkeit. Erhöhter Halt zur Vermeidung von Fehlauslösungen.",
+    skierTypeP2: "Die meisten erwachsenen Hobbyskifahrer fallen unter Typ I oder Typ II. Eine ungerechtfertigte Selbsteinstufung als Typ III führt zu gefährlich hohen Auslösewerten.",
+    safetyTitle: "Kann ein Online-Rechner den Skiservice ersetzen?",
+    safetyP1: "DIN Calculator Pro liefert eine fundierte mathematische Referenz auf Basis von ISO 11088:2023. Dies ist ein präziser Ausgangswert, ersetzt jedoch keinesfalls die fachmännische Inspektion in der Werkstatt. Die mechanische Bindungseinstellung, der Anpressdruck und die Reibung müssen stets von einem qualifizierten Skiservice auf einem geeichten Drehmoment-Prüfgerät überprüft werden.",
+    safetyP2: "Die tatsächliche Auslösung wird durch Faktoren beeinflusst, die keine Software erfassen kann: Abnutzung der Sohlen an Spitze und Ferse, Gleitplattenreibung (AFD), Federvorspannung und Alterung der Mechanik. Nur ein mechanischer Drehmomentprüfstand misst das echte Auslösemoment verlässlich.",
+    safetyWorkflowTitle: "Empfohlener Ablauf:",
+    safetyWorkflowText: "Ermitteln Sie Ihren Z-Wert mit DIN Calculator Pro, drucken Sie Ihre persönliche Einstellungskarte aus und bringen Sie Ski und Schuhe zu einem Fachbetrieb. Dort wird der Z-Wert eingestellt, der Anpressdruck justiert und die Bindung nach ISO 11088 und ASTM F1063 geprüft.",
+    subLinksMatrixTitle: "ISO 11088 Tabelle",
+    subLinksMatrixDesc: "Vollständige Z-Wert Matrix",
+    subLinksBslTitle: "Sohlenlänge BSL",
+    subLinksBslDesc: "Sohlenmaß in mm finden",
+    subLinksSkierTypesTitle: "Fahrertypen",
+    subLinksSkierTypesDesc: "Leitfaden Typ I, II, III"
   },
   fr: {
     quickAnswerBadge: 'Réponse Rapide & Guide de Référence',
@@ -121,7 +158,44 @@ const homeContent = {
       { step: "04", title: "Croisement semelle", desc: "La ligne finale croise la colonne correspondant à la longueur de semelle en mm gravée sur la chaussure." }
     ],
     guideH2: "Comprendre le réglage de vos fixations de ski",
-    guideDesc: "Tout savoir sur les normes de déclenchement, l'ISO 11088 et la sécurité sur les pistes."
+    guideDesc: "Tout savoir sur les normes de déclenchement, l'ISO 11088 et la sécurité sur les pistes.",
+    dinDefTitle: "Qu'est-ce qu'un réglage DIN pour fixations de ski ?",
+    dinDefP1: "Le réglage DIN (du nom du Deutsches Institut für Normung) est une valeur numérique étalonnée qui définit le couple de déclenchement d'une fixation de ski alpin. Il détermine la force de torsion ou de basculement nécessaire pour libérer la chaussure lors d'une chute.",
+    dinDefP2: "La grille officielle ISO 11088 définit des valeurs indicatives de 0,75 à 12,00. Les débutants se situent généralement entre 2 et 5, tandis que les compétiteurs et freeriders experts utilisent des fixations montant à 14, 16 ou plus. Un DIN trop bas provoque des décrochages intempestifs en virage ; un DIN trop haut empêche le déclenchement en cas de chute et accroît le risque d'entorse grave ou de fracture.",
+    isoMattersTitle: "Pourquoi la norme ISO 11088:2023 est essentielle",
+    isoMattersP1: "La norme internationale ISO 11088 régit l'assemblage, l'ajustement et le contrôle de l'ensemble ski-fixation-chaussure. Elle établit la corrélation mathématique entre le profil biométrique du skieur — poids, taille, âge et longueur de semelle — et le couple de déclenchement approprié.",
+    isoMattersP2: "DIN Calculator Pro applique l'édition 7 de la norme ISO 11088:2023 (qui remplace l'ancienne édition 2018). Chaque calcul est strictement dérivé des barèmes officiels, intégrant les décalages de lignes par profil et les corrections d'âge.",
+    fourStepTitle: "La méthode de calcul ISO 11088 en 4 étapes",
+    fourStep1Title: "Déterminer la lettre skieur initiale.",
+    fourStep1Desc: "Le poids et la taille déterminent une lettre de base (de A à M). En cas de désaccord entre les deux critères, la norme ISO prescrit de choisir la ligne la plus haute du tableau (lettre inférieure) par mesure de sécurité.",
+    fourStep2Title: "Appliquer le modificateur de profil de ski.",
+    fourStep2Desc: "Le Type I utilise la ligne de base. Le Type II descend d'une ligne (+1 lettre, DIN supérieur). Le Type III descend de 2 lignes (+2 lettres). Le Type III+ descend de 3 lignes. Le Type −I remonte d'une ligne (-1 lettre pour les skieurs de plus de 17 kg). Les skieurs de 13 kg ou moins ne reçoivent aucun ajustement.",
+    fourStep3Title: "Appliquer la correction liée à l'âge.",
+    fourStep3Desc: "Les skieurs de moins de 10 ans ou de 50 ans et plus remontent d'une ligne sur le barème (-1 lettre / DIN inférieur) pour protéger les articulations et la structure osseuse.",
+    fourStep4Title: "Croiser avec la longueur de semelle (BSL en mm).",
+    fourStep4Desc: "Votre lettre définitive détermine la ligne de la matrice ISO 11088 ; la longueur de semelle de votre chaussure sélectionne la colonne. La cellule d'intersection donne votre réglage DIN indicatif.",
+    bslTitle: "Qu'est-ce que la longueur de semelle (BSL) ?",
+    bslP1: "La longueur de semelle (Boot Sole Length ou BSL) correspond à la longueur extérieure totale de la coque en millimètres, de la butée avant à la talonnière. Elle est gravée sur le talon ou le flanc de chaque chaussure de ski alpin. La BSL est différente de la taille Mondopoint (longueur du pied en cm) : deux chaussures de pointure 27.5 peuvent avoir des semelles de 298 mm à 320 mm.",
+    bslP2: "La longueur de semelle modifie directement le couple nécessaire : une semelle plus longue produit un bras de levier plus important sur la fixation. Utilisez toujours la valeur en millimètres gravée sur la chaussure — ne déduisez jamais la semelle de votre pointure de ville.",
+    bslLinkText: "Guide de la longueur de semelle & Mondopoint →",
+    skierTypeTitle: "Choisir votre profil de skieur",
+    skierTypeP1: "Bien identifier son profil est crucial : une auto-évaluation inexacte est la cause la plus fréquente d'erreur de réglage. La norme ISO 11088 définit quatre profils :",
+    skierTypeMinusI: "Skieurs très prudents et jeunes enfants skiant uniquement sur pentes douces à très faible allure.",
+    skierTypeI: "Skieurs prudents évoluant à vitesse modérée sur pistes faciles. La sécurité et le déclenchement immédiat sont prioritaires.",
+    skierTypeII: "Skieurs réguliers et polyvalents skiant à allure moyenne à rapide sur terrains variés. Concerne la majorité des adultes.",
+    skierTypeIII: "Skieurs experts et agressifs engagés dans des pentes raides à grande vitesse. La rétention de la chaussure est prioritaire.",
+    skierTypeP2: "La majorité des skieurs adultes récréatifs correspondent au Type I ou Type II. Se surclasser en Type III sans en avoir le niveau expose à un risque majeur de non-déclenchement.",
+    safetyTitle: "Un calculateur DIN remplace-t-il l'atelier de ski ?",
+    safetyP1: "DIN Calculator Pro fournit une valeur indicative officielle calculée d'après l'ISO 11088:2023. Il s'agit d'un point de référence technique indispensable, mais qui ne remplace pas un passage en atelier spécialisé. Le réglage physique, la poussée axiale (forward pressure) et le test de couple doivent être réalisés par un technicien ski qualifié sur un banc d'essai calibré.",
+    safetyP2: "Le déclenchement réel d'une fixation dépend d'éléments physiques impossibles à mesurer numériquement : l'usure des inserts de semelle, l'état de la plaque antifriction (AFD), la tension du ressort et le vieillissement mécanique. Seul un banc de contrôle mécanique mesure le couple exact.",
+    safetyWorkflowTitle: "Protocole recommandé :",
+    safetyWorkflowText: "Calculez votre DIN de référence sur DIN Calculator Pro, imprimez votre fiche atelier, et confiez votre matériel à un magasin de ski agréé pour le réglage de la précharge et le test mécanique selon les normes ISO 11088 et ASTM F1063.",
+    subLinksMatrixTitle: "Tableau ISO 11088",
+    subLinksMatrixDesc: "Grille complète des valeurs DIN",
+    subLinksBslTitle: "Guide Semelle BSL",
+    subLinksBslDesc: "Trouver sa longueur en mm",
+    subLinksSkierTypesTitle: "Profils de Skieur",
+    subLinksSkierTypesDesc: "Guide Types I, II, III"
   },
   it: {
     quickAnswerBadge: 'Guida Rapida & Riferimento Taratura',
@@ -161,7 +235,44 @@ const homeContent = {
       { step: "04", title: "Incrocio scafo", desc: "Il codice definitivo incrocia la colonna della lunghezza scafo in mm stampata sullo scarpone." }
     ],
     guideH2: "Guida completa alla taratura degli attacchi da sci",
-    guideDesc: "Tutto ciò che serve sapere su valori di sgancio, standard ISO 11088 e sicurezza sugli sci."
+    guideDesc: "Tutto ciò che serve sapere su valori di sgancio, standard ISO 11088 e sicurezza sugli sci.",
+    dinDefTitle: "Cos'è la regolazione DIN degli attacchi da sci?",
+    dinDefP1: "Il valore DIN (denominato secondo gli standard del Deutsches Institut für Normung) è un indice numerico calibrato che stabilisce la coppia di sgancio dell'attacco da sci alpino. Determina l'entità della forza torcente o flettente richiesta per liberare lo scarpone durante una caduta.",
+    dinDefP2: "La tabella ufficiale ISO 11088 definisce valori indicativi compresi tra 0,75 e 12,00. Gli sciatori principianti necessitano in genere di valori tra 2 e 5, mentre gli atleti e freerider esperti utilizzano attacchi che superano questo intervallo fino a 14, 16 o più. Un DIN troppo basso comporta lo sgancio accidentale dello sci durante la curva; un DIN eccessivamente alto impedisce l'apertura in caduta, aumentando notevolmente il rischio di lesioni a legamenti e ossa.",
+    isoMattersTitle: "Perché la norma ISO 11088:2023 è fondamentale",
+    isoMattersP1: "La norma internazionale ISO 11088 definisce le procedure di montaggio, regolazione e ispezione del sistema integrato sci-attacco-scarpone. Essa stabilisce il legame matematico rigoroso tra i parametri fisici dello sciatore — peso, altezza, età e lunghezza scafo — e la corretta forza di sgancio.",
+    isoMattersP2: "DIN Calculator Pro applica integralmente la revisione ISO 11088:2023 (Edizione 7, che supera e sostituisce l'edizione 2018 ritirata). Ogni valore calcolato deriva direttamente dalle matrici ufficiali, con arbitri altezza-peso e correzioni per età e stile di sciata.",
+    fourStepTitle: "Il metodo di calcolo ISO 11088 in 4 passaggi",
+    fourStep1Title: "Determinare il codice sciatore iniziale.",
+    fourStep1Desc: "Peso corporeo e altezza individuano una riga iniziale (dalla lettera A alla M). Qualora altezza e peso indichino righe differenti, la norma ISO impone di scegliere la riga più in alto nella tabella (lettera inferiore) per garantire la massima cautela.",
+    fourStep2Title: "Applicare il fattore stile di sciata.",
+    fourStep2Desc: "Il Tipo I rimane sulla riga base. Il Tipo II scende di 1 riga (+1 lettera, valore DIN più alto). Il Tipo III scende di 2 righe (+2 lettere). Il Tipo III+ scende di 3 righe. Il Tipo −I sale di 1 riga (-1 lettera per sciatori sopra i 17 kg). Agli sciatori fino a 13 kg non si applica alcuna modifica.",
+    fourStep3Title: "Applicare la correzione per età.",
+    fourStep3Desc: "Gli sciatori sotto i 10 anni o a partire dai 50 anni salgono di 1 riga nella matrice (-1 lettera / DIN inferiore) per proteggere le articolazioni e preservare la sicurezza ossea.",
+    fourStep4Title: "Incrociare con la lunghezza scafo (BSL in mm).",
+    fourStep4Desc: "Il codice sciatore definitivo individua la riga nella tabella ISO 11088; la lunghezza scafo in millimetri dello scarpone individua la colonna. La cella di incrocio restituisce la taratura DIN indicativa.",
+    bslTitle: "Che cos'è la lunghezza scafo dello scarpone (BSL)?",
+    bslP1: "La lunghezza scafo (Boot Sole Length o BSL) è la misura fisica esterna totale della suola dello scarpone in millimetri, rilevata dal puntale alla talloniera. È impressa in rilievo lateralmente o sotto il tallone di ogni scarpone da sci alpino. La BSL è completamente diversa dalla taglia Mondopoint (misura del piede in cm): scarponi con la stessa misura Mondo 27.5 possono avere lunghezze scafo comprese tra 298 mm e 320 mm a seconda del produttore.",
+    bslP2: "La BSL incide in modo determinante sulla taratura poiché uno scarpone più lungo esercita una leva maggiore sull'attacco. Usa sempre il valore millimetrico effettivo impresso sullo scarpone — non stimarlo mai dalla misura delle scarpe da ginnastica.",
+    bslLinkText: "Guida a BSL e taglie Mondopoint →",
+    skierTypeTitle: "Come scegliere il tipo di sciatore",
+    skierTypeP1: "La corretta classificazione dello sciatore è cruciale: un'auto-valutazione errata è il motivo più comune di regolazione errata. La norma ISO 11088 individua quattro categorie:",
+    skierTypeMinusI: "Sciatori principianti estremamente prudenti e bambini che sciano solo su pendii dolci a velocità minima.",
+    skierTypeI: "Sciatori prudenti che sciano a velocità moderata su piste battute facili. Priorità assoluta allo sgancio immediato per proteggere le ginocchia.",
+    skierTypeII: "Sciatori di medio livello che sciano a velocità moderata o sostenuta su terreni variati. È la scelta corretta per la maggioranza degli adulti.",
+    skierTypeIII: "Sciatori esperti e aggressivi che affrontano piste ripide e neve difficile ad alta velocità. Priorità alla tenuta meccanica dell'attacco.",
+    skierTypeP2: "La stragrande maggioranza degli sciatori ricreativi rientra nel Tipo I o Tipo II. Sovrastimarsi come Tipo III quando non si hanno le velocità richieste genera tarature pericolosamente elevate.",
+    safetyTitle: "Il calcolatore online è sicuro senza l'intervento di uno skiman?",
+    safetyP1: "DIN Calculator Pro fornisce un valore di riferimento scientifico basato sulle tabelle ufficiali ISO 11088:2023. Questo valore è un punto di partenza fondamentale, ma non può sostituire il controllo pratico in laboratorio sci. La regolazione meccanica, la verifica del precarico (spinta longitudinale) e il controllo dello sgancio devono essere sempre effettuati da uno skiman certificato con banco di prova calibrato.",
+    safetyP2: "Lo sgancio reale dipende da parametri fisici che nessun software può analizzare: l'usura degli inserti della suola, lo stato della piastrina antifrizione (AFD), la tensione della molla e l'invecchiamento dei meccanismi. Solo un macchinario dinamometrico da laboratorio misura la coppia effettiva.",
+    safetyWorkflowTitle: "La procedura corretta raccomandata:",
+    safetyWorkflowText: "Calcola il tuo valore indicativo su DIN Calculator Pro, stampa o salva la tua scheda tecnica, e consegna la tua attrezzatura a un laboratorio sci specializzato per il montaggio, la regolazione della spinta e la prova dinamometrica secondo gli standard ISO 11088 e ASTM F1063.",
+    subLinksMatrixTitle: "Matrice ISO 11088",
+    subLinksMatrixDesc: "Tabella DIN completa",
+    subLinksBslTitle: "Guida Scafo BSL",
+    subLinksBslDesc: "Trova la misura in mm",
+    subLinksSkierTypesTitle: "Tipi di Sciatore",
+    subLinksSkierTypesDesc: "Guida a Tipo I, II, III"
   },
   en: {
     quickAnswerBadge: 'Quick Answer & Reference Guide',
@@ -201,7 +312,44 @@ const homeContent = {
       { step: "04", title: "Matrix Lookup", desc: "Your final Skier Code intersects with your Boot Sole Length on the ISO 11088:2023 matrix." }
     ],
     guideH2: "Understanding Your Ski Binding DIN Setting",
-    guideDesc: "Everything you need to know about ski binding release settings, ISO 11088 compliance, and how to use a DIN calculator safely."
+    guideDesc: "Everything you need to know about ski binding release settings, ISO 11088 compliance, and how to use a DIN calculator safely.",
+    dinDefTitle: "What Is a DIN Setting?",
+    dinDefP1: "A DIN setting (named after Deutsches Institut für Normung, the German Institute for Standardization) is a calibrated numeric value that defines the release torque of your alpine ski binding. It determines how much twisting or bending force must be applied to your boot before the binding releases it from the ski.",
+    dinDefP2: "The standard ISO 11088 lookup matrix defines release values ranging from 0.75 to 12.00. Recreational beginner skiers typically need settings between 2 and 5, while adult competition and freeride bindings scale beyond this table to 14, 16, or higher. Setting your DIN too low risks accidental pre-release during turns; setting it too high prevents release during a crash, increasing injury risk.",
+    isoMattersTitle: "Why ISO 11088:2023 Matters",
+    isoMattersP1: "ISO 11088 is the international standard that governs how alpine ski bindings are assembled, inspected, and adjusted. It defines the mathematical relationship between a skier's physical characteristics — weight, height, age, and boot sole length — and the appropriate release setting.",
+    isoMattersP2: "DIN Calculator Pro implements ISO 11088:2023 (Edition 7, which supersedes the withdrawn 2018 edition). Every calculation is derived from standard weight-height lookup tables, modified by exact skier type row offsets and age adjustments defined in the standard.",
+    fourStepTitle: "The Four-Step ISO 11088 Calculation Method",
+    fourStep1Title: "Determine your initial Skier Code.",
+    fourStep1Desc: "Body weight and height produce an initial Skier Code (A through M). Where height and weight suggest different codes, the ISO standard mandates selecting the row closer to the top of the chart (lower code) for conservative safety.",
+    fourStep2Title: "Apply the Skier Type modifier.",
+    fourStep2Desc: "Type I uses the baseline row. Type II moves one row lower on the chart (+1 code, higher DIN). Type III moves two rows lower (+2 codes). Type III+ moves three rows lower (+3 codes, manufacturer convention). Type −I moves one row higher (-1 code, for skiers over 17 kg). Skiers weighing 13 kg or less receive no ability modifier.",
+    fourStep3Title: "Apply the age modifier.",
+    fourStep3Desc: "Skiers under 10 years old or 50 and older move one row higher on the chart (-1 code reduction) to account for bone and joint vulnerability. Skiers weighing 13 kg or less receive no age modifier.",
+    fourStep4Title: "Cross-reference with Boot Sole Length (BSL).",
+    fourStep4Desc: "Your final adjusted Skier Code selects the row in the ISO 11088 matrix; your Boot Sole Length (BSL in mm) selects the column. The intersecting cell is your baseline DIN estimate.",
+    bslTitle: "What Is Boot Sole Length (BSL)?",
+    bslP1: "Boot Sole Length (BSL) is the total length of the ski boot's sole in millimeters, measured from heel lug to toe lug. It is permanently stamped or embossed on the heel lug or arch of every alpine ski boot shell. BSL is entirely different from Mondo sizing (your foot length in centimeters) — a size 27.5 Mondo boot from different manufacturers can have BSL values ranging from 298 mm to 320 mm.",
+    bslP2: "BSL directly affects DIN because longer boots apply more leverage to the binding. A binding that correctly releases a 300 mm BSL boot may pre-release a 330 mm boot under the same force, or fail to release a 290 mm boot in a crash. Always use the exact stamped BSL value — never estimate from shoe size.",
+    bslLinkText: "BSL & Mondo Sizing Guide →",
+    skierTypeTitle: "Choosing Your Skier Type",
+    skierTypeP1: "Selecting the correct Skier Type is critical — it is the most common error when people set their own DIN incorrectly. The ISO 11088 standard defines four categories:",
+    skierTypeMinusI: "Extremely cautious beginner children who ski only gentle, groomed terrain at very slow speeds.",
+    skierTypeI: "Cautious skiers who ski at moderate speeds on easier groomed runs. Prefer easy release above all else.",
+    skierTypeII: "Average skiers who ski varied terrain at moderate-to-high speeds. The default for most adults.",
+    skierTypeIII: "Aggressive, experienced skiers skiing difficult terrain at high speeds. Retention is prioritized over release.",
+    skierTypeP2: "Most recreational adult skiers are Type I or Type II. Self-classifying as Type III when you are not leads to dangerous over-retention settings.",
+    safetyTitle: "Is a DIN Calculator Safe to Use Without a Technician?",
+    safetyP1: "DIN Calculator Pro provides an informational baseline reference derived from the published tables in ISO 11088:2023. This is a reference starting point, not a substitute for hands-on workshop service. The physical act of adjusting your binding, verifying forward pressure, and inspecting release tension must always be performed by a certified ski technician using calibrated torque test equipment.",
+    safetyP2: "Binding release is affected by physical variables beyond lookup tables: boot wear at the toe and heel lugs, friction strip condition, forward pressure spring preload, binding mechanical tolerances, and pivot alignment. A mechanical torque inspection device measures actual release torque and allows adjustments that no digital calculator can provide.",
+    safetyWorkflowTitle: "The recommended workflow:",
+    safetyWorkflowText: "Use DIN Calculator Pro to calculate your reference DIN indicator, print or save your reference card, and take your equipment to a certified ski shop. A certified ski technician will set the indicator, verify forward pressure, and test your binding release within standard tolerances using calibrated workshop equipment.",
+    subLinksMatrixTitle: "ISO 11088 Matrix",
+    subLinksMatrixDesc: "Full interactive DIN table",
+    subLinksBslTitle: "BSL Guide",
+    subLinksBslDesc: "Find your boot sole length",
+    subLinksSkierTypesTitle: "Skier Types",
+    subLinksSkierTypesDesc: "Type I, II, III guide"
   }
 };
 
@@ -434,94 +582,94 @@ const c = (homeContent as any)[lang] || homeContent.en;
     <div class="prose-section space-y-10">
 
       <div class="text-center mb-12">
-        <span class="text-[11px] uppercase tracking-widest font-semibold text-mute mb-3 block font-mono">Complete Guide</span>
+        <span class="text-[11px] uppercase tracking-widest font-semibold text-mute mb-3 block font-mono">{lang === 'de' ? 'Vollständiger Leitfaden' : lang === 'fr' ? 'Guide Complet' : lang === 'it' ? 'Guida Completa' : 'Complete Guide'}</span>
         <h2 class="text-3xl sm:text-4xl font-bold text-ink tracking-tight">{c.guideH2}</h2>
         <p class="text-mute mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">{c.guideDesc}</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-ink">What Is a DIN Setting?</h3>
+          <h3 class="text-xl font-bold text-ink">{c.dinDefTitle}</h3>
           <p class="text-mute text-sm leading-relaxed">
-            A DIN setting (named after <em>Deutsches Institut für Normung</em>, the German Institute for Standardization) is a calibrated numeric value that defines the release torque of your alpine ski binding. It determines how much twisting or bending force must be applied to your boot before the binding releases it from the ski.
+            {c.dinDefP1}
           </p>
           <p class="text-mute text-sm leading-relaxed">
-            The standard ISO 11088 lookup matrix defines release values ranging from <strong class="text-ink">0.75 to 12.00</strong>. Recreational beginner skiers typically need settings between 2 and 5, while adult competition and freeride bindings scale beyond this table to 14, 16, or higher. Setting your DIN too low risks accidental pre-release during turns; setting it too high prevents release during a crash, increasing injury risk.
+            {c.dinDefP2}
           </p>
         </div>
 
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-ink">Why ISO 11088:2023 Matters</h3>
+          <h3 class="text-xl font-bold text-ink">{c.isoMattersTitle}</h3>
           <p class="text-mute text-sm leading-relaxed">
-            ISO 11088 is the international standard that governs how alpine ski bindings are assembled, inspected, and adjusted. It defines the mathematical relationship between a skier's physical characteristics — weight, height, age, and boot sole length — and the appropriate release setting.
+            {c.isoMattersP1}
           </p>
           <p class="text-mute text-sm leading-relaxed">
-            DIN Calculator Pro implements ISO 11088:2023 (Edition 7, which supersedes the withdrawn 2018 edition). Every calculation is derived from standard weight-height lookup tables, modified by exact skier type row offsets and age adjustments defined in the standard.
+            {c.isoMattersP2}
           </p>
         </div>
       </div>
 
       <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-4">
-        <h3 class="text-xl font-bold text-ink">The Four-Step ISO 11088 Calculation Method</h3>
+        <h3 class="text-xl font-bold text-ink">{c.fourStepTitle}</h3>
         <ol class="space-y-3 text-sm text-mute">
           <li class="flex gap-3">
             <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-            <div><strong class="text-ink">Determine your initial Skier Code.</strong> Body weight and height produce an initial Skier Code (A through M). Where height and weight suggest different codes, the ISO standard mandates selecting the row closer to the top of the chart (lower code) for conservative safety.</div>
+            <div><strong class="text-ink">{c.fourStep1Title}</strong> {c.fourStep1Desc}</div>
           </li>
           <li class="flex gap-3">
             <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-            <div><strong class="text-ink">Apply the Skier Type modifier.</strong> Type I uses the baseline row. Type II moves one row lower on the chart (+1 code, higher DIN). Type III moves two rows lower (+2 codes). Type III+ moves three rows lower (+3 codes, manufacturer convention). Type −I moves one row higher (-1 code, for skiers over 17 kg). Skiers weighing 13 kg or less receive no ability modifier.</div>
+            <div><strong class="text-ink">{c.fourStep2Title}</strong> {c.fourStep2Desc}</div>
           </li>
           <li class="flex gap-3">
             <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
-            <div><strong class="text-ink">Apply the age modifier.</strong> Skiers under 10 years old or 50 and older move one row higher on the chart (-1 code reduction) to account for bone and joint vulnerability. Skiers weighing 13 kg or less receive no age modifier.</div>
+            <div><strong class="text-ink">{c.fourStep3Title}</strong> {c.fourStep3Desc}</div>
           </li>
           <li class="flex gap-3">
             <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
-            <div><strong class="text-ink">Cross-reference with Boot Sole Length (BSL).</strong> Your final adjusted Skier Code selects the row in the ISO 11088 matrix; your Boot Sole Length (BSL in mm) selects the column. The intersecting cell is your baseline DIN estimate.</div>
+            <div><strong class="text-ink">{c.fourStep4Title}</strong> {c.fourStep4Desc}</div>
           </li>
         </ol>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-ink">What Is Boot Sole Length (BSL)?</h3>
+          <h3 class="text-xl font-bold text-ink">{c.bslTitle}</h3>
           <p class="text-mute text-sm leading-relaxed">
-            Boot Sole Length (BSL) is the total length of the ski boot's sole in millimeters, measured from heel lug to toe lug. It is permanently stamped or embossed on the heel lug or arch of every alpine ski boot shell. BSL is entirely different from Mondo sizing (your foot length in centimeters) — a size 27.5 Mondo boot from different manufacturers can have BSL values ranging from 298 mm to 320 mm.
+            {c.bslP1}
           </p>
           <p class="text-mute text-sm leading-relaxed">
-            BSL directly affects DIN because longer boots apply more leverage to the binding. A binding that correctly releases a 300 mm BSL boot may pre-release a 330 mm boot under the same force, or fail to release a 290 mm boot in a crash. Always use the exact stamped BSL value — never estimate from shoe size.
+            {c.bslP2}
           </p>
           <p class="text-mute text-sm leading-relaxed">
-            Use our <a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="text-primary hover:underline font-medium">BSL & Mondo Sizing Guide →</a> for a comprehensive lookup table and visual guide to locating the BSL stamp on your boot.
+            <a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="text-primary hover:underline font-medium">{c.bslLinkText}</a>
           </p>
         </div>
 
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-ink">Choosing Your Skier Type</h3>
+          <h3 class="text-xl font-bold text-ink">{c.skierTypeTitle}</h3>
           <p class="text-mute text-sm leading-relaxed">
-            Selecting the correct Skier Type is critical — it is the most common error when people set their own DIN incorrectly. The ISO 11088 standard defines four categories:
+            {c.skierTypeP1}
           </p>
           <ul class="space-y-2 text-sm text-mute">
-            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type −I</span> Extremely cautious beginner children who ski only gentle, groomed terrain at very slow speeds.</li>
-            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type I</span> Cautious skiers who ski at moderate speeds on easier groomed runs. Prefer easy release above all else.</li>
-            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type II</span> Average skiers who ski varied terrain at moderate-to-high speeds. The default for most adults.</li>
-            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type III</span> Aggressive, experienced skiers skiing difficult terrain at high speeds. Retention is prioritized over release.</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type −I</span> {c.skierTypeMinusI}</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type I</span> {c.skierTypeI}</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type II</span> {c.skierTypeII}</li>
+            <li class="flex gap-2"><span class="text-primary font-semibold shrink-0">Type III</span> {c.skierTypeIII}</li>
           </ul>
-          <p class="text-mute text-sm leading-relaxed">Most recreational adult skiers are Type I or Type II. Self-classifying as Type III when you are not leads to dangerous over-retention settings.</p>
+          <p class="text-mute text-sm leading-relaxed">{c.skierTypeP2}</p>
         </div>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-ink">Is a DIN Calculator Safe to Use Without a Technician?</h3>
+        <h3 class="text-xl font-bold text-ink">{c.safetyTitle}</h3>
         <p class="text-mute text-sm leading-relaxed">
-          DIN Calculator Pro provides an informational baseline reference derived from the published tables in ISO 11088:2023. This is a reference starting point, not a substitute for hands-on workshop service. The physical act of adjusting your binding, verifying forward pressure, and inspecting release tension must always be performed by a certified ski technician using calibrated torque test equipment.
+          {c.safetyP1}
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          Binding release is affected by physical variables beyond lookup tables: boot wear at the toe and heel lugs, friction strip condition, forward pressure spring preload, binding mechanical tolerances, and pivot alignment. A mechanical torque inspection device measures actual release torque and allows adjustments that no digital calculator can provide.
+          {c.safetyP2}
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          <strong class="text-ink">The recommended workflow:</strong> Use DIN Calculator Pro to calculate your reference DIN indicator, print or save your reference card, and take your equipment to a certified ski shop. A certified ski technician will set the indicator, verify forward pressure, and test your binding release within standard tolerances using calibrated workshop equipment.
+          <strong class="text-ink">{c.safetyWorkflowTitle}</strong> {c.safetyWorkflowText}
         </p>
       </div>
 
@@ -532,8 +680,8 @@ const c = (homeContent as any)[lang] || homeContent.en;
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18M14 3v18"/></svg>
           </div>
           <div>
-            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">ISO 11088 Matrix</div>
-            <div class="text-xs text-mute">Full interactive DIN table</div>
+            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">{c.subLinksMatrixTitle}</div>
+            <div class="text-xs text-mute">{c.subLinksMatrixDesc}</div>
           </div>
         </a>
         <a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
@@ -541,8 +689,8 @@ const c = (homeContent as any)[lang] || homeContent.en;
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
           </div>
           <div>
-            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">BSL Guide</div>
-            <div class="text-xs text-mute">Find your boot sole length</div>
+            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">{c.subLinksBslTitle}</div>
+            <div class="text-xs text-mute">{c.subLinksBslDesc}</div>
           </div>
         </a>
         <a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="flex items-center gap-3 p-4 rounded-xl border border-hairline bg-parchment hover:border-primary/40 transition-all group">
@@ -550,8 +698,8 @@ const c = (homeContent as any)[lang] || homeContent.en;
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
           <div>
-            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">Skier Types</div>
-            <div class="text-xs text-mute">Type I, II, III guide</div>
+            <div class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">{c.subLinksSkierTypesTitle}</div>
+            <div class="text-xs text-mute">{c.subLinksSkierTypesDesc}</div>
           </div>
         </a>
       </div>

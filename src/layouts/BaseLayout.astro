@@ -45,6 +45,137 @@ const navLinks = [
 
 const structuredData = getStructuredData(Astro.url.pathname, lang, title, description);
 const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
+
+interface FooterContent {
+  safetyTitle: string;
+  colTools: string;
+  kidsChart: string;
+  dinWeight: string;
+  quiz: string;
+  embed: string;
+  colGuides: string;
+  gripwalk: string;
+  dinVsZ: string;
+  bindingAdj: string;
+  dinTooHigh: string;
+  colStandards: string;
+  iso9462Sub: string;
+  iso5355Sub: string;
+  iso23223Sub: string;
+  astmF939Sub: string;
+  astmF1063Sub: string;
+  colCompany: string;
+  methodology: string;
+  changelog: string;
+  noCookies: string;
+  copyright: string;
+  footerBadge: string;
+}
+
+const footerContent: Record<string, FooterContent> = {
+  en: {
+    safetyTitle: 'Mandatory ISO 11088 Safety Notice',
+    colTools: 'Tools & Charts',
+    kidsChart: 'Kids DIN Chart',
+    dinWeight: 'DIN by Weight',
+    quiz: 'Skier Type Quiz',
+    embed: 'Embed Widget',
+    colGuides: 'Guides & Safety',
+    gripwalk: 'GripWalk vs Alpine',
+    dinVsZ: 'DIN vs Z-Value',
+    bindingAdj: 'Binding Adjustment',
+    dinTooHigh: 'DIN Too High or Low',
+    colStandards: 'Standards & Tech',
+    iso9462Sub: 'Alpine Bindings',
+    iso5355Sub: 'Alpine Boot Soles',
+    iso23223Sub: 'GripWalk Soles',
+    astmF939Sub: 'Torque Selection',
+    astmF1063Sub: 'Inspection Standard',
+    colCompany: 'Company & Trust',
+    methodology: 'Methodology',
+    changelog: 'Changelog',
+    noCookies: 'No cookies. Privacy-friendly, aggregated analytics.',
+    copyright: 'Independent project, not affiliated with ISO or binding manufacturers. Methodology based on ISO 11088:2023.',
+    footerBadge: 'Client-Side Only • Device Storage Only • MIT License',
+  },
+  de: {
+    safetyTitle: 'Verbindlicher ISO 11088 Sicherheitshinweis',
+    colTools: 'Werkzeuge & Tabellen',
+    kidsChart: 'Z-Wert-Tabelle Kinder',
+    dinWeight: 'Z-Wert nach Gewicht',
+    quiz: 'Fahrertyp-Quiz',
+    embed: 'Widget einbinden',
+    colGuides: 'Anleitungen & Sicherheit',
+    gripwalk: 'GripWalk vs. Alpin',
+    dinVsZ: 'DIN vs. Z-Wert',
+    bindingAdj: 'Bindungseinstellung',
+    dinTooHigh: 'Z-Wert zu hoch oder tief',
+    colStandards: 'Normen & Technik',
+    iso9462Sub: 'Alpin-Bindungen',
+    iso5355Sub: 'Alpin-Skischuhsohlen',
+    iso23223Sub: 'GripWalk-Sohlen',
+    astmF939Sub: 'Auslösemoment-Wahl',
+    astmF1063Sub: 'Werkstatt-Prüfnorm',
+    colCompany: 'Über uns & Vertrauen',
+    methodology: 'Berechnungsmethodik',
+    changelog: 'Änderungsprotokoll',
+    noCookies: 'Keine Cookies. Datenschutzfreundliche, aggregierte Analyse.',
+    copyright: 'Unabhängiges Projekt, nicht mit ISO oder Bindungsherstellern verbunden. Methodik gemäß ISO 11088:2023.',
+    footerBadge: 'Reine Client-Anwendung • Lokaler Speicher • MIT-Lizenz',
+  },
+  fr: {
+    safetyTitle: 'Avertissement de sécurité obligatoire ISO 11088',
+    colTools: 'Outils & Tableaux',
+    kidsChart: 'Tableau DIN Enfants',
+    dinWeight: 'DIN selon le poids',
+    quiz: 'Test type de skieur',
+    embed: 'Intégrer le widget',
+    colGuides: 'Guides & Sécurité',
+    gripwalk: 'GripWalk vs Alpin',
+    dinVsZ: 'DIN vs Valeur Z',
+    bindingAdj: 'Réglage des fixations',
+    dinTooHigh: 'DIN trop haut ou bas',
+    colStandards: 'Normes & Technique',
+    iso9462Sub: 'Fixations alpines',
+    iso5355Sub: 'Semelles chaussures alpines',
+    iso23223Sub: 'Semelles GripWalk',
+    astmF939Sub: 'Sélection couple de déclenchement',
+    astmF1063Sub: 'Norme de contrôle en atelier',
+    colCompany: 'À propos & Confiance',
+    methodology: 'Méthodologie',
+    changelog: 'Journal des versions',
+    noCookies: "Aucun cookie. Mesure d'audience respectueuse et anonymisée.",
+    copyright: "Projet indépendant, non affilié à l'ISO ni aux fabricants. Méthodologie basée sur l'ISO 11088:2023.",
+    footerBadge: '100% côté client • Stockage local uniquement • Licence MIT',
+  },
+  it: {
+    safetyTitle: 'Avviso obbligatorio di sicurezza ISO 11088',
+    colTools: 'Strumenti & Tabelle',
+    kidsChart: 'Tabella DIN Bambini',
+    dinWeight: 'DIN in base al peso',
+    quiz: 'Quiz tipo di sciatore',
+    embed: 'Incorpora widget',
+    colGuides: 'Guide & Sicurezza',
+    gripwalk: 'GripWalk vs Alpino',
+    dinVsZ: 'DIN vs Valore Z',
+    bindingAdj: 'Regolazione attacchi',
+    dinTooHigh: 'DIN troppo alto o basso',
+    colStandards: 'Norme & Tecnica',
+    iso9462Sub: 'Attacchi alpini',
+    iso5355Sub: 'Suole scarponi alpini',
+    iso23223Sub: 'Suole GripWalk',
+    astmF939Sub: 'Selezione coppia di rilascio',
+    astmF1063Sub: 'Norma di controllo officina',
+    colCompany: 'Progetto & Trasparenza',
+    methodology: 'Metodologia',
+    changelog: 'Registro modifiche',
+    noCookies: 'Nessun cookie. Statistiche aggregate nel rispetto della privacy.',
+    copyright: "Progetto indipendente, non affiliato all'ISO né ai produttori di attacchi. Metodologia conforme a ISO 11088:2023.",
+    footerBadge: 'Solo lato client • Solo memoria dispositivo • Licenza MIT',
+  },
+};
+
+const f = footerContent[lang] || footerContent.en;
 ---
 
 <!doctype html>
@@ -199,7 +330,7 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
             </svg>
           </div>
           <div class="space-y-1.5 text-xs sm:text-sm">
-            <p class="font-semibold text-primary">Mandatory ISO 11088 Safety Notice</p>
+            <p class="font-semibold text-primary">{f.safetyTitle}</p>
             <p class="text-mute leading-relaxed">
               {t('footer.disclaimer')}
             </p>
@@ -221,53 +352,53 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
           </div>
 
           <div>
-            <h3 class="caption-mono text-mute mb-3">Tools & Charts</h3>
+            <h3 class="caption-mono text-mute mb-3">{f.colTools}</h3>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.calculator')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/din-chart/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
-              <li><a href="/kids-din-chart/" class="hover:text-primary transition-colors">Kids DIN Chart</a></li>
-              <li><a href="/din-setting-by-weight/" class="hover:text-primary transition-colors">DIN by Weight</a></li>
-              <li><a href="/skier-type-quiz/" class="hover:text-primary transition-colors">Skier Type Quiz</a></li>
-              <li><a href="/embed-guide/" class="hover:text-primary transition-colors">Embed Widget</a></li>
+              <li><a href="/kids-din-chart/" class="hover:text-primary transition-colors">{f.kidsChart}</a></li>
+              <li><a href="/din-setting-by-weight/" class="hover:text-primary transition-colors">{f.dinWeight}</a></li>
+              <li><a href="/skier-type-quiz/" class="hover:text-primary transition-colors">{f.quiz}</a></li>
+              <li><a href="/embed-guide/" class="hover:text-primary transition-colors">{f.embed}</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 class="caption-mono text-mute mb-3">Guides & Safety</h3>
+            <h3 class="caption-mono text-mute mb-3">{f.colGuides}</h3>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
-              <li><a href="/gripwalk-vs-alpine-vs-wtr/" class="hover:text-primary transition-colors">GripWalk vs Alpine</a></li>
-              <li><a href="/din-vs-z-value/" class="hover:text-primary transition-colors">DIN vs Z-Value</a></li>
-              <li><a href="/how-to-adjust-ski-bindings/" class="hover:text-primary transition-colors">Binding Adjustment</a></li>
-              <li><a href="/din-too-high-or-too-low/" class="hover:text-primary transition-colors">DIN Too High or Low</a></li>
+              <li><a href="/gripwalk-vs-alpine-vs-wtr/" class="hover:text-primary transition-colors">{f.gripwalk}</a></li>
+              <li><a href="/din-vs-z-value/" class="hover:text-primary transition-colors">{f.dinVsZ}</a></li>
+              <li><a href="/how-to-adjust-ski-bindings/" class="hover:text-primary transition-colors">{f.bindingAdj}</a></li>
+              <li><a href="/din-too-high-or-too-low/" class="hover:text-primary transition-colors">{f.dinTooHigh}</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 class="caption-mono text-mute mb-3">Standards & Tech</h3>
+            <h3 class="caption-mono text-mute mb-3">{f.colStandards}</h3>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href="/iso-11088-2023-changes/" class="hover:text-primary transition-colors"><span class="text-primary font-medium">ISO 11088:2023</span> (Ed. 7)</a></li>
-              <li><span class="text-primary font-medium">ISO 9462</span> (Alpine Bindings)</li>
-              <li><span class="text-primary font-medium">ISO 5355</span> (Alpine Boot Soles)</li>
-              <li><span class="text-primary font-medium">ISO 23223</span> (GripWalk Soles)</li>
-              <li><span class="text-primary font-medium">ASTM F939</span> (Torque Selection)</li>
-              <li><span class="text-primary font-medium">ASTM F1063</span> (Inspection Standard)</li>
+              <li><span class="text-primary font-medium">ISO 9462</span> ({f.iso9462Sub})</li>
+              <li><span class="text-primary font-medium">ISO 5355</span> ({f.iso5355Sub})</li>
+              <li><span class="text-primary font-medium">ISO 23223</span> ({f.iso23223Sub})</li>
+              <li><span class="text-primary font-medium">ASTM F939</span> ({f.astmF939Sub})</li>
+              <li><span class="text-primary font-medium">ASTM F1063</span> ({f.astmF1063Sub})</li>
             </ul>
           </div>
 
           <div>
-            <h3 class="caption-mono text-mute mb-3">Company & Trust</h3>
+            <h3 class="caption-mono text-mute mb-3">{f.colCompany}</h3>
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/about/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.about')}</a></li>
-              <li><a href="/methodology/" class="hover:text-primary transition-colors">Methodology</a></li>
-              <li><a href="/changelog/" class="hover:text-primary transition-colors">Changelog</a></li>
+              <li><a href="/methodology/" class="hover:text-primary transition-colors">{f.methodology}</a></li>
+              <li><a href="/changelog/" class="hover:text-primary transition-colors">{f.changelog}</a></li>
               <li><a href={getRouteFromUrl(new URL('/contact/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.contact')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/terms/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.terms')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/privacy/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.privacy')}</a></li>
               <li class="text-emerald-700 dark:text-emerald-400 pt-1 flex items-center gap-1.5">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
-                <span>No cookies. Privacy-friendly, aggregated analytics.</span>
+                <span>{f.noCookies}</span>
               </li>
             </ul>
           </div>
@@ -275,8 +406,8 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 
         <!-- Copyright & Attribution -->
         <div class="pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between text-xs text-mute gap-4">
-          <p>© {new Date().getFullYear()} DIN Calculator Pro. Independent project, not affiliated with ISO or binding manufacturers. Methodology based on ISO 11088:2023.</p>
-          <p class="font-mono text-[11px]">Client-Side Only • Device Storage Only • MIT License</p>
+          <p>© {new Date().getFullYear()} DIN Calculator Pro. {f.copyright}</p>
+          <p class="font-mono text-[11px]">{f.footerBadge}</p>
         </div>
       </div>
     </footer>

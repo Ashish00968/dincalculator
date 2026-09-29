@@ -34,9 +34,52 @@ const ROW_LABELS = [
 
 type RowViewMode = 'code' | 'weight_kg' | 'weight_lbs' | 'height_cm' | 'height_ft';
 
+const matrixText: Record<string, {
+  title: string;
+  desc: string;
+  skierCode: string;
+  bracket: string;
+  footnote: string;
+  codePrefix: string;
+}> = {
+  en: {
+    title: 'ISO 11088 Reference Matrix',
+    desc: 'Crosshair maps current adjusted skier code and BSL bracket onto standard lookup table.',
+    skierCode: 'Skier Code',
+    bracket: 'Physical Bracket',
+    footnote: 'Official reference: ISO 11088:2023 Table 2 (Indicator settings by Skier Code and BSL)',
+    codePrefix: 'Code',
+  },
+  de: {
+    title: 'ISO 11088 Referenztabelle',
+    desc: 'Das Fadenkreuz bildet den berechneten Fahrercode und die Sohlenlänge auf die ISO-Einstellmatrix ab.',
+    skierCode: 'Fahrercode',
+    bracket: 'Körpermaße',
+    footnote: 'Offizielle Referenz: ISO 11088:2023 Tabelle 2 (Einstellwerte nach Fahrercode und Sohlenlänge)',
+    codePrefix: 'Code',
+  },
+  fr: {
+    title: 'Matrice de référence ISO 11088',
+    desc: 'Le réticule croise le code skieur calculé et la plage de longueur de semelle sur la grille officielle.',
+    skierCode: 'Code skieur',
+    bracket: 'Plage physique',
+    footnote: 'Référence officielle : Tableau 2 ISO 11088:2023 (Réglages selon code skieur et semelle)',
+    codePrefix: 'Code',
+  },
+  it: {
+    title: 'Matrice di riferimento ISO 11088',
+    desc: 'Il mirino incrocia il codice sciatore e la fascia di suola nella matrice ufficiale ISO.',
+    skierCode: 'Codice sciatore',
+    bracket: 'Fascia corporea',
+    footnote: 'Riferimento ufficiale: Tabella 2 ISO 11088:2023 (Valori secondo codice sciatore e BSL)',
+    codePrefix: 'Codice',
+  },
+};
+
 export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
   const t = useTranslations(lang);
   const [viewMode, setViewMode] = useState<RowViewMode>('code');
+  const m = matrixText[lang] || matrixText.en;
 
   const activeRowIndex = result ? SKIER_CODES.indexOf(result.adjustedCode as any) : -1;
   const activeColIndex = result ? BSL_RANGES.findIndex(r => r.label === result.bslRangeLabel) : -1;
@@ -47,7 +90,7 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
       case 'weight_lbs': return `${labelObj.weightLbs} lbs`;
       case 'height_cm': return `${labelObj.heightCm} cm`;
       case 'height_ft': return labelObj.heightFt;
-      default: return `Code ${labelObj.code}`;
+      default: return `${m.codePrefix} ${labelObj.code}`;
     }
   };
 
@@ -58,10 +101,10 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
         <div>
           <div className="flex items-center gap-2">
             <Table className="w-4 h-4 text-primary" />
-            <h2 className="text-lg font-semibold text-ink">ISO 11088 Reference Matrix</h2>
+            <h2 className="text-lg font-semibold text-ink">{m.title}</h2>
           </div>
           <p className="text-xs text-mute mt-0.5">
-            Crosshair maps current adjusted skier code and BSL bracket onto standard lookup table.
+            {m.desc}
           </p>
         </div>
 
@@ -85,7 +128,7 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
             <thead className="caption-mono text-mute bg-canvas border-b border-hairline sticky top-0 z-10">
               <tr>
                 <th scope="col" className="px-4 py-3 sticky left-0 bg-canvas border-r border-hairline z-20 w-36">
-                  {viewMode === 'code' ? 'Skier Code' : 'Physical Bracket'}
+                  {viewMode === 'code' ? m.skierCode : m.bracket}
                 </th>
                 {BSL_RANGES.map((range, i) => (
                   <th 
@@ -162,7 +205,7 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
         </div>
       </div>
       <p className="text-[11px] text-mute text-right font-mono">
-        Official reference: ISO 11088:2018 Table 2 (Indicator settings by Skier Code and BSL)
+        {m.footnote}
       </p>
     </div>
   );

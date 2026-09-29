@@ -14,53 +14,246 @@ const siteUrl = 'https://dincalculatorpro.com';
 const pageTitle = t('page.skierTypes.title');
 const pageDescription = t('page.skierTypes.desc');
 
-const skierTypes = [
-  {
-    code: 'Type -I',
-    title: 'Extremely Cautious',
-    modifier: '-1 Row Step',
-    speed: 'Very slow on flat slopes',
-    terrain: 'Magic carpets & beginner nursery slopes',
-    release: 'Releases at minimum threshold at the slightest fall',
-    description: 'Designed specifically for brand new skiers, juniors, or individuals with preexisting joint or ligament concerns who prioritize premature release over retention.'
+const skierTypesContent = {
+  de: {
+    badge: 'ISO 11088 FAHRERTYP-NORM',
+    title: 'Fahrertypen beim Skifahren (ISO 11088)',
+    desc: 'Ihr Fahrertyp steuert das mechanische Gleichgewicht zwischen rechtzeitiger Auslösung bei Stürzen und sicherem Halt bei dynamischen Schwüngen.',
+    isoModifierLabel: 'ISO-Modifikator:',
+    speedLabel: 'Geschwindigkeit',
+    terrainLabel: 'Gelände',
+    releaseLabel: 'Auslösung vs. Halt',
+    safetyTitle: 'Warum Sie sich niemals als höheren Fahrertyp einstufen sollten',
+    safetyP1: 'Viele Skifahrer stufen sich fälschlicherweise als Typ III ein, in dem Glauben, dass eine höhere Zahl fahrtechnisches Können signalisiert. Bindungen auf Typ III zu stellen, ohne die erforderlichen G-Kräfte aufzubauen, steigert jedoch drastisch das Risiko von Spiralfrakturen des Schienbeins und Kreuzbandrissen im Sturzfall.',
+    safetyP2: 'Wählen Sie stets die niedrigste Einstufung, die ein ungewolltes vorzeitiges Auslösen bei Ihrem normalen Fahrstil verlässlich verhindert.',
+    types: [
+      {
+        code: 'Typ -I',
+        title: 'Äußerst Vorsichtig',
+        modifier: '-1 Zeilensprung',
+        speed: 'Sehr langsam auf flachen Hängen',
+        terrain: 'Übungshänge und Anfängerbereiche',
+        release: 'Löst bereits bei minimaler Krafteinwirkung sofort aus',
+        description: 'Speziell für absolute Fahranfänger, Kinder oder Skifahrer mit Vorerkrankungen der Bänder, bei denen Schutz vor Überlastung absoluten Vorrang vor dem Festhaltemoment hat.'
+      },
+      {
+        code: 'Typ I',
+        title: 'Vorsichtig / Einsteiger',
+        modifier: '0 Sprünge (Basiszeile)',
+        speed: 'Mäßiges bis ruhiges Gleiten',
+        terrain: 'Blaue Pisten und einfache Abfahrten',
+        release: 'Löst leicht und frühzeitig aus',
+        description: 'Das klassische Basisprofil nach ISO 11088. Bevorzugt Einstellungen, die bei jedem Sturz sofort freigeben, um Verletzungen des Kniegelenks zu vermeiden.'
+      },
+      {
+        code: 'Typ II',
+        title: 'Fortgeschritten / All-Mountain',
+        modifier: '+1 Zeilensprung',
+        speed: 'Zügiges bis schnelles Fahren',
+        terrain: 'Rote Pisten und abwechslungsreiches Gelände',
+        release: 'Ausgewogene Balance aus sicherem Halt und Auslösung',
+        description: 'Umfasst die Mehrheit aller erwachsenen Skifahrer. Verlässlicher Halt bei gecarvten Schwüngen, kombiniert mit rechtzeitiger Freigabe bei Stürzen mit höherer kinetischer Energie.'
+      },
+      {
+        code: 'Typ III',
+        title: 'Sportlich / Experte',
+        modifier: '+2 Zeilensprünge',
+        speed: 'Sehr schnell in steilem Gelände',
+        terrain: 'Schwarze Pisten, Buckelpisten und Tiefschnee',
+        release: 'Hohe Haltekraft; löst nur bei schweren Stürzen aus',
+        description: 'Sehr versierte Skifahrer, die aggressive Fliehkräfte erzeugen. Ein unbeabsichtigtes Auslösen im Steilhang stellt hier das größere Sicherheitsrisiko dar.'
+      },
+      {
+        code: 'Typ III+',
+        title: 'Rennläufer / Extrem-Freeride',
+        modifier: '+3 Zeilensprünge (Hersteller)',
+        speed: 'Wettkampftempo / Klippensprünge',
+        terrain: 'FIS-Rennstrecken und extreme Steilrinnen',
+        release: 'Maximale mechanische Haltekraft',
+        description: 'Elite-Rennläufer, die das Risiko von Bänderverletzungen bewusst in Kauf nehmen, um Stürze durch Fehlauslösungen bei extremen Geschwindigkeiten zu verhindern.'
+      }
+    ]
   },
-  {
-    code: 'Type I',
-    title: 'Cautious / Beginner',
-    modifier: '0 Steps (Baseline)',
-    speed: 'Slow to moderate cruising',
-    terrain: 'Green circles and gentle groomed blue runs',
-    release: 'Releases easily to protect developing technique',
-    description: 'The standard baseline profile. Prefers binding settings that release quickly in a fall rather than risking knee or lower leg injury.'
+  fr: {
+    badge: 'PROFIL DE SKIEUR ISO 11088',
+    title: 'Classification des Types de Skieurs',
+    desc: 'Votre profil de skieur détermine l\'équilibre mécanique fondamental entre le déclenchement salvateur en cas de chute et la rétention à grande vitesse.',
+    isoModifierLabel: 'Modificateur ISO :',
+    speedLabel: 'Vitesse souhaitée',
+    terrainLabel: 'Terrain typique',
+    releaseLabel: 'Déclenchement vs Rétention',
+    safetyTitle: 'Pourquoi vous ne devez jamais surévaluer votre type de skieur',
+    safetyP1: 'Beaucoup de skieurs de niveau moyen choisissent le Type III en pensant qu\'un chiffre supérieur reflète un meilleur niveau. En pratique, skier en Type III sans générer les contraintes physiques associées empêche la fixation de s\'ouvrir lors d\'une chute en torsion, provoquant des ruptures des ligaments croisés.',
+    safetyP2: 'Choisissez systématiquement le type le plus bas qui évite les déclenchements intempestifs lors de votre pratique habituelle.',
+    types: [
+      {
+        code: 'Type -I',
+        title: 'Extrêmement Prudent',
+        modifier: '-1 Ligne',
+        speed: 'Très lente sur pentes faibles',
+        terrain: 'Espaces débutants et pistes vertes',
+        release: 'Déclenchement au moindre déséquilibre',
+        description: 'Conçu pour les jeunes enfants, les vrais débutants ou les skieurs avec fragilités articulaires souhaitant une libération immédiate.'
+      },
+      {
+        code: 'Type I',
+        title: 'Prudent / Débutant',
+        modifier: '0 Ligne (Ligne de base)',
+        speed: 'Allure modérée et contrôlée',
+        terrain: 'Pistes vertes et bleues damées',
+        release: 'Libère facilement pour protéger les genoux',
+        description: 'Le profil de base universel ISO 11088. Privilégie un déclenchement rapide et souple pour éliminer le risque de blessure articulaire.'
+      },
+      {
+        code: 'Type II',
+        title: 'Intermédiaire / Polyvalent',
+        modifier: '+1 Ligne',
+        speed: 'Allure soutenue à rapide',
+        terrain: 'Pistes bleues et rouges variées',
+        release: 'Équilibre optimal entre maintien et sécurité',
+        description: 'Correspond à la majorité des skieurs adultes réguliers. Maintient solidement la chaussure en virage tout en libérant efficacement lors d\'un choc violent.'
+      },
+      {
+        code: 'Type III',
+        title: 'Sportif / Confirmé',
+        modifier: '+2 Lignes',
+        speed: 'Très rapide sur pentes raides',
+        terrain: 'Pistes noires, bosses et couloirs',
+        release: 'Rétention forte ; déclenche lors de chutes violentes',
+        description: 'Skieurs expérimentés générant d\'importantes forces centrifuges où un déchaussage involontaire représenterait un danger vital.'
+      },
+      {
+        code: 'Type III+',
+        title: 'Compétiteur / Freeride Extrême',
+        modifier: '+3 Lignes (Usage atelier)',
+        speed: 'Vitesse de compétition maximale',
+        terrain: 'Stades de slalom et barres rocheuses',
+        release: 'Rétention mécanique maximale',
+        description: 'Skieurs de compétition acceptant le risque articulaire pour empêcher un déchaussage catastrophique à très haute vitesse.'
+      }
+    ]
   },
-  {
-    code: 'Type II',
-    title: 'Moderate / All-Mountain',
-    modifier: '+1 Row Step',
-    speed: 'Moderate to fast cruising',
-    terrain: 'Blue cruisers, mild black diamonds, and varied groomed terrain',
-    release: 'Balanced release tension resisting unwanted release on groomers',
-    description: 'Represents the vast majority of recreational adult skiers. Balances reliable retention during carved turns with timely release during higher-energy falls.'
+  it: {
+    badge: 'PROFILO SCIATORE ISO 11088',
+    title: 'Classificazione del Tipo di Sciatore',
+    desc: 'Il tipo di sciatore determina l\'equilibrio essenziale tra lo sgancio protettivo in caduta e la tenuta meccanica nelle curve ad alta velocità.',
+    isoModifierLabel: 'Modificatore ISO:',
+    speedLabel: 'Velocità preferita',
+    terrainLabel: 'Terreno abituale',
+    releaseLabel: 'Sgancio vs Tenuta',
+    safetyTitle: 'Perché non dovresti mai sovrastimare il tuo tipo di sciatore',
+    safetyP1: 'Molti sciatori intermedi richiedono regolazioni di Tipo III convinti che un valore più alto certifichi una migliore abilità. Nella realtà, impostare gli attacchi su Tipo III senza produrre forze dinamiche elevate impedisce l\'apertura in caduta rotazionale, provocando gravi fratture tibiali o rotture del legamento crociato anteriore.',
+    safetyP2: 'Scegli sempre la classificazione più bassa che prevenga con sicurezza gli sganci involontari durante la tua normale sciata.',
+    types: [
+      {
+        code: 'Tipo -I',
+        title: 'Estremamente Prudente',
+        modifier: '-1 Riga in su',
+        speed: 'Molto lenta su pendii facili',
+        terrain: 'Campi scuola e piste verdi',
+        release: 'Sgancio immediato alla minima sollecitazione',
+        description: 'Studiato per principianti assoluti, bambini o individui con precedenti lesioni articolari che danno priorità assoluta allo sgancio.'
+      },
+      {
+        code: 'Tipo I',
+        title: 'Prudente / Principiante',
+        modifier: '0 Righe (Riga base)',
+        speed: 'Andatura controllata da lenta a media',
+        terrain: 'Piste facili e medie battute',
+        release: 'Sgancia agevolmente per proteggere le articolazioni',
+        description: 'Il profilo di riferimento della norma ISO 11088. Favorisce lo sgancio tempestivo in caso di caduta per salvaguardare le ginocchia.'
+      },
+      {
+        code: 'Tipo II',
+        title: 'Intermedio / All-Mountain',
+        modifier: '+1 Riga in giù',
+        speed: 'Andatura media e sostenuta',
+        terrain: 'Piste rosse e pendii variati',
+        release: 'Equilibrio ottimale tra tenuta e rilascio',
+        description: 'Rappresenta la stragrande maggioranza degli sciatori adulti. Garantisce tenuta in curva condotta e sgancio affidabile nelle cadute ad alta energia.'
+      },
+      {
+        code: 'Tipo III',
+        title: 'Esperto / Aggressivo',
+        modifier: '+2 Righe in giù',
+        speed: 'Molto veloce su pendii ripidi',
+        terrain: 'Piste nere, gobbe, neve fresca e boschi',
+        release: 'Elevata forza di tenuta; sgancia solo in cadute violente',
+        description: 'Sciatori esperti che affrontano forti accelerazioni e forze G, dove uno sgancio involontario comporterebbe conseguenze pericolose.'
+      },
+      {
+        code: 'Tipo III+',
+        title: 'Agonista / Freeride Estremo',
+        modifier: '+3 Righe in giù (Costruttore)',
+        speed: 'Ritmo da gara di Coppa del Mondo',
+        terrain: 'Piste da gara FIS e canali ripidi',
+        release: 'Massima tenuta meccanica',
+        description: 'Atleti agonisti che accettano un rischio articolare elevato per scongiurare un disastroso sgancio ad altissima velocità.'
+      }
+    ]
   },
-  {
-    code: 'Type III',
-    title: 'Aggressive / Expert',
-    modifier: '+2 Row Steps',
-    speed: 'Fast to very fast on steep slopes',
-    terrain: 'Steep black/double-black groomers, moguls, powder, and trees',
-    release: 'High retention force; releases only in severe high-impact crashes',
-    description: 'Experienced skiers who regularly encounter aggressive G-forces in bumps or steeps where an accidental pre-release could cause catastrophic falls.'
-  },
-  {
-    code: 'Type III+',
-    title: 'Racer / Extreme Freeride',
-    modifier: '+3 Row Steps (Custom)',
-    speed: 'Full competition race pace / cliff drops',
-    terrain: 'FIS race courses, extreme backcountry couloirs, high park jumps',
-    release: 'Maximum mechanical retention; high risk of injury in twisting falls',
-    description: 'Elite competitors and extreme freeriders who accept substantial joint injury risk to prevent catastrophic high-speed binding release.'
+  en: {
+    badge: 'ISO 11088 CLASSIFICATION STANDARD',
+    title: 'Choosing your skier type.',
+    desc: 'Your Skier Type is NOT your ego—it is a critical mechanical setting that determines the balance between accidental release and emergency retention.',
+    isoModifierLabel: 'ISO Modifier:',
+    speedLabel: 'Speed Preference',
+    terrainLabel: 'Typical Terrain',
+    releaseLabel: 'Release vs Retention',
+    safetyTitle: 'Why You Should Never "Over-Classify" Your Skier Type',
+    safetyP1: 'Many intermediate skiers mistakenly request Type III settings under the assumption that a higher number makes them look like better skiers. In reality, setting bindings to Type III when you do not generate sufficient dynamic force to trigger an emergency release significantly elevates the risk of spiral tibia fractures and ACL/MCL knee ligament tears during a fall.',
+    safetyP2: 'Always select the lowest skier type that reliably prevents inadvertent pre-release during your normal skiing routine.',
+    types: [
+      {
+        code: 'Type -I',
+        title: 'Extremely Cautious',
+        modifier: '-1 Row Step',
+        speed: 'Very slow on flat slopes',
+        terrain: 'Magic carpets & beginner nursery slopes',
+        release: 'Releases at minimum threshold at the slightest fall',
+        description: 'Designed specifically for brand new skiers, juniors, or individuals with preexisting joint or ligament concerns who prioritize premature release over retention.'
+      },
+      {
+        code: 'Type I',
+        title: 'Cautious / Beginner',
+        modifier: '0 Steps (Baseline)',
+        speed: 'Slow to moderate cruising',
+        terrain: 'Green circles and gentle groomed blue runs',
+        release: 'Releases easily to protect developing technique',
+        description: 'The standard baseline profile. Prefers binding settings that release quickly in a fall rather than risking knee or lower leg injury.'
+      },
+      {
+        code: 'Type II',
+        title: 'Moderate / All-Mountain',
+        modifier: '+1 Row Step',
+        speed: 'Moderate to fast cruising',
+        terrain: 'Blue cruisers, mild black diamonds, and varied groomed terrain',
+        release: 'Balanced release tension resisting unwanted release on groomers',
+        description: 'Represents the vast majority of recreational adult skiers. Balances reliable retention during carved turns with timely release during higher-energy falls.'
+      },
+      {
+        code: 'Type III',
+        title: 'Aggressive / Expert',
+        modifier: '+2 Row Steps',
+        speed: 'Fast to very fast on steep slopes',
+        terrain: 'Steep black/double-black groomers, moguls, powder, and trees',
+        release: 'High retention force; releases only in severe high-impact crashes',
+        description: 'Experienced skiers who regularly encounter aggressive G-forces in bumps or steeps where an accidental pre-release could cause catastrophic falls.'
+      },
+      {
+        code: 'Type III+',
+        title: 'Racer / Extreme Freeride',
+        modifier: '+3 Row Steps (Custom)',
+        speed: 'Full competition race pace / cliff drops',
+        terrain: 'FIS race courses, extreme backcountry couloirs, high park jumps',
+        release: 'Maximum mechanical retention; high risk of injury in twisting falls',
+        description: 'Elite competitors and extreme freeriders who accept substantial joint injury risk to prevent catastrophic high-speed binding release.'
+      }
+    ]
   }
-];
+};
+
+const c = (skierTypesContent as any)[lang] || skierTypesContent.en;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -68,25 +261,19 @@ const skierTypes = [
     {/* Page Header */}
     <div class="text-center max-w-3xl mx-auto mb-14">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold mb-4 shadow-sm uppercase tracking-widest">
-        <span>{lang === 'de' ? 'ISO 11088 FAHRERTYP-NORM' : lang === 'fr' ? 'PROFIL DE SKIEUR ISO 11088' : lang === 'it' ? 'PROFILO SCIATORE ISO 11088' : 'ISO 11088 CLASSIFICATION STANDARD'}</span>
+        <span>{c.badge}</span>
       </div>
       <h1 class="text-4xl sm:text-6xl font-bold text-ink tracking-tight mb-4">
-        {lang === 'de' ? 'Fahrertypen beim Skifahren (ISO 11088)' : lang === 'fr' ? 'Classification des Types de Skieurs' : lang === 'it' ? 'Classificazione del Tipo di Sciatore' : 'Choosing your skier type.'}
+        {c.title}
       </h1>
       <p class="text-mute text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        {lang === 'de'
-          ? 'Ihr Fahrertyp steuert das Gleichgewicht zwischen rechtzeitiger Auslösung bei Stürzen und sicherem Halt bei schnellen Schwüngen.'
-          : lang === 'fr'
-          ? 'Votre profil de skieur détermine l\'équilibre fondamental entre la libération en cas de chute et la rétention à pleine vitesse.'
-          : lang === 'it'
-          ? 'Il tipo di sciatore determina l\'equilibrio essenziale tra lo sgancio di emergenza in caduta e la tenuta in curva ad alta velocità.'
-          : 'Your Skier Type is NOT your ego—it is a critical mechanical setting that determines the balance between accidental release and emergency retention.'}
+        {c.desc}
       </p>
     </div>
 
     {/* Skier Types Cards */}
     <div class="space-y-4 mb-16">
-      {skierTypes.map((type) => (
+      {c.types.map((type: any) => (
         <div class="p-8 rounded-[24px] bg-canvas border border-hairline shadow-sm">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-4 border-b border-hairline">
             <div class="flex items-center gap-3">
@@ -96,7 +283,7 @@ const skierTypes = [
               <h2 class="text-lg font-semibold text-ink">{type.title}</h2>
             </div>
             <div class="text-sm text-mute">
-              ISO Modifier: <span class="text-primary font-semibold">{type.modifier}</span>
+              {c.isoModifierLabel} <span class="text-primary font-semibold">{type.modifier}</span>
             </div>
           </div>
 
@@ -106,15 +293,15 @@ const skierTypes = [
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
             <div class="p-4 rounded-[16px] bg-parchment border border-hairline">
-              <span class="text-xs text-mute block mb-1">Speed Preference</span>
+              <span class="text-xs text-mute block mb-1">{c.speedLabel}</span>
               <span class="text-ink font-medium">{type.speed}</span>
             </div>
             <div class="p-4 rounded-[16px] bg-parchment border border-hairline">
-              <span class="text-xs text-mute block mb-1">Typical Terrain</span>
+              <span class="text-xs text-mute block mb-1">{c.terrainLabel}</span>
               <span class="text-ink font-medium">{type.terrain}</span>
             </div>
             <div class="p-4 rounded-[16px] bg-parchment border border-hairline">
-              <span class="text-xs text-mute block mb-1">Release vs Retention</span>
+              <span class="text-xs text-mute block mb-1">{c.releaseLabel}</span>
               <span class="text-ink font-medium">{type.release}</span>
             </div>
           </div>
@@ -128,13 +315,13 @@ const skierTypes = [
         <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>
-        Why You Should Never "Over-Classify" Your Skier Type
+        {c.safetyTitle}
       </h3>
       <p class="text-sm text-mute leading-relaxed">
-        Many intermediate skiers mistakenly request Type III settings under the assumption that a higher number makes them look like better skiers. In reality, setting bindings to Type III when you do not generate sufficient dynamic force to trigger an emergency release significantly elevates the risk of spiral tibia fractures and ACL/MCL knee ligament tears during a fall.
+        {c.safetyP1}
       </p>
       <p class="text-sm text-mute leading-relaxed">
-        Always select the lowest skier type that reliably prevents inadvertent pre-release during your normal skiing routine.
+        {c.safetyP2}
       </p>
     </div>
 

@@ -13,6 +13,151 @@ const siteUrl = 'https://dincalculatorpro.com';
 
 const pageTitle = t('page.about.title');
 const pageDescription = t('page.about.desc');
+
+const aboutContent = {
+  de: {
+    heroBadge: 'Unsere Mission',
+    heroH1Pre: 'Gebaut für jeden Skifahrer.',
+    heroH1Highlight: 'Geprüfte Sicherheit.',
+    heroP: 'DIN Calculator Pro wurde geschaffen, um allen Skifahrern — vom Anfänger bis zum erfahrenen Rennläufer — ein unabhängiges, transparentes und kostenloses Werkzeug zur Ermittlung des Z-Werts nach ISO 11088 zu bieten.',
+    missionH2: 'Warum wir das gebaut haben',
+    missionP1: 'Viele Z-Wert-Rechner im Internet sind veraltet, von Werbung überladen oder verschweigen ihre Berechnungsgrundlagen. Noch gravierender: Viele nutzen ungenaue Näherungsformeln anstelle der offiziellen ISO-Tabellen.',
+    missionP2: 'DIN Calculator Pro implementiert strikt die internationalen Tabellen der Norm ISO 11088:2023 (Edition 7). Jeder berechnete Wert stammt direkt aus der standardisierten Matrix — frei von Schätzungen oder vereinfachten Gleichungen.',
+    missionP3: 'Wir sind überzeugt, dass sicherheitsrelevante Werkzeuge transparent arbeiten müssen und dass jeder Skifahrer das Recht hat, dieselben fundierten Berechnungsschritte wie die Skiservice-Werkstatt nachzuvollziehen.',
+    principlesH2: 'Unsere Grundsätze',
+    principles: [
+      { icon: "🔐", title: "Zero Data. Immer.", desc: "Wir erfassen, speichern oder übertragen niemals personenbezogene Daten. Alle Berechnungen laufen ausschließlich lokal in Ihrem Browser." },
+      { icon: "📐", title: "Strikte ISO 11088:2023.", desc: "Wir implementieren die vollständige 7. Ausgabe der ISO 11088 — ohne Vereinfachungen oder Abkürzungen." },
+      { icon: "🆓", title: "Dauerhaft kostenlos.", desc: "DIN Calculator Pro bleibt für immer gebührenfrei. Keine Bezahlschranken, keine Abos, keine Werbung." },
+      { icon: "🌍", title: "Für jedermann optimiert.", desc: "Vollständige Unterstützung metrischer und imperialer Einheiten. Schnell und mobil-optimiert." }
+    ],
+    stats: [
+      { value: "Ed. 7", label: "ISO 11088:2023" },
+      { value: "0", label: "Cookies oder Tracker" },
+      { value: "12", label: "Geprüfte FAQs" },
+      { value: "<1ms", label: "Berechnungszeit" }
+    ],
+    techH2: "Technologie & Architektur",
+    techDesc: "DIN Calculator Pro ist eine vollständig statische, clientseitige Webanwendung. Es gibt keinen Backend-Server, keine Datenbank und keine externen API-Aufrufe. Die Anwendung wird zum Build-Zeitpunkt generiert und als schlankes HTML/JS-Paket ausgeliefert.",
+    techCards: [
+      { name: "Astro", desc: "Statische Seitengenerierung" },
+      { name: "Preact", desc: "Ultraschlanke UI-Inseln" },
+      { name: "Tailwind CSS v4", desc: "Modernes Designsystem" },
+      { name: "TypeScript", desc: "Strikte Typensicherheit" },
+      { name: "ISO 11088:2023", desc: "Berechnungsnorm (Ed. 7)" },
+      { name: "Zero Dependencies", desc: "im Berechnungs-Core" }
+    ],
+    safetyH3: "Wichtiger Sicherheitshinweis",
+    safetyP: "DIN Calculator Pro liefert mathematische Richtwerte auf Basis der Norm ISO 11088:2023 zu reinen Informationszwecken. Die tatsächliche Bindungsauslösung hängt von mechanischen Einflussgrößen wie Sohlenabnutzung, Anpressdruck und Gleitplattenreibung ab. Bindungen müssen vor dem Skifahren stets von einem qualifizierten Skiservice auf einem kalibrierten Prüfgerät eingestellt und geprüft werden."
+  },
+  fr: {
+    heroBadge: 'Notre Mission',
+    heroH1Pre: 'Conçu pour tous les skieurs.',
+    heroH1Highlight: 'La sécurité en priorité.',
+    heroP: 'DIN Calculator Pro a été créé pour offrir à chaque skieur — du parfait débutant au compétiteur confirmé — un outil de référence transparent, indépendant et totalement gratuit pour le calcul des valeurs DIN selon l\'ISO 11088.',
+    missionH2: 'Pourquoi nous l\'avons créé',
+    missionP1: 'La plupart des calculateurs DIN en ligne sont obsolètes, saturés de publicités ou n\'expliquent pas leur méthode. Pire encore, beaucoup utilisent des approximations simplifiées plutôt que les grilles officielles ISO 11088.',
+    missionP2: 'DIN Calculator Pro intègre rigoureusement la norme internationale ISO 11088:2023 (Édition 7). Chaque valeur affichée provient directement de la grille officielle — sans approximations ni formules empiriques.',
+    missionP3: 'Nous croyons que les outils de sécurité doivent être transparents et que chaque skieur a le droit de comprendre exactement les étapes appliquées par son technicien en atelier.',
+    principlesH2: 'Nos Principes',
+    principles: [
+      { icon: "🔐", title: "Zéro Donnée. Toujours.", desc: "Nous ne collectons ni ne stockons aucune donnée personnelle. Tous les calculs s'exécutent entièrement dans votre navigateur." },
+      { icon: "📐", title: "Stricte ISO 11088:2023.", desc: "Nous appliquons l'intégralité de la 7e édition de l'ISO 11088 — sans compromis ni barèmes tronqués." },
+      { icon: "🆓", title: "Gratuit pour toujours.", desc: "DIN Calculator Pro sera toujours gratuit. Aucun abonnement, aucun paywall, aucune publicité." },
+      { icon: "🌍", title: "Accessible à tous.", desc: "Prise en charge métrique et impériale avec détection locale. Conçu pour le mobile." }
+    ],
+    stats: [
+      { value: "Éd. 7", label: "ISO 11088:2023" },
+      { value: "0", label: "Cookie ou Traceur" },
+      { value: "12", label: "Réponses d'Experts" },
+      { value: "<1ms", label: "Temps de Calcul" }
+    ],
+    techH2: "Technologie & Architecture",
+    techDesc: "DIN Calculator Pro est une application web entièrement statique exécutée côté client. Aucun serveur dorsal, aucune base de données, aucun appel API. L'application est compilée statiquement pour des performances instantanées.",
+    techCards: [
+      { name: "Astro", desc: "Génération de sites statiques" },
+      { name: "Preact", desc: "Composants ultra-légers" },
+      { name: "Tailwind CSS v4", desc: "Système de design moderne" },
+      { name: "TypeScript", desc: "Typage strict et sécurisé" },
+      { name: "ISO 11088:2023", desc: "Norme de référence (Éd. 7)" },
+      { name: "Zéro dépendance", desc: "pour le moteur de calcul" }
+    ],
+    safetyH3: "Avertissement de Sécurité Important",
+    safetyP: "DIN Calculator Pro fournit des estimations mathématiques dérivées de la norme ISO 11088:2023 à titre purement indicatif. Le déclenchement effectif dépend de variables physiques réelles comme l'usure de la semelle, la précharge axiale et la plaque antifriction. Vos fixations doivent impérativement être réglées et testées sur banc d'essai calibré par un technicien ski agréé avant utilisation."
+  },
+  it: {
+    heroBadge: 'La Nostra Missione',
+    heroH1Pre: 'Creato per ogni sciatore.',
+    heroH1Highlight: 'Sicurezza e precisione.',
+    heroP: 'DIN Calculator Pro è stato sviluppato per offrire a ogni sciatore — dai principianti agli atleti esperti — uno strumento di riferimento trasparente, indipendente e completamente gratuito per il calcolo della taratura DIN secondo la norma ISO 11088.',
+    missionH2: 'Perché lo abbiamo creato',
+    missionP1: 'La maggior parte dei calcolatori DIN online è obsoleta, sommersa di pubblicità o non spiega la logica applicata. Ancora peggio: molti ricorrono a formule approssimative anziché alle tabelle ufficiali ISO 11088.',
+    missionP2: 'DIN Calculator Pro è basato fedelmente sull\'edizione ISO 11088:2023 (Edizione 7). Ogni valore mostrato proviene direttamente dalla matrice standard pubblicata — senza stime arbitrarie o scorciatoie matematiche.',
+    missionP3: 'Riteniamo che gli strumenti per la sicurezza debbano essere trasparenti e che ciascun appassionato debba poter verificare i medesimi passaggi adottati dallo skiman in laboratorio.',
+    principlesH2: 'I Nostri Principi',
+    principles: [
+      { icon: "🔐", title: "Zero Dati. Sempre.", desc: "Non raccogliamo né memorizziamo alcun dato personale. Tutti i calcoli si svolgono localmente nella memoria del browser." },
+      { icon: "📐", title: "Rigorosa ISO 11088:2023.", desc: "Implementiamo per intero la settima edizione della norma ISO 11088 — senza semplificazioni." },
+      { icon: "🆓", title: "Gratuito per sempre.", desc: "DIN Calculator Pro rimarrà per sempre accessibile a tutti. Nessun abbonamento, nessun paywall, zero banner pubblicitari." },
+      { icon: "🌍", title: "Pensato per tutti.", desc: "Supporto completo a unità metriche e imperiali con layout ottimizzato per smartphone." }
+    ],
+    stats: [
+      { value: "Ed. 7", label: "ISO 11088:2023" },
+      { value: "0", label: "Cookie o Tracker" },
+      { value: "12", label: "Risposte Tecniche" },
+      { value: "<1ms", label: "Tempo di Calcolo" }
+    ],
+    techH2: "Tecnologia & Architettura",
+    techDesc: "DIN Calculator Pro è un'applicazione web interamente statica lato client. Nessun server backend, nessun database e nessuna chiamata API esterna. L'intera applicazione viene compilata al build-time e servita all'istante.",
+    techCards: [
+      { name: "Astro", desc: "Generazione statica ad alta velocità" },
+      { name: "Preact", desc: "Componenti interattivi ultraleggeri" },
+      { name: "Tailwind CSS v4", desc: "Design system moderno" },
+      { name: "TypeScript", desc: "Tipizzazione rigorosa e sicura" },
+      { name: "ISO 11088:2023", desc: "Norma internazionale (Ed. 7)" },
+      { name: "Zero dipendenze", desc: "per il motore di calcolo" }
+    ],
+    safetyH3: "Avvertenza di Sicurezza Importante",
+    safetyP: "DIN Calculator Pro calcola valori indicativi secondo lo standard ISO 11088:2023 a scopo informativo. Lo sgancio effettivo è condizionato da fattori meccanici pratici tra cui l'usura dello scarpone, la spinta longitudinale della talloniera e lo scorrimento della piastrina AFD. Gli attacchi devono essere regolati e collaudati su banco dinamometrico elettronico da uno skiman certificato prima di scendere in pista."
+  },
+  en: {
+    heroBadge: 'Our Mission',
+    heroH1Pre: 'Built for every skier.',
+    heroH1Highlight: 'Trusted for safety.',
+    heroP: 'DIN Calculator Pro was created to give every skier — from first-timers to seasoned alpine racers — access to a transparent, independent, and completely free DIN calculation reference tool.',
+    missionH2: 'Why We Built This',
+    missionP1: 'Most DIN calculators on the internet are outdated, buried in advertising, or don\'t explain their methodology. Worse — many use simplified approximations rather than the published ISO 11088 lookup tables.',
+    missionP2: 'DIN Calculator Pro was built using the international ISO 11088:2023 (Edition 7) standard tables. Every number you see comes directly from the published international standard matrix — not from guesswork or simplified equations.',
+    missionP3: 'We believe safety-critical reference tools should be transparent about how they work, and that every skier deserves access to the exact calculation steps that ski technicians use.',
+    principlesH2: 'Our Principles',
+    principles: [
+      { icon: "🔐", title: "Zero Data. Always.", desc: "We never collect, store, or transmit your personal data. All calculations run entirely in your browser." },
+      { icon: "📐", title: "Strict ISO 11088:2023.", desc: "We implement the full ISO 11088:2023 (Edition 7) standard — not approximations or simplified charts." },
+      { icon: "🆓", title: "Free Forever.", desc: "DIN Calculator Pro will always be free. No paywalls, no subscriptions, no ads." },
+      { icon: "🌍", title: "Built for Everyone.", desc: "Full Imperial and Metric support with smart locale detection. Designed mobile-first." }
+    ],
+    stats: [
+      { value: "Ed. 7", label: "ISO 11088:2023" },
+      { value: "0", label: "Cookies or Trackers" },
+      { value: "12", label: "FAQ Answers" },
+      { value: "<1ms", label: "Calculation Time" }
+    ],
+    techH2: "Technology & Architecture",
+    techDesc: "DIN Calculator Pro is a fully static, client-side web application. There is no backend server, no database, no API calls. The entire application is generated at build time and delivered as a static HTML/JS bundle.",
+    techCards: [
+      { name: "Astro", desc: "Static site generation" },
+      { name: "Preact", desc: "Lightweight UI islands" },
+      { name: "Tailwind CSS v4", desc: "Modern design system" },
+      { name: "TypeScript", desc: "Strict type safety" },
+      { name: "ISO 11088:2023", desc: "Calculation standard (Ed. 7)" },
+      { name: "Zero dependencies", desc: "for the calculation engine" }
+    ],
+    safetyH3: "Important Safety Disclaimer",
+    safetyP: "DIN Calculator Pro provides mathematical estimates based on the published ISO 11088:2023 standard. These values are for informational and reference purposes only. Ski binding release forces are affected by physical factors including boot wear, binding tolerances, and forward pressure. Bindings must always be inspected, adjusted, and tested by a certified ski technician using specialized calibration equipment before skiing."
+  }
+};
+
+const c = (aboutContent as any)[lang] || aboutContent.en;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -22,14 +167,14 @@ const pageDescription = t('page.about.desc');
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14 sm:pt-28 sm:pb-20 text-center">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-parchment text-mute text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-        Our Mission
+        {c.heroBadge}
       </div>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-tight mb-6">
-        Built for every skier.<br/>
-        <span class="text-primary">Trusted for safety.</span>
+        {c.heroH1Pre}<br/>
+        <span class="text-primary">{c.heroH1Highlight}</span>
       </h1>
       <p class="text-mute text-lg max-w-2xl mx-auto leading-relaxed">
-        DIN Calculator Pro was created to give every skier — from first-timers to seasoned alpine racers — access to a transparent, independent, and completely free DIN calculation reference tool.
+        {c.heroP}
       </p>
     </div>
   </section>
@@ -39,26 +184,21 @@ const pageDescription = t('page.about.desc');
     <!-- Mission -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-8 border-t border-hairline">
       <div class="space-y-4">
-        <h2 class="text-2xl font-bold text-ink">Why We Built This</h2>
+        <h2 class="text-2xl font-bold text-ink">{c.missionH2}</h2>
         <p class="text-mute text-sm leading-relaxed">
-          Most DIN calculators on the internet are outdated, buried in advertising, or don't explain their methodology. Worse — many use simplified approximations rather than the published ISO 11088 lookup tables.
+          {c.missionP1}
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          DIN Calculator Pro was built using the international ISO 11088:2023 (Edition 7) standard tables. Every number you see comes directly from the published international standard matrix — not from guesswork or simplified equations.
+          {c.missionP2}
         </p>
         <p class="text-mute text-sm leading-relaxed">
-          We believe safety-critical reference tools should be transparent about how they work, and that every skier deserves access to the exact calculation steps that ski technicians use.
+          {c.missionP3}
         </p>
       </div>
       <div class="space-y-4">
-        <h2 class="text-2xl font-bold text-ink">Our Principles</h2>
+        <h2 class="text-2xl font-bold text-ink">{c.principlesH2}</h2>
         <ul class="space-y-3">
-          {[
-            { icon: "🔐", title: "Zero Data. Always.", desc: "We never collect, store, or transmit your personal data. All calculations run entirely in your browser." },
-            { icon: "📐", title: "Strict ISO 11088:2023.", desc: "We implement the full ISO 11088:2023 (Edition 7) standard — not approximations or simplified charts." },
-            { icon: "🆓", title: "Free Forever.", desc: "DIN Calculator Pro will always be free. No paywalls, no subscriptions, no ads." },
-            { icon: "🌍", title: "Built for Everyone.", desc: "Full Imperial and Metric support with smart locale detection. Designed mobile-first." }
-          ].map(item => (
+          {c.principles.map((item: any) => (
             <li class="flex gap-3 p-4 rounded-xl bg-parchment border border-hairline">
               <span class="text-xl shrink-0">{item.icon}</span>
               <div>
@@ -73,12 +213,7 @@ const pageDescription = t('page.about.desc');
 
     <!-- Stats -->
     <section class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      {[
-        { value: "Ed. 7", label: "ISO 11088:2023" },
-        { value: "0", label: "Cookies or Trackers" },
-        { value: "12", label: "FAQ Answers" },
-        { value: "<1ms", label: "Calculation Time" }
-      ].map(stat => (
+      {c.stats.map((stat: any) => (
         <div class="p-6 rounded-2xl bg-parchment border border-hairline text-center">
           <div class="text-3xl font-bold text-primary mb-1">{stat.value}</div>
           <div class="text-xs text-mute">{stat.label}</div>
@@ -88,19 +223,12 @@ const pageDescription = t('page.about.desc');
 
     <!-- Technology -->
     <section class="space-y-6 border-t border-hairline pt-12">
-      <h2 class="text-2xl font-bold text-ink">Technology & Architecture</h2>
+      <h2 class="text-2xl font-bold text-ink">{c.techH2}</h2>
       <p class="text-mute text-sm leading-relaxed max-w-2xl">
-        DIN Calculator Pro is a fully static, client-side web application. There is no backend server, no database, no API calls. The entire application is generated at build time and delivered as a static HTML/JS bundle.
+        {c.techDesc}
       </p>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {[
-          { name: "Astro", desc: "Static site generation" },
-          { name: "Preact", desc: "Lightweight UI islands" },
-          { name: "Tailwind CSS v4", desc: "Modern design system" },
-          { name: "TypeScript", desc: "Strict type safety" },
-          { name: "ISO 11088:2023", desc: "Calculation standard (Ed. 7)" },
-          { name: "Zero dependencies", desc: "for the calculation engine" }
-        ].map(tech => (
+        {c.techCards.map((tech: any) => (
           <div class="p-4 rounded-xl bg-parchment border border-hairline">
             <div class="font-semibold text-ink text-sm">{tech.name}</div>
             <div class="text-xs text-mute mt-0.5">{tech.desc}</div>
@@ -116,9 +244,9 @@ const pageDescription = t('page.about.desc');
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
         </div>
         <div>
-          <h3 class="font-semibold text-ink mb-2">Important Safety Disclaimer</h3>
+          <h3 class="font-semibold text-ink mb-2">{c.safetyH3}</h3>
           <p class="text-sm text-mute leading-relaxed">
-            DIN Calculator Pro provides mathematical estimates based on the published ISO 11088:2023 standard. These values are for informational and reference purposes only. Ski binding release forces are affected by physical factors including boot wear, binding tolerances, and forward pressure. <strong class="text-ink">Bindings must always be inspected, adjusted, and tested by a certified ski technician using specialized calibration equipment before skiing.</strong>
+            {c.safetyP}
           </p>
         </div>
       </div>

@@ -27,6 +27,119 @@ const mondoTable = [
   { mondo: '30.0 / 30.5', usMen: '12.5 / 13.0', usWomen: '—', eu: '46.5 / 47', typicalBsl: '345 mm' },
   { mondo: '31.0 / 31.5', usMen: '13.5 / 14.0', usWomen: '—', eu: '48 / 49', typicalBsl: '355 mm' },
 ];
+
+const bslContent = {
+  de: {
+    badge: 'MESSVORSCHRIFT',
+    title: 'Sohlenlänge (BSL) am Skischuh ermitteln',
+    desc: 'Alles Wissenswerte über das Messen, Ablesen und Umrechnen der Sohlenlänge (in mm) für die korrekte Z-Wert-Berechnung.',
+    distinctionH2: 'Mondopoint vs. Sohlenlänge (BSL)',
+    distinctionP: 'Der häufigste Fehler beim Berechnen des Z-Werts ist die Eingabe der Mondopoint-Größe (z. B. 27,5) statt der tatsächlichen Sohlenlänge (z. B. 315 mm).',
+    mondoTitle: 'Mondopoint-Größe:',
+    mondoDesc: 'Die Innenfuß- bzw. Innenschuhlänge in Zentimetern (z. B. 26,5 cm).',
+    bslTitle: 'Sohlenlänge (BSL):',
+    bslDesc: 'Die gesamte äußere Schalenlänge in Millimetern (z. B. 305 mm).',
+    diagramCaption: 'Fersenprägung: "305 mm" (BSL)',
+    methodsH2: '3 Wege zur Ermittlung Ihrer Sohlenlänge',
+    method1Title: 'Fersenbacke überprüfen',
+    method1Desc: 'Bei 95 % aller Skischuhe (Salomon, Atomic, Head, Lange, Rossignol, Tecnica) ist die dreistellige Millimeterzahl seitlich oder unter der Ferse eingeprägt.',
+    method2Title: 'Von Spitze bis Ferse messen',
+    method2Desc: 'Ist die Prägung durch Asphalt unleserlich, messen Sie mit einem Maßband exakt von der hinteren Fersenkante bis zur vorderen Spitze der Sohle.',
+    method3Title: 'Mondopoint-Tabelle nutzen',
+    method3Desc: 'Nutzen Sie die untenstehende Richtwerttabelle zur Schätzung. Hinweis: Schalenformen variieren je nach Hersteller um ±3–8 mm.',
+    tableH2: 'Umrechnungstabelle Mondopoint zu typischer Sohlenlänge (BSL)',
+    tableThMondo: 'Mondo (cm)',
+    tableThUsMen: 'US Herren',
+    tableThUsWomen: 'US Damen',
+    tableThEu: 'EU-Größe',
+    tableThBsl: 'Typische BSL',
+    ctaH3: 'Sohlenlänge parat?',
+    ctaP: 'Berechnen Sie jetzt Ihren präzisen Z-Wert nach ISO 11088 in Millisekunden.'
+  },
+  fr: {
+    badge: 'SPÉCIFICATION DE MESURE',
+    title: 'Trouver la Longueur de Semelle (BSL)',
+    desc: 'Tout savoir pour mesurer, repérer et convertir la longueur de semelle en millimètres pour un réglage DIN précis.',
+    distinctionH2: 'Mondopoint vs. Longueur de Semelle (BSL)',
+    distinctionP: 'L\'erreur la plus fréquente des skieurs consiste à renseigner leur taille Mondopoint (ex. 27.5) au lieu de la longueur de semelle extérieure (ex. 315 mm).',
+    mondoTitle: 'Pointure Mondopoint :',
+    mondoDesc: 'La dimension du chausson interne en centimètres (ex. 26,5 cm).',
+    bslTitle: 'Longueur de Semelle (BSL) :',
+    bslDesc: 'La longueur extérieure totale de la coque en millimètres (ex. 305 mm).',
+    diagramCaption: 'Marquage talon : "305 mm" (BSL)',
+    methodsH2: '3 méthodes pour trouver votre BSL',
+    method1Title: 'Examiner le talon de la chaussure',
+    method1Desc: 'Sur 95 % des chaussures (Salomon, Atomic, Head, Lange, Rossignol, Tecnica), le nombre à 3 chiffres en mm est moulé sur le côté ou sous le talon.',
+    method2Title: 'Mesurer de bout en bout',
+    method2Desc: 'Si l\'empreinte est effacée par l\'usure, mesurez au mètre ruban du bord extrême de la talonnière jusqu\'à la pointe de la butée avant.',
+    method3Title: 'Consulter la grille de conversion',
+    method3Desc: 'Utilisez la grille ci-dessous pour estimer votre BSL. Attention : les moules de coque varient de ±3 à 8 mm selon les fabricants.',
+    tableH2: 'Tableau de conversion Mondopoint vers Longueur de Semelle typique',
+    tableThMondo: 'Mondo (cm)',
+    tableThUsMen: 'US Homme',
+    tableThUsWomen: 'US Femme',
+    tableThEu: 'Taille EU',
+    tableThBsl: 'BSL Moyenne',
+    ctaH3: 'Prêt avec votre semelle ?',
+    ctaP: 'Calculez instantanément votre valeur de déclenchement ISO 11088.'
+  },
+  it: {
+    badge: 'SPECIFICA DI MISURA',
+    title: 'Lunghezza Scafo Scarpone (BSL) in mm',
+    desc: 'Tutto quello che serve per individuare, misurare e convertire la lunghezza scafo in millimetri per una taratura DIN corretta.',
+    distinctionH2: 'Mondo Point vs. Lunghezza Scafo (BSL)',
+    distinctionP: 'L\'errore più comune commesso dagli sciatori è inserire la taglia Mondopoint (es. 27.5) anziché la lunghezza scafo esterna (es. 315 mm).',
+    mondoTitle: 'Taglia Mondopoint:',
+    mondoDesc: 'La lunghezza interna del piede o della scarpetta in centimetri (es. 26,5 cm).',
+    bslTitle: 'Lunghezza Scafo (BSL):',
+    bslDesc: 'La misura esterna fisica totale della suola in millimetri (es. 305 mm).',
+    diagramCaption: 'Marcatura sul tallone: "305 mm" (BSL)',
+    methodsH2: '3 metodi per individuare la misura BSL',
+    method1Title: 'Esamina il tacco dello scarpone',
+    method1Desc: 'Nel 95% degli scarponi da sci (Salomon, Atomic, Head, Lange, Rossignol, Tecnica), il valore a 3 cifre in millimetri è inciso sul lato o sotto il tallone.',
+    method2Title: 'Misura da punta a coda',
+    method2Desc: 'Se la scritta è abrasa dalla camminata su asfalto, rileva la misura esatta con un metro millimetrico dall\'estremità posteriore del tacco alla punta anteriore.',
+    method3Title: 'Consulta la tabella Mondopoint',
+    method3Desc: 'Usa la tabella sottostante per risalire alla BSL tipica. Attenzione: le plastiche degli scarponi variano di ±3–8 mm a seconda della marca.',
+    tableH2: 'Tabella di conversione taglia Mondopoint e BSL tipica',
+    tableThMondo: 'Mondo (cm)',
+    tableThUsMen: 'US Uomo',
+    tableThUsWomen: 'US Donna',
+    tableThEu: 'Taglia EU',
+    tableThBsl: 'BSL Tipica',
+    ctaH3: 'Hai la misura della suola?',
+    ctaP: 'Calcola subito la taratura corretta ISO 11088 in pochi millisecondi.'
+  },
+  en: {
+    badge: 'MEASUREMENT SPECIFICATION',
+    title: 'Boot Sole Length (BSL) Guide',
+    desc: 'Everything you need to know about measuring, locating, and converting your ski boot\'s millimeter sole dimension for safe DIN calculations.',
+    distinctionH2: 'Mondo Point vs. Boot Sole Length',
+    distinctionP: 'The most common mistake skiers make is inputting their Mondo size (e.g., 27.5) into a DIN calculator instead of their Boot Sole Length (e.g., 315mm).',
+    mondoTitle: 'Mondo Size:',
+    mondoDesc: 'The inner foot/liner size in centimeters (e.g., 26.5 cm).',
+    bslTitle: 'Boot Sole Length (BSL):',
+    bslDesc: 'Total physical exterior shell length in millimeters (e.g., 305 mm).',
+    diagramCaption: 'Heel Stamp: "305 mm" (BSL)',
+    methodsH2: '3 ways to find your BSL.',
+    method1Title: 'Examine the Heel Lug',
+    method1Desc: 'In 95% of ski boots (Salomon, Atomic, Head, Lange, Rossignol, Tecnica), the 3-digit millimeter number is molded directly on the side or bottom of the heel.',
+    method2Title: 'Measure Tip-to-Tail',
+    method2Desc: 'If the stamp has worn away from walking on parking lot asphalt, measure with a metric millimeter tape from the back of the heel lug to the tip of the toe lug.',
+    method3Title: 'Lookup Mondo Conversion',
+    method3Desc: 'Use the chart below to estimate typical BSL from your Mondo or US shoe size. Note: boot shell molds vary by brand by ±3–8mm.',
+    tableH2: 'Mondo Size to Typical BSL Conversion Table',
+    tableThMondo: 'Mondo (cm)',
+    tableThUsMen: 'US Men',
+    tableThUsWomen: 'US Women',
+    tableThEu: 'EU Size',
+    tableThBsl: 'Typical BSL',
+    ctaH3: 'Ready with your BSL?',
+    ctaP: 'Compute your exact ISO 11088 binding release setting in milliseconds.'
+  }
+};
+
+const c = (bslContent as any)[lang] || bslContent.en;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -34,19 +147,13 @@ const mondoTable = [
     {/* Header */}
     <div class="text-center max-w-3xl mx-auto mb-14">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-mono mb-4 shadow-sm">
-        <span>{lang === 'de' ? 'MESSVORSCHRIFT' : lang === 'fr' ? 'SPÉCIFICATION DE MESURE' : lang === 'it' ? 'SPECIFICA DI MISURA' : 'MEASUREMENT SPECIFICATION'}</span>
+        <span>{c.badge}</span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
-        {lang === 'de' ? 'Sohlenlänge (BSL) am Skischuh ermitteln' : lang === 'fr' ? 'Trouver la Longueur de Semelle (BSL)' : lang === 'it' ? 'Lunghezza Scafo Scarpone (BSL) in mm' : 'Boot Sole Length (BSL) Guide'}
+        {c.title}
       </h1>
       <p class="text-mute text-sm sm:text-base leading-relaxed">
-        {lang === 'de'
-          ? 'Alles Wissenswerte über das Messen, Ablesen und Umrechnen der Sohlenlänge (in mm) für die korrekte Z-Wert-Berechnung.'
-          : lang === 'fr'
-          ? 'Tout savoir pour mesurer, repérer et convertir la longueur de semelle en millimètres pour un réglage DIN précis.'
-          : lang === 'it'
-          ? 'Tutto quello che devi sapere per individuare, misurare e convertire la lunghezza scafo in millimetri per una taratura DIN sicura.'
-          : 'Everything you need to know about measuring, locating, and converting your ski boot\'s millimeter sole dimension for safe DIN calculations.'}
+        {c.desc}
       </p>
     </div>
 
@@ -55,18 +162,18 @@ const mondoTable = [
       <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-primary to-orange-400"></div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h2 class="text-xl font-semibold text-ink mb-3">Mondo Point vs. Boot Sole Length</h2>
+          <h2 class="text-xl font-semibold text-ink mb-3">{c.distinctionH2}</h2>
           <p class="text-xs text-mute leading-relaxed mb-4">
-            The most common mistake skiers make is inputting their <strong>Mondo size (e.g., 27.5)</strong> into a DIN calculator instead of their <strong>Boot Sole Length (e.g., 315mm)</strong>.
+            {c.distinctionP}
           </p>
           <ul class="space-y-2 text-xs text-ink">
             <li class="flex items-start gap-2">
               <span class="text-rose-600 dark:text-rose-400 font-mono font-bold">✕</span>
-              <span><strong>Mondo Size:</strong> The inner foot/liner size in centimeters (e.g., 26.5 cm).</span>
+              <span><strong>{c.mondoTitle}</strong> {c.mondoDesc}</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-emerald-700 dark:text-emerald-400 font-mono font-bold">✓</span>
-              <span><strong>Boot Sole Length (BSL):</strong> Total physical exterior shell length in millimeters (e.g., 305 mm).</span>
+              <span><strong>{c.bslTitle}</strong> {c.bslDesc}</span>
             </li>
           </ul>
         </div>
@@ -92,7 +199,7 @@ const mondoTable = [
             <line x1="22" y1="90" x2="210" y2="90" stroke="var(--theme-primary)" stroke-width="1.5" stroke-dasharray="3 3"></line>
           </svg>
           <span class="caption-mono text-primary font-bold mt-2">
-            Heel Stamp: "305 mm" (BSL)
+            {c.diagramCaption}
           </span>
         </div>
       </div>
@@ -100,29 +207,29 @@ const mondoTable = [
 
     {/* 3 Step Guide */}
     <div class="mb-14">
-      <h2 class="text-xl font-semibold text-ink mb-6 text-center">3 ways to find your BSL.</h2>
+      <h2 class="text-xl font-semibold text-ink mb-6 text-center">{c.methodsH2}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 shadow-sm">
           <span class="caption-mono text-mute">Method 01</span>
-          <h3 class="text-sm font-semibold text-ink">Examine the Heel Lug</h3>
+          <h3 class="text-sm font-semibold text-ink">{c.method1Title}</h3>
           <p class="text-xs text-mute leading-relaxed">
-            In 95% of ski boots (Salomon, Atomic, Head, Lange, Rossignol, Tecnica), the 3-digit millimeter number is molded directly on the side or bottom of the heel.
+            {c.method1Desc}
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 shadow-sm">
           <span class="caption-mono text-mute">Method 02</span>
-          <h3 class="text-sm font-semibold text-ink">Measure Tip-to-Tail</h3>
+          <h3 class="text-sm font-semibold text-ink">{c.method2Title}</h3>
           <p class="text-xs text-mute leading-relaxed">
-            If the stamp has worn away from walking on parking lot asphalt, measure with a metric millimeter tape from the back of the heel lug to the tip of the toe lug.
+            {c.method2Desc}
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 shadow-sm">
           <span class="caption-mono text-mute">Method 03</span>
-          <h3 class="text-sm font-semibold text-ink">Lookup Mondo Conversion</h3>
+          <h3 class="text-sm font-semibold text-ink">{c.method3Title}</h3>
           <p class="text-xs text-mute leading-relaxed">
-            Use the chart below to estimate typical BSL from your Mondo or US shoe size. Note: boot shell molds vary by brand by &plusmn;3–8mm.
+            {c.method3Desc}
           </p>
         </div>
       </div>
@@ -132,7 +239,7 @@ const mondoTable = [
     <div class="mb-16">
       <div class="mb-4">
         <h2 class="text-lg font-semibold text-ink">
-          Mondo Size to Typical BSL Conversion Table
+          {c.tableH2}
         </h2>
       </div>
 
@@ -140,11 +247,11 @@ const mondoTable = [
         <table class="w-full text-xs text-left">
           <thead class="caption-mono bg-canvas text-mute border-b border-hairline">
             <tr>
-              <th class="px-5 py-3.5">Mondo (cm)</th>
-              <th class="px-5 py-3.5">US Men</th>
-              <th class="px-5 py-3.5">US Women</th>
-              <th class="px-5 py-3.5">EU Size</th>
-              <th class="px-5 py-3.5 text-right">Typical BSL</th>
+              <th class="px-5 py-3.5">{c.tableThMondo}</th>
+              <th class="px-5 py-3.5">{c.tableThUsMen}</th>
+              <th class="px-5 py-3.5">{c.tableThUsWomen}</th>
+              <th class="px-5 py-3.5">{c.tableThEu}</th>
+              <th class="px-5 py-3.5 text-right">{c.tableThBsl}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-hairline font-mono">
@@ -165,8 +272,8 @@ const mondoTable = [
     {/* Call to action */}
     <div class="p-8 rounded-2xl bg-parchment border border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
       <div>
-        <h3 class="text-base font-semibold text-ink mb-1">Ready with your BSL?</h3>
-        <p class="text-xs text-mute">Compute your exact ISO 11088 binding release setting in milliseconds.</p>
+        <h3 class="text-base font-semibold text-ink mb-1">{c.ctaH3}</h3>
+        <p class="text-xs text-mute">{c.ctaP}</p>
       </div>
       <a
         href={getRouteFromUrl(new URL('/', siteUrl), lang)}
