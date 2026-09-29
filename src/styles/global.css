@@ -7,13 +7,13 @@
   --theme-canvas: #f8fafc; /* Slate 50 */
   --theme-parchment: #ffffff; /* White */
   --theme-ink: #0f172a; /* Slate 900 */
-  --theme-primary: #ea580c; /* High-vis Orange */
-  --theme-mute: #475569; /* Slate 600 (ensures >= 5.5:1 contrast against canvas/parchment) */
+  --theme-primary: #c2410c; /* High-vis Deep Orange (>= 4.89:1 WCAG AA compliant against white/canvas) */
+  --theme-mute: #334155; /* Slate 700 (ensures >= 7.0:1 contrast against canvas/parchment) */
   --theme-hairline: #e2e8f0; /* Slate 200 */
-  --theme-accent: #ea580c; /* High-vis Orange */
-  --theme-accent-hover: #c2410c;
+  --theme-accent: #c2410c; /* High-vis Orange (passes 4.5:1) */
+  --theme-accent-hover: #9a3412;
   --theme-input-bg: #ffffff;
-  --theme-input-border: #94a3b8; /* Slate 400 */
+  --theme-input-border: #64748b; /* Slate 500 */
   --theme-card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
@@ -22,13 +22,13 @@
   --theme-canvas: #09090b; /* Zinc 950 */
   --theme-parchment: #18181b; /* Zinc 900 */
   --theme-ink: #f4f4f5; /* Zinc 100 */
-  --theme-primary: #fb923c; /* Glowing Orange */
+  --theme-primary: #fb923c; /* Glowing Orange (>= 8.5:1 on dark canvas) */
   --theme-mute: #a1a1aa; /* Zinc 400 (ensures >= 6.5:1 contrast against canvas/parchment) */
   --theme-hairline: #3f3f46; /* Zinc 700 (more visible borders) */
   --theme-accent: #fb923c;
   --theme-accent-hover: #fed7aa;
   --theme-input-bg: #18181b;
-  --theme-input-border: #52525b; /* Zinc 600 */
+  --theme-input-border: #71717a; /* Zinc 500 */
   --theme-card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 

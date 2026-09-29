@@ -4,7 +4,7 @@ import CalculatorApp from '../components/calculator/CalculatorApp';
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,13 +12,37 @@ import CalculatorApp from '../components/calculator/CalculatorApp';
     <meta name="description" content="Embeddable ISO 11088:2023 ski binding DIN calculator widget for ski shops and blogs. Free, fast, and responsive." />
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="https://dincalculatorpro.com/embed/" />
-    <meta name="theme-color" content="#090A0C" />
+    <meta name="theme-color" content="#090A0C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
+
+    <!-- Inline Theme Script to avoid FOUC & support ?theme= parameter -->
+    <script is:inline>
+      const theme = (() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryTheme = urlParams.get('theme');
+        if (queryTheme === 'light' || queryTheme === 'dark') {
+          return queryTheme;
+        }
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
   <body class="bg-canvas text-ink p-4 sm:p-6 antialiased">
-    <div id="embed-container" class="max-w-4xl mx-auto space-y-4">
+    <main id="embed-container" class="max-w-4xl mx-auto space-y-4">
       <div class="flex items-center justify-between pb-3 border-b border-hairline">
         <a href="https://dincalculatorpro.com/" target="_blank" rel="noopener" class="flex items-center gap-2 group">
-          <img src="/logo-icon.webp" alt="DIN Calculator Pro" width="24" height="24" class="rounded-md" />
+          <img src="/logo-icon.webp" alt="" aria-hidden="true" width="24" height="24" class="rounded-md" />
           <h1 class="text-xs font-bold text-ink group-hover:text-primary transition-colors">DIN Calculator Pro</h1>
         </a>
         <a 
@@ -32,7 +56,7 @@ import CalculatorApp from '../components/calculator/CalculatorApp';
       </div>
 
       <CalculatorApp client:load lang="en" />
-    </div>
+    </main>
 
     <!-- Auto-resize postMessage communicator -->
     <script is:inline>

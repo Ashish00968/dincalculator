@@ -1,5 +1,7 @@
 
 
+import { useState, useEffect, useRef } from 'react';
+
 interface DinGaugeProps {
   din: number;
 }
@@ -45,6 +47,42 @@ export function DinGauge({ din }: DinGaugeProps) {
   // Ticks every 1 DIN unit
   const ticks = Array.from({ length: 15 }, (_, i) => i + 1);
   const needleAngle = dinToAngle(clampedDin);
+
+  // Micro-feedback: Smooth animated number transition (150-250ms ease)
+  const [animatedDin, setAnimatedDin] = useState<number>(din);
+  const prevDinRef = useRef<number>(din);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setAnimatedDin(din);
+      prevDinRef.current = din;
+      return;
+    }
+
+    const startVal = prevDinRef.current;
+    const endVal = din;
+    const duration = 200; // 200ms ease
+    const startTime = performance.now();
+
+    let frameId: number;
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+      const current = startVal + (endVal - startVal) * ease;
+      setAnimatedDin(current);
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        setAnimatedDin(endVal);
+        prevDinRef.current = endVal;
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [din]);
 
   return (
     <div className="relative flex flex-col items-center justify-center p-4 w-full">
@@ -95,9 +133,9 @@ export function DinGauge({ din }: DinGaugeProps) {
           );
         })}
 
-        {/* Gauge Needle with Smooth Elastic Transition */}
+        {/* Gauge Needle with 200ms Ease Transition & Reduced Motion Support */}
         <g 
-          className="transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-[100px_95px]"
+          className="transition-transform duration-200 ease-out motion-reduce:transition-none origin-[100px_95px]"
           style={{ transform: `rotate(${needleAngle - 90}deg)` }}
         >
           {/* Needle Center Body */}
@@ -115,7 +153,7 @@ export function DinGauge({ din }: DinGaugeProps) {
       <div className="flex flex-col items-center mt-2">
         <div className="flex items-baseline gap-1">
           <span className="text-4xl sm:text-5xl font-mono font-bold text-ink tracking-tight numeric-readout">
-            {din.toFixed(2)}
+            {animatedDin.toFixed(2)}
           </span>
           <span className="text-sm font-mono text-mute font-medium">DIN</span>
         </div>

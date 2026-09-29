@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { SkierProfile, SkierTypeCode, UnitSystem } from '../../engine/types';
 import { Card, CardContent } from '../ui/Card';
 import { Slider } from '../ui/Slider';
@@ -36,6 +36,11 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
   const [isBslModalOpen, setIsBslModalOpen] = useState<boolean>(false);
   const [isAdvancedMode, setIsAdvancedMode] = useState<boolean>(false);
 
+  const onProfileChangeRef = useRef(onProfileChange);
+  useEffect(() => {
+    onProfileChangeRef.current = onProfileChange;
+  });
+
   useEffect(() => {
     let finalWeightKg = weight;
     let finalHeightCm = heightCm;
@@ -44,7 +49,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
       const metric = imperialToMetric(weight, heightFt, heightIn);
       finalWeightKg = metric.weightKg;
       finalHeightCm = metric.heightCm;
-      onProfileChange({
+      onProfileChangeRef.current({
         weightKg: finalWeightKg,
         heightCm: finalHeightCm,
         weightLbs: weight,
@@ -55,7 +60,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
         bslMm,
       });
     } else {
-      onProfileChange({
+      onProfileChangeRef.current({
         weightKg: finalWeightKg,
         heightCm: finalHeightCm,
         unitSystem,
@@ -64,7 +69,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
         bslMm,
       });
     }
-  }, [weight, heightFt, heightIn, heightCm, age, skierType, bslMm, unitSystem, onProfileChange]);
+  }, [weight, heightFt, heightIn, heightCm, age, skierType, bslMm, unitSystem]);
 
   const isImperial = unitSystem === 'imperial';
 
@@ -107,19 +112,36 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
           {/* Weight */}
           <div>
             <div className="flex justify-between items-center mb-2.5">
-              <label htmlFor="calc-weight-input" className="text-primary font-medium text-xs tracking-wide">
+              <label htmlFor="calc-weight-input" className="text-ink font-semibold text-xs tracking-wide">
                 {t('calc.weight')}
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setWeight((w) => Math.max(isImperial ? 20 : 10, w - (isImperial ? 5 : 1)))}
+                  aria-label="Decrease weight"
+                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                >
+                  −
+                </button>
                 <input
                   id="calc-weight-input"
                   type="number"
+                  inputMode="decimal"
                   aria-label={`${t('calc.weight')} (${isImperial ? 'lbs' : 'kg'})`}
                   value={weight}
                   onChange={(e) => setWeight(Number(e.target.value))}
-                  className="w-20 bg-input border border-hairline rounded-lg px-2.5 py-1 text-primary text-right numeric-readout text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
+                  className="w-16 bg-input border border-hairline rounded-md px-2 py-1 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
                 />
-                <span className="text-mute text-xs font-mono">{isImperial ? 'lbs' : 'kg'}</span>
+                <button
+                  type="button"
+                  onClick={() => setWeight((w) => Math.min(isImperial ? 300 : 140, w + (isImperial ? 5 : 1)))}
+                  aria-label="Increase weight"
+                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                >
+                  +
+                </button>
+                <span className="text-mute text-xs font-mono min-w-[24px] text-right">{isImperial ? 'lbs' : 'kg'}</span>
               </div>
             </div>
             <Slider
@@ -129,11 +151,16 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
               min={isImperial ? 20 : 10}
               max={isImperial ? 300 : 140}
             />
+            {((isImperial && (weight < 22 || weight > 286)) || (!isImperial && (weight < 10 || weight > 130))) && (
+              <p className="text-xs text-amber-500 mt-2 font-medium leading-relaxed">
+                {t('form.valWeightRange')}
+              </p>
+            )}
           </div>
 
           {/* Height */}
           <div>
-            <label htmlFor={isImperial ? "calc-height-ft-select" : "calc-height-cm-input"} className="text-primary font-medium text-xs tracking-wide block mb-2.5">
+            <label htmlFor={isImperial ? "calc-height-ft-select" : "calc-height-cm-input"} className="text-ink font-semibold text-xs tracking-wide block mb-2.5">
               {t('calc.height')}
             </label>
             {isImperial ? (
@@ -144,10 +171,10 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                     aria-label="Height in feet"
                     value={heightFt}
                     onChange={(e) => setHeightFt(Number(e.target.value))}
-                    className="w-full bg-transparent text-primary text-sm focus:outline-none cursor-pointer font-mono"
+                    className="w-full bg-transparent text-ink font-semibold text-base focus:outline-none cursor-pointer font-mono"
                   >
                     {[3, 4, 5, 6, 7].map((ft) => (
-                      <option key={ft} value={ft} className="bg-input text-primary">{ft} ft</option>
+                      <option key={ft} value={ft} className="bg-input text-ink">{ft} ft</option>
                     ))}
                   </select>
                 </div>
@@ -157,26 +184,43 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                     aria-label="Height in inches"
                     value={heightIn}
                     onChange={(e) => setHeightIn(Number(e.target.value))}
-                    className="w-full bg-transparent text-primary text-sm focus:outline-none cursor-pointer font-mono"
+                    className="w-full bg-transparent text-ink font-semibold text-base focus:outline-none cursor-pointer font-mono"
                   >
                     {[...Array(12)].map((_, i) => (
-                      <option key={i} value={i} className="bg-input text-primary">{i} in</option>
+                      <option key={i} value={i} className="bg-input text-ink">{i} in</option>
                     ))}
                   </select>
                 </div>
               </div>
             ) : (
               <div>
-                <div className="flex justify-end items-center mb-2.5 gap-2">
+                <div className="flex justify-end items-center mb-2.5 gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setHeightCm((h) => Math.max(100, h - 1))}
+                    aria-label="Decrease height"
+                    className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                  >
+                    −
+                  </button>
                   <input
                     id="calc-height-cm-input"
                     type="number"
+                    inputMode="numeric"
                     aria-label={`${t('calc.height')} (cm)`}
                     value={heightCm}
                     onChange={(e) => setHeightCm(Number(e.target.value))}
-                    className="w-20 bg-input border border-hairline rounded-lg px-2.5 py-1 text-primary text-right numeric-readout text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
+                    className="w-16 bg-input border border-hairline rounded-md px-2 py-1 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
                   />
-                  <span className="text-mute text-xs font-mono">cm</span>
+                  <button
+                    type="button"
+                    onClick={() => setHeightCm((h) => Math.min(220, h + 1))}
+                    aria-label="Increase height"
+                    className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                  >
+                    +
+                  </button>
+                  <span className="text-mute text-xs font-mono min-w-[24px] text-right">cm</span>
                 </div>
                 <Slider
                   aria-label={`${t('calc.height')} slider`}
@@ -185,6 +229,11 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                   min={100}
                   max={220}
                 />
+                {(heightCm < 100 || heightCm > 220) && (
+                  <p className="text-xs text-amber-500 mt-2 font-medium leading-relaxed">
+                    {t('form.valHeightRange')}
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -192,23 +241,45 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
           {/* Age */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label htmlFor="calc-age-input" className="text-primary font-medium text-xs tracking-wide">
+              <label htmlFor="calc-age-input" className="text-ink font-semibold text-xs tracking-wide">
                 {t('calc.age')}
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setAge((a) => Math.max(2, a - 1))}
+                  aria-label="Decrease age"
+                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                >
+                  −
+                </button>
                 <input
                   id="calc-age-input"
                   type="number"
+                  inputMode="numeric"
                   aria-label={t('calc.age')}
                   value={age}
                   onChange={(e) => setAge(Number(e.target.value))}
                   min={2}
                   max={120}
-                  className="w-20 bg-input border border-hairline rounded-lg px-2.5 py-1 text-primary text-right numeric-readout text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
+                  className="w-16 bg-input border border-hairline rounded-md px-2 py-1 text-ink font-semibold text-center numeric-readout text-base focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-mono"
                 />
-                <span className="text-mute text-xs font-mono">{t('form.yrs')}</span>
+                <button
+                  type="button"
+                  onClick={() => setAge((a) => Math.min(120, a + 1))}
+                  aria-label="Increase age"
+                  className="w-7 h-7 rounded-md bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-sm font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+                >
+                  +
+                </button>
+                <span className="text-mute text-xs font-mono min-w-[24px] text-right">{t('form.yrs')}</span>
               </div>
             </div>
+            {(age < 3 || age > 100) && (
+              <p className="text-xs text-amber-500 mt-1 mb-2 font-medium leading-relaxed">
+                {t('form.valAgeRange')}
+              </p>
+            )}
             <div className="flex gap-2 text-[11px] font-mono mt-2">
               {age < 10 && (
                 <span className="inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full">
@@ -275,11 +346,11 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
                         — {t(type.descKey as any)}
                       </span>
                     </div>
-                    {isAdvancedMode && (
-                      <p className="text-xs text-mute mt-1">
-                        {t(type.detailKey as any)}
-                      </p>
-                    )}
+                    {/* Item 5: Persistent one-line 'who this is for' guidance */}
+                    <p className="text-xs text-mute mt-1.5 flex items-start gap-1">
+                      <span className="font-semibold text-ink/75 shrink-0">{t('form.whoThisIsFor') || 'Best for:'}</span>
+                      <span>{t(type.detailKey as any)}</span>
+                    </p>
                   </div>
                 </div>
 
@@ -314,32 +385,59 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
           </div>
 
         {isAdvancedMode ? (
-          <div className="flex items-center gap-3 mt-4">
-            <input
-              id="calc-bsl-input"
-              type="number"
-              aria-label={`${t('calc.bsl')} (mm)`}
-              value={bslMm}
-              onChange={(e) => setBslMm(Number(e.target.value))}
-              min={200}
-              max={400}
-              className="flex-1 bg-canvas border border-hairline rounded-lg px-4 py-2.5 text-ink text-xl font-semibold focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"
-            />
-            <span className="text-mute font-mono text-sm">mm</span>
+          <div className="mt-4 space-y-2">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setBslMm((b) => Math.max(200, b - 5))}
+                aria-label="Decrease boot sole length"
+                className="w-10 h-10 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+              >
+                −
+              </button>
+              <input
+                id="calc-bsl-input"
+                type="number"
+                inputMode="numeric"
+                aria-label={`${t('calc.bsl')} (mm)`}
+                value={bslMm}
+                onChange={(e) => setBslMm(Number(e.target.value))}
+                min={200}
+                max={400}
+                className="flex-1 bg-canvas border border-hairline rounded-lg px-4 py-2 text-ink text-center text-xl font-semibold focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all font-mono"
+              />
+              <button
+                type="button"
+                onClick={() => setBslMm((b) => Math.min(400, b + 5))}
+                aria-label="Increase boot sole length"
+                className="w-10 h-10 rounded-lg bg-parchment hover:bg-input border border-hairline flex items-center justify-center text-ink text-base font-bold transition-all active:scale-95 touch-manipulation cursor-pointer select-none"
+              >
+                +
+              </button>
+              <span className="text-mute font-mono text-sm min-w-[28px]">mm</span>
+            </div>
+            <p className={cn("text-xs leading-relaxed", bslMm < 220 || bslMm > 360 ? "text-amber-500 font-medium" : "text-mute")}>
+              {t('form.valBslNotice')}
+            </p>
           </div>
         ) : (
-          <div className="mt-4 p-4 bg-parchment rounded-lg flex items-center justify-between border border-hairline">
-            <div>
-              <span className="block text-xs text-mute mb-1">{t('form.currentValue')}</span>
-              <span className="text-2xl font-semibold text-ink">{bslMm} mm</span>
+          <div className="mt-4 space-y-2">
+            <div className="p-4 bg-parchment rounded-lg flex items-center justify-between border border-hairline">
+              <div>
+                <span className="block text-xs text-mute mb-1">{t('form.currentValue')}</span>
+                <span className="text-2xl font-semibold text-ink font-mono">{bslMm} mm</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsBslModalOpen(true)}
+                className="px-4 py-2 bg-primary text-canvas rounded-full text-sm font-medium hover:scale-[0.98] transition-transform cursor-pointer"
+              >
+                {t('form.estimateFromShoeSize')}
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={() => setIsBslModalOpen(true)}
-              className="px-4 py-2 bg-primary text-canvas rounded-full text-sm font-medium hover:scale-[0.98] transition-transform cursor-pointer"
-            >
-              {t('form.estimateFromShoeSize')}
-            </button>
+            <p className="text-xs text-mute leading-relaxed">
+              {t('form.valBslNotice')}
+            </p>
           </div>
         )}
 
@@ -352,7 +450,7 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
               type="button"
               onClick={() => setBslMm(preset)}
               className={cn(
-                "px-3 py-1 text-xs rounded-full border transition-all cursor-pointer",
+                "px-3 py-1 text-xs rounded-full border transition-all cursor-pointer font-mono",
                 bslMm === preset
                   ? "bg-primary text-canvas border-primary font-medium"
                   : "bg-canvas border-hairline text-ink hover:border-primary/50"

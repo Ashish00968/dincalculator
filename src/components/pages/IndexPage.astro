@@ -215,11 +215,11 @@ const c = (homeContent as any)[lang] || homeContent.en;
     <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]" style="background-image: linear-gradient(var(--theme-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--theme-hairline) 1px, transparent 1px); background-size: 48px 48px;"></div>
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] rounded-full opacity-10 dark:opacity-[0.05] blur-3xl" style="background: radial-gradient(circle, #FF6B00 0%, transparent 70%);"></div>
 
-    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 sm:pt-16 sm:pb-10 text-center">
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.1] mb-3">
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-3 sm:pt-12 sm:pb-8 text-center">
+      <h1 class="text-2xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-tight mb-2 sm:mb-3">
         {lang === 'de' ? 'Z-Wert Rechner Skibindung' : lang === 'fr' ? 'Calculateur DIN Fixations de Ski' : lang === 'it' ? 'Calcolatore DIN Attacchi Sci' : 'Ski DIN Calculator'}
       </h1>
-      <p class="text-sm sm:text-base text-mute max-w-2xl mx-auto mb-6 leading-relaxed">
+      <p class="text-xs sm:text-base text-mute max-w-2xl mx-auto mb-3 sm:mb-6 leading-relaxed">
         {lang === 'de' 
           ? 'Kostenloser Skibindungs-Rechner nach ISO 11088:2023. Ermitteln Sie Ihren Richtwert transparent in wenigen Sekunden.' 
           : lang === 'fr' 
@@ -229,7 +229,7 @@ const c = (homeContent as any)[lang] || homeContent.en;
           : 'Free ski binding release calculator based on ISO 11088:2023 (Edition 7). Calculate your recommended DIN setting in seconds.'}
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-5">
+      <div class="hidden sm:flex flex-wrap items-center justify-center gap-3 mb-5">
         <a href="#calculator" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] shadow-lg" style="box-shadow: 0 4px 24px -4px color-mix(in srgb, var(--theme-primary) 50%, transparent);">
           {t('cta.calcMyDin')}
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -239,7 +239,7 @@ const c = (homeContent as any)[lang] || homeContent.en;
         </a>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs text-mute">
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] sm:text-xs text-mute">
         <span class="flex items-center gap-1.5"><svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Based on ISO 11088:2023</span>
         <span class="flex items-center gap-1.5"><svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Cookieless & Private</span>
         <span class="flex items-center gap-1.5"><svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Free & Open-Source</span>
@@ -250,15 +250,17 @@ const c = (homeContent as any)[lang] || homeContent.en;
   <!-- ══════════════════════════════════════════════
        CALCULATOR SECTION
   ══════════════════════════════════════════════ -->
-  <section id="calculator" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+  <section id="calculator" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-4 pb-16">
     <!-- Divider label -->
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-4 mb-3 sm:mb-8">
       <div class="h-px flex-1 bg-hairline"></div>
       <span class="text-[11px] font-mono font-semibold text-mute uppercase tracking-widest px-3">Calculator</span>
       <div class="h-px flex-1 bg-hairline"></div>
     </div>
 
-    <CalculatorApp client:load lang={lang} />
+    <div class="min-h-[580px] w-full">
+      <CalculatorApp client:load lang={lang} />
+    </div>
 
     <!-- Trust Strip -->
     <div class="mt-6 p-4 rounded-xl bg-parchment border border-hairline flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-mute">
@@ -321,7 +323,7 @@ const c = (homeContent as any)[lang] || homeContent.en;
             </div>
             <div class="flex justify-between items-center pt-1 text-sm font-bold text-ink">
               <span>{c.step6}</span>
-              <span class="text-primary font-mono text-base px-2.5 py-0.5 rounded bg-primary/10 border border-primary/20">DIN {workedExample.din}</span>
+              <span class="text-primary font-mono text-base px-2.5 py-0.5 rounded bg-parchment border border-hairline font-bold">DIN {workedExample.din}</span>
             </div>
           </div>
           <p class="text-[11px] text-mute italic">
@@ -413,7 +415,7 @@ const c = (homeContent as any)[lang] || homeContent.en;
         ];
         return (
           <div class="bg-parchment border border-hairline p-6 rounded-2xl text-center flex flex-col items-center group hover:border-primary/40 transition-all hover:shadow-md">
-            <span class="text-[11px] font-mono font-bold text-primary/70 mb-3 tracking-widest">{item.step}</span>
+            <span class="text-[11px] font-mono font-bold text-primary mb-3 tracking-widest">{item.step}</span>
             <div class="w-11 h-11 rounded-2xl bg-canvas border border-hairline flex items-center justify-center text-primary mb-4 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" set:html={icons[idx]}></svg>
             </div>

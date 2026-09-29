@@ -57,8 +57,8 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Table className="w-4 h-4 text-accent" />
-            <h3 className="text-lg font-semibold text-primary">ISO 11088 Reference Matrix</h3>
+            <Table className="w-4 h-4 text-primary" />
+            <h2 className="text-lg font-semibold text-ink">ISO 11088 Reference Matrix</h2>
           </div>
           <p className="text-xs text-mute mt-0.5">
             Crosshair maps current adjusted skier code and BSL bracket onto standard lookup table.
@@ -82,9 +82,9 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
       <div className="rounded-2xl card-glass overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left border-collapse min-w-[760px]">
-            <thead className="caption-mono text-mute bg-input border-b border-hairline sticky top-0 z-10">
+            <thead className="caption-mono text-mute bg-canvas border-b border-hairline sticky top-0 z-10">
               <tr>
-                <th scope="col" className="px-4 py-3 sticky left-0 bg-input border-r border-hairline z-20 w-36">
+                <th scope="col" className="px-4 py-3 sticky left-0 bg-canvas border-r border-hairline z-20 w-36">
                   {viewMode === 'code' ? 'Skier Code' : 'Physical Bracket'}
                 </th>
                 {BSL_RANGES.map((range, i) => (
@@ -93,7 +93,7 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
                     scope="col" 
                     className={cn(
                       "px-3.5 py-3 text-center transition-colors font-mono",
-                      activeColIndex === i ? "bg-accent/15 text-accent font-bold border-x border-accent/30" : "text-mute"
+                      activeColIndex === i ? "bg-parchment text-primary font-bold border-x border-primary/40" : "text-mute"
                     )}
                   >
                     {range.label}
@@ -111,14 +111,14 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
                     key={rowIndex} 
                     className={cn(
                       "transition-colors",
-                      isRowActive ? "bg-accent/10" : "hover:bg-input/60"
+                      isRowActive ? "bg-primary/5" : "hover:bg-input/60"
                     )}
                   >
                     <th 
                       scope="row" 
                       className={cn(
-                        "px-4 py-2.5 font-medium whitespace-nowrap sticky left-0 bg-ink border-r border-hairline z-10 font-mono text-xs transition-colors",
-                        isRowActive ? "text-accent border-l-2 border-l-accent" : "text-primary border-l-2 border-l-transparent"
+                        "px-4 py-2.5 font-medium whitespace-nowrap sticky left-0 bg-parchment border-r border-hairline z-10 font-mono text-xs transition-colors",
+                        isRowActive ? "text-primary font-bold border-l-2 border-l-primary" : "text-ink border-l-2 border-l-transparent"
                       )}
                     >
                       <div className="flex items-center gap-2">
@@ -140,8 +140,8 @@ export function MatrixTable({ result, lang = 'en' }: MatrixTableProps) {
                           className={cn(
                             "px-3 py-2.5 text-center font-mono transition-all text-xs",
                             isCellActive && "bg-primary text-canvas font-bold shadow-[0_0_15px_var(--theme-accent)] rounded scale-105 z-10 relative",
-                            !isCellActive && isRowActive && "text-accent font-medium",
-                            !isCellActive && isColActive && "bg-accent/5 text-accent font-medium border-x border-accent/20",
+                            !isCellActive && isRowActive && "text-primary font-bold",
+                            !isCellActive && isColActive && "bg-parchment text-primary font-bold border-x border-hairline",
                             !isCellActive && !isRowActive && !isColActive && "text-mute"
                           )}
                           title={cellValue === null ? "Blank cell: ISO nearest-neighbor rule applies." : ""}

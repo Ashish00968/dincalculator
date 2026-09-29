@@ -12,7 +12,8 @@ import {
   ChevronDownIcon as ChevronDown, 
   ChevronUpIcon as ChevronUp, 
   CheckIcon as Check,
-  ArrowRightIcon as ArrowRight 
+  ArrowRightIcon as ArrowRight,
+  Share2Icon as Share2
 } from '../ui/Icons';
 import { cn } from '../../utils/cn';
 import { useTranslations } from '../../i18n/utils';
@@ -20,6 +21,7 @@ import type { ui } from '../../i18n/ui';
 
 interface ResultDisplayProps {
   result: DinResult | null;
+  isExample?: boolean;
   lang?: keyof typeof ui;
 }
 
@@ -29,10 +31,11 @@ function renderNote(note: DinNote, t: ReturnType<typeof useTranslations>): strin
   return template.replace(/\{(\w+)\}/g, (_, k) => String(note.params![k] ?? ''));
 }
 
-export function ResultDisplay({ result, lang = 'en' }: ResultDisplayProps) {
+export function ResultDisplay({ result, isExample = false, lang = 'en' }: ResultDisplayProps) {
   const t = useTranslations(lang);
   const [isBreakdownOpen, setIsBreakdownOpen] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   if (!result) {
     return (
@@ -74,10 +77,44 @@ Calculated at: https://dincalculatorpro.com`;
     try {
       await navigator.clipboard.writeText(summary);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      setToastMessage(t('result.toastCopied') || 'Settings card copied to clipboard!');
+      setTimeout(() => {
+        setCopied(false);
+        setToastMessage(null);
+      }, 2500);
     } catch {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      setToastMessage(t('result.toastCopied') || 'Settings card copied to clipboard!');
+      setTimeout(() => {
+        setCopied(false);
+        setToastMessage(null);
+      }, 2500);
+    }
+  };
+
+  const handleShare = async () => {
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : 'https://dincalculatorpro.com';
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My DIN Setting (ISO 11088)',
+          text: `My recommended DIN setting is ${din.toFixed(2)} (Code ${adjustedCode}) for boot sole length ${bslRangeLabel}.`,
+          url: shareUrl,
+        });
+        setToastMessage(t('result.toastLinkCopied') || 'Shared successfully!');
+        setTimeout(() => setToastMessage(null), 2500);
+        return;
+      } catch {
+        // Fallback to copy link
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setToastMessage(t('result.toastLinkCopied') || 'Link copied to clipboard!');
+      setTimeout(() => setToastMessage(null), 2500);
+    } catch {
+      setToastMessage(t('result.toastLinkCopied') || 'Link copied to clipboard!');
+      setTimeout(() => setToastMessage(null), 2500);
     }
   };
 
@@ -104,17 +141,27 @@ Calculated at: https://dincalculatorpro.com`;
             <span className="text-[11px] font-mono text-mute">ISO 11088:2023</span>
           </div>
 
+          {/* Item 4: Sensible example profile hint */}
+          {isExample && (
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-2.5 text-xs text-ink/80">
+              <span className="text-amber-500 text-sm shrink-0">💡</span>
+              <span className="leading-relaxed">
+                {t('result.exampleBanner') || 'Standard example profile loaded (75 kg · 175 cm · 30 yrs · Type II · 305 mm). Adjust parameters to calculate your personal setting.'}
+              </span>
+            </div>
+          )}
+
           <DinGauge din={din} />
 
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-2 gap-3 pt-2 border-t border-hairline">
             <div className="p-3 rounded-xl bg-parchment border border-hairline text-center">
               <span className="text-xs text-mute block mb-1">{t('result.finalCode')}</span>
-              <span className="text-base font-semibold text-ink">Code {adjustedCode}</span>
+              <span className="text-base font-semibold text-ink font-mono">Code {adjustedCode}</span>
             </div>
             <div className="p-3 rounded-xl bg-parchment border border-hairline text-center">
               <span className="text-xs text-mute block mb-1">{t('result.bslBracket')}</span>
-              <span className="text-base font-semibold text-ink">{bslRangeLabel}</span>
+              <span className="text-base font-semibold text-ink font-mono">{bslRangeLabel}</span>
             </div>
           </div>
 
@@ -122,11 +169,11 @@ Calculated at: https://dincalculatorpro.com`;
           <BindingChecker din={din} />
 
           {/* Action CTAs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2">
             <button
               type="button"
               onClick={handleCopy}
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-canvas border border-hairline hover:border-primary/50 text-ink text-sm font-medium rounded-full transition-all cursor-pointer"
+              className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-canvas border border-hairline hover:border-primary/50 text-ink text-xs sm:text-sm font-medium rounded-full transition-all cursor-pointer"
             >
               {copied ? (
                 <>
@@ -142,8 +189,16 @@ Calculated at: https://dincalculatorpro.com`;
             </button>
             <button
               type="button"
+              onClick={handleShare}
+              className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-canvas border border-hairline hover:border-primary/50 text-ink text-xs sm:text-sm font-medium rounded-full transition-all cursor-pointer"
+            >
+              <Share2 className="w-3.5 h-3.5 text-mute" />
+              <span>Share</span>
+            </button>
+            <button
+              type="button"
               onClick={handlePrint}
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:scale-[0.98] text-canvas text-sm font-medium rounded-full transition-all cursor-pointer"
+              className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-primary hover:scale-[0.98] text-canvas text-xs sm:text-sm font-medium rounded-full transition-all cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>{t('result.printSheet')}</span>
@@ -151,6 +206,18 @@ Calculated at: https://dincalculatorpro.com`;
           </div>
         </CardContent>
       </Card>
+
+      {/* Item 8: Action Confirmation Toast */}
+      {toastMessage && (
+        <div 
+          role="status" 
+          aria-live="polite" 
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-ink text-canvas shadow-2xl border border-hairline transition-all duration-200"
+        >
+          <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+          <span className="text-xs font-medium">{toastMessage}</span>
+        </div>
+      )}
 
       {/* Step-by-Step Breakdown Accordion */}
       <Card>
@@ -214,10 +281,10 @@ Calculated at: https://dincalculatorpro.com`;
                 </div>
 
                 {/* Node 3: Target DIN */}
-                <div className="sm:col-span-1 p-2.5 rounded-lg bg-primary/10 border border-primary/30 text-center">
-                  <div className="text-[10px] font-mono text-primary font-semibold">03. Result</div>
+                <div className="sm:col-span-1 p-2.5 rounded-lg bg-parchment border-2 border-primary text-center">
+                  <div className="text-[10px] font-mono text-ink font-semibold">03. Result</div>
                   <div className="font-mono text-sm font-extrabold text-primary mt-0.5">{din.toFixed(2)}</div>
-                  <div className="text-[9px] font-mono text-primary/80 uppercase">DIN</div>
+                  <div className="text-[9px] font-mono text-ink uppercase font-semibold">DIN</div>
                 </div>
               </div>
             </div>
@@ -264,9 +331,9 @@ Calculated at: https://dincalculatorpro.com`;
       {notes.length > 0 && (
         <div className={cn(
           "p-4 rounded-xl border flex gap-3 text-xs",
-          warningLevel === 'caution' ? "bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-200" :
-          warningLevel === 'warning' ? "bg-red-500/10 border-red-500/30 text-red-600 dark:text-red-200" :
-          "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-200"
+          warningLevel === 'caution' ? "bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-200" :
+          warningLevel === 'warning' ? "bg-red-500/10 border-red-500/30 text-red-800 dark:text-red-200" :
+          "bg-emerald-500/10 border-emerald-500/30 text-emerald-800 dark:text-emerald-200"
         )}>
           {warningLevel === 'caution' || warningLevel === 'warning' ? (
             <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5 text-amber-500 dark:text-amber-400" />

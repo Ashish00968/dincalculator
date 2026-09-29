@@ -145,7 +145,7 @@ export function SkierTypeQuiz() {
 
         <div>
           <span className="text-xs font-mono text-accent uppercase tracking-wider block mb-1">Your Recommended Classification</span>
-          <h3 className="text-2xl sm:text-3xl font-bold text-ink">{info.title}</h3>
+          <h2 className="text-2xl sm:text-3xl font-bold text-ink">{info.title}</h2>
           <span className="inline-block mt-2 px-3 py-1 rounded-full bg-parchment border border-hairline font-mono text-xs text-primary font-semibold">
             {info.badge}
           </span>
@@ -205,7 +205,7 @@ export function SkierTypeQuiz() {
       </div>
 
       <div>
-        <h3 className="text-lg sm:text-xl font-bold text-ink">{q.question}</h3>
+        <h2 className="text-lg sm:text-xl font-bold text-ink">{q.question}</h2>
         <p className="text-xs text-mute mt-1">{q.subtitle}</p>
       </div>
 

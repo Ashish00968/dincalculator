@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { InputForm } from './InputForm';
 import { ResultDisplay } from './ResultDisplay';
 import { Toggle } from '../ui/Toggle';
@@ -10,10 +10,22 @@ import type { ui } from '../../i18n/ui';
 
 const MatrixTable = lazy(() => import('./MatrixTable').then(m => ({ default: m.MatrixTable })));
 
+const DEFAULT_PROFILE: SkierProfile = {
+  weightKg: 75,
+  heightCm: 175,
+  weightLbs: 165,
+  heightInches: 69,
+  unitSystem: 'imperial',
+  age: 30,
+  skierType: 'II',
+  bslMm: 305,
+};
+
 export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui }) {
   const [unitSystem, setUnitSystem] = useState<UnitSystem>('imperial');
-  const [profile, setProfile] = useState<SkierProfile | null>(null);
-  const [result, setResult] = useState<DinResult | null>(null);
+  const [profile, setProfile] = useState<SkierProfile>(DEFAULT_PROFILE);
+  const [result, setResult] = useState<DinResult>(() => calculateDin(DEFAULT_PROFILE));
+  const [hasUserModified, setHasUserModified] = useState(false);
   const t = useTranslations(lang);
 
   // Smart Localization (Auto Unit Detection)
@@ -40,13 +52,18 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
     localStorage.setItem('din_unit_preference', newUnit);
   };
 
+  const handleProfileChange = useCallback((newProfile: SkierProfile) => {
+    setProfile(newProfile);
+    setHasUserModified(true);
+  }, []);
+
   useEffect(() => {
     if (profile) {
       const calculatedResult = calculateDin(profile);
       setResult(calculatedResult);
 
       // Feature 6.2: Hash-based shareable link state (not crawled, preserves clean canonical)
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' && hasUserModified) {
         const params = new URLSearchParams();
         params.set('w', String(Math.round(profile.weightKg)));
         params.set('h', String(Math.round(profile.heightCm)));
@@ -57,7 +74,7 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
         window.history.replaceState(null, '', `#${params.toString()}`);
       }
     }
-  }, [profile, unitSystem]);
+  }, [profile, unitSystem, hasUserModified]);
 
   return (
     <div className="w-full">
@@ -80,11 +97,11 @@ export default function CalculatorApp({ lang = 'en' }: { lang?: keyof typeof ui 
       {/* Main Grid: Form Inputs + Sticky Live Gauge Result Card */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
         <div className="lg:col-span-7 xl:col-span-7 space-y-6">
-          <InputForm unitSystem={unitSystem} onProfileChange={setProfile} lang={lang} />
+          <InputForm unitSystem={unitSystem} onProfileChange={handleProfileChange} lang={lang} />
         </div>
         
         <div className="lg:col-span-5 xl:col-span-5 lg:sticky lg:top-24 self-start">
-          <ResultDisplay result={result} lang={lang} />
+          <ResultDisplay result={result} isExample={!hasUserModified} lang={lang} />
         </div>
       </div>
 
