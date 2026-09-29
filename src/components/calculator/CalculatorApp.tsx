@@ -12,9 +12,9 @@ const MatrixTable = lazy(() => import('./MatrixTable').then(m => ({ default: m.M
 
 const DEFAULT_PROFILE: SkierProfile = {
   weightKg: 75,
-  heightCm: 175,
+  heightCm: 178,
   weightLbs: 165,
-  heightInches: 69,
+  heightInches: 70,
   unitSystem: 'imperial',
   age: 30,
   skierType: 'II',

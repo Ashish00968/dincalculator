@@ -146,7 +146,7 @@ Calculated at: https://dincalculatorpro.com`;
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-2.5 text-xs text-ink/80">
               <span className="text-amber-500 text-sm shrink-0">💡</span>
               <span className="leading-relaxed">
-                {t('result.exampleBanner') || 'Standard example profile loaded (75 kg · 175 cm · 30 yrs · Type II · 305 mm). Adjust parameters to calculate your personal setting.'}
+                {t('result.exampleBanner') || 'Standard example profile loaded (75 kg · 178 cm · 30 yrs · Type II · 305 mm). Adjust parameters to calculate your personal setting.'}
               </span>
             </div>
           )}

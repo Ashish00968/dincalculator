@@ -85,4 +85,4 @@ export const SKIER_TYPE_DESCRIPTIONS = {
 } as const;
 
 export const SAFETY_DISCLAIMER_TEXT =
-  'Based on ISO 11088:2023. Independent project, not affiliated with ISO or binding manufacturers. This tool provides an informational starting point. Ski bindings must always be inspected, calibrated, and mechanically torque-tested on calibrated workshop equipment by a trained ski technician before use.';
+  'Based on ISO 11088:2023. Independent project, not affiliated with ISO or binding manufacturers. This tool provides an informational starting point. Ski bindings must always be inspected, calibrated, and mechanically torque-tested on calibrated workshop equipment by a certified ski technician before use.';

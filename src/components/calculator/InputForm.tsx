@@ -28,8 +28,8 @@ export function InputForm({ unitSystem, onProfileChange, lang = 'en' }: InputFor
   const t = useTranslations(lang);
   const [weight, setWeight] = useState<number>(unitSystem === 'imperial' ? 165 : 75);
   const [heightFt, setHeightFt] = useState<number>(5);
-  const [heightIn, setHeightIn] = useState<number>(9);
-  const [heightCm, setHeightCm] = useState<number>(175);
+  const [heightIn, setHeightIn] = useState<number>(10);
+  const [heightCm, setHeightCm] = useState<number>(178);
   const [age, setAge] = useState<number>(30);
   const [skierType, setSkierType] = useState<SkierTypeCode>('II');
   const [bslMm, setBslMm] = useState<number>(305);
