@@ -50,7 +50,7 @@ export function BindingChecker({ din }: BindingCheckerProps) {
         id="binding-model-select"
         value={selectedModel}
         onChange={(e) => setSelectedModel((e.target as HTMLSelectElement).value)}
-        className="w-full bg-input border border-hairline rounded-lg px-3 py-2 text-ink text-xs focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-sans cursor-pointer"
+        className="w-full bg-input border border-hairline rounded-lg px-3 py-2.5 text-ink text-base sm:text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all font-sans cursor-pointer"
       >
         <option value="">Select your ski binding model...</option>
         {bindings.map((b) => (
