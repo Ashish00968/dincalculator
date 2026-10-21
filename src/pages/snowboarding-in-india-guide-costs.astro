@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/snowboarding-in-india-guide-costs/', 'en');
+
+const gearChecklist = [
+  { item: 'Snowboard, Boots & Bindings', cost: '₹1,200–₹1,500 / day rental', note: 'Inspect ratchet ladders and base edges before leaving the shop.' },
+  { item: 'Wrist Guards & Impact Shorts', cost: '₹2,500–₹4,000 to buy (Rarely rented)', note: 'Essential for beginners to prevent wrist fractures during heel-edge catches.' },
+  { item: 'Waterproof Snow Jacket & Bib Pants', cost: '₹400–₹600 / day rental', note: '15,000mm+ waterproof rating recommended; snowboarders spend significant time sitting in snow.' },
+  { item: 'Avalanche Safety Transceiver, Shovel & Probe', cost: '₹1,500–₹2,000 / day rental', note: 'Mandatory for riding Apharwat Phase 2 off-piste in Gulmarg.' },
+  { item: 'Dual-Lens Anti-Fog Snow Goggles', cost: '₹250–₹400 / day rental', note: 'Category 2 or 3 lens for bright high-altitude Himalayan sun.' },
+  { item: 'Thermal Base Layers & Merino Socks', cost: '₹1,500–₹3,000 to buy', note: 'Non-cotton synthetic or merino wool layers to wick moisture in sub-zero temps.' },
+];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 text-ink">
+    
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/india-ski-trip-calculator/" class="hover:text-primary transition-colors">Trip Planner</a>
+      <span>/</span>
+      <span class="text-ink">Snowboarding in India</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>2026–2027 Winter Season Guide · Ground Audited</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        Snowboarding in India: 2026–2027 Costs, Slopes & Guide
+      </h1>
+      <p class="text-base sm:text-lg text-mute leading-relaxed max-w-3xl">
+        Everything snowboarders need to know about riding in India: <strong>Gulmarg powder bowls vs. Auli groomers, equipment rental rates (₹1,200–₹1,500/day), surface lift challenges</strong>, and gear essentials.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Destinations: Gulmarg · Auli · Solang</span>
+        <span>•</span>
+        <span>Updated: October 2026</span>
+        <span>•</span>
+        <a href="/india-ski-trip-calculator/" class="text-primary hover:underline font-medium">Calculate Trip Budget →</a>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-10 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Answer: Is India Good for Snowboarding?
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        <strong>Gulmarg is an absolute paradise for advanced snowboarders</strong> due to its legendary dry Himalayan powder and wide alpine bowls off the Apharwat Peak Gondola (3,980m). However, <strong>India can be challenging for complete beginner snowboarders</strong> because beginner slopes in Gulmarg, Auli, and Solang rely heavily on surface drag lifts (Poma rope-tows), which are notoriously difficult to ride on a single board edge compared to dual skis. Expect to pay <strong>₹1,200 to ₹1,500 per day for snowboard rentals</strong>—about 40% more than alpine skis.
+      </p>
+    </div>
+
+    {/* Gulmarg vs Auli for Snowboarders */}
+    <section class="space-y-8 mb-16">
+      <div class="space-y-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Resort Comparison for Riders</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink">
+          Gulmarg vs. Auli: Which Resort is Better for Snowboarding?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 sm:p-8 rounded-3xl bg-canvas border border-hairline space-y-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-hairline pb-3">
+            <h3 class="text-xl font-bold text-ink">Gulmarg (Jammu & Kashmir)</h3>
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
+              ★ World-Class Freeride
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Gulmarg is a freerider's dream. With high-altitude storms rolling in from Central Asia, the snowpack off Gondola Phase 2 is feather-light and extraordinarily deep. Natural terrain features include massive open bowls, wind lips, cornices, and pillow lines in the pine glades between Kongdoori and the base.
+          </p>
+          <div class="text-xs space-y-1.5 text-mute">
+            <div><strong class="text-ink">Lift Type:</strong> 2-Stage Gondola + Kongdoori Chairlift (very snowboard friendly!).</div>
+            <div><strong class="text-ink">Snowboard Rental:</strong> ₹1,200–₹1,500/day across rental shops.</div>
+            <div><strong class="text-ink">Best Riding Dates:</strong> January 15 – February 28 for deepest powder.</div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 rounded-3xl bg-canvas border border-hairline space-y-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-hairline pb-3">
+            <h3 class="text-xl font-bold text-ink">Auli (Uttarakhand)</h3>
+            <span class="px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 font-mono text-xs font-bold">
+              ★ Best Groomed Cruising
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Auli features wide, gently sloped pistes with consistent pitch and fewer sudden drop-offs. It is ideal for intermediate snowboarders looking to carve clean edge lines against the backdrop of Nanda Devi without confronting extreme avalanche hazard.
+          </p>
+          <div class="text-xs space-y-1.5 text-mute">
+            <div><strong class="text-ink">Lift Type:</strong> Joshimath-Auli Ropeway + Chairlift + Surface Poma.</div>
+            <div><strong class="text-ink">Snowboard Rental:</strong> ₹900–₹1,200/day (fewer board options, reserve early).</div>
+            <div><strong class="text-ink">Best Riding Dates:</strong> Mid-January to mid-February.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* The Drag Lift / Poma Challenge */}
+    <section class="p-8 rounded-3xl bg-parchment border border-hairline space-y-4 mb-16 shadow-sm">
+      <div class="flex items-center gap-2">
+        <span class="p-2 rounded-xl bg-amber-500/10 text-amber-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </span>
+        <h2 class="text-xl sm:text-2xl font-bold text-ink">
+          The Drag Lift Challenge for First-Time Snowboarders
+        </h2>
+      </div>
+      <p class="text-xs sm:text-sm text-mute leading-relaxed">
+        In western ski resorts, beginner slopes are serviced by magic carpet conveyor belts or slow chairlifts. In contrast, Indian nursery slopes (such as 85 Bowl and Highland Park in Gulmarg, and the training slope in Auli) use <strong>surface drag lifts (Poma rope-tows)</strong>.
+      </p>
+      <p class="text-xs sm:text-sm text-mute leading-relaxed">
+        While skiers simply stand parallel on two skis as the cable pulls them uphill, a snowboarder must unstrap the rear foot, balance sideways on the front edge, and absorb jerky torque pulls without twisting their hips. For complete novices, this steep learning curve can cause exhaustion on day 1. <strong>Pro tip:</strong> Hire a certified instructor for your first 2 days to teach you one-foot skating and Poma lift mounting techniques.
+      </p>
+    </section>
+
+    {/* Equipment Rental Rates & Checklist */}
+    <section class="space-y-6 mb-16 border-t border-hairline pt-12">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Rental Benchmark</span>
+        <h2 class="text-2xl font-bold text-ink mt-1">Snowboarding Gear & Rental Price Checklist (2026–2027)</h2>
+        <p class="text-xs sm:text-sm text-mute mt-1">
+          Market benchmarks from local ski and snowboard rental shops in Gulmarg and Auli.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-hairline bg-canvas shadow-sm">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-parchment border-b border-hairline text-mute font-mono uppercase text-[11px]">
+              <th class="p-3.5">Equipment / Protection</th>
+              <th class="p-3.5">Estimated Cost</th>
+              <th class="p-3.5">Rider Recommendation</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-hairline">
+            {gearChecklist.map((row, idx) => (
+              <tr key={idx} class="hover:bg-parchment/40 transition-colors">
+                <td class="p-3.5 font-bold text-ink">{row.item}</td>
+                <td class="p-3.5 font-mono text-primary font-semibold">{row.cost}</td>
+                <td class="p-3.5 text-mute">{row.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* Skier Safety vs Snowboarder Safety */}
+    <section class="p-8 rounded-3xl bg-canvas border border-hairline space-y-4 mb-16 shadow-sm">
+      <h3 class="text-xl font-bold text-ink">
+        Skiing with Skiers? Why Binding Calibration Matters
+      </h3>
+      <p class="text-xs sm:text-sm text-mute leading-relaxed">
+        Traveling in a group with both skiers and snowboarders? While snowboard bindings do not have DIN release springs (they remain securely strapped to the board), <strong>alpine ski bindings rely strictly on mechanical torque release settings (DIN)</strong> under ISO 11088:2023. If your ski companions rent gear in Gulmarg or Auli, ensure they calculate their exact DIN setting to avoid devastating non-release knee injuries.
+      </p>
+      <div class="pt-2 flex flex-wrap gap-3">
+        <a
+          href="/india-ski-trip-calculator/"
+          class="px-5 py-2.5 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold hover:opacity-90 transition-all shadow-sm"
+        >
+          Open India Ski Trip Budget Calculator →
+        </a>
+        <a
+          href="/"
+          class="px-5 py-2.5 rounded-full border border-hairline bg-parchment text-ink text-xs sm:text-sm font-medium hover:border-primary/40 transition-all"
+        >
+          Calculate Ski Binding DIN (ISO 11088) →
+        </a>
+      </div>
+    </section>
+
+  </article>
+</BaseLayout>

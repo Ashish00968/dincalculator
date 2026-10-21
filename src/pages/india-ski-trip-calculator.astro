@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IndiaSkiPlanner from '../components/india-planner/IndiaSkiPlanner';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/india-ski-trip-calculator/', 'en');
+
+const faqs = [
+  {
+    q: 'How much does a 5-day ski trip to Gulmarg actually cost in 2026–2027?',
+    a: 'A 5-day ski trip to Gulmarg in the 2026–2027 season costs approximately ₹22,000 to ₹35,000 per person on a mid-range budget (excluding flights). This includes JKCCC Gondola Phase 1 daily skier passes (₹1,200/day for Indians), alpine ski equipment rental (₹700–₹1,100/day), warm hotel stay with heating, and mandatory Tangmarg 4x4 snow-chain transfers.'
+  },
+  {
+    q: 'What is the difference between a Gulmarg Gondola sightseeing ticket and a skier pass?',
+    a: 'Sightseeing tickets (₹810 for Phase 1 / ₹1,010 for Phase 2) allow only ONE round trip (up and down) for tourists. Skier day passes (₹1,200 Phase 1 / ₹1,500 Phase 2 for Indians) provide unlimited ascents for the entire operational day. Buying single rides or sightseeing tickets for skiing is not cost-effective if doing 3 or more runs.'
+  },
+  {
+    q: 'Is snowboarding more expensive than skiing in India?',
+    a: 'Yes. Snowboard rentals in Gulmarg and Auli average ₹1,200 to ₹1,500 per day compared to ₹700 to ₹1,100 per day for alpine skis. This price premium is due to lower snowboard inventory and higher import duties on boards and boots in Indian rental shops.'
+  },
+  {
+    q: 'Why is Boot Sole Length (BSL) and DIN calibration critical when renting in India?',
+    a: 'Most local ski rental shops in Indian resorts tighten ski bindings by guesswork without measuring your exact Boot Sole Length (BSL in mm) or checking skier ability codes. Bindings set too high fail to release during falls, causing spiral fractures and ACL/MCL knee ligament tears. Always calculate your ISO 11088 DIN beforehand.'
+  },
+  {
+    q: 'What hidden costs should I budget for in Gulmarg?',
+    a: 'The two biggest unexpected expenses are: (1) Tangmarg to Gulmarg 4x4 snow-chain taxi transfer (₹1,500–₹2,500 return), which is legally mandatory when snow covers the road, and (2) Hotel heating charges (often ₹500–₹1,000 extra per night for electric heaters or blowers in budget hotels).'
+  }
+];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 text-ink">
+    
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-ink">India Ski Trip Calculator</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>2026–2027 Winter Season Tariff · Audited October 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        India Ski Trip Cost Calculator (2026–2027 Season)
+      </h1>
+      <p class="text-base sm:text-lg text-mute leading-relaxed max-w-3xl">
+        Transparent, itemized budget planner for skiing and snowboarding in <strong>Gulmarg, Auli, Solang Valley, and Narkanda</strong>. Calculate verified lift passes, gear rentals, lodging, certified instructors, and local 4x4 snow-chain transit.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Verified Sources: JKCCC · IISM · ABVIMAS · GMVN</span>
+        <span>•</span>
+        <span>Zero Hidden Fees</span>
+        <span>•</span>
+        <span class="text-primary font-medium">Updated for 2026–27 Winter</span>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-10 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Answer: What Does a Ski Trip to India Actually Cost?
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        For the <strong>2026–2027 winter season</strong>, an independent 5-day ski trip to <strong>Gulmarg (J&K)</strong> averages <strong>₹25,000 to ₹38,000 per person</strong> (mid-range hotel, Phase 1 daily skier passes at ₹1,200/day, gear rental at ₹700–₹1,100/day, and Tangmarg 4x4 snow-chain taxi). <strong>Auli (Uttarakhand)</strong> averages <strong>₹18,000 to ₹28,000</strong>, while <strong>Solang Valley & Narkanda</strong> range from <strong>₹12,000 to ₹20,000</strong>. Alternatively, 14-day government certified certificate courses at <strong>IISM Gulmarg</strong> cost <strong>₹10,000 (under 25) to ₹20,000 (above 25)</strong> all-inclusive of stay, meals, and gear.
+      </p>
+    </div>
+
+    {/* Interactive React Island */}
+    <section class="mb-16">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px flex-1 bg-hairline"></div>
+        <h2 class="text-xs font-mono font-bold text-mute uppercase tracking-widest px-3">Interactive Trip Cost Engine</h2>
+        <div class="h-px flex-1 bg-hairline"></div>
+      </div>
+      <IndiaSkiPlanner client:load />
+    </section>
+
+    {/* Editorial Section: 4 Hidden Costs No Blog Talks About */}
+    <section class="space-y-8 mb-16 border-t border-hairline pt-12">
+      <div class="space-y-3">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Ground Reality Guide</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink">
+          The 4 Hidden Costs Travel Blogs Omit in Gulmarg & Auli
+        </h2>
+        <p class="text-sm sm:text-base text-mute leading-relaxed">
+          Planning an Indian ski trip using outdated 2023 blogs often leads to budget shocks at the resort. Here are the mandatory ground fees you must account for in 2026–2027:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <div class="w-8 h-8 rounded-xl bg-primary/10 text-primary font-bold flex items-center justify-center font-mono text-sm">1</div>
+          <h3 class="text-base font-bold text-ink">The Tangmarg–Gulmarg 4x4 Chained Cab (₹1,500–₹2,500)</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            During active snowfall, standard 2WD Srinagar taxis cannot climb the steep 13 km mountain ghat from Tangmarg up to Gulmarg. J&K Traffic Police mandate tyre-chained 4x4 Sumo or Bolero taxis. Budget ₹1,500 to ₹2,500 for the return transfer.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <div class="w-8 h-8 rounded-xl bg-primary/10 text-primary font-bold flex items-center justify-center font-mono text-sm">2</div>
+          <h3 class="text-base font-bold text-ink">Hotel Heating & Electric Blower Charges (₹500–₹1,000/night)</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Sub-zero temperatures (-5°C to -15°C) require round-the-clock room heating. While 4-star properties feature central radiant floor heating, budget hotels and homestays charge an extra ₹500 to ₹1,000 per night for an electric radiator or heating blanket.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <div class="w-8 h-8 rounded-xl bg-primary/10 text-primary font-bold flex items-center justify-center font-mono text-sm">3</div>
+          <h3 class="text-base font-bold text-ink">Sightseeing Tickets vs Skier Day Passes</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Many beginners mistakenly buy tourist sightseeing tickets (₹810 Phase 1 / ₹1,010 Phase 2). These allow only ONE single round trip. If you want to take multiple ski laps, you must purchase an official <strong>Skier Day Pass (₹1,200 Phase 1 / ₹1,500 Phase 2)</strong> from the JKCCC ticket counter.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <div class="w-8 h-8 rounded-xl bg-primary/10 text-primary font-bold flex items-center justify-center font-mono text-sm">4</div>
+          <h3 class="text-base font-bold text-ink">Avalanche Safety Gear for Phase 2 (₹2,000/day)</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Skiing off Apharwat Peak (Phase 2 at 3,980m) takes you into high-altitude backcountry terrain. The Gulmarg Ski Patrol strictly mandates a functional avalanche transceiver beacon, probe, and shovel. Renting this kit costs ₹1,500–₹2,000 daily.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Safety Bridge Callout to DIN Calculator */}
+    <div class="mb-16 p-8 rounded-3xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-transparent border border-amber-500/30 space-y-4">
+      <div class="flex items-center gap-2">
+        <span class="p-2 rounded-xl bg-amber-500/10 text-amber-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </span>
+        <h3 class="text-xl font-bold text-ink">
+          The Rental Binding Safety Problem in Indian Ski Resorts
+        </h3>
+      </div>
+      <p class="text-sm text-mute leading-relaxed">
+        In Gulmarg, Auli, and Solang, local ski rental counter staff frequently set binding release values (DIN) by crude guesswork based solely on your body size, completely ignoring your <strong>Boot Sole Length (BSL stamped on the boot heel)</strong>, skier ability type, and age. An improperly calibrated binding either pre-releases prematurely during a carve or locks your boot solid during a twisting fall—resulting in severe tibial spiral fractures and torn knee ligaments.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-xs sm:text-sm hover:opacity-90 transition-all shadow-md"
+        >
+          <span>Calculate Your Official ISO 11088 DIN Setting Now →</span>
+        </a>
+      </div>
+    </div>
+
+    {/* FAQ Accordion Section */}
+    <section class="border-t border-hairline pt-12 space-y-6">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Frequently Asked Questions</span>
+        <h2 class="text-2xl font-bold text-ink mt-1">India Ski Trip Budgeting & Planning FAQs</h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map(faq => (
+          <div class="p-5 rounded-2xl bg-canvas border border-hairline space-y-2">
+            <h3 class="text-sm sm:text-base font-bold text-ink">{faq.q}</h3>
+            <p class="text-xs sm:text-sm text-mute leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </article>
+</BaseLayout>

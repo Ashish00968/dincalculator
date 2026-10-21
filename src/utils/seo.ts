@@ -19,8 +19,24 @@ const BASE_URL = 'https://dincalculatorpro.com';
 export const SEO_DATA: Record<string, Record<string, { title: string; description: string }>> = {
   en: {
     '/': {
-      title: 'Ski DIN Calculator (ISO 11088:2023) | Free & Instant',
+      title: 'Ski DIN Calculator (2026/27 ISO 11088) | Instant Binding',
       description: 'Calculate your ski binding DIN release setting accurately using ISO 11088:2023. Free, instant, and private with step-by-step skier code breakdown.'
+    },
+    '/india-ski-trip-calculator/': {
+      title: 'India Ski Trip Cost Calculator 2026/27 | Gulmarg & Auli',
+      description: 'Calculate your exact 2026-2027 ski trip cost for Gulmarg, Auli, Solang & Narkanda. Includes official Gondola passes, gear rental rates, hotels, and 4x4 cabs.'
+    },
+    '/gulmarg-vs-auli-vs-solang-ski-comparison/': {
+      title: 'Gulmarg vs Auli vs Solang Skiing: 2026/27 Comparison',
+      description: "Detailed comparison of India's top ski resorts: Gulmarg, Auli, Solang Valley, and Narkanda. Compare vertical drop, snow reliability, costs, and snowboard access."
+    },
+    '/gulmarg-gondola-ski-pass-calculator/': {
+      title: 'Gulmarg Gondola Ski Pass vs Ticket: 2026/27 Calc',
+      description: 'Official 2026-2027 Gulmarg Gondola fares breakdown: Sightseeing return tickets vs skier day passes vs weekly passes. Calculate break-even days and weather risks.'
+    },
+    '/snowboarding-in-india-guide-costs/': {
+      title: 'Snowboarding in India 2026/27: Costs & Slope Guide',
+      description: 'Complete guide to snowboarding in India: Gulmarg powder bowls vs Auli groomers, daily rental costs (₹1,200-₹1,500), drag lift challenges, and essential winter gear.'
     },
     '/din-chart/': {
       title: 'Ski Binding DIN Chart (ISO 11088:2023) by Weight & BSL',
@@ -267,10 +283,16 @@ export function getStructuredData(pathname: string, lang: string, title: string,
   ];
 
   // WebApplication schema on calculator pages
-  if (baseRoute === '/') {
+  if (baseRoute === '/' || baseRoute === '/india-ski-trip-calculator/' || baseRoute === '/gulmarg-gondola-ski-pass-calculator/') {
+    const appName = baseRoute === '/' 
+      ? "DIN Calculator Pro" 
+      : baseRoute === '/india-ski-trip-calculator/' 
+      ? "India Ski Trip Cost & Budget Calculator (2026/27)" 
+      : "Gulmarg Gondola Pass & Fare Calculator";
+    
     schemas.push({
       "@type": "WebApplication",
-      "name": "DIN Calculator Pro",
+      "name": appName,
       "url": currentUrl,
       "applicationCategory": "SportsApplication",
       "operatingSystem": "Any",
@@ -281,7 +303,7 @@ export function getStructuredData(pathname: string, lang: string, title: string,
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "Free ski binding DIN calculator based on ISO 11088:2023. Runs in your browser."
+      "description": description
     });
   }
 
@@ -307,14 +329,21 @@ export function getStructuredData(pathname: string, lang: string, title: string,
   }
 
   // Article schema for guides
-  if (['/din-chart/', '/bsl-guide/', '/skier-types/', '/methodology/'].includes(baseRoute)) {
+  if ([
+    '/din-chart/',
+    '/bsl-guide/',
+    '/skier-types/',
+    '/methodology/',
+    '/gulmarg-vs-auli-vs-solang-ski-comparison/',
+    '/snowboarding-in-india-guide-costs/'
+  ].includes(baseRoute)) {
     schemas.push({
       "@type": "Article",
       "headline": title.split('|')[0].trim(),
       "description": description,
       "url": currentUrl,
-      "datePublished": "2026-09-28T00:00:00Z",
-      "dateModified": "2026-09-28T00:00:00Z",
+      "datePublished": "2026-10-21T00:00:00Z",
+      "dateModified": "2026-10-21T00:00:00Z",
       "author": {
         "@type": "Organization",
         "name": "DIN Calculator Pro Technical Team",

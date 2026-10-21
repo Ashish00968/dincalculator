@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GondolaBreakEvenCalculator from '../components/india-planner/GondolaBreakEvenCalculator';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/gulmarg-gondola-ski-pass-calculator/', 'en');
+
+const tariffTable = [
+  {
+    ticketType: 'Phase 1 Sightseeing (Return)',
+    indianPrice: '₹810 (Standard) / ₹1,110 (Tatkal)',
+    foreignerPrice: '₹810 (Standard) / ₹1,110 (Tatkal)',
+    lapsIncluded: '1 Ascent + 1 Descent only',
+    bestFor: 'Non-skiing tourists & family sightseeing',
+  },
+  {
+    ticketType: 'Phase 2 Sightseeing (Return)',
+    indianPrice: '₹1,010 (Standard) / ₹1,310 (Tatkal)',
+    foreignerPrice: '₹1,010 (Standard) / ₹1,310 (Tatkal)',
+    lapsIncluded: '1 Ascent + 1 Descent only',
+    bestFor: 'Tourists visiting Apharwat Peak snow line',
+  },
+  {
+    ticketType: 'Phase 1 Skier Day Pass',
+    indianPrice: '₹1,200 / day',
+    foreignerPrice: '₹1,600 / day',
+    lapsIncluded: 'Unlimited Phase 1 laps (operating hours)',
+    bestFor: 'Intermediate skiers lapping Kongdoori trails',
+  },
+  {
+    ticketType: 'Phase 2 Skier Day Pass',
+    indianPrice: '₹1,500 / day',
+    foreignerPrice: '₹2,500 / day',
+    lapsIncluded: 'Unlimited Phase 1 + Phase 2 laps',
+    bestFor: 'Advanced powder skiers & freeriders',
+  },
+  {
+    ticketType: 'Weekly Skier Pass (7 Days)',
+    indianPrice: '₹7,500 (Flat 7 days)',
+    foreignerPrice: '₹12,500 (Flat 7 days)',
+    lapsIncluded: 'Unlimited Phase 1 + Phase 2 for 7 consecutive days',
+    bestFor: 'Dedicated skiers doing 5+ full days on Phase 2',
+  },
+  {
+    ticketType: 'Single Ski Lap (Per Ride)',
+    indianPrice: '₹400 (P1) / ₹550 (P2) / ₹300 (Chairlift)',
+    foreignerPrice: '₹400 (P1) / ₹550 (P2) / ₹300 (Chairlift)',
+    lapsIncluded: '1 Single Ascent for skiing down',
+    bestFor: 'Casual riders taking only 1 or 2 laps',
+  },
+];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 text-ink">
+    
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/india-ski-trip-calculator/" class="hover:text-primary transition-colors">Trip Planner</a>
+      <span>/</span>
+      <span class="text-ink">Gulmarg Gondola Pass Guide</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Official JKCCC Tariff · 2026–2027 Winter Season</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        Gulmarg Gondola Ski Pass vs. Sightseeing Ticket Calculator
+      </h1>
+      <p class="text-base sm:text-lg text-mute leading-relaxed max-w-3xl">
+        Complete tariff breakdown for the Gulmarg Cable Car: compare <strong>Sightseeing Return Tickets, Skier Day Passes, 7-Day Weekly Passes, and Single Ski Laps</strong> to calculate your exact break-even point.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Operator: J&K Cable Car Corporation (JKCCC)</span>
+        <span>•</span>
+        <span>Audited: October 2026</span>
+        <span>•</span>
+        <a href="https://etickets.jammukashmircablecar.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">Official JKCCC Portal ↗</a>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-10 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Answer: Sightseeing Ticket vs. Skier Pass
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        If you are skiing or snowboarding in Gulmarg, <strong>do not buy tourist sightseeing tickets</strong> (₹810 for Phase 1 / ₹1,010 for Phase 2). Sightseeing tickets only permit exactly <strong>one up-and-down ride</strong>. Skiers and snowboarders must purchase official <strong>Skier Day Passes (₹1,200/day Phase 1 or ₹1,500/day Phase 2 for Indians)</strong> which allow unlimited laps all day. If you plan to ski 3 or more laps daily, a Skier Day Pass saves hundreds of rupees per day compared to buying single ski rides (₹400/₹550 per lap).
+      </p>
+    </div>
+
+    {/* Interactive Break-Even Island */}
+    <section class="mb-16">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px flex-1 bg-hairline"></div>
+        <h2 class="text-xs font-mono font-bold text-mute uppercase tracking-widest px-3">Interactive Break-Even Tool</h2>
+        <div class="h-px flex-1 bg-hairline"></div>
+      </div>
+      <GondolaBreakEvenCalculator client:load />
+    </section>
+
+    {/* Official 2026-2027 JKCCC Tariff Table */}
+    <section class="space-y-6 mb-16 border-t border-hairline pt-12">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Official Rates</span>
+        <h2 class="text-2xl font-bold text-ink mt-1">2026–2027 Gulmarg Gondola & Ski Pass Tariffs</h2>
+        <p class="text-xs sm:text-sm text-mute mt-1">
+          Published by Jammu & Kashmir Cable Car Corporation for the winter ski season.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-hairline bg-canvas shadow-sm">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-parchment border-b border-hairline text-mute font-mono uppercase text-[11px]">
+              <th class="p-3.5">Ticket / Pass Category</th>
+              <th class="p-3.5">Indian Nationals</th>
+              <th class="p-3.5">International Visitors</th>
+              <th class="p-3.5">Ascent Access</th>
+              <th class="p-3.5">Ideal For</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-hairline">
+            {tariffTable.map((row, idx) => (
+              <tr key={idx} class="hover:bg-parchment/40 transition-colors">
+                <td class="p-3.5 font-bold text-ink">{row.ticketType}</td>
+                <td class="p-3.5 font-mono text-ink font-semibold">{row.indianPrice}</td>
+                <td class="p-3.5 font-mono text-mute">{row.foreignerPrice}</td>
+                <td class="p-3.5 text-mute">{row.lapsIncluded}</td>
+                <td class="p-3.5 text-ink">{row.bestFor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* Important Booking & Weather Closure Policies */}
+    <section class="space-y-8 mb-16 border-t border-hairline pt-12">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Booking Protocols</span>
+        <h2 class="text-2xl font-bold text-ink mt-1">How to Buy Gondola Ski Passes in 2026–2027</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <h3 class="text-base font-bold text-ink">Online Tourist Booking vs Skier Counter</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Sightseeing tickets must be booked online well in advance via the official JKCCC portal (<a href="https://etickets.jammukashmircablecar.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">etickets.jammukashmircablecar.com</a>). For certified skiers and snowboarders holding proper equipment, daily and weekly skier passes can be purchased directly at the dedicated Skier Counter at the Gulmarg Gondola base station upon presenting your skier ID or equipment.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <h3 class="text-base font-bold text-ink">Tatkal Quota Policy (5:00 PM Daily)</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            If standard tickets sell out online, JKCCC operates a Tatkal quota released daily at precisely 5:00 PM IST for the following day. Tatkal tickets carry a ₹300 premium per phase (₹1,110 Phase 1 / ₹1,310 Phase 2), offering a vital lifeline if you didn’t reserve weeks ahead.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <h3 class="text-base font-bold text-ink">Weather Closures & Avalanche Control</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Apharwat Peak Phase 2 sits at 3,980m and is exposed to high alpine blizzards and fierce jetstream winds. The Gulmarg Snow Safety Officer and Ski Patrol close Phase 2 during and immediately after heavy snowfall for active avalanche detonation blasts. Always check the morning Ski Patrol bulletin at the base.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <h3 class="text-base font-bold text-ink">The Weekly Pass Risk Calculation</h3>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            A weekly Phase 2 pass (₹7,500) only breaks even if you ski at least 5 full days on Phase 2. Since weather closures occur on average 1 to 2 days per week, many experienced riders opt to purchase individual Daily Skier Passes (₹1,500/day) on clear mornings to avoid non-refundable weather losses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Cross-Sell Strip to Trip Calculator & DIN */}
+    <div class="p-8 rounded-3xl bg-parchment border border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+      <div class="space-y-1">
+        <h3 class="text-lg font-bold text-ink">Plan your full Gulmarg ski budget</h3>
+        <p class="text-xs sm:text-sm text-mute">
+          Calculate hotel stays, gear rentals, instructors, and 4x4 snow-chain cabs with confidence.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <a
+          href="/india-ski-trip-calculator/"
+          class="px-5 py-2.5 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold hover:opacity-90 transition-all shadow-sm"
+        >
+          Open India Ski Trip Calculator →
+        </a>
+        <a
+          href="/"
+          class="px-5 py-2.5 rounded-full border border-hairline bg-canvas text-ink text-xs sm:text-sm font-medium hover:border-primary/40 transition-all"
+        >
+          Check Binding DIN Setting →
+        </a>
+      </div>
+    </div>
+
+  </article>
+</BaseLayout>

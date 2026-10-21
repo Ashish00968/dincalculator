@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResortComparisonTable from '../components/india-planner/ResortComparisonTable';
+import { getSeoMetadata } from '../utils/seo';
+
+const seo = getSeoMetadata('/gulmarg-vs-auli-vs-solang-ski-comparison/', 'en');
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonicalUrl}
+  ogType="article"
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 text-ink">
+    
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-xs font-mono text-mute mb-8" aria-label="Breadcrumbs">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span>/</span>
+      <a href="/india-ski-trip-calculator/" class="hover:text-primary transition-colors">Trip Planner</a>
+      <span>/</span>
+      <span class="text-ink">Resort Comparison</span>
+    </nav>
+
+    {/* Header */}
+    <header class="space-y-4 mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-hairline text-ink text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Destination Comparison · 2026–2027 Season</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-ink">
+        Gulmarg vs. Auli vs. Solang: India Ski Resort Comparison
+      </h1>
+      <p class="text-base sm:text-lg text-mute leading-relaxed max-w-3xl">
+        An objective, data-backed guide comparing India's premier snow sports destinations across <strong>vertical drop, snow reliability, lift infrastructure, costs, and beginner vs. freeride terrain</strong>.
+      </p>
+
+      {/* Meta Bar */}
+      <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-4 text-xs text-mute font-mono">
+        <span>Resorts: Gulmarg · Auli · Solang · Narkanda</span>
+        <span>•</span>
+        <span>Audited: October 2026</span>
+        <span>•</span>
+        <a href="/india-ski-trip-calculator/" class="text-primary hover:underline font-medium">Calculate Trip Budget →</a>
+      </div>
+    </header>
+
+    {/* Answer-First Summary Block */}
+    <div class="p-6 rounded-2xl bg-parchment border border-hairline space-y-3 mb-10 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold font-mono text-primary uppercase tracking-wider">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Quick Verdict: Which Resort Should You Choose?
+      </div>
+      <p class="text-sm leading-relaxed text-ink">
+        <strong>Choose Gulmarg (J&K)</strong> if you want legendary high-altitude powder, immense 1,330m vertical drop off Apharwat Peak, and serious freeride terrain. <strong>Choose Auli (Uttarakhand)</strong> if you are a beginner or intermediate looking for wide, groomed slopes with breathtaking Nanda Devi views and fewer tourist crowds. <strong>Choose Solang Valley (Manali)</strong> for a quick 1-to-2 day introductory snow experience without complex logistics. <strong>Choose Narkanda (HP)</strong> for the most economical beginner ski courses in India.
+      </p>
+    </div>
+
+    {/* Interactive Comparison Table Island */}
+    <section class="mb-16">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px flex-1 bg-hairline"></div>
+        <h2 class="text-xs font-mono font-bold text-mute uppercase tracking-widest px-3">Filterable Resort Matrix</h2>
+        <div class="h-px flex-1 bg-hairline"></div>
+      </div>
+      <ResortComparisonTable client:load />
+    </section>
+
+    {/* In-Depth Resort Profiles */}
+    <section class="space-y-12 mb-16 border-t border-hairline pt-12">
+      
+      {/* 1. Gulmarg */}
+      <div class="p-6 sm:p-8 rounded-3xl bg-canvas border border-hairline space-y-4 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-hairline pb-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-accent font-semibold">Rank #1 for Powder & Advanced Freeride</span>
+            <h2 class="text-2xl font-bold text-ink mt-0.5">Gulmarg, Jammu & Kashmir (2,650m – 3,980m)</h2>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
+            1,330m Vertical Drop
+          </span>
+        </div>
+        <p class="text-sm text-mute leading-relaxed">
+          Gulmarg is internationally renowned as Asia’s premier powder skiing capital. Powered by the world’s second-highest operating cable car, the Gulmarg Gondola carries skiers in two stages from Gulmarg bowl (2,650m) through Kongdoori (3,050m) up to the shoulder of Apharwat Peak at 3,980m (13,058 ft). The terrain above Phase 2 consists of expansive alpine bowls, steep chutes, and natural gullies filled with light, dry Himalayan powder.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-mute pt-2">
+          <div class="p-3 rounded-xl bg-parchment space-y-1">
+            <strong class="text-ink block">Pros:</strong>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Unrivaled deep powder snow depth (3 to 6 meters per season)</li>
+              <li>Longest continuous ski lines in the Himalayas</li>
+              <li>World-class certified ski patrol and avalanche mitigation</li>
+            </ul>
+          </div>
+          <div class="p-3 rounded-xl bg-parchment space-y-1">
+            <strong class="text-ink block">Cons:</strong>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Gondola Phase 2 is weather-dependent (frequent wind closures)</li>
+              <li>High-altitude mountain terrain requires avalanche gear and caution</li>
+              <li>Higher lodging and 4x4 cab costs during peak Jan–Feb season</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Auli */}
+      <div class="p-6 sm:p-8 rounded-3xl bg-canvas border border-hairline space-y-4 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-hairline pb-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-accent font-semibold">Rank #1 for Beginners & Groomed Cruising</span>
+            <h2 class="text-2xl font-bold text-ink mt-0.5">Auli, Uttarakhand (2,500m – 3,050m)</h2>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-mono text-xs font-bold">
+            550m Vertical Drop
+          </span>
+        </div>
+        <p class="text-sm text-mute leading-relaxed">
+          Perched on the Garhwal Himalayas with unobstructed 180-degree panoramas of India’s second-highest peak (Nanda Devi, 7,816m), Auli is the country’s cleanest groomed ski destination. Reached via the scenic 4 km Joshimath ropeway, Auli offers gentle to moderate wide-open slopes flanked by oak and deodar forests. It is managed by Garhwal Mandal Vikas Nigam (GMVN), which runs affordable 7-day and 14-day ski courses.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-mute pt-2">
+          <div class="p-3 rounded-xl bg-parchment space-y-1">
+            <strong class="text-ink block">Pros:</strong>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Wide, predictable groomed slopes ideal for beginners and families</li>
+              <li>Breathtaking Himalayan mountain backdrop</li>
+              <li>Substantially lower crowd pressure than Gulmarg</li>
+            </ul>
+          </div>
+          <div class="p-3 rounded-xl bg-parchment space-y-1">
+            <strong class="text-ink block">Cons:</strong>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Long road journey from Dehradun/Rishikesh (9–10 hours drive)</li>
+              <li>Shorter snow window (best snow only from mid-Jan to mid-Feb)</li>
+              <li>Limited advanced off-piste terrain</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Solang Valley & Narkanda */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <span class="text-xs font-mono uppercase tracking-wider text-accent font-semibold">Best for Quick 1–2 Day Trips</span>
+          <h2 class="text-xl font-bold text-ink">Solang Valley (Manali)</h2>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Located just 14 km from Manali, Solang Valley features a state-of-the-art ropeway and short ski runs. It is heavily commercialized with adventure tourists (sledging, zorbing, snowmobiles), making it best suited for casual 1-to-2 day trials rather than week-long ski training.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-3">
+          <span class="text-xs font-mono uppercase tracking-wider text-accent font-semibold">Best Budget Secret</span>
+          <h2 class="text-xl font-bold text-ink">Narkanda (Hatu Peak)</h2>
+          <p class="text-xs sm:text-sm text-mute leading-relaxed">
+            Situated 65 km past Shimla at 2,700m elevation, Narkanda is a tranquil alpine village offering peaceful nursery slopes managed by HPTDC. With lift tickets at ₹400–₹500/day and budget guest houses under ₹2,000/night, it is India’s most pocket-friendly destination for learning basic ski turns.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    {/* Next Steps CTA */}
+    <div class="p-8 rounded-3xl bg-parchment border border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+      <div class="space-y-1">
+        <h3 class="text-xl font-bold text-ink">Ready to plan your 2026–2027 ski budget?</h3>
+        <p class="text-xs sm:text-sm text-mute">
+          Calculate your exact passes, rentals, cabs, and hotel estimates with our interactive planner.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <a
+          href="/india-ski-trip-calculator/"
+          class="px-5 py-2.5 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold hover:opacity-90 transition-all shadow-sm"
+        >
+          Open India Trip Cost Calculator →
+        </a>
+        <a
+          href="/"
+          class="px-5 py-2.5 rounded-full border border-hairline bg-canvas text-ink text-xs sm:text-sm font-medium hover:border-primary/40 transition-all"
+        >
+          Calculate ISO 11088 DIN →
+        </a>
+      </div>
+    </div>
+
+  </article>
+</BaseLayout>

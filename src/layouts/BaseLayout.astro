@@ -40,6 +40,7 @@ const navLinks = [
   { href: getRouteFromUrl(new URL('/din-chart/', siteUrl), lang), label: t('nav.matrix'), base: '/din-chart/' },
   { href: getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang), label: t('nav.bsl'), base: '/bsl-guide/' },
   { href: getRouteFromUrl(new URL('/skier-types/', siteUrl), lang), label: t('nav.skierTypes'), base: '/skier-types/' },
+  { href: '/india-ski-trip-calculator/', label: t('nav.indiaPlanner'), base: '/india-ski-trip-calculator/' },
   { href: getRouteFromUrl(new URL('/about/', siteUrl), lang), label: t('nav.about'), base: '/about/' },
 ];
 
@@ -53,11 +54,15 @@ interface FooterContent {
   dinWeight: string;
   quiz: string;
   embed: string;
+  indiaPlanner: string;
+  gondolaCalc: string;
   colGuides: string;
   gripwalk: string;
   dinVsZ: string;
   bindingAdj: string;
   dinTooHigh: string;
+  resortCompare: string;
+  snowboardIndia: string;
   colStandards: string;
   iso9462Sub: string;
   iso5355Sub: string;
@@ -80,11 +85,15 @@ const footerContent: Record<string, FooterContent> = {
     dinWeight: 'DIN by Weight',
     quiz: 'Skier Type Quiz',
     embed: 'Embed Widget',
+    indiaPlanner: 'India Ski Trip Planner',
+    gondolaCalc: 'Gulmarg Gondola Pass Calc',
     colGuides: 'Guides & Safety',
     gripwalk: 'GripWalk vs Alpine',
     dinVsZ: 'DIN vs Z-Value',
     bindingAdj: 'Binding Adjustment',
     dinTooHigh: 'DIN Too High or Low',
+    resortCompare: 'Gulmarg vs Auli Comparison',
+    snowboardIndia: 'Snowboarding in India Guide',
     colStandards: 'Standards & Tech',
     iso9462Sub: 'Alpine Bindings',
     iso5355Sub: 'Alpine Boot Soles',
@@ -105,11 +114,15 @@ const footerContent: Record<string, FooterContent> = {
     dinWeight: 'Z-Wert nach Gewicht',
     quiz: 'Fahrertyp-Quiz',
     embed: 'Widget einbinden',
+    indiaPlanner: 'Indien Ski-Reiseplaner',
+    gondolaCalc: 'Gulmarg Gondel-Rechner',
     colGuides: 'Anleitungen & Sicherheit',
     gripwalk: 'GripWalk vs. Alpin',
     dinVsZ: 'DIN vs. Z-Wert',
     bindingAdj: 'Bindungseinstellung',
     dinTooHigh: 'Z-Wert zu hoch oder tief',
+    resortCompare: 'Gulmarg vs. Auli Vergleich',
+    snowboardIndia: 'Snowboarden in Indien',
     colStandards: 'Normen & Technik',
     iso9462Sub: 'Alpin-Bindungen',
     iso5355Sub: 'Alpin-Skischuhsohlen',
@@ -130,11 +143,15 @@ const footerContent: Record<string, FooterContent> = {
     dinWeight: 'DIN selon le poids',
     quiz: 'Test type de skieur',
     embed: 'Intégrer le widget',
+    indiaPlanner: 'Planificateur Ski en Inde',
+    gondolaCalc: 'Calculateur Forfait Gulmarg',
     colGuides: 'Guides & Sécurité',
     gripwalk: 'GripWalk vs Alpin',
     dinVsZ: 'DIN vs Valeur Z',
     bindingAdj: 'Réglage des fixations',
     dinTooHigh: 'DIN trop haut ou bas',
+    resortCompare: 'Comparatif Gulmarg vs Auli',
+    snowboardIndia: 'Snowboard en Inde Guide',
     colStandards: 'Normes & Technique',
     iso9462Sub: 'Fixations alpines',
     iso5355Sub: 'Semelles chaussures alpines',
@@ -155,11 +172,15 @@ const footerContent: Record<string, FooterContent> = {
     dinWeight: 'DIN in base al peso',
     quiz: 'Quiz tipo di sciatore',
     embed: 'Incorpora widget',
+    indiaPlanner: 'Pianificatore Sci in India',
+    gondolaCalc: 'Calcolatore Skipass Gulmarg',
     colGuides: 'Guide & Sicurezza',
     gripwalk: 'GripWalk vs Alpino',
     dinVsZ: 'DIN vs Valore Z',
     bindingAdj: 'Regolazione attacchi',
     dinTooHigh: 'DIN troppo alto o basso',
+    resortCompare: 'Confronto Gulmarg vs Auli',
+    snowboardIndia: 'Guida Snowboard in India',
     colStandards: 'Norme & Tecnica',
     iso9462Sub: 'Attacchi alpini',
     iso5355Sub: 'Suole scarponi alpini',
@@ -170,7 +191,7 @@ const footerContent: Record<string, FooterContent> = {
     methodology: 'Metodologia',
     changelog: 'Registro modifiche',
     noCookies: 'Nessun cookie. Statistiche aggregate nel rispetto della privacy.',
-    copyright: "Progetto indipendente, non affiliato all'ISO né ai produttori di attacchi. Metodologia conforme a ISO 11088:2023.",
+    copyright: "Projetto indipendente, non affiliato all'ISO né ai produttori di attacchi. Metodologia conforme a ISO 11088:2023.",
     footerBadge: 'Solo lato client • Solo memoria dispositivo • Licenza MIT',
   },
 };
@@ -356,6 +377,8 @@ const f = footerContent[lang] || footerContent.en;
             <ul class="space-y-2 text-xs text-mute">
               <li><a href={getRouteFromUrl(new URL('/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.calculator')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/din-chart/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.matrix')}</a></li>
+              <li><a href="/india-ski-trip-calculator/" class="hover:text-primary transition-colors text-primary font-medium">{f.indiaPlanner}</a></li>
+              <li><a href="/gulmarg-gondola-ski-pass-calculator/" class="hover:text-primary transition-colors">{f.gondolaCalc}</a></li>
               <li><a href="/kids-din-chart/" class="hover:text-primary transition-colors">{f.kidsChart}</a></li>
               <li><a href="/din-setting-by-weight/" class="hover:text-primary transition-colors">{f.dinWeight}</a></li>
               <li><a href="/skier-type-quiz/" class="hover:text-primary transition-colors">{f.quiz}</a></li>
@@ -366,6 +389,8 @@ const f = footerContent[lang] || footerContent.en;
           <div>
             <h3 class="caption-mono text-mute mb-3">{f.colGuides}</h3>
             <ul class="space-y-2 text-xs text-mute">
+              <li><a href="/gulmarg-vs-auli-vs-solang-ski-comparison/" class="hover:text-primary transition-colors">{f.resortCompare}</a></li>
+              <li><a href="/snowboarding-in-india-guide-costs/" class="hover:text-primary transition-colors">{f.snowboardIndia}</a></li>
               <li><a href={getRouteFromUrl(new URL('/bsl-guide/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.bsl')}</a></li>
               <li><a href={getRouteFromUrl(new URL('/skier-types/', siteUrl), lang)} class="hover:text-primary transition-colors">{t('nav.skierTypes')}</a></li>
               <li><a href="/gripwalk-vs-alpine-vs-wtr/" class="hover:text-primary transition-colors">{f.gripwalk}</a></li>
