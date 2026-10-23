@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IndiaSkiPlanner from '../components/india-planner/IndiaSkiPlanner';
+import { GOVT_COURSES_2026_27 } from '../data/indiaSkiData';
 import { getSeoMetadata } from '../utils/seo';
 
 const seo = getSeoMetadata('/india-ski-trip-calculator/', 'en');
@@ -161,6 +162,68 @@ const faqs = [
         </a>
       </div>
     </div>
+
+    {/* Verified Government Institutes & Courses Directory */}
+    <section class="mb-16 border-t border-hairline pt-12 space-y-6">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">Official Training Programs</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink mt-1">
+          Verified Government Ski Institutes & Certification Courses (2026–2027)
+        </h2>
+        <p class="text-xs sm:text-sm text-mute mt-1 leading-relaxed">
+          Subsidized, all-inclusive 14-day and 7-day ski certificate training modules run by Ministry of Tourism & State Mountaineering Directorates.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {GOVT_COURSES_2026_27.map(course => (
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-4 shadow-sm flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider">
+                  ✓ Govt Accredited
+                </span>
+                <span class="text-[11px] font-mono text-mute">{course.courseDurationDays} Days</span>
+              </div>
+              <h3 class="text-lg font-bold text-ink leading-tight">{course.institute}</h3>
+              <p class="text-xs text-mute font-medium">{course.fullName} · {course.location}</p>
+              
+              <div class="pt-2 border-t border-hairline/60 space-y-1.5 text-xs text-mute">
+                <div class="flex justify-between">
+                  <span>Under 25 Yrs:</span>
+                  <strong class="font-mono text-ink">₹{course.feeUnder25.toLocaleString()}</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span>Above 25 Yrs:</span>
+                  <strong class="font-mono text-ink">₹{course.feeAbove25.toLocaleString()}</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span>Foreign Nationals:</span>
+                  <strong class="font-mono text-mute">₹{course.feeForeigner.toLocaleString()}</strong>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-hairline/60 text-[11px] text-mute space-y-1">
+                <div><strong class="text-ink">Inclusions:</strong> {course.inclusions}</div>
+                <div><strong class="text-ink">Batches:</strong> {course.seasonBatches}</div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-hairline">
+              <a
+                href={course.officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+              >
+                <span>Visit {course.institute} Portal</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
 
     {/* FAQ Accordion Section */}
     <section class="border-t border-hairline pt-12 space-y-6">

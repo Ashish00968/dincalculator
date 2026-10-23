@@ -307,6 +307,104 @@ export function getStructuredData(pathname: string, lang: string, title: string,
     });
   }
 
+  // Dataset schema for verified price benchmarks
+  if (baseRoute === '/india-ski-trip-calculator/' || baseRoute === '/gulmarg-gondola-ski-pass-calculator/') {
+    schemas.push({
+      "@type": "Dataset",
+      "name": baseRoute === '/india-ski-trip-calculator/' 
+        ? "India Skiing & Snowboarding Tariff Benchmark 2026-2027"
+        : "Gulmarg Gondola 2026-2027 Official Tariff Dataset",
+      "description": "Ground-audited winter 2026-2027 rates for ski passes, hardware rentals, certified instructors, and mountain transfers in Gulmarg, Auli, Solang Valley, and Narkanda.",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": {
+        "@type": "Organization",
+        "name": "DIN Calculator Pro"
+      },
+      "temporalCoverage": "2026/2027"
+    });
+  }
+
+  // FAQPage schema for question-rich landing pages
+  if (baseRoute === '/india-ski-trip-calculator/') {
+    schemas.push({
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a 5-day ski trip to Gulmarg actually cost in 2026–2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 5-day ski trip to Gulmarg in the 2026–2027 season costs approximately ₹22,000 to ₹35,000 per person on a mid-range budget (excluding flights). This includes JKCCC Gondola Phase 1 daily skier passes (₹1,200/day for Indians), alpine ski equipment rental (₹700–₹1,100/day), warm hotel stay with heating, and mandatory Tangmarg 4x4 snow-chain transfers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between a Gulmarg Gondola sightseeing ticket and a skier pass?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sightseeing tickets (₹810 for Phase 1 / ₹1,010 for Phase 2) allow only ONE round trip (up and down) for tourists. Skier day passes (₹1,200 Phase 1 / ₹1,500 Phase 2 for Indians) provide unlimited ascents for the entire operational day. Buying single rides or sightseeing tickets for skiing is not cost-effective if doing 3 or more runs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is snowboarding more expensive than skiing in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Snowboard rentals in Gulmarg and Auli average ₹1,200 to ₹1,500 per day compared to ₹700 to ₹1,100 per day for alpine skis. This price premium is due to lower snowboard inventory and higher import duties on boards and boots in Indian rental shops."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is Boot Sole Length (BSL) and DIN calibration critical when renting in India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most local ski rental shops in Indian resorts tighten ski bindings by guesswork without measuring your exact Boot Sole Length (BSL in mm) or checking skier ability codes. Bindings set too high fail to release during falls, causing spiral fractures and ACL/MCL knee ligament tears. Always calculate your ISO 11088 DIN beforehand."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What hidden costs should I budget for in Gulmarg?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The two biggest unexpected expenses are: (1) Tangmarg to Gulmarg 4x4 snow-chain taxi transfer (₹1,500–₹2,500 return), which is legally mandatory when snow covers the road, and (2) Hotel heating charges (often ₹500–₹1,000 extra per night for electric heaters or blowers in budget hotels)."
+          }
+        }
+      ]
+    });
+  }
+
+  if (baseRoute === '/gulmarg-gondola-ski-pass-calculator/') {
+    schemas.push({
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much is a Gulmarg Gondola ski pass in 2026–2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In 2026–2027, Phase 1 daily skier passes cost ₹1,200 for Indians (₹1,600 for foreigners). Phase 2 daily skier passes cost ₹1,500 for Indians (₹2,500 for foreigners). Weekly 7-day passes cost ₹7,500 for Indians (₹12,500 for foreigners)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use a tourist sightseeing ticket to ski in Gulmarg?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Sightseeing return tickets allow only 1 round trip (up and down) and cannot be scanned for multiple ski runs. Skiers must purchase Skier Day Passes or Single Ski Ascent rides at the dedicated Skier Counter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a 7-day weekly Gondola pass worth it in Gulmarg?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A weekly Phase 2 pass breaks even only if you ski 5 or more full days on Phase 2. Because Apharwat Peak frequently closes 1 to 2 days per week for avalanche control and high winds, purchasing daily skier passes on clear mornings is often safer."
+          }
+        }
+      ]
+    });
+  }
+
   // BreadcrumbList for subpages
   if (baseRoute !== '/') {
     schemas.push({
